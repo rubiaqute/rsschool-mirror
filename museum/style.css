@@ -1,11 +1,359 @@
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+
+:root{
+    --bg-dark: #030303;
+    --dark-red: #710707;
+    --font-gold: #9d8665;
+}
+
+
+*{
+    
+    scroll-behavior: smooth;
+}
+
+body{
+    
+    background-color: var(--bg-dark);
+    
+}
 section{
     margin:0;
+    
 }
 .container{
+    margin: 0 auto;
     max-width: 1440px;
 }
+/*Header*/
 .header-container{
+    margin: 0 auto;
+    max-width: 1440px;
+    height: 150px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+.logo {
+    transition: 0.5s;
+    display: flex;
+    max-width: 199px;
+    width:100%;
+    padding: 59px 0px 58px 0px;   
+}
+.logo-text{
+    text-transform: uppercase;
+    font-family: "Forum", serif;
+    position:relative;
+    margin-left: 25px;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 31px;
+    letter-spacing: 5px;   
+}
+.logo-text a{
+    color:#FFFFFF;
+}
+.logo-icon{
+    background-image: url("assets/svg/Vector.svg");
+    transition: 1s;
+    width: 49px;
+    height: 26px;
+}
+.logo:hover{
+    filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
+}
+.menu{
+    max-width: 775px;
+    width:100%;
+    transition: 0.5s;
+    width:100%;
+    padding: 62px 0px 62px 0px;
+    
+}
+.menu-list{
+    display: flex;
+    justify-content: space-between;
+}
+.menu-list li{
+font-family: "Roboto", sans-serif;
+font-weight: 100;
+font-size: 22px;
+line-height: 26px;
+letter-spacing: 2px;
+color: #FFFFFF;
+}
+.menu-list li a{
+    color: #FFFFFF;
+    background-color: transparent;  
+}
+.menu-list li:hover{
+    filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
+}
+/*--------------------*/
+/*Welcome*/
+
+.welcome-wrap{
+    padding:150px 0px 0px 0px;
+}
+.section-title h2{
+    
+    color:#ffffff;
+    font-family: "Forum",serif;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+.under-title {
+    padding: 25px 0px 0px 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+}
+.discover-button{
+    margin-top:  75px;
+    max-width: 360px;
+    width: 100%;
+    border-radius: 10px;
+    height: 75px;
+    background-color: var(--dark-red);   
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 2px;
+    
+}
+
+.welcome-wrap{
+    background: url("assets/img/1.png") no-repeat;
+    min-height:810px;
+    width:100%;
+    background-position: top right;   
+    
+}
+
+.visiting{
+    background-color: #FFFFFF;
+    min-height: 1116px;
+    padding: 75px 0px 75px 0px;
+}
+.section-title-white{
+    
+    position: relative;
+    color:var(--font-gold);
+    font-family: "Forum",serif;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    
+}
+.section-title-white::after{
+    
+    position: absolute;
+    content: "";
+    max-width: 1440px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark-red);
+    margin-top: 25px;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 72px 60px ;
+    margin-top:  106px;
+}
+.cards-element{
+    display: block;
+    color: #000000;
+    
+}
+.cards-element h4{
+
+font-family: "Forum", serif;
+font-size: 32px;
+line-height: 35px;
+letter-spacing: 5px;
+text-transform: uppercase;
+margin-top: 25px;
+position: relative;
+color: #000000;
+}
+.cards-element h4::after{
+    display: block;
+    position: absolute;
+    content: "";
+    max-width: 300px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-red);
+    margin-top: 10px;
+}
+.upper{
+    font-family: "Roboto",sans-serif;
+    display: block;
+    margin-top: 22px;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+}
+.down{
+    margin-top: 10px;
+    font-family: "Roboto",sans-serif;
+    display: block;
+    
+    font-weight: 100;
+    font-size: 18px;
+    line-height: 21px; 
+    color: #000000;
+
+}
+.explore{
+    min-height: 865px;
+    padding: 75px 0px 75px 0px;   
+
+}
+.explore-wrap{
+    display: flex;
+    gap:60px;
+    min-height: 715px;
+    
+}
+.section-title-black {
+    
+    
+    max-width: 660px;
+    width: 100%;
+    display: block;
+    
+}
+.section-title-black h2{
+    color:#ffffff;
+    font-family: "Forum",serif;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    display: block;
+   
+    margin-bottom: 103px;
+    
+    
+}
+.section-title-black h2::after{
+    display: block;
+    position: absolute;
+    content: "";
+    max-width: 660px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark-red);
+    margin-top: 25px;
+}
+.section-title-black p{
+    margin-top: 25px;
+    font-family: "Roboto";
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 38px;
+    color: #FFFFFF;
+    display: block;
+    
+}
+.explore-wrap img{
+    max-width: 720px;
+    height:700px;
+    width: 100%;
+    margin-top:15px;
+}
+.yellow-text{
+    color: #CAAA7D;
+}
+.video-player{
+    background-color: #FFFFFF;
+    min-height: 1396px;
+    padding: 75px 0px 75px 0px;
+}
+#video-player::after{
+display: none;
+}
+.video-head{
+    display: flex;
+    gap:115px;
+}
+.video-h2{
+    white-space: nowrap;
+}
+.text-aside{ 
+    padding-top: 10px;
+    font-family: "Roboto";
+font-weight: 300;
+font-size: 22px;
+line-height: 38px;
+text-transform: none;
+max-width: 720px;
+width: 100%;
+color: #000000;
+}
+.art-gallery{
+    min-height: 2200px;
+    padding: 75px;         
+}
+#gallery-divider h2::after{
+display: none;
+}
+.picture-container{
+    width:100%;
+    padding:75px 0px 0px 0px;
+    min-height:1960px;
+    overflow-y:hidden;
+}
+.picture-inner-container{
+    min-height:auto;
+    display: flex;
 }
