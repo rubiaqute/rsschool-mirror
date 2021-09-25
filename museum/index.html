@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>museum</title>
+    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,7 +17,7 @@
             <div class="logo">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
-                    <a href="#">Louvre</a>
+                    <h1><a href="#">Louvre</a></h1>
                 </div>
             </div>
             <nav class="menu">
@@ -63,42 +64,43 @@
                     
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle-5.jpg" alt="Royal Palace">
-                        <h4>Royal palace</h4>
+                        
+                         <div class="cards-title"><h4>Royal palace</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a> 
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle-4.jpg" alt="Royal Palace">
-                        <h4>Denon wing</h4>
+                        <div class="cards-title"><h4>Denon wing</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle-3.jpg" alt="Royal Palace">
-                        <h4>Colonnade Perault</h4>
+                        <div class="cards-title"><h4>Colonnade Perault</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle-2.jpg" alt="Royal Palace">
-                        <h4>Greek Hall</h4>
+                        <div class="cards-title"><h4>Greek Hall</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle-1.jpg" alt="Royal Palace">
-                        <h4>Mona Lisa</h4>
+                        <div class="cards-title"><h4>Mona Lisa</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a> 
                     <a class="cards-element" href="#">
                         <img src="assets/img/Rectangle.jpg" alt="Royal Palace">
-                        <h4>Night Palace</h4>
+                        <div class="cards-title"><h4>Night Palace</h4></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
@@ -139,21 +141,82 @@
 
         </section>
         
-        <section class="art-gallery">
+        <section class="gallery">
             <div class="container">
                 <div class="section-title-black" id="gallery-divider">
                     <h2>Art gallery</h2>
                 </div>
                 <div class="picture-container">
+                    <img src="../museum/assets/img/gallery/Rectangle 16.png" alt="">
+                    
                     <div class="picture-inner-container">
                         
+                        
+                        
+                        <img class ="item" src="../museum/assets/img/gallery/galery1.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery2.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery3.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery4.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery5.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery6.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery7.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery8.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery9.jpg" alt="">
+                        <img class ="item"src="../museum/assets/img/gallery/galery10.jpg" alt="">
+                        <img class ="item"src="../museum/assets/img/gallery/galery11.jpg" alt="">
+                        <img class ="item"src="../museum/assets/img/gallery/galery12.jpg" alt="">
+                        <img class ="item"src="../museum/assets/img/gallery/galery13.jpg" alt="">
+                        <img class ="item"src="../museum/assets/img/gallery/galery14.jpg" alt="">
+                        <img class ="item" src="../museum/assets/img/gallery/galery15.jpg" alt="">
+                         
                     </div>
+                    
                 </div>
             </div>
         </section>
        
-        <section>
-            <div class="container"></div>
+        <section class="tickets">
+             <div class="container">
+                 
+                <div class="section-title-white" >
+                    <h2 class="video-h2" >Buy tickets</h2>                    
+                </div>
+                <div class="tickets-wrapper">
+                    <img src="../museum/assets/img/tickets.png" alt=""  >
+                    <div class="tickets-type">
+                      <p class="tickets-type-title">Ticket Type</p>
+                      <label class="radio-label">Permanent exhibition
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="radio-label">Temporary exhibition
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="radio-label">Combined Admission
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                    <div class="tickets-amount">
+                      <p class="tickets-amount-title">Amount</p>
+                      <p class="tickets-category">Basic 18+</p>
+                      <div class="tickets-counter">
+                        <button class="minus-button" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+                        <input type="number" min="0" max="20" value="1" readonly class="number">
+                        <button class="plus-button" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                      </div>
+                      <p class="tickets-category">Senior 65+</p>
+                      <div class="tickets-counter">
+                        <button class="minus-button" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+                        <input type="number" min="0" max="20" value="1" readonly class="number">
+                        <button class="plus-button" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                      </div>
+                      <div class="total"><span class="total-text">Total €</span><span class="total-price">220</span></div>
+                      <button class="buy-button">Buy Now</button>
+                    </div>
+                  </div>
+            </div>
         </section>
     </main>
     <footer>
