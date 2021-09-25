@@ -1,4 +1,6 @@
 /*Обнуление*/
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
 *{
 	padding: 0;
 	margin: 0;
@@ -91,7 +93,7 @@ section{
     color:#FFFFFF;
 }
 .logo-icon{
-    background-image: url("assets/svg/Vector.svg");
+    background-image: url("../museum/assets/svg/Vector.svg");
     transition: 1s;
     width: 49px;
     height: 26px;
@@ -194,6 +196,7 @@ color: #FFFFFF;
 .section-title-white::after{
     
     position: absolute;
+    z-index: 999999;
     content: "";
     max-width: 1440px;
     width: 100%;
@@ -467,6 +470,25 @@ display: none;
     border-radius: 50%;
 
 }
+.radio-label:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radio-label input:checked ~ .checkmark:after {
+    display: block;
+}
+.radio-label .checkmark:after {
+    top: 4px;
+   left: 4px;
+   width: 5px;
+   height: 5px;
+   border-radius: 50%;
+   background: #000000;
+}
 .tickets-amount{
     max-width: 150px;
     width:100%;
@@ -556,4 +578,141 @@ letter-spacing: 1.65px;
 }
 .buy-button:hover{
 background-color: var(--font-gold);
+}
+.parallax{
+    background-image: url("../museum/assets/img/parallax.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    width:100%;
+    height: 400px;
+}
+.contacts{
+    width:100%;
+    min-height: 963px;
+    background-color: #FFFFFF;
+    padding: 75px 0px;
+}
+.contacts-wrap{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    margin-top:103px;
+
+}
+.address h4{
+    font-family: "Roboto";
+display: block;
+font-weight: 500;
+font-size: 28px;
+line-height: 33px;
+color:black;
+text-transform: none;
+display: block;
+max-width:227px;
+letter-spacing:initial;
+width:100%;
+margin-bottom: 50px;
+
+}
+
+.address p{
+    font-family: "Roboto";
+    margin:25px 0px 25px 0px;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 26px;
+
+}
+.upper-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-footer {
+    transition: 0.5s;
+    display: flex;
+    max-width: 195px;
+    width:100%;
+    
+    margin: 83px 145px 140px 0px;   
+}
+.logo-footer:hover{
+    filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
+}
+.footer-menu{
+    max-width:363px;
+    width:100%;
+    margin:87px 397px 50px 0px;
+}
+.footer-list{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-column-gap: 150px;
+    grid-row-gap: 25px;
+}
+.footer-list li{
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+}
+.footer-list li a{
+        color: #FFFFFF;
+        background-color: transparent;  
+}
+.footer-list li:hover{
+        filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
+}
+.social-footer{
+    max-width:340px;
+    width:100%;
+    margin:162px 0px 55px 0px;
+}
+.footer-menu-list{
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.social-link a { 
+    display: flex;   
+    align-items: center;   
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+    border-radius: 100%;    
+    
+}
+.social-link :hover svg path, .social-link :active svg path {
+    fill: var(--font-gold);
+}
+.social-link a:hover{
+    border: 2px solid var(--font-gold);
+}
+.down-footer{
+display: flex;
+justify-content: space-between;
+}
+.down-footer p{
+    display: block;
+    font-family: "Roboto";
+    margin:50px 0px;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 22px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    position: relative;
+}
+.down-footer::before{
+    content: "";
+    width: 100%;
+    max-width: 1440px;
+    background-color: #666666;
+    height: 3px;
+    position:absolute
 }

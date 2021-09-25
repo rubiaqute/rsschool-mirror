@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>museum</title>
-    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <link rel="icon" href="../museum/assets/favicon.ico">
+    
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/8dcc80da66.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -22,12 +24,12 @@
             </div>
             <nav class="menu">
                 <ul class="menu-list">
-                    <li><a href="#">Visiting</a></li>
-                    <li><a href="#">Explore</a></li>
-                    <li><a href="#">Video</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Tickets</a></li>
-                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#visitinganchor">Visiting</a></li>
+                    <li><a href="#exploreanchor">Explore</a></li>
+                    <li><a href="#videoanchor">Video</a></li>
+                    <li><a href="#galleryanchor">Gallery</a></li>
+                    <li><a href="#ticketsanchor">Tickets</a></li>
+                    <li><a href="#contactsanchor">Contacts</a></li>
                 </ul>
             </nav>
         </div>
@@ -55,7 +57,7 @@
 
         </section>
         
-        <section class="visiting">
+        <section class="visiting" id="visitinganchor">
             <div class="container">
                 <div class="section-title-white">
                     <h2>Virtual tour</h2>
@@ -112,7 +114,7 @@
 
         </section>
         
-        <section class="explore">
+        <section class="explore" id="exploreanchor">
             <div class="container">
                 <div class="explore-wrap">
                     <div class="section-title-black">
@@ -127,7 +129,7 @@
 
         </section>
         
-        <section class="video-player">
+        <section class="video-player" id="videoanchor">
             <div class="container">
                 <div class="video-head">
                     <div class="section-title-white" id="video-player">
@@ -141,7 +143,7 @@
 
         </section>
         
-        <section class="gallery">
+        <section class="gallery"id="galleryanchor">
             <div class="container">
                 <div class="section-title-black" id="gallery-divider">
                     <h2>Art gallery</h2>
@@ -175,11 +177,11 @@
             </div>
         </section>
        
-        <section class="tickets">
+        <section class="tickets"id="ticketsanchor">
              <div class="container">
                  
                 <div class="section-title-white" >
-                    <h2 class="video-h2" >Buy tickets</h2>                    
+                    <h2>Buy tickets</h2>                    
                 </div>
                 <div class="tickets-wrapper">
                     <img src="../museum/assets/img/tickets.png" alt=""  >
@@ -218,8 +220,95 @@
                   </div>
             </div>
         </section>
+        <div class="parallax"></div>
+        <section class="contacts"id="contactsanchor">
+            <div class="container">
+                <div class="section-title-white" >
+                    <h2 class="address-h2">Contacts</h2> 
+                </div>
+                    <div class="contacts-wrap">
+                        <div class="address">
+                            <h4>Palais Royal Musee du Louvre</h4>
+                            <p>address:75001 Paris, France</p>
+                            <p>phone:+33(0) 1 40 20 50 50</p>
+                            <p>mail:info@louvre.fr</p>
+                           
+                        </div>
+                        <img src="..//museum/assets/img/map.jpg" alt="">
+                    </div>                   
+                
+
+
+            </div>
+        </section>
     </main>
     <footer>
+        <div class="container">
+            <div class="upper-footer">
+                <div class="logo-footer">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <a href="#">Louvre</a>
+                    </div>
+                </div>
+                <nav class="footer-menu">
+                    <ul class="footer-list">
+                    <li><a href="#visitinganchor">Visiting</a></li>
+                    <li><a href="#galleryanchor">Gallery</a></li>
+                    <li><a href="#exploreanchor">Explore</a></li> 
+                    <li><a href="#ticketsanchor">Tickets</a></li>
+                    <li><a href="#videoanchor">Video</a></li>
+                    <li><a href="#contactsanchor">Contacts</a></li>
+                    </ul> 
+                </nav>
+                <div class="social-footer">
+                    <ul class="footer-menu-list">
+                        <li class="social-link">
+                          <a href="https://www.youtube.com/user/louvre">
+                            <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.03 15.38V8.62L15.97 12L10.03 15.38ZM23.23 6.5C23.1026 6.01772 22.8508 5.57733 22.4998 5.22285C22.1488 4.86838 21.711 4.61222 21.23 4.48C19.46 4 12.35 4 12.35 4C12.35 4 5.25 4 3.48 4.48C2.99901 4.61222 2.56115 4.86838 2.21018 5.22285C1.85921 5.57733 1.60743 6.01772 1.48 6.5C1 8.28 1 12 1 12C1 12 1 15.72 1.47 17.5C1.5983 17.9835 1.85159 18.4247 2.20441 18.7793C2.55723 19.1338 2.99717 19.3893 3.48 19.52C5.25 20 12.36 20 12.36 20C12.36 20 19.46 20 21.23 19.52C21.711 19.3878 22.1488 19.1316 22.4998 18.7771C22.8508 18.4227 23.1026 17.9823 23.23 17.5C23.71 15.72 23.71 12 23.71 12C23.71 12 23.71 8.28 23.24 6.5H23.23Z" fill="white"/>
+                            </svg>
+                          </a>
+                        </li>
+                        <li class="social-link">
+                          <a href="https://www.instagram.com/museelouvre/">
+                            <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M13.02 2C14.82 2 15.2 2.02 16.12 2.06C17.18 2.11 17.91 2.28 18.54 2.53C19.2 2.78 19.76 3.13 20.31 3.68C20.87 4.23 21.21 4.79 21.47 5.45C21.72 6.08 21.88 6.81 21.93 7.88C21.98 8.83 21.99 9.2 21.99 11.2V12.8C21.99 14.8 21.98 15.17 21.93 16.12C21.9143 16.9468 21.7588 17.7651 21.47 18.54C21.21 19.2 20.87 19.76 20.32 20.31C19.76 20.87 19.2 21.21 18.54 21.47C17.91 21.72 17.18 21.88 16.12 21.93C15.17 21.98 14.79 21.99 12.79 21.99H11.2C9.20003 21.99 8.83003 21.98 7.87003 21.93C7.04321 21.9141 6.22502 21.7586 5.45003 21.47C4.78364 21.2195 4.17968 20.8271 3.68003 20.32C3.16784 19.8186 2.77186 19.211 2.52003 18.54C2.23165 17.765 2.07613 16.9468 2.06003 16.12C2.01101 15.0874 1.991 14.0537 2.00003 13.02V10.97C2.00003 9.17 2.02003 8.79 2.06003 7.87C2.11003 6.81 2.28003 6.08 2.52003 5.45C2.78003 4.79 3.12003 4.23 3.68003 3.68C4.17521 3.16743 4.78047 2.77418 5.45003 2.53C6.22448 2.23821 7.04266 2.07931 7.87003 2.06C8.79003 2.02 9.17003 2 10.97 2H13.02ZM13.04 3.8H10.95C9.22003 3.8 8.85003 3.82 7.95003 3.86C6.98003 3.9 6.45003 4.06 6.10003 4.2C5.63003 4.38 5.30003 4.6 4.95003 4.95C4.60003 5.3 4.38003 5.63 4.20003 6.1C4.07003 6.45 3.90003 6.98 3.86003 7.96C3.82003 8.86 3.80003 9.22 3.80003 10.96V13.04C3.80003 14.78 3.82003 15.14 3.86003 16.04C3.90003 17.01 4.06003 17.54 4.20003 17.89C4.38003 18.36 4.60003 18.69 4.95003 19.04C5.30003 19.39 5.63003 19.61 6.10003 19.79C6.45003 19.93 6.98003 20.09 7.96003 20.13C8.93003 20.18 9.28003 20.19 11.44 20.19H12.55C14.72 20.19 15.06 20.18 16.04 20.13C17.01 20.09 17.54 19.93 17.89 19.79C18.36 19.61 18.69 19.39 19.04 19.04C19.39 18.69 19.61 18.36 19.79 17.89C19.93 17.54 20.09 17.01 20.13 16.04C20.18 15.06 20.19 14.72 20.19 12.55V11.45C20.19 9.28 20.18 8.93 20.13 7.95C20.09 6.98 19.93 6.45 19.79 6.1C19.6291 5.66543 19.3728 5.27246 19.04 4.95C18.7178 4.61692 18.3248 4.3606 17.89 4.2C17.2969 3.98317 16.6715 3.86822 16.04 3.86C15.0408 3.81227 14.0404 3.79226 13.04 3.8ZM12 6.86C13.3619 6.86 14.668 7.40101 15.631 8.36401C16.594 9.32701 17.135 10.6331 17.135 11.995C17.135 13.3569 16.594 14.663 15.631 15.626C14.668 16.589 13.3619 17.13 12 17.13C10.6381 17.13 9.33204 16.589 8.36904 15.626C7.40604 14.663 6.86503 13.3569 6.86503 11.995C6.86503 10.6331 7.40604 9.32701 8.36904 8.36401C9.33204 7.40101 10.6381 6.86 12 6.86ZM12 8.66C11.1155 8.66 10.2673 9.01136 9.64183 9.6368C9.0164 10.2622 8.66503 11.1105 8.66503 11.995C8.66503 12.8795 9.0164 13.7278 9.64183 14.3532C10.2673 14.9786 11.1155 15.33 12 15.33C12.8845 15.33 13.7328 14.9786 14.3582 14.3532C14.9837 13.7278 15.335 12.8795 15.335 11.995C15.335 11.1105 14.9837 10.2622 14.3582 9.6368C13.7328 9.01136 12.8845 8.66 12 8.66ZM17.33 5.46C17.6483 5.46 17.9535 5.58643 18.1786 5.81147C18.4036 6.03652 18.53 6.34174 18.53 6.66C18.53 6.97826 18.4036 7.28348 18.1786 7.50853C17.9535 7.73357 17.6483 7.86 17.33 7.86C17.0118 7.86 16.7065 7.73357 16.4815 7.50853C16.2565 7.28348 16.13 6.97826 16.13 6.66C16.13 6.34174 16.2565 6.03652 16.4815 5.81147C16.7065 5.58643 17.0118 5.46 17.33 5.46Z" fill="white"/>
+                            </svg>                
+                          </a>
+                        </li>
+                        <li class="social-link">
+                          <a href="https://www.facebook.com/museedulouvre">
+                            <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9.78 22L9.75 13.25H6V9.5H9.75V7C9.75 3.63 11.84 2 14.85 2C16.29 2 17.53 2.1 17.89 2.15V5.68H15.8C14.17 5.68 13.85 6.46 13.85 7.6V9.5H18.5L17.25 13.25H13.85V22H9.78Z" fill="white"/>
+                            </svg>
+                          </a>
+                        </li>
+                        <li class="social-link">
+                          <a href="http://twitter.com/museelouvre">
+                            <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M22 5.88C21.25 6.25 20.5 6.38 19.62 6.5C20.5 6 21.12 5.25 21.37 4.25C20.5606 4.73131 19.6743 5.06959 18.75 5.25C17.9485 4.46227 16.8737 4.01446 15.75 4C13.62 4 11.75 5.88 11.75 8.13C11.75 8.5 11.75 8.75 11.88 9C10.2422 8.93823 8.63643 8.52707 7.17046 7.79408C5.70448 7.0611 4.41212 6.02321 3.38 4.75C3.00812 5.39563 2.83425 6.13634 2.88 6.88C2.89162 7.55196 3.06825 8.21077 3.39434 8.79842C3.72043 9.38608 4.18597 9.88456 4.75 10.25C4.12 10.25 3.5 10 2.87 9.75C2.87 11.75 4.25 13.38 6.12 13.75C5.75 13.88 5.37 13.88 5 13.88C4.75 13.88 4.5 13.88 4.25 13.75C4.75 15.38 6.25 16.63 8.13 16.63C6.67779 17.7963 4.8622 18.4156 3 18.38H2C3.87496 19.5591 6.03554 20.2056 8.25 20.25C15.75 20.25 19.88 14 19.88 8.62V8.12C20.7387 7.53355 21.4617 6.76969 22 5.88Z" fill="white"/>
+                            </svg>
+                          </a>
+                        </li>
+                        <li class="social-link">
+                          <a href="https://www.pinterest.fr/museedulouvre/">
+                            <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2C9.67546 2.00824 7.42643 2.82602 5.63952 4.31277C3.85262 5.79952 2.63948 7.86234 2.20866 10.1466C1.77785 12.4309 2.15627 14.7939 3.27888 16.8293C4.40149 18.8648 6.19815 20.4456 8.35998 21.3C8.25998 20.51 8.18998 19.3 8.38998 18.43L9.55998 13.46C9.55998 13.46 9.25998 12.86 9.25998 11.98C9.25998 10.59 10.07 9.56 11.08 9.56C11.93 9.56 12.35 10.2 12.35 10.96C12.35 11.82 11.8 13.1 11.51 14.29C11.27 15.29 12.01 16.1 13 16.1C14.78 16.1 16.14 14.23 16.14 11.53C16.14 9.13 14.42 7.47 11.96 7.47C11.3756 7.44433 10.792 7.53734 10.2446 7.74342C9.69709 7.94951 9.19705 8.26438 8.77463 8.66904C8.35221 9.07371 8.01616 9.55977 7.78678 10.0979C7.55739 10.636 7.43942 11.215 7.43998 11.8C7.43998 12.66 7.76998 13.58 8.17998 14.08C8.25998 14.18 8.26998 14.27 8.23998 14.37L7.95998 15.5C7.91998 15.68 7.80998 15.73 7.62998 15.64C6.36998 15.05 5.58998 13.24 5.58998 11.76C5.58998 8.61 7.88998 5.72 12.21 5.72C15.67 5.72 18.38 8.18 18.38 11.49C18.38 14.94 16.2 17.71 13.18 17.71C12.18 17.71 11.22 17.18 10.9 16.56L10.27 18.93C9.97485 19.8577 9.55787 20.7421 9.02998 21.56C10.4038 21.9816 11.8524 22.1021 13.277 21.9133C14.7016 21.7245 16.0687 21.2309 17.2854 20.4661C18.502 19.7014 19.5395 18.6833 20.3272 17.4814C21.115 16.2795 21.6344 14.9219 21.8501 13.5011C22.0658 12.0804 21.9728 10.6298 21.5774 9.24822C21.1819 7.86664 20.4934 6.58652 19.5586 5.49506C18.6238 4.40359 17.4648 3.52642 16.1604 2.9233C14.8561 2.32017 13.437 2.00525 12 2Z" fill="white"/>
+                            </svg>
+                          </a>
+                        </li>
+                      </ul>
+                            
+
+                </div>
+            </div>
+            <div class="down-footer">
+                <p>© 2021</p>
+                <p>The Rolling Scopes School</p>
+                <p>rubiaqute</p>
+            </div>
+        </div>
 
     </footer>
 </body>
