@@ -166,6 +166,15 @@ color: #FFFFFF;
     line-height: 26px;
     text-align: center;
     letter-spacing: 2px;
+    transition: 0.8s;
+    
+}
+.discover-button a{
+    color: #FFFFFF;
+}
+.discover-button:hover{
+    cursor:pointer;
+    background-color: var(--font-gold); 
     
 }
 
