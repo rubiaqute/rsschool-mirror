@@ -859,16 +859,19 @@ background-color: var(--font-gold);
     display: none;
 }
 .side-panel{
+    
     position: fixed;
     z-index: 999999;
     top:0px;
-    right:-100%;
+    right:-300%;
     height:845px;
     width:1440px;
     transition: all 1s;
     background-color: #ffffff;
 }
 #side-checkbox:checked + .side-panel{
+    
+
     right:calc(50% - 720px);
 }
 .side-button-close{
