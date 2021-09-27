@@ -1,5 +1,5 @@
 /*Обнуление*/
-@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
 
 *{
 	padding: 0;
@@ -128,6 +128,9 @@ color: #FFFFFF;
 .menu-list li:hover{
     filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
 }
+.menu-list li:active{
+    color:#7E6C51;
+}
 /*--------------------*/
 /*Welcome*/
 
@@ -151,26 +154,31 @@ color: #FFFFFF;
     line-height: 33px;
     letter-spacing: 2px;
     color: #FFFFFF;
+    margin-bottom: 75px;
 }
 .discover-button{
-    margin-top:  75px;
-    max-width: 360px;
-    width: 100%;
-    border-radius: 10px;
-    height: 75px;
-    background-color: var(--dark-red);   
-    color: #FFFFFF;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    font-size: 22px;
-    line-height: 26px;
-    text-align: center;
-    letter-spacing: 2px;
-    transition: 0.8s;
-    
+   
+   font-family: "Roboto", sans-serif;
+   font-weight: 300;
+   font-size: 22px;
+   line-height: 26px;
+   letter-spacing: 2px;
+   color: var(--font-gold);
+   text-decoration: none;
+   background-color: var(--dark-red);
+   padding: 25px 68px;
+   border-radius: 10px;
+   display: inline-block;
+   margin-top: 75px;
+  
+   transition:  1s;
+
+
+
 }
-.discover-button a{
+.discover-button {
     color: #FFFFFF;
+    margin: auto;
 }
 .discover-button:hover{
     cursor:pointer;
@@ -250,16 +258,16 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
 
 .welcome-squares .welcome-square:hover {
   cursor: pointer;
-  background-color: var(--dark-red);
+  background-color: var(--font-gold);
 }
-.leftarrow{
+#leftarrow{
    
     margin-right:25px;
 }
 #welcome-square-5{
     margin-right: 60px;
 }
-.leftarrow, .rightarrow{
+.arrows-button{
     font-size: 30px;
     display: inline-block;
     color:#FFFFFF;
@@ -267,14 +275,11 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
 
 }
 
-.rightarrow:hover{
+.arrows-button:hover{
     cursor: pointer;
-    color: var(--dark-red); 
+    color: var(--font-gold); 
 }
-.leftarrow:hover{
-    cursor: pointer;
-    color: var(--dark-red); 
-}
+
 
 .visiting{
     background-color: #FFFFFF;
@@ -453,7 +458,7 @@ display: none;
     
     background-color: transparent;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -501,13 +506,13 @@ margin-top:0px;
     margin: 42px 50px 42px 0px;
 }
 .play-button:hover svg path, .play-button :active svg path {
-    fill: var(--dark-red);
+    fill: #989898;
 }
 .volume-button:hover svg path,  .volume-button :active svg path{
-    fill: var(--dark-red);
+    fill: #989898;
 }
 .fullscreen-button:hover svg path, .fullscreen-button :active svg path{
-    fill: var(--dark-red);
+    fill: #989898;
 }
 
 .progress-small{
@@ -604,11 +609,11 @@ input#img-5:checked ~ .nav-dots label#img-dot-5 {
 
 .nav-dots .nav-dot:hover {
 	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color:var(--dark-red);
 }
 .prev, .next:hover{
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--dark-red);
 }
 .text-aside{ 
     padding-top: 10px;
@@ -623,7 +628,7 @@ color: #000000;
 }
 .gallery{
     min-height: 2200px;
-    padding: 75px;
+    padding: 75px 75px 0px 75px;
     z-index: 0;
     position: relative;
              
@@ -636,7 +641,7 @@ display: none;
 }
 .picture-container{
     width:100%;
-    margin-top: 51px;
+    margin-top: 75px;
     height:1960px;
     
     z-index: 0;
@@ -647,13 +652,13 @@ display: none;
     position: absolute;
     
     bottom:0px;
-    z-index: 50;
+    z-index: 10;
     
 
 }
 
 .picture-inner-container{
-    min-height:auto;
+    
     max-width:1512px;
     z-index: 0;
     /* display: grid; */
@@ -661,14 +666,14 @@ display: none;
     /* column-count: 3; */
     /* grid-template-columns: repeat(3,1fr);  */
     column-gap: 36px;
-    
+    row-gap: 24px;
     
     
     height:2996px;
     display:flex;
     flex-wrap:wrap;
     flex-direction: column;
-    align-items: baseline; 
+    
     
     
     
@@ -676,7 +681,7 @@ display: none;
 }
 
 .picture-inner-container img{
-    margin: 24px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     display: inline-block;
     position: relative;
     max-width: 100%;
@@ -685,6 +690,11 @@ display: none;
     height:auto;
 
 
+}
+
+.picture-inner-container img:nth-child(1),
+.picture-inner-container img:nth-child(11){
+    padding-top:50px;
 }
 .tickets{
     background-color: #FFFFFF;
@@ -1040,9 +1050,307 @@ position:absolute;
     margin-bottom: 22px;
     color: #030303;
   }
+  .entry-types-wrap{
+    display: flex;
+    justify-content: space-between;
+  }
+  .basic-counter{
+      display:flex;
+      column-gap: 0px;
+      margin-top:21px;
+      width:105px;
+      width:100%;
+  }
+  .senior-counter{
+    display:flex;
+    column-gap: 0px;
+    margin-top:18px;
+    width:105px;
+    width:100%;
+  }
+  .basic-minus-button, .basic-plus-button{
+      background-color: #000000;
+      color:#FFFFFF;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid #030303;
+      width:35px;
+      height:25px;
+  }
+  .basic-counter input, .senior-counter input{
+      
+      margin-left:0px;
+      margin-right:0px;
+    max-width:35px;
+    height:25px;
+      padding: 2px 3px;
+      width:100%;
+      
+      font-family: "Roboto";
+      display: inline-block;
+    font-weight: 300;
+font-size: 18px;
+line-height: 21px;
+border: 1px solid #030303;
+  }
+ .second-side-column{
+     max-width:530px;
+     width:100%;
+     border: 1px solid #030303;
+     margin-top: 2px;
+     padding:26px 29px 26px 30px;
+ }
+ .header-summary{
+     display: flex;
+     justify-content: space-between;
+ }
+ .header-summary img{
+     
+     max-width:150px;
+     width:100%;
+     height:120px;
+     
+ }
+ .info-summary h6{
+    font-family: "Roboto";
+    
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 37px;
+    color: #272727;
+    
+ }
+ .under-title-overview{
+    font-family: "Roboto";
+    margin-top: 2px;;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #740C11;
+    opacity: 0.9;
+    margin-bottom: 11px;
+ }
+ .summary-wrap{
+     display: flex;
+     
+     margin-bottom:5px;
+ }
+ .summary-wrap p{
+     margin-left:14px;
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #030303;
+ }
+ .rows-count{
+     margin-top: 22px;
+     display: flex;
+     justify-content: space-between;
+     width:100%;
+     
+ }
+  .basic-total-count, .senior-total-count{
+      display:flex;
+      row-gap: 5px;
+      column-gap: 10px;
+  }
+  .basic-total-count input, .senior-total-count input{
+    background-color: #030303;
+    padding:5px 3px;
+    color:#ffffff;
+    max-width: 32px;
+    width:100%;
+    height: 20px;
+    margin:0px;
+    border-radius: 30%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+.basic-total-count p, .senior-total-count p{
+    display: inline-block;
+    font-family: "Roboto";
+max-width:126px;
+width:100%;
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+color: #030303;
+}
+.senior-total-count{
+    margin-top:5px;
+}
+.second-column-types{
+    display: block;
+    font-family: "Roboto";
 
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
 
+color: #030303;
+}
+.second-column-types p{
+    margin-bottom: 7px;
+}
+.total-row{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    font-family: "Roboto";
+font-weight: 500;
+font-size: 32px;
+line-height: 37px;
+margin-top: 10px;
+color: #030303;
+position: relative;
+}
 
+.total-row:before{
+    width:470px;
+    width:100%;
+    content:"";
+    height:2px;
+    background-color: #740C11;
+    margin-top: -11px;
+    position: absolute;
+    
+}
+.credit-card-face{
+    margin-top:10px;
+    max-width: 360px;
+    min-height:211px;
+    width:100%;
+    background-color: #A4A4A3;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 2000;
+}
+.credit-card-face p{
+    font-family: "Roboto";    
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;    
+    color: #161615;
+    
+}
+.card-number-input{
+    max-width: 215px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+    margin-bottom: 10px;
+}
+.expiration{
+    max-width: 100px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right:15px;
+}
+.cardholder-input{
+    max-width: 320px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+}
+.visa{
+    position:absolute;
+    top: 34px; 
+    right:20px;
+    bottom: 161px;
+    left:285px;
+
+}
+.mastercard{
+    position:absolute;
+    top: 65px; 
+    right:20px;
+    bottom: 114px;
+    left:287px;
+    
+}
+.credit-card{
+    position: relative;
+    min-height:241px;
+    max-width:470px;
+    width:100%;
+}
+.credit-card-reverse{
+    position: absolute;
+    z-index: 1000;
+    top: 30px;
+    right:0px;
+    bottom:0px;
+    left:110px;
+    background-color:#939393;
+    max-width:360px;
+    width:100%;
+    height:211px;
+}
+.black-magnet{
+    max-width:360px;
+    width:100%;
+    height:45px;
+    background-color:#161615;
+    margin-top: 25px;
+
+}
+.cvc-name{
+font-family: "Roboto";
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+color: #161615;
+margin-top: 15px;
+margin-left: 274px;
+}
+.cvc-discription{
+    font-family: "Roboto";
+font-weight: 300;
+font-size: 10px;
+line-height: 12px;
+color: #161615;
+max-width:55px;
+width:100%;
+height:50px;
+margin-top:6px;
+margin-left:275px;
+}
+.credit-card-reverse input{
+    max-width:75px;
+    width:100%;
+    height:35px;
+    margin-top:5px;
+    margin-left:265px;
+}
+.book-button{
+    max-width:220px;
+    width:100%;
+    height:45px;
+    background-color:var(--dark-red);
+    color:#ffffff;
+    font-family: "Roboto";
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+margin-top:56px;
+margin-left: 250px;
+}
+.book-button:hover{
+    cursor: pointer;
+    transition: 1s;
+    background-color: var(--font-gold);
+}
 
 
 
@@ -1083,12 +1391,13 @@ margin-bottom: 50px;
 
 }
 
-.address p{
+.address a, .address p{
     font-family: "Roboto";
     margin:25px 0px 25px 0px;
     font-weight: 300;
     font-size: 22px;
     line-height: 26px;
+    color:#000000;
 
 }
 .upper-footer{
@@ -1132,6 +1441,9 @@ margin-bottom: 50px;
 }
 .footer-list li:hover{
         filter: invert(49%) sepia(42%) saturate(277%) hue-rotate(356deg) brightness(95%) contrast(91%);
+}
+.footer-list li:active{
+    color:#7E6C51;
 }
 .social-footer{
     max-width:340px;
