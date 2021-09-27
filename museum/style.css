@@ -664,7 +664,7 @@ display: none;
     /* column-count: 3; */
     /* grid-template-columns: repeat(3,1fr);  */
     column-gap: 36px;
-    
+    row-gap: 24px;
     
     
     height:2996px;
@@ -688,6 +688,11 @@ display: none;
     height:auto;
 
 
+}
+
+.picture-inner-container img:nth-child(1),
+.picture-inner-container img:nth-child(11){
+    padding-top:50px;
 }
 .tickets{
     background-color: #FFFFFF;
