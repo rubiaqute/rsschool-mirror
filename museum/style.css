@@ -1287,8 +1287,60 @@ position: relative;
     width:100%;
     height:211px;
 }
+.black-magnet{
+    max-width:360px;
+    width:100%;
+    height:45px;
+    background-color:#161615;
+    margin-top: 25px;
 
-
+}
+.cvc-name{
+font-family: "Roboto";
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+color: #161615;
+margin-top: 15px;
+margin-left: 274px;
+}
+.cvc-discription{
+    font-family: "Roboto";
+font-weight: 300;
+font-size: 10px;
+line-height: 12px;
+color: #161615;
+max-width:55px;
+width:100%;
+height:50px;
+margin-top:6px;
+margin-left:275px;
+}
+.credit-card-reverse input{
+    max-width:75px;
+    width:100%;
+    height:35px;
+    margin-top:5px;
+    margin-left:265px;
+}
+.book-button{
+    max-width:220px;
+    width:100%;
+    height:45px;
+    background-color:var(--dark-red);
+    color:#ffffff;
+    font-family: "Roboto";
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+margin-top:56px;
+margin-left: 250px;
+}
+.book-button:hover{
+    cursor: pointer;
+    transition: 1s;
+    background-color: var(--font-gold);
+}
 
 
 
