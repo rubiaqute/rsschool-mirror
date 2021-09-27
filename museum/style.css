@@ -1,5 +1,5 @@
 /*Обнуление*/
-@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
 
 *{
 	padding: 0;
@@ -1040,7 +1040,253 @@ position:absolute;
     margin-bottom: 22px;
     color: #030303;
   }
+  .entry-types-wrap{
+    display: flex;
+    justify-content: space-between;
+  }
+  .basic-counter{
+      display:flex;
+      column-gap: 0px;
+      margin-top:21px;
+      width:105px;
+      width:100%;
+  }
+  .senior-counter{
+    display:flex;
+    column-gap: 0px;
+    margin-top:18px;
+    width:105px;
+    width:100%;
+  }
+  .basic-minus-button, .basic-plus-button{
+      background-color: #000000;
+      color:#FFFFFF;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid #030303;
+      width:35px;
+      height:25px;
+  }
+  .basic-counter input, .senior-counter input{
+      
+      margin-left:0px;
+      margin-right:0px;
+    max-width:35px;
+    height:25px;
+      padding: 2px 3px;
+      width:100%;
+      
+      font-family: "Roboto";
+      display: inline-block;
+    font-weight: 300;
+font-size: 18px;
+line-height: 21px;
+border: 1px solid #030303;
+  }
+ .second-side-column{
+     max-width:530px;
+     width:100%;
+     border: 1px solid #030303;
+     margin-top: 2px;
+     padding:26px 29px 26px 30px;
+ }
+ .header-summary{
+     display: flex;
+     justify-content: space-between;
+ }
+ .header-summary img{
+     
+     max-width:150px;
+     width:100%;
+     height:120px;
+     
+ }
+ .info-summary h6{
+    font-family: "Roboto";
+    
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 37px;
+    color: #272727;
+    
+ }
+ .under-title-overview{
+    font-family: "Roboto";
+    margin-top: 2px;;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #740C11;
+    opacity: 0.9;
+    margin-bottom: 11px;
+ }
+ .summary-wrap{
+     display: flex;
+     
+     margin-bottom:5px;
+ }
+ .summary-wrap p{
+     margin-left:14px;
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #030303;
+ }
+ .rows-count{
+     margin-top: 22px;
+     display: flex;
+     justify-content: space-between;
+     width:100%;
+     
+ }
+  .basic-total-count, .senior-total-count{
+      display:flex;
+      row-gap: 5px;
+      column-gap: 10px;
+  }
+  .basic-total-count input, .senior-total-count input{
+    background-color: #030303;
+    padding:5px 3px;
+    color:#ffffff;
+    max-width: 32px;
+    width:100%;
+    height: 20px;
+    margin:0px;
+    border-radius: 30%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+.basic-total-count p, .senior-total-count p{
+    display: inline-block;
+    font-family: "Roboto";
+max-width:126px;
+width:100%;
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+color: #030303;
+}
+.senior-total-count{
+    margin-top:5px;
+}
+.second-column-types{
+    display: block;
+    font-family: "Roboto";
 
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+
+color: #030303;
+}
+.second-column-types p{
+    margin-bottom: 7px;
+}
+.total-row{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    font-family: "Roboto";
+font-weight: 500;
+font-size: 32px;
+line-height: 37px;
+margin-top: 10px;
+color: #030303;
+position: relative;
+}
+
+.total-row:before{
+    width:470px;
+    width:100%;
+    content:"";
+    height:2px;
+    background-color: #740C11;
+    margin-top: -11px;
+    position: absolute;
+    
+}
+.credit-card-face{
+    margin-top:10px;
+    max-width: 360px;
+    min-height:211px;
+    width:100%;
+    background-color: #A4A4A3;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 2000;
+}
+.credit-card-face p{
+    font-family: "Roboto";    
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;    
+    color: #161615;
+    
+}
+.card-number-input{
+    max-width: 215px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+    margin-bottom: 10px;
+}
+.expiration{
+    max-width: 100px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right:15px;
+}
+.cardholder-input{
+    max-width: 320px;
+    width:100%;
+    background-color: #ffffff;
+    min-height: 35px;
+    margin-left:0px;
+    margin-top:5px;
+}
+.visa{
+    position:absolute;
+    top: 34px; 
+    right:20px;
+    bottom: 161px;
+    left:285px;
+
+}
+.mastercard{
+    position:absolute;
+    top: 65px; 
+    right:20px;
+    bottom: 114px;
+    left:287px;
+    
+}
+.credit-card{
+    position: relative;
+    min-height:241px;
+    max-width:470px;
+    width:100%;
+}
+.credit-card-reverse{
+    position: absolute;
+    z-index: 1000;
+    top: 30px;
+    right:0px;
+    bottom:0px;
+    left:110px;
+    background-color:#939393;
+    max-width:360px;
+    width:100%;
+    height:211px;
+}
 
 
 
