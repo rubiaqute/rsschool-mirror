@@ -48,17 +48,17 @@
                             to the Louvre</h2>
                         </div>
                             <h3 class="under-title">From the castle to the museum</h3>
-                            <button class="discover-button"><a href="../museum/tours/tour1.html" target="_blank">Discover the Louvre</a></button>
+                            <a href="../museum/tours/tour1.html" target="_blank" class="discover-button">Discover the Louvre</a>
                     </div>
                     <div class="slider-welcome">
                         
-                            <input type="radio" name="radio-btn" id="arrowright" />
+                            
                             <input type="radio" name="radio-btn" id="welcome-1" checked/>
                             <input type="radio" name="radio-btn" id="welcome-2" />
                             <input type="radio" name="radio-btn" id="welcome-3" />
                             <input type="radio" name="radio-btn" id="welcome-4" />
                             <input type="radio" name="radio-btn" id="welcome-5" />
-                            <input type="radio" name="radio-btn" id="arrowleft" />
+                            
                             <div class="welcome-squares">
                                      
                                 <span>01&nbsp; |&nbsp; 05</span>
@@ -68,11 +68,12 @@
                                 <label for="welcome-3" class="welcome-square" id="welcome-square-3"></label>
                                 <label for="welcome-4" class="welcome-square" id="welcome-square-4"></label>
                                 <label for="welcome-5" class="welcome-square" id="welcome-square-5"></label>
-                                <button class="arrows-button"><label for="arrowleft" class="leftarrow">&#8592;</label></button>
-                                <button class="arrows-button"><label for="arrowright" class="rightarrow">&#8594;</label></button>
+                                <button  class="arrows-button" id="leftarrow">&#8592;</button>
+                                <button  class="arrows-button">&#8594;</button>
                                 
                                 
                             </div>
+                        </div>
                     
                 </div>
 
@@ -124,7 +125,7 @@
                         <p class="down">Google Street Panorama View</p>
                         
                     </a> 
-                    <a class="cards-element" href="../museum/tours/tour7.html"target="_blank">
+                    <a class="cards-element" href="../museum/tours/tour7.html" target="_blank">
                         <img src="assets/img/Rectangle.jpg" alt="Royal Palace">
                         <div class="cards-title"><h4>Night Palace</h4></div>
                         <p class="upper">360° Virtual Tour </p>
@@ -147,7 +148,7 @@
                         <p>It was cleaned in 1984 to remove a <span class="yellow-text">"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
                         <p>The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
                     </div>
-                    <img class="imagecompare"src="assets/img/before.jpg" alt="explore">
+                    <img class="imagecompare" src="assets/img/before.jpg" alt="explore">
                 </div>
             </div>
 
@@ -165,7 +166,7 @@
                 </div>
                 <div class="main-video">
                     <button class="main-button">
-                        <svg  class="playicon"width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg  class="playicon" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M110 8.89168C130.003 8.88778 149.558 14.816 166.191 25.9266C182.825 37.0372 195.79 52.831 203.446 71.3106C211.103 89.7901 213.107 110.125 209.206 129.744C205.304 149.363 195.672 167.384 181.528 181.528C167.384 195.672 149.363 205.304 129.744 209.206C110.125 213.107 89.7901 211.103 71.3106 203.446C52.8311 195.79 37.0372 182.825 25.9266 166.191C14.816 149.558 8.88783 130.003 8.89174 110C8.92833 83.1956 19.5925 57.4996 38.546 38.546C57.4996 19.5925 83.1956 8.92828 110 8.89168ZM110 0C88.2441 0 66.9767 6.45139 48.8873 18.5383C30.7979 30.6253 16.6989 47.805 8.37331 67.9048C0.0476618 88.0047 -2.1307 110.122 2.11367 131.46C6.35805 152.798 16.8345 172.398 32.2183 187.782C47.602 203.166 67.2022 213.642 88.5401 217.886C109.878 222.131 131.995 219.952 152.095 211.627C172.195 203.301 189.375 189.202 201.462 171.113C213.549 153.023 220 131.756 220 110C220 80.8262 208.411 52.8473 187.782 32.2183C167.153 11.5893 139.174 0 110 0Z" fill="white"/>
                             <path d="M167.954 110L76.5278 49.9119C76.6463 140.498 76.5278 96.0498 76.5278 170.088L167.954 110Z" fill="white"/>
                             </svg>
@@ -240,13 +241,13 @@
 
         </section>
         
-        <section class="gallery"id="galleryanchor">
+        <section class="gallery" id="galleryanchor">
             <div class="container">
                 <div class="section-title-black" id="gallery-divider">
                     <h2>Art gallery</h2>
                 </div>
                 <div class="picture-container">
-                    <img src="../museum/assets/img/gallery/Rectangle 16.png" alt="">
+                    <img src="../museum/assets/img/gallery/Rectangle16.png" alt="">
                     
                     <div class="picture-inner-container">
                         
@@ -274,7 +275,7 @@
             </div>
         </section>
        
-        <section class="tickets"id="ticketsanchor">
+        <section class="tickets" id="ticketsanchor">
              <div class="container">
                  
                 <div class="section-title-white" >
@@ -338,7 +339,7 @@
                                         <path d="M13.585 1.21691H12.0982V0.498732C12.0982 0.36646 12.045 0.239613 11.9502 0.146082C11.8555 0.052552 11.7269 0 11.5929 0C11.4589 0 11.3303 0.052552 11.2356 0.146082C11.1408 0.239613 11.0875 0.36646 11.0875 0.498732V1.21292H3.91146V0.498732C3.91146 0.36646 3.85822 0.239613 3.76345 0.146082C3.66868 0.052552 3.54014 0 3.40611 0C3.27208 0 3.14354 0.052552 3.04877 0.146082C2.954 0.239613 2.90075 0.36646 2.90075 0.498732V1.21292H1.415C1.04059 1.21292 0.681447 1.35937 0.416228 1.62018C0.151009 1.88099 0.00133717 2.2349 0 2.6044V3.85619H14.996V2.6044C14.9936 2.23629 14.844 1.884 14.5798 1.62417C14.3155 1.36433 13.958 1.21795 13.585 1.21691Z" fill="#030303"/>
                                         <path d="M0 13.6086C0.00133717 13.9781 0.151009 14.3321 0.416228 14.5929C0.681447 14.8537 1.04059 15.0001 1.415 15.0001H13.585C13.9594 15.0001 14.3186 14.8537 14.5838 14.5929C14.849 14.3321 14.9987 13.9781 15 13.6086V4.93066H0V13.6086ZM7.075 11.8681C7.11993 11.3986 7.26002 10.9428 7.48695 10.5278C7.71388 10.1128 8.02302 9.74698 8.396 9.45219C9.09541 8.72802 9.27835 8.50359 9.27835 7.93903C9.27835 7.51011 9.16616 7.17497 8.67192 7.17497C8.17769 7.17497 8.02709 7.53206 8.00384 8.10261H7.11138C7.08791 7.88932 7.11245 7.67355 7.18324 7.4707C7.25404 7.26785 7.36934 7.08292 7.52092 6.92914C7.6725 6.77535 7.85662 6.6565 8.06013 6.58105C8.26364 6.5056 8.48151 6.47542 8.6982 6.49268C8.90216 6.46457 9.10993 6.48291 9.30559 6.54629C9.50126 6.60966 9.67963 6.71641 9.82704 6.85833C9.97446 7.00025 10.087 7.17357 10.156 7.36504C10.2251 7.55652 10.2488 7.76103 10.2254 7.96295C10.2254 8.63226 10.0232 8.98738 9.26016 9.72451C8.78529 10.1283 8.40375 10.628 8.1413 11.1898H10.382L10.2567 11.9189H7.075V11.8681ZM4.67657 6.96749C5.047 6.91625 5.39635 6.76662 5.68728 6.5346H6.30281V11.9209H5.38104V7.53207C5.14897 7.58541 4.91179 7.61417 4.67354 7.61785L4.67657 6.96749Z" fill="#030303"/>
                                         </svg></div>
-                                        <input  class="input-fielddt"type="date" id="date" placeholder= "Date" name="date"/>
+                                        <input  class="input-fielddt" type="date" id="date" name="date"/>
                                   </div>
                                   <div class="time-container">
                                     <div class="icon-form">
@@ -347,7 +348,7 @@
                                             </svg>
                                             
                                     </div>
-                                        <input  class="input-fielddt"type="time" id="time" placeholder= "Time" name="time"/>
+                                        <input  class="input-fielddt" type="time" id="time"  name="time"/>
                                   </div>
                                 </div>
                                 <div class="userinfo-container">
@@ -357,7 +358,7 @@
                                         </svg>
                                             
                                     </div>
-                                        <input  class="input-field"type="text" id="name" placeholder= "Name" name="name"/>
+                                        <input  class="input-field" type="text" id="name" placeholder= "Name" name="name"/>
                                 </div>
                                 <div class="userinfo-container">
                                     <div class="icon-form">
@@ -366,7 +367,7 @@
                                             </svg>
                                             
                                     </div>
-                                        <input  class="input-field"type="email" id="e-mail" placeholder= "E-mail" name="email"/>
+                                        <input  class="input-field" type="email" id="e-mail" placeholder= "E-mail" name="email"/>
                                 </div>
                                 <div class="userinfo-container">
                                     <div class="icon-form">
@@ -376,7 +377,7 @@
                                             
                                             
                                     </div>
-                                        <input  class="input-field"type="tel" id="phone" placeholder= "Phone" name="phone"/>
+                                        <input  class="input-field" type="tel" id="phone" placeholder= "Phone" name="phone"/>
                                 </div>
                                 <div class="userinfo-container">
                                     <div class="icon-form">
@@ -385,7 +386,7 @@
                                             </svg>
                                             
                                     </div>
-                                        <select  class="input-field" id="tickettype" placeholder= "Ticket Type" >
+                                        <select  class="input-field" id="tickettype" >
                                             <option disabled selected>Ticket Type</option>
                                             <option>Basic 18+</option>
                                             <option>Senior 65+</option>
@@ -527,7 +528,7 @@
             </div>
         </section>
         <div class="parallax"></div>
-        <section class="contacts"id="contactsanchor">
+        <section class="contacts" id="contactsanchor">
             <div class="container">
                 <div class="section-title-white" >
                     <h2 class="address-h2">Contacts</h2> 

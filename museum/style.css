@@ -154,26 +154,31 @@ color: #FFFFFF;
     line-height: 33px;
     letter-spacing: 2px;
     color: #FFFFFF;
+    margin-bottom: 75px;
 }
 .discover-button{
-    margin-top:  75px;
-    max-width: 360px;
-    width: 100%;
-    border-radius: 10px;
-    height: 75px;
-    background-color: var(--dark-red);   
-    color: #FFFFFF;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    font-size: 22px;
-    line-height: 26px;
-    text-align: center;
-    letter-spacing: 2px;
-    transition: 0.8s;
-    
+   
+   font-family: "Roboto", sans-serif;
+   font-weight: 300;
+   font-size: 22px;
+   line-height: 26px;
+   letter-spacing: 2px;
+   color: var(--font-gold);
+   text-decoration: none;
+   background-color: var(--dark-red);
+   padding: 25px 68px;
+   border-radius: 10px;
+   display: inline-block;
+   margin-top: 75px;
+  
+   transition:  1s;
+
+
+
 }
-.discover-button a{
+.discover-button {
     color: #FFFFFF;
+    margin: auto;
 }
 .discover-button:hover{
     cursor:pointer;
@@ -255,14 +260,14 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
   cursor: pointer;
   background-color: var(--font-gold);
 }
-.leftarrow{
+#leftarrow{
    
     margin-right:25px;
 }
 #welcome-square-5{
     margin-right: 60px;
 }
-.leftarrow, .rightarrow{
+.arrows-button{
     font-size: 30px;
     display: inline-block;
     color:#FFFFFF;
@@ -270,14 +275,11 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
 
 }
 
-.rightarrow:hover{
+.arrows-button:hover{
     cursor: pointer;
     color: var(--font-gold); 
 }
-.leftarrow:hover{
-    cursor: pointer;
-    color: var(--font-gold); 
-}
+
 
 .visiting{
     background-color: #FFFFFF;
