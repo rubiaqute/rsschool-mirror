@@ -99,13 +99,13 @@ superTotal.innerText=`${basicSum+seniorSum} €`;
 
 for (let i=0; i<typeRadioChoice.length;i++){
     typeRadioChoice[i].addEventListener('click', determinePrice)
-        // window.sessionStorage.setItem('exhibitionType', `${i}`);
+        
     };
 ticketsForm.addEventListener('click', determineTotal);
 bookingForm.addEventListener('click', updateTotal);
 document.addEventListener("DOMContentLoaded", function(){
     priceForUnit =window.sessionStorage.getItem('exhibitionTypeValue');
-    typeRadioChoice[window.sessionStorage.getItem('exhibitionType')].checked=true;
+    if(window.sessionStorage.getItem('exhibitionType')) typeRadioChoice[window.sessionStorage.getItem('exhibitionType')].checked=true;
     amountBasic.value = window.sessionStorage.getItem('amountBasic');
     amountSenior.value=window.sessionStorage.getItem('amountSenior');
     priceTotal.innerText = amountBasic.value * priceForUnit + amountSenior.value *priceForUnit /2;
@@ -133,5 +133,52 @@ let dayConstructor = `${weekContainer[dayWeek]}, ${monthsContainer[month]} ${day
 
 dateVisit.innerText=dayConstructor;
 }
-
 };
+
+// Validation part
+const nameContainer = document.getElementById('name-container');
+const emailContainer = document.getElementById('email-container');
+const phoneContainer = document.getElementById('phone-container');
+
+const nameInvalidMessage = document.querySelector('.name-invalid-message');
+const emailInvalidMessage = document.querySelector('.email-invalid-message');
+const phoneInvalidMessage = document.querySelector('.phone-invalid-message');
+
+const clientName = document.getElementById('name');
+clientName.addEventListener('change', (e) =>{
+    const reg = /^[A-Za-zА-Яа-я\s]{3,15}$/
+    if (!clientName.value.match(reg)) {
+        clientName.value = "";
+        nameContainer.style.border=" 2px solid red";
+        nameInvalidMessage.style.display = "block";
+        setTimeout(() =>{nameContainer.style.border="2px solid black"},2000);
+        setTimeout(() =>{nameInvalidMessage.style.display = "none"},2000);
+            
+    }
+})
+const clientEmail = document.getElementById('e-mail');
+clientEmail.addEventListener('change', (e) =>{
+    const reg1 = /^[A-Za-zА-Яа-я0-9_-]{3,15}@[A-Za-z]{4,}\.[a-zA-Z]{2,}$/;
+    if (!clientEmail.value.match(reg1)) {
+        clientEmail.value = "";
+        emailContainer.style.border=" 2px solid red";
+        emailInvalidMessage.style.display = "block";
+        setTimeout(() =>{emailContainer.style.border="2px solid black"},2000);
+        setTimeout(() =>{emailInvalidMessage.style.display = "none"},2000);
+        
+    }
+})
+const clientPhone = document.getElementById('phone');
+clientPhone.addEventListener('change', (e) =>{
+    const reg2 = /(^[\d]{2,3}[ -][\d]{2,3}([ -][\d]{2,3})*([ -][\d]{2,3})*([ -][\d]{2})*$|^[\d]{1,10}$)/;
+    const phoneDigits = clientPhone.value.match(/[0-9]/g);
+    
+    if (!reg2.test(clientPhone.value)||phoneDigits.length>10) {
+        clientPhone.value = "";
+        phoneContainer.style.border=" 2px solid red";
+        phoneInvalidMessage.style.display = "block";
+        setTimeout(() =>{phoneContainer.style.border="2px solid black"},2000);
+        setTimeout(() =>{phoneInvalidMessage.style.display = "none"},2000);
+        
+    }
+})

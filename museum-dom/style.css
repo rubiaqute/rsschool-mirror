@@ -2627,7 +2627,7 @@ margin-top: 9px;
    }
   .userinfo-container{
     display: flex;
-   
+   position:relative;
     max-width: 400px;
     width:100%;
     height:45px;
@@ -2635,6 +2635,19 @@ margin-top: 9px;
     margin-top:20px;
     text-align:center;
     background: transparent;
+
+  }
+  .email-invalid-message, .name-invalid-message, .phone-invalid-message{
+    display:none;  
+    position:absolute;
+      color:red;
+      font-family: "Roboto";
+    
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    left:20%;
+    top:-50%;
 
   }
   input::-webkit-input-placeholder, .input-field option, select, .input-fielddt{
