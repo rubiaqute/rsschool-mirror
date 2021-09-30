@@ -18,7 +18,9 @@
 <body>
     
     <header>
+
         <div class="header-container">
+            
             <div class="logo">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
@@ -26,15 +28,34 @@
                 </div>
             </div>
             <nav class="menu">
-                <ul class="menu-list">
-                    <li><a href="#visitinganchor">Visiting</a></li>
-                    <li><a href="#exploreanchor">Explore</a></li>
-                    <li><a href="#videoanchor">Video</a></li>
-                    <li><a href="#galleryanchor">Gallery</a></li>
-                    <li><a href="#ticketsanchor">Tickets</a></li>
-                    <li><a href="#contactsanchor">Contacts</a></li>
+                <button class="ham">
+                   
+                    <span class="burgericon">
+                        <svg width="32" height="18" viewBox="0 0 32 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="2" fill="white"/>
+                            <rect y="8" width="32" height="2" fill="white"/>
+                            <rect y="16" width="32" height="2" fill="white"/>
+                            </svg>
+                    </span>
+                    <span class="closeicon">
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="33.2612" height="2.07882" transform="matrix(0.7068 0.707413 -0.7068 0.707413 1.47046 0)" fill="white"/>
+                            <rect width="33.2612" height="2.07883" transform="matrix(0.707413 -0.706801 0.707413 0.706801 0 23.5093)" fill="white"/>
+                            </svg>
+                    </span>
+                  </button>
+              
+               
+                <ul class="menulist">
+                    <li class="menulink"><a href="#visitinganchor">Visiting</a></li>
+                    <li class="menulink"><a href="#exploreanchor">Explore</a></li>
+                    <li class="menulink"><a href="#videoanchor">Video</a></li>
+                    <li class="menulink"><a href="#galleryanchor">Gallery</a></li>
+                    <li class="menulink"><a href="#ticketsanchor">Tickets</a></li>
+                    <li class="menulink"><a href="#contactsanchor">Contacts</a></li>
                 </ul>
             </nav>
+           
         </div>
 
     </header>
@@ -148,7 +169,7 @@
                         <h2>picture explore</h2>
                         <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
                         <p>It was cleaned in 1984 to remove a <span class="yellow-text">"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
-                        <p>The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+                        <p>The cleaning provoked protests, not because the picture had been damaged in any way, but because it looked different.</p>
                     </div>
                     <img class="imagecompare" src="assets/img/before.jpg" alt="explore">
                 </div>
@@ -622,6 +643,7 @@
     </footer>
     <script src="../museum-adaptive/self-estimation.js"></script>
     <script src="../museum-adaptive/gallery.js"></script>
-    <script src="../museum-adaptive/progress-bar.js"></script> 
+    <script src="../museum-adaptive/progress-bar.js"></script>
+    <script src ="../museum-adaptive/burger-menu.js"></script> 
 </body>
 </html>
