@@ -93,7 +93,7 @@ section{
     color:#FFFFFF;
 }
 .logo-icon{
-    background-image: url("../museum/assets/svg/Vector.svg");
+    background-image: url("../museum-adaptive/assets/svg/Vector.svg");
     transition: 1s;
     width: 49px;
     height: 26px;
@@ -136,6 +136,9 @@ color: #FFFFFF;
 
 .welcome-wrap{
     padding:150px 0px 0px 0px;
+}
+.welcome-info{
+    z-index: 1;
 }
 .section-title h2{
     
@@ -187,14 +190,21 @@ color: #FFFFFF;
 }
 
 .welcome-wrap{
-    background: url("assets/img/1.png") no-repeat;
+    /* background: url("assets/img/1.png") no-repeat;
+    background-size: calc (100% - ); */
     min-height:810px;
     width:100%;
     background-position: top right; 
     position: relative; 
     display: flex;
-     
-    
+}
+.slider-image{
+    z-index:0;
+    position: absolute;
+    top:0px;
+    right:0px;
+    width:100%;
+    max-width:68.36%;
 }
 .slider-welcome{
     max-width: 600px;
@@ -204,6 +214,7 @@ color: #FFFFFF;
 height:120px;
     right: 0px;
     bottom: 0px;
+    z-index: 2;
     
 }
 .welcome-squares span{
@@ -280,6 +291,7 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
     color: var(--font-gold); 
 }
 
+/*Visiting*/
 
 .visiting{
     background-color: #FFFFFF;
@@ -365,6 +377,7 @@ color: #000000;
     color: #000000;
 
 }
+/*Explore*/
 .explore{
     min-height: 865px;
     padding: 75px 0px 75px 0px;   
@@ -419,14 +432,17 @@ color: #000000;
     
 }
 .explore-wrap img{
-    max-width: 720px;
-    height:700px;
+    max-width: 50%;
+    height:calc(100% - 15px);
     width: 100%;
     margin-top:15px;
 }
 .yellow-text{
     color: #CAAA7D;
 }
+/*Video*/
+
+
 .video-player{
     background-color: #FFFFFF;
     min-height: 1396px;
@@ -444,7 +460,7 @@ display: none;
 }
 .main-video video{
     width:100%;
-    
+    z-index: 0;
     margin-top:75px;
     bottom:0px;
     display: block;
@@ -455,7 +471,7 @@ display: none;
     position: relative;
 }
 .main-button{
-    
+    z-index: 1;
     background-color: transparent;
     position: absolute;
     top: 45%;
@@ -552,6 +568,8 @@ margin-top:0px;
     width:100%;
   }
   .other-video{
+      max-width: 1440px;
+      width:100%;
       display: flex;
       justify-content: space-between;
       column-gap: 42px;
@@ -564,7 +582,8 @@ margin-top:0px;
   }
   .slider-video{
       width:100%;
-      height:12px;
+      max-height:12px;
+      height:100%;
       max-width:1440px;
   }
  .next:hover svg path, .prev:hover svg path{
@@ -626,6 +645,11 @@ max-width: 720px;
 width: 100%;
 color: #000000;
 }
+
+
+/*Gallery*/
+
+
 .gallery{
     min-height: 2200px;
     padding: 75px 75px 0px 75px;
@@ -643,14 +667,16 @@ display: none;
     width:100%;
     margin-top: 75px;
     height:1960px;
-    
+    max-width:1440px;
     z-index: 0;
     overflow-y:hidden; 
     position: relative;
 }
 .picture-container img{
     position: absolute;
-    
+    max-width: 1440px;
+    width:100%;
+
     bottom:0px;
     z-index: 10;
     
@@ -659,13 +685,15 @@ display: none;
 
 .picture-inner-container{
     
-    max-width:1512px;
+    max-width:1440px;
+    width:100%;
     z-index: 0;
     /* display: grid; */
     position: relative;
     /* column-count: 3; */
     /* grid-template-columns: repeat(3,1fr);  */
     column-gap: 36px;
+    column-gap: 1em;
     row-gap: 24px;
     
     
@@ -684,11 +712,10 @@ display: none;
     margin: 0px 0px 0px 0px;
     display: inline-block;
     position: relative;
-    max-width: 100%;
+    width: calc((100% - 2em) / 3);
     vertical-align: bottom;
-    width:456px;
+    max-width:456px;
     height:auto;
-
 
 }
 
@@ -696,6 +723,9 @@ display: none;
 .picture-inner-container img:nth-child(11){
     padding-top:50px;
 }
+
+/*Tickets*/
+
 .tickets{
     background-color: #FFFFFF;
     min-height: 893px;
@@ -1352,16 +1382,19 @@ margin-left: 250px;
     background-color: var(--font-gold);
 }
 
-
+/*Parallax*/
 
 .parallax{
-    background-image: url("../museum/assets/img/parallax.jpg");
+    background-image: url("../museum-adaptive/assets/img/parallax.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     width:100%;
     height: 400px;
 }
+
+/*Contacts*/
+
 .contacts{
     width:100%;
     min-height: 963px;
@@ -1373,7 +1406,12 @@ margin-left: 250px;
     justify-content: space-between;
     width:100%;
     margin-top:103px;
+    
 
+}
+.contacts-wrap img{
+    max-width: calc(100% / 2 * 3);
+    width:100%;
 }
 .address h4{
     font-family: "Roboto";
@@ -1400,6 +1438,8 @@ margin-bottom: 50px;
     color:#000000;
 
 }
+
+/*Footer*/
 .upper-footer{
     display: flex;
     justify-content: space-between;
