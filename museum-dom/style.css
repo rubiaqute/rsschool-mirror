@@ -593,14 +593,7 @@ animation-name: right;
 }
 .slider-controls input { display: none; }
 
-input#welcome-1:checked ~ .welcome-squares label#welcome-square-1,
-input#welcome-2:checked ~ .welcome-squares label#welcome-square-2,
-input#welcome-3:checked ~ .welcome-squares label#welcome-square-3,
-input#welcome-4:checked ~ .welcome-squares label#welcome-square-4,
-input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
-  background:  #D2B183;
 
-}
 .slider-welcome input:checked { 
   display: none;
 }
@@ -899,6 +892,18 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
     color: #000000;
     
     transition: 1s;
+}
+.cards-element._anim-items{
+    transform: translateY(-30%);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: 1s;
+}
+.cards-element._anim-items._active{
+    transform: translateY(0px);
+    transform: scale(1);
+    opacity: 1;
+    
 }
 .cards-element:hover .cards-title:after{ 
     width: 100%;
@@ -1479,6 +1484,21 @@ font-size: 18px;
 line-height: 21px;
 
 }
+.video-timejump{
+    position: absolute;
+    display: block;
+    color:#ffffff;
+    background-color: #000000;
+    opacity:0;
+    max-width:5%;
+    right:15%;
+    top:-30px;
+    font-family: "Roboto";
+   font-weight: 300;
+   font-size: 18px;
+   line-height: 21px;
+   
+   }
 .play-button, .fullscreen-button, .volume-button, .pause-button, .mute-button, .innerscreen-button {
     border: none;
     background-color: rgba(0,0,0,0);
@@ -2529,6 +2549,7 @@ background-color: var(--font-gold);
     transition: all 1s;
     background-color: #ffffff;
 }
+
 #side-checkbox:checked + .side-panel{
     
 visibility: visible;

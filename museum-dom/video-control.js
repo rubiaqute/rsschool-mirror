@@ -1,5 +1,6 @@
 const player =document.querySelector('.main-video');
 const videoSpeed = document.querySelector('.video-speed')
+const videoTimeJump = document.querySelector('.video-timejump')
 const video = player.querySelector ('.main-movie');
 const bigToggle = document.querySelector('.main-button');
 const smallToggle = document.querySelector('.play-button');
@@ -135,7 +136,7 @@ let videoSection = document.querySelector('.video-player');
 document.addEventListener("keydown", pressKeyButton);
 function pressKeyButton(key) {
     
-    if (window.pageYOffset >= videoSection.offsetTop - 100 && window.pageYOffset < videoSection.offsetTop + videoSection.getBoundingClientRect().height) {
+    if ((window.pageYOffset >= videoSection.offsetTop - 100 && window.pageYOffset < videoSection.offsetTop + videoSection.getBoundingClientRect().height)||player== document.fullscreenElement) {
       let keyCode = key.code.toString();
       switch (keyCode) {
         case "Space":
@@ -152,29 +153,12 @@ function pressKeyButton(key) {
             key.preventDefault();
             makeFullScreen();
           break;
-        // case "ArrowRight":
-        //   video.currentTime += 5;
-        //   let valPlus = Math.ceil((video.currentTime / video.duration) * 100);
-        //   progress.value = valPlus;
-        //   plusFive.style.opacity = "100%";
-        //   setTimeout(() => {
-        //     plusFive.style.opacity = "0";
-        //   }, 1400);
-        //   break;
-        // case "ArrowLeft":
-        //   video.currentTime -= 5;
-        //   let valMinus = Math.ceil((video.currentTime / video.duration) * 100);
-        //   progress.value = valMinus;
-        //   minusFive.style.opacity = "100%";
-        //   setTimeout(() => {
-        //     minusFive.style.opacity = "0";
-        //   }, 1400);
-        //   break;
+       
       }
     }
   }
   document.addEventListener("keypress", (e) =>{
-    if (window.pageYOffset >= videoSection.offsetTop - 100 && window.pageYOffset < videoSection.offsetTop + videoSection.getBoundingClientRect().height) {
+    if ((window.pageYOffset >= videoSection.offsetTop - 100 && window.pageYOffset < videoSection.offsetTop + videoSection.getBoundingClientRect().height)||player== document.fullscreenElement){
       const keyName = e.key;
       if ((e.shiftKey && e.key.toLowerCase() === '<')||(e.shiftKey && e.key.toLowerCase() === 'б')){
           toggleSpeedUp();
@@ -182,9 +166,30 @@ function pressKeyButton(key) {
       if ((e.shiftKey && e.key.toLowerCase() === '>')||(e.shiftKey && e.key.toLowerCase() === 'ю')){
         toggleSpeedDown();
     }
+    if (e.shiftKey && e.key.toLowerCase() === '+'){
+      jumpTimeForward();
+  }
+  if (e.shiftKey && e.key.toLowerCase() === '_'){
+    jumpTimeBack();
+}
     }
     
   });
+  function jumpTimeForward(){
+    video.currentTime = video.currentTime + 5;
+    videoTimeJump.innerText = "+5sec";
+    videoTimeJump.style.opacity = 0.7;
+    setTimeout(() => {videoTimeJump.style.opacity = 0}, 2000);
+       
+  }
+  function jumpTimeBack(){
+    video.currentTime = video.currentTime - 5;
+    videoTimeJump.innerText = "-5sec";
+    videoTimeJump.style.opacity = 0.7;
+    setTimeout(() => {videoTimeJump.style.opacity = 0}, 2000);
+       
+  
+  }
    function toggleSpeedUp(){
        if (video.playbackRate <2.5){
     video.playbackRate =  video.playbackRate + 0.25;

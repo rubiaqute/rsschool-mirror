@@ -24,6 +24,7 @@ let posterContainer=[
 function changeMainVideo(n){
     mainVideo.src = videoContainer[n];
     mainVideo.poster = posterContainer[n];
+    returnInitialSettings();
     
   
 }
@@ -170,67 +171,6 @@ changeMainVideo((currentVideoItem + 1 + videosYouTube.length) % videosYouTube.le
 });
 }
 
-// // showVideoItem('from-right');
-// })
-// }
-
-
-// function hideVideoItem(n) {
-//     // if (movie.clientWidth > 768) {
-//       if (n == 0) {
-//         for (let i = 0; i < videosYouTube.length; i++) {
-//           if (i != n && i != n + 1 && i != n + 2) {
-//             videosYouTube[i].classList.remove('active');
-//           } else {
-//             videosYouTube[i].classList.add('active');
-//           }
-//         }
-//       } else if (n == videosYouTube.length - 1) {
-//         for (let i = 0; i < videosYouTube.length; i++) {
-//           if (i != n && i != n - 1 && i != n - 2) {
-//             videosYouTube[i].classList.remove('active');
-//           } else {
-//             videosYouTube[i].classList.add('active');
-//           }
-//         }
-//       } else {
-//         for (let i = 0; i < videosYouTube.length; i++) {
-//           if (i != n && i != n + 1 && i != n - 1) {
-//             videosYouTube[i].classList.remove('active');
-//           } else {
-//             videosYouTube[i].classList.add('active');
-//           }
-//         }
-//       }
-    // }
-    //  else {
-    //   if (activeIndex == 0) {
-    //     for (let i = 0; i < sliders.length; i++) {
-    //       if (i != activeIndex && i != activeIndex + 1) {
-    //         sliders[i].style.display = "none";
-    //       } else {
-    //         sliders[i].style.display = "block";
-    //       }
-    //     }
-    //   } else if (activeIndex == sliders.length - 1) {
-    //     for (let i = 0; i < sliders.length; i++) {
-    //       if (i != activeIndex && i != activeIndex - 1) {
-    //         sliders[i].style.display = "none";
-    //       } else {
-    //         sliders[i].style.display = "block";
-    //       }
-    //     }
-    //   } else {
-    //     for (let i = 0; i < sliders.length; i++) {
-    //       if (i != activeIndex && i != activeIndex + 1) {
-    //         sliders[i].style.display = "none";
-    //       } else {
-    //         sliders[i].style.display = "block";
-    //       }
-    //     }
-    //   }
-    // }
-//   }
 document.querySelector('.video-arrows.left').addEventListener('click', function(){
 if(isVideoEnabled){
     dotRemoveActivate((currentVideoItem + 1 + videosYouTube.length) % videosYouTube.length);
