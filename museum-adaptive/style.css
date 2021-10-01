@@ -710,7 +710,9 @@ color: #000000;
 
 .video-player{
     background-color: #FFFFFF;
-    min-height: 1396px;
+    max-height: 1396px;
+    height:100%;
+
     padding: 75px 0px 75px 0px;
 }
 #video-player::after{
@@ -734,6 +736,10 @@ display: none;
 }
 .main-video{
     position: relative;
+}
+.playicon{
+    width: 220px;
+    height:220px;
 }
 .main-button{
     z-index: 1;
@@ -850,6 +856,7 @@ margin-top:0px;
       max-height:12px;
       height:100%;
       max-width:1440px;
+      margin-bottom: 75px;
   }
  .next:hover svg path, .prev:hover svg path{
      fill:var(--dark-red);
@@ -909,6 +916,94 @@ text-transform: none;
 max-width: 720px;
 width: 100%;
 color: #000000;
+}
+.fullscreen-icon{
+    width:35px;
+    height:35px;
+}
+.volume-icon{
+    width: 38px;
+    height: 31px;
+    }
+
+@media (max-width:1024px){
+    .video-player{
+               padding: 55px 0px 60px 0px;
+    }
+    .text-aside{ 
+        display:none;
+    }
+   
+    
+    .main-video video{
+        width:100%;
+        margin-top:35px;
+       
+    }
+    .playicon{
+        width: 152px;
+        height: 152px;
+    }
+    
+    .main-button{
+        max-width:152px;
+        top: 43%;               
+    }
+    .video-controls{
+       
+        height:60px;
+    }
+    .play-button{
+        margin:15px 30px 14px 40px;
+    }
+    .fullscreen-button{
+        margin:17px 40px 17px 30px;
+    }
+    .volume-button{
+        margin:20px 0px 20px 0px;
+    }
+    .progress-small{
+        margin:23px 0px 23px 30px;
+    }
+    .progress-big{
+        margin: 23px 30px 23px 0px;
+    }
+    .fullscreen-icon{
+        width:25px;
+        height:25px;
+    }
+    .volume-icon{
+    width: 26px;
+    height:20px;
+    }
+    .progress-small{
+        max-width: 143px;
+    }
+    .progress-big {
+        max-width: 564px;
+        
+    }
+    .other-video{
+        max-width: 984px;
+        
+        column-gap: 41px;
+    }
+    .other-video iframe{
+        max-width: 300px;
+        
+        min-height: 170px;
+    }
+    .slider-video{
+        
+        max-width:984px;
+        margin-bottom: 55px;
+    }
+    .nav-dots {
+        
+      margin-left:calc(100% * (392 / 985));
+      
+  }
+    
 }
 
 
