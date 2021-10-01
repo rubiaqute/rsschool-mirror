@@ -1,5 +1,7 @@
 /*Обнуление*/
-
+main{
+    overflow-x: hidden;
+}
 
 *{
 	padding: 0;
@@ -637,6 +639,7 @@ color: #000000;
     height: 3px;
     background-color: var(--dark-red);
     margin-top: 25px;
+    z-index: 0;
 }
 .section-title-black p{
     margin-top: 25px;
@@ -649,6 +652,7 @@ color: #000000;
     
 }
 .explore-wrap img{
+    z-index: 1;
     max-width: 50%;
     height:calc(100% - 15px);
     width: 100%;
@@ -696,8 +700,8 @@ color: #000000;
     }
     .explore-wrap img{
         max-width: calc(100% * (720 / 984));
-        margin-right: calc(100% * (132 / 984));
-        margin-left: calc(100% * (132 / 984));
+        margin-right: calc(100% * (130/ 984));
+        margin-left: calc(100% * (130 / 984));
         margin-top:62px;
     }
 }
@@ -1005,8 +1009,8 @@ display: none;
 }
 .tickets-type{
     
-    margin-right: calc(100% *(240 / 1440));
-    margin-left: calc(100% *(60 / 1440));
+    margin-right: calc(100% *(240 / 1441));
+    margin-left: calc(100% *(60 / 1441));
     max-width: 270px;
     width:100%
 }
