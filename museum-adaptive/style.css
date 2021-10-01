@@ -163,7 +163,7 @@ color: #FFFFFF;
         line-height: 23px;
         letter-spacing: 2px;
         color: #FFFFFF;
-        margin-bottom:23px;
+        margin-bottom:25px;
         display: block;
         }
     /* .ham{
@@ -197,7 +197,7 @@ color: #FFFFFF;
         padding: 49px 0px 48px 0px;   
     }
     .menulist {
-        padding: 35px 120px 287px 53px;
+        padding: 60px 120px 183px 48px;
         display:block;
         max-width: 297px;
         z-index: 10;
@@ -206,7 +206,7 @@ color: #FFFFFF;
         position: absolute;
         transition: 0.5s;
         width:100%;
-        height: 100%;
+        height: calc(100% * (585 / 715));
         transition: 1s;        
         background-color: var(--bg-dark);
     }
@@ -582,6 +582,14 @@ color: #000000;
     letter-spacing: 3px;
         
     }
+    .cards-title::after{
+        max-width: 330px;
+        width: calc(100% *(150 / 330));
+        height: 2px;
+        background-color: var(--dark-red);
+        margin-top: 10px;
+        transition: 1s;
+    }
     
     .upper{
         
@@ -932,7 +940,7 @@ color: #000000;
 
 @media (max-width:1024px){
     .video-player{
-               padding: 55px 0px 60px 0px;
+               padding: 50px 0px 60px 0px;
     }
     .text-aside{ 
         display:none;
@@ -1091,7 +1099,7 @@ display: none;
 @media (max-width:1024px){
     .gallery{
         
-        padding: 55px 0px 0px 0px;
+        padding: 50px 0px 0px 0px;
         min-height: 1400px;
          
     }
@@ -1308,7 +1316,7 @@ background-color: var(--font-gold);
 @media (max-width:1024px){
     .tickets{
     height:718px;
-    padding: 55px 0px 55px 0px;
+    padding: 50px 0px 55px 0px;
     }
     .tickets-wrapper{
         margin-top: 80px;
@@ -1842,6 +1850,34 @@ margin-left: 250px;
     cursor: pointer;
     transition: 1s;
     background-color: var(--font-gold);
+}
+@media (max-width:1024px){
+    .side-panel{
+    
+        height:768px;
+        width:1025px;
+       
+    }
+    #side-checkbox:checked + .side-panel{
+    
+        visibility: visible;
+            right:calc(50% - 512px);
+        }
+        .header-summary img{
+     margin-right: 0px;
+        }
+        .container-side{
+    
+            margin: 75px auto 30px auto;
+            max-width:970px;
+            width:100%;
+            min-height:663px;
+            display: flex;
+            justify-content: space-between;
+            column-gap: 40px;
+            
+            
+        }
 }
 
 /*Parallax*/
