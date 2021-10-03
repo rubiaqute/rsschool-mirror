@@ -2274,9 +2274,10 @@ margin-left: 250px;
 }
 @media (max-width:1024px){
     .side-panel{
-        overflow:visible;
-        overflow: scroll;
-        height:768px;
+        
+        overflow: auto;
+        height: 100%;
+       
         width:1025px;
        
     }
@@ -2300,6 +2301,69 @@ margin-left: 250px;
             
             
         }
+}
+@media (max-width:768px){
+    .side-panel{
+        overflow:visible;
+        overflow: scroll;
+        height:100%;
+        width:590px;
+        overflow-y: auto;
+       
+    }
+    #side-checkbox:checked + .side-panel{
+    
+       
+            right:calc(50% - 295px);
+        }
+        .container-side{
+            display: block;
+            margin: 0 auto;
+            padding: 80px 30px 40px 30px;
+        }
+        .side-button-close{
+           
+            top:30px;
+            right:30px;
+        }
+        .first-side-column {
+            max-width: 530px;
+            
+        }
+        .side-title p::after {
+           
+            max-width: 530px;
+            width: 100%;
+        }
+        .date-time-container {
+            justify-content: space-between;
+            
+            
+        }
+        .date-container, .time-container {
+            margin-top:50px;
+            max-width: 251px;
+            border: 1px solid #030303;
+        }
+        .userinfo-container {
+            border: 1px solid #030303;
+            max-width: 530px;
+        }
+        .second-side-column {
+            margin-top: 51px;
+            padding: 26px 15px 26px 15px;
+        }
+        .credit-card-face {
+            margin-top: 15px;
+        }
+        .credit-card-reverse {
+            left: 140px;
+        }
+       
+        .book-button{
+            margin-left: 280px;
+        }
+           
 }
 
 /*Parallax*/
