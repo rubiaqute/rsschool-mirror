@@ -70,6 +70,12 @@ section{
 }
 /*Header*/
 
+.mobile-menu-images{
+    display: none;
+}
+.mobile-social-footer{
+    display: none;
+}
 
 .ham{
     display: none;
@@ -129,7 +135,7 @@ section{
     display: flex;
     justify-content: space-between;
 }
-.menulist li{
+.menulink{
 font-family: "Roboto", sans-serif;
 font-weight: 100;
 font-size: 22px;
@@ -137,7 +143,7 @@ line-height: 26px;
 letter-spacing: 2px;
 color: #FFFFFF;
 }
-.menulist li a{
+.menulink a{
     color: #FFFFFF;
     background-color: transparent;  
 }
@@ -156,7 +162,7 @@ color: #FFFFFF;
         justify-content: space-between;
         
     }
-    .menulist li{
+    .menulink{
         font-family: "Roboto", sans-serif;
         font-weight: 100;
         font-size: 20px;
@@ -227,7 +233,7 @@ color: #FFFFFF;
     .burgericon:hover{
         cursor: pointer;
     }
-    .menulist a::after{
+    .link-to-section::after{
         display: inline;
         content: " > ";
         
@@ -252,6 +258,68 @@ color: #FFFFFF;
     .menu{
         padding: 35px 0px 34px 0px;
     }
+    .menulist {
+        padding-top: 60px;
+       padding-right: calc(100% *(48 / 768));
+       padding-left: calc(100% *(48 / 768));
+        max-width: 768px;
+        width:100%;
+        height:861px;
+        margin-top:40px;
+        }
+    .menulink{
+        padding-right: calc(100% *(620 / 768));
+        font-size: 20px;
+        line-height: 23px;
+        
+        }
+    .menulist a::after{
+        display: block;
+    }
+    .mobile-menu-images{
+        margin-top:35px;
+        display: flex;
+        width: calc(100% * (658 / 768));
+        width:100%;
+        flex-wrap: wrap;
+        position: relative;
+        padding-right: 55px;;
+          
+    }
+    .second-row-img{
+        display: flex;
+        justify-content: space-between;
+        column-gap: calc(100% * (20 / 768));
+        margin-top: 20px;
+    }
+    .mobile-menu-images::after{
+        position: absolute;
+        width: calc(100% * (658 / 768));
+        width: 100%;        
+        content: "";
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-top:410px;
+    }
+    .mobile-social-footer{
+        display: block;
+        margin-top:70px;
+        max-width:340px;
+        width:100%;
+        margin-left: calc(100% * (180 / 768));
+        /* margin-right: calc(100% * (180 / 768)); */
+    }
+    .adaptive-menu-list{
+        display:flex;
+        justify-content: space-between;
+        width:100%;
+        max-height: 48px;
+        height:100%;
+    }
+
+    
+   
+  
 }
 /*--------------------*/
 /*Welcome*/
@@ -549,6 +617,7 @@ input#welcome-5:checked ~ .welcome-squares label#welcome-square-5 {
       #welcome-square-5{
         margin-right: 45px;
     }
+
 }
 
 /*Visiting*/
@@ -1678,13 +1747,49 @@ background-color: var(--font-gold);
     
 
 }
+@media (max-width:768px){
+    .tickets{
+    max-height:633px;
+    padding: 40px 0px 40px 0px;
+    }
+    .tickets-wrapper{
+        margin-top: 65px;
+        justify-content: flex-start;
+    }
+    .tickets-wrapper img{
+        max-width:440px;
+        width:calc(100% * (440 / 728));
+        height:340px;
+        object-fit: cover;
+        margin-right: calc(100% *(60 / 728));
+        
+    }
+    
+      .tickets-amount{
+        max-width: calc(100% * (175 / 728));
+    }
+    .tickets-amount-title{
+        margin-bottom: 39px;
+    }
+    .tickets-counter {
+        
+        margin-top: 10px;
+    }
+    .total{
+    margin-top: 15px;
+    }
+    .buy-button{
+        margin-top:40px;
+    }
+    
+}
 
 /*Side panel*/
 #side-checkbox{
     display: none;
 }
 .side-panel{
-    
+    overflow-y: scroll;
     position: fixed;
     z-index: 999999;
     top:0px;
@@ -2169,7 +2274,8 @@ margin-left: 250px;
 }
 @media (max-width:1024px){
     .side-panel{
-    
+        overflow:visible;
+        overflow: scroll;
         height:768px;
         width:1025px;
        
@@ -2205,6 +2311,12 @@ margin-left: 250px;
     background-attachment: fixed;
     width:100%;
     height: 400px;
+}
+@media (max-width:768px){
+    .parallax{
+        
+        height: 300px;
+    }
 }
 
 /*Contacts*/
@@ -2285,6 +2397,38 @@ margin-bottom: 50px;
         margin:15px 0px 15px 0px;
         font-size: 20px;
         line-height: 23px;
+    }
+
+}
+@media (max-width:768px){
+    .contacts{
+        padding: 40px 0px 70px 0px;
+    }
+    .contacts-wrap{
+        margin-top:63px;
+        display: block;
+    }
+    .address{
+        max-width: calc(100% * (234 / 728));
+        
+    }
+    .contacts-wrap img{
+        max-width: 100%;
+        margin-top:25px;
+    }
+    .address h4{
+    font-size: 20px;
+    line-height: 23px;
+    max-width:160px;
+    margin-bottom: 40px;
+    
+    }
+    
+    .address a, .address p{
+        
+        margin:15px 0px 15px 0px;
+        font-size: 18px;
+        line-height: 21px;
     }
 
 }
@@ -2411,6 +2555,9 @@ justify-content: space-between;
     height: 3px;
     position:absolute
 }
+.break{
+    display:none;
+}
 @media (max-width:1024px){
     .upper-footer{
         display: flex;
@@ -2477,4 +2624,53 @@ justify-content: space-between;
         
     max-width: 728px;
     }
+    
+    .upper-footer{
+        flex-wrap: wrap;
+    }
+    .logo-footer {
+        max-width: calc(100% * (199 / 728));
+        margin-right:calc(100% * (90 / 728));
+        margin-top: 50px; 
+        margin-bottom: 227px;   
+    }
+    
+    .footer-menu{
+        max-width:calc(100% * (393 / 728));
+        width:100%;
+        margin-right:calc(100% * (46 / 728));
+        margin-top:57px;
+        
+        
+    }
+    .footer-list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: calc(100% * (185 / 728));
+        grid-row-gap: 25px;
+    }
+    .footer-list li{
+       
+        font-size: 18px;
+        line-height: 21px;
+    }
+    
+    .break{
+        display: block;
+        flex-basis: 100%;
+        height:0;
+    }
+    .social-footer{
+         max-width:calc(100% * (340 / 728)); 
+        margin:220px 80px 90px 0px;
+    }
+    .down-footer p{
+        
+        margin:40px 0px;
+    }
+   
+    
+    
+    
+
 }
