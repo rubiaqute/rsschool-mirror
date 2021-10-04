@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>museum</title>
-    <link rel="icon" href="../museum/assets/favicon.ico">
+    <link rel="icon" href="../museum-adaptive/assets/favicon.ico">
     
     <link rel="stylesheet" type="text/css" href="style.css">
     
@@ -18,7 +18,9 @@
 <body>
     
     <header>
+
         <div class="header-container">
+            
             <div class="logo">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
@@ -26,15 +28,89 @@
                 </div>
             </div>
             <nav class="menu">
-                <ul class="menu-list">
-                    <li><a href="#visitinganchor">Visiting</a></li>
-                    <li><a href="#exploreanchor">Explore</a></li>
-                    <li><a href="#videoanchor">Video</a></li>
-                    <li><a href="#galleryanchor">Gallery</a></li>
-                    <li><a href="#ticketsanchor">Tickets</a></li>
-                    <li><a href="#contactsanchor">Contacts</a></li>
+                <button class="ham">
+                   
+                    <span class="burgericon">
+                        <svg width="32" height="18" viewBox="0 0 32 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="2" fill="white"/>
+                            <rect y="8" width="32" height="2" fill="white"/>
+                            <rect y="16" width="32" height="2" fill="white"/>
+                            </svg>
+                    </span>
+                    <span class="closeicon">
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="33.2612" height="2.07882" transform="matrix(0.7068 0.707413 -0.7068 0.707413 1.47046 0)" fill="white"/>
+                            <rect width="33.2612" height="2.07883" transform="matrix(0.707413 -0.706801 0.707413 0.706801 0 23.5093)" fill="white"/>
+                            </svg>
+                    </span>
+                  </button>
+              
+               
+                <ul class="menulist">
+                    <li class="menulink"><a class = "link-to-section" href="#visitinganchor">Visiting</a></li>
+                    <li class="menulink"><a class = "link-to-section" href="#exploreanchor">Explore</a></li>
+                    <li class="menulink"><a class = "link-to-section" href="#videoanchor">Video</a></li>
+                    <li class="menulink"><a class = "link-to-section" href="#galleryanchor">Gallery</a></li>
+                    <li class="menulink"><a class = "link-to-section" href="#ticketsanchor">Tickets</a></li>
+                    <li class="menulink"><a class = "link-to-section" href="#contactsanchor">Contacts</a></li>
+                    <div class="mobile-menu-images">
+                        <img src="../museum-adaptive/assets/img/image15.jpg" alt="">
+                        <div class="second-row-img">
+                        <img src="../museum-adaptive/assets/img/image16.jpg" alt="">
+                        <img src="../museum-adaptive/assets/img/image17.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="mobile-small-menu-img">
+                    <img src="../museum-adaptive/assets/img/menu-420/image15.jpg" alt="">
+                    <img src="../museum-adaptive/assets/img/menu-420/image3.jpg" alt="">
+                    <img src="../museum-adaptive/assets/img/menu-420/image4.jpg" alt="">
+                    </div>
+                    <div class="mobile-social-footer">
+                        
+                            <ul class="adaptive-menu-list">
+                                <li class="social-link">
+                                  <a href="https://www.youtube.com/user/louvre">
+                                    <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M10.03 15.38V8.62L15.97 12L10.03 15.38ZM23.23 6.5C23.1026 6.01772 22.8508 5.57733 22.4998 5.22285C22.1488 4.86838 21.711 4.61222 21.23 4.48C19.46 4 12.35 4 12.35 4C12.35 4 5.25 4 3.48 4.48C2.99901 4.61222 2.56115 4.86838 2.21018 5.22285C1.85921 5.57733 1.60743 6.01772 1.48 6.5C1 8.28 1 12 1 12C1 12 1 15.72 1.47 17.5C1.5983 17.9835 1.85159 18.4247 2.20441 18.7793C2.55723 19.1338 2.99717 19.3893 3.48 19.52C5.25 20 12.36 20 12.36 20C12.36 20 19.46 20 21.23 19.52C21.711 19.3878 22.1488 19.1316 22.4998 18.7771C22.8508 18.4227 23.1026 17.9823 23.23 17.5C23.71 15.72 23.71 12 23.71 12C23.71 12 23.71 8.28 23.24 6.5H23.23Z" fill="white"/>
+                                    </svg>
+                                  </a>
+                                </li>
+                                <li class="social-link">
+                                  <a href="https://www.instagram.com/museelouvre/">
+                                    <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M13.02 2C14.82 2 15.2 2.02 16.12 2.06C17.18 2.11 17.91 2.28 18.54 2.53C19.2 2.78 19.76 3.13 20.31 3.68C20.87 4.23 21.21 4.79 21.47 5.45C21.72 6.08 21.88 6.81 21.93 7.88C21.98 8.83 21.99 9.2 21.99 11.2V12.8C21.99 14.8 21.98 15.17 21.93 16.12C21.9143 16.9468 21.7588 17.7651 21.47 18.54C21.21 19.2 20.87 19.76 20.32 20.31C19.76 20.87 19.2 21.21 18.54 21.47C17.91 21.72 17.18 21.88 16.12 21.93C15.17 21.98 14.79 21.99 12.79 21.99H11.2C9.20003 21.99 8.83003 21.98 7.87003 21.93C7.04321 21.9141 6.22502 21.7586 5.45003 21.47C4.78364 21.2195 4.17968 20.8271 3.68003 20.32C3.16784 19.8186 2.77186 19.211 2.52003 18.54C2.23165 17.765 2.07613 16.9468 2.06003 16.12C2.01101 15.0874 1.991 14.0537 2.00003 13.02V10.97C2.00003 9.17 2.02003 8.79 2.06003 7.87C2.11003 6.81 2.28003 6.08 2.52003 5.45C2.78003 4.79 3.12003 4.23 3.68003 3.68C4.17521 3.16743 4.78047 2.77418 5.45003 2.53C6.22448 2.23821 7.04266 2.07931 7.87003 2.06C8.79003 2.02 9.17003 2 10.97 2H13.02ZM13.04 3.8H10.95C9.22003 3.8 8.85003 3.82 7.95003 3.86C6.98003 3.9 6.45003 4.06 6.10003 4.2C5.63003 4.38 5.30003 4.6 4.95003 4.95C4.60003 5.3 4.38003 5.63 4.20003 6.1C4.07003 6.45 3.90003 6.98 3.86003 7.96C3.82003 8.86 3.80003 9.22 3.80003 10.96V13.04C3.80003 14.78 3.82003 15.14 3.86003 16.04C3.90003 17.01 4.06003 17.54 4.20003 17.89C4.38003 18.36 4.60003 18.69 4.95003 19.04C5.30003 19.39 5.63003 19.61 6.10003 19.79C6.45003 19.93 6.98003 20.09 7.96003 20.13C8.93003 20.18 9.28003 20.19 11.44 20.19H12.55C14.72 20.19 15.06 20.18 16.04 20.13C17.01 20.09 17.54 19.93 17.89 19.79C18.36 19.61 18.69 19.39 19.04 19.04C19.39 18.69 19.61 18.36 19.79 17.89C19.93 17.54 20.09 17.01 20.13 16.04C20.18 15.06 20.19 14.72 20.19 12.55V11.45C20.19 9.28 20.18 8.93 20.13 7.95C20.09 6.98 19.93 6.45 19.79 6.1C19.6291 5.66543 19.3728 5.27246 19.04 4.95C18.7178 4.61692 18.3248 4.3606 17.89 4.2C17.2969 3.98317 16.6715 3.86822 16.04 3.86C15.0408 3.81227 14.0404 3.79226 13.04 3.8ZM12 6.86C13.3619 6.86 14.668 7.40101 15.631 8.36401C16.594 9.32701 17.135 10.6331 17.135 11.995C17.135 13.3569 16.594 14.663 15.631 15.626C14.668 16.589 13.3619 17.13 12 17.13C10.6381 17.13 9.33204 16.589 8.36904 15.626C7.40604 14.663 6.86503 13.3569 6.86503 11.995C6.86503 10.6331 7.40604 9.32701 8.36904 8.36401C9.33204 7.40101 10.6381 6.86 12 6.86ZM12 8.66C11.1155 8.66 10.2673 9.01136 9.64183 9.6368C9.0164 10.2622 8.66503 11.1105 8.66503 11.995C8.66503 12.8795 9.0164 13.7278 9.64183 14.3532C10.2673 14.9786 11.1155 15.33 12 15.33C12.8845 15.33 13.7328 14.9786 14.3582 14.3532C14.9837 13.7278 15.335 12.8795 15.335 11.995C15.335 11.1105 14.9837 10.2622 14.3582 9.6368C13.7328 9.01136 12.8845 8.66 12 8.66ZM17.33 5.46C17.6483 5.46 17.9535 5.58643 18.1786 5.81147C18.4036 6.03652 18.53 6.34174 18.53 6.66C18.53 6.97826 18.4036 7.28348 18.1786 7.50853C17.9535 7.73357 17.6483 7.86 17.33 7.86C17.0118 7.86 16.7065 7.73357 16.4815 7.50853C16.2565 7.28348 16.13 6.97826 16.13 6.66C16.13 6.34174 16.2565 6.03652 16.4815 5.81147C16.7065 5.58643 17.0118 5.46 17.33 5.46Z" fill="white"/>
+                                    </svg>                
+                                  </a>
+                                </li>
+                                <li class="social-link">
+                                  <a href="https://www.facebook.com/museedulouvre">
+                                    <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M9.78 22L9.75 13.25H6V9.5H9.75V7C9.75 3.63 11.84 2 14.85 2C16.29 2 17.53 2.1 17.89 2.15V5.68H15.8C14.17 5.68 13.85 6.46 13.85 7.6V9.5H18.5L17.25 13.25H13.85V22H9.78Z" fill="white"/>
+                                    </svg>
+                                  </a>
+                                </li>
+                                <li class="social-link">
+                                  <a href="http://twitter.com/museelouvre">
+                                    <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M22 5.88C21.25 6.25 20.5 6.38 19.62 6.5C20.5 6 21.12 5.25 21.37 4.25C20.5606 4.73131 19.6743 5.06959 18.75 5.25C17.9485 4.46227 16.8737 4.01446 15.75 4C13.62 4 11.75 5.88 11.75 8.13C11.75 8.5 11.75 8.75 11.88 9C10.2422 8.93823 8.63643 8.52707 7.17046 7.79408C5.70448 7.0611 4.41212 6.02321 3.38 4.75C3.00812 5.39563 2.83425 6.13634 2.88 6.88C2.89162 7.55196 3.06825 8.21077 3.39434 8.79842C3.72043 9.38608 4.18597 9.88456 4.75 10.25C4.12 10.25 3.5 10 2.87 9.75C2.87 11.75 4.25 13.38 6.12 13.75C5.75 13.88 5.37 13.88 5 13.88C4.75 13.88 4.5 13.88 4.25 13.75C4.75 15.38 6.25 16.63 8.13 16.63C6.67779 17.7963 4.8622 18.4156 3 18.38H2C3.87496 19.5591 6.03554 20.2056 8.25 20.25C15.75 20.25 19.88 14 19.88 8.62V8.12C20.7387 7.53355 21.4617 6.76969 22 5.88Z" fill="white"/>
+                                    </svg>
+                                  </a>
+                                </li>
+                                <li class="social-link">
+                                  <a href="https://www.pinterest.fr/museedulouvre/">
+                                    <svg class="nav__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M12 2C9.67546 2.00824 7.42643 2.82602 5.63952 4.31277C3.85262 5.79952 2.63948 7.86234 2.20866 10.1466C1.77785 12.4309 2.15627 14.7939 3.27888 16.8293C4.40149 18.8648 6.19815 20.4456 8.35998 21.3C8.25998 20.51 8.18998 19.3 8.38998 18.43L9.55998 13.46C9.55998 13.46 9.25998 12.86 9.25998 11.98C9.25998 10.59 10.07 9.56 11.08 9.56C11.93 9.56 12.35 10.2 12.35 10.96C12.35 11.82 11.8 13.1 11.51 14.29C11.27 15.29 12.01 16.1 13 16.1C14.78 16.1 16.14 14.23 16.14 11.53C16.14 9.13 14.42 7.47 11.96 7.47C11.3756 7.44433 10.792 7.53734 10.2446 7.74342C9.69709 7.94951 9.19705 8.26438 8.77463 8.66904C8.35221 9.07371 8.01616 9.55977 7.78678 10.0979C7.55739 10.636 7.43942 11.215 7.43998 11.8C7.43998 12.66 7.76998 13.58 8.17998 14.08C8.25998 14.18 8.26998 14.27 8.23998 14.37L7.95998 15.5C7.91998 15.68 7.80998 15.73 7.62998 15.64C6.36998 15.05 5.58998 13.24 5.58998 11.76C5.58998 8.61 7.88998 5.72 12.21 5.72C15.67 5.72 18.38 8.18 18.38 11.49C18.38 14.94 16.2 17.71 13.18 17.71C12.18 17.71 11.22 17.18 10.9 16.56L10.27 18.93C9.97485 19.8577 9.55787 20.7421 9.02998 21.56C10.4038 21.9816 11.8524 22.1021 13.277 21.9133C14.7016 21.7245 16.0687 21.2309 17.2854 20.4661C18.502 19.7014 19.5395 18.6833 20.3272 17.4814C21.115 16.2795 21.6344 14.9219 21.8501 13.5011C22.0658 12.0804 21.9728 10.6298 21.5774 9.24822C21.1819 7.86664 20.4934 6.58652 19.5586 5.49506C18.6238 4.40359 17.4648 3.52642 16.1604 2.9233C14.8561 2.32017 13.437 2.00525 12 2Z" fill="white"/>
+                                    </svg>
+                                  </a>
+                                </li>
+                              </ul>
+                    
+                    </div>
                 </ul>
+               
+                
             </nav>
+           
         </div>
 
     </header>
@@ -48,7 +124,8 @@
                             to the Louvre</h2>
                         </div>
                             <h3 class="under-title">From the castle to the museum</h3>
-                            <a href="../museum/tours/tour1.html" target="_blank" class="discover-button">Discover the Louvre</a>
+                            <a href="../museum-adaptive/tours/tour1.html" target="_blank" class="discover-button">Discover the Louvre</a>
+                            
                     </div>
                     <div class="slider-welcome">
                         
@@ -74,10 +151,12 @@
                                 
                             </div>
                         </div>
-                    
+                        <div class="welcome-img">
+                        <img class ="slider-image" src="../museum-adaptive/assets/img/welcome-slider.jpg" alt="">
+                        </div>
                 </div>
 
-
+                
             </div>
 
         </section>
@@ -89,7 +168,7 @@
                 </div>
                 <div class="cards">
                     
-                    <a class="cards-element" href="../museum/tours/tour2.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour2.html" target="_blank">
                         <img src="assets/img/Rectangle-5.jpg" alt="Royal Palace">
                         
                          <div class="cards-title"><h3>Royal palace</h3></div>
@@ -97,35 +176,35 @@
                         <p class="down">Google Street Panorama View</p>
                         
                     </a> 
-                    <a class="cards-element" href="../museum/tours/tour3.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour3.html" target="_blank">
                         <img src="assets/img/Rectangle-4.jpg" alt="Royal Palace">
                         <div class="cards-title"><h3>Denon wing</h3></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
-                    <a class="cards-element" href="../museum/tours/tour4.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour4.html" target="_blank">
                         <img src="assets/img/Rectangle-3.jpg" alt="Royal Palace">
                         <div class="cards-title"><h3>Colonnade Perrault</h3></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
-                    <a class="cards-element" href="../museum/tours/tour5.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour5.html" target="_blank">
                         <img src="assets/img/Rectangle-2.jpg" alt="Royal Palace">
                         <div class="cards-title"><h3>Greek Hall</h3></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a>  
-                    <a class="cards-element" href="../museum/tours/tour6.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour6.html" target="_blank">
                         <img src="assets/img/Rectangle-1.jpg" alt="Royal Palace">
                         <div class="cards-title"><h3>Mona Lisa</h3></div>
                         <p class="upper">360° Virtual Tour </p>
                         <p class="down">Google Street Panorama View</p>
                         
                     </a> 
-                    <a class="cards-element" href="../museum/tours/tour7.html" target="_blank">
+                    <a class="cards-element" href="../museum-adaptive/tours/tour7.html" target="_blank">
                         <img src="assets/img/Rectangle.jpg" alt="Royal Palace">
                         <div class="cards-title"><h3>Night Palace</h3></div>
                         <p class="upper">360° Virtual Tour </p>
@@ -146,9 +225,13 @@
                         <h2>picture explore</h2>
                         <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
                         <p>It was cleaned in 1984 to remove a <span class="yellow-text">"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
-                        <p>The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+                        <p>The cleaning provoked protests, not because picture had been damaged in any way, but because it looked different.</p>
                     </div>
+                    <div class="compare-slider">
                     <img class="imagecompare" src="assets/img/before.jpg" alt="explore">
+                    <img  class = "explore-slider" src="../museum-adaptive/assets/img/exploreslider.png" alt="">
+                    <img class = "after-cut" src="../museum-adaptive/assets/img/after-cut.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -166,24 +249,25 @@
                 </div>
                 <div class="main-video">
                     <button class="main-button">
-                        <svg  class="playicon" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg  class="playicon" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M110 8.89168C130.003 8.88778 149.558 14.816 166.191 25.9266C182.825 37.0372 195.79 52.831 203.446 71.3106C211.103 89.7901 213.107 110.125 209.206 129.744C205.304 149.363 195.672 167.384 181.528 181.528C167.384 195.672 149.363 205.304 129.744 209.206C110.125 213.107 89.7901 211.103 71.3106 203.446C52.8311 195.79 37.0372 182.825 25.9266 166.191C14.816 149.558 8.88783 130.003 8.89174 110C8.92833 83.1956 19.5925 57.4996 38.546 38.546C57.4996 19.5925 83.1956 8.92828 110 8.89168ZM110 0C88.2441 0 66.9767 6.45139 48.8873 18.5383C30.7979 30.6253 16.6989 47.805 8.37331 67.9048C0.0476618 88.0047 -2.1307 110.122 2.11367 131.46C6.35805 152.798 16.8345 172.398 32.2183 187.782C47.602 203.166 67.2022 213.642 88.5401 217.886C109.878 222.131 131.995 219.952 152.095 211.627C172.195 203.301 189.375 189.202 201.462 171.113C213.549 153.023 220 131.756 220 110C220 80.8262 208.411 52.8473 187.782 32.2183C167.153 11.5893 139.174 0 110 0Z" fill="white"/>
                             <path d="M167.954 110L76.5278 49.9119C76.6463 140.498 76.5278 96.0498 76.5278 170.088L167.954 110Z" fill="white"/>
                             </svg>
                             
                     </button>
-                    <video src="../museum/assets/video/video0.mp4" poster="../museum/assets/video/posterfigma.jpg" ></video>
+                    <video src="../museum-adaptive/assets/video/video0.mp4" poster="../museum-adaptive/assets/video/posterfigma.jpg" ></video>
+                    <input type="range" value="30" min="0" max="100" step="1" class="progress progress-big" id="progress-mobile">
                     <div class="video-controls">
                         <button class="play-button">
-                            <svg width="23" height="31" viewBox="0 0 23 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class = "miniplay-icon" width="23" height="31" viewBox="0 0 23 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M23 15.5053L0 0C0 23.3683 0 11.8996 0 31L23 15.5053Z" fill="#B3B3B3"/>
                             </svg>
                           </button>
                           
                           
-                          <input type="range" value="40" min="0" max="100" step="1" class="progress progress-big">
+                          <input type="range" value="40" min="0" max="100" step="1" class="progress progress-big" id="progress-desktop">
                           <button class="volume-button">
-                            <svg width="38" height="31" viewBox="0 0 38 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg  class="volume-icon" width="38" height="31" viewBox="0 0 38 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.3511 0C18.875 0 18.4622 0.161587 18.1138 0.484761L8.9609 8.97374H1.76C1.28282 8.97374 0.871122 9.13533 0.522673 9.4585C0.174224 9.78167 0 10.1645 0 10.6061V20.3939C0 20.8355 0.174224 21.2183 0.522673 21.5415C0.871122 21.8647 1.28393 22.0263 1.76 22.0263H8.9609L18.1138 30.5152C18.4622 30.8384 18.8739 31 19.3511 31C19.8283 31 20.24 30.8384 20.5884 30.5152C20.9369 30.1921 21.1111 29.8102 21.1111 29.3677V1.63234C21.1111 1.1908 20.9369 0.807935 20.5895 0.484761C20.2422 0.161587 19.8294 0 19.3522 0H19.3511Z" fill="#B3B3B3"/>
                                 <path d="M29.5979 19.1322C30.3389 18.0151 30.7094 16.8082 30.7094 15.5103C30.7094 14.2125 30.3389 13.0014 29.5979 11.8751C28.8569 10.7487 27.8774 9.95512 26.6561 9.49425C26.4819 9.40952 26.2634 9.36612 26.0027 9.36612C25.5499 9.36612 25.1572 9.52422 24.8258 9.83939C24.4943 10.1566 24.3286 10.5431 24.3286 11.004C24.3286 11.3625 24.4331 11.6653 24.6432 11.9123C24.8532 12.1592 25.1044 12.3731 25.4011 12.5519C25.6966 12.7307 25.9932 12.927 26.2898 13.1409C26.5864 13.3548 26.8387 13.6565 27.0477 14.0492C27.2567 14.4419 27.3612 14.9286 27.3612 15.5083C27.3612 16.088 27.2567 16.5747 27.0477 16.9673C26.8387 17.36 26.5864 17.6628 26.2898 17.8756C25.9932 18.0885 25.6966 18.2859 25.4011 18.4646C25.1044 18.6434 24.8522 18.8573 24.6432 19.1043C24.4342 19.3512 24.3286 19.655 24.3286 20.0126C24.3286 20.4734 24.4954 20.8609 24.8258 21.1771C25.1572 21.4913 25.5488 21.6514 26.0027 21.6514C26.2634 21.6514 26.4819 21.6091 26.6561 21.5233C27.8763 21.0449 28.8569 20.2471 29.5979 19.1291V19.1322Z" fill="#B3B3B3"/>
                                 <path d="M35.7563 22.8582C37.252 20.6112 37.9999 18.1571 37.9999 15.499C37.9999 12.8419 37.252 10.3899 35.7563 8.13971C34.2605 5.89271 32.2811 4.25452 29.819 3.23039C29.591 3.14417 29.362 3.10001 29.1329 3.10001C28.6759 3.10001 28.2796 3.26509 27.9451 3.59525C27.6105 3.92541 27.4443 4.31551 27.4443 4.76764C27.4443 5.44479 27.7874 5.95685 28.4735 6.30489C29.4579 6.80855 30.1269 7.19023 30.4785 7.45099C31.7803 8.38891 32.7967 9.56445 33.5265 10.9797C34.2562 12.395 34.6216 13.9007 34.6216 15.5C34.6216 17.0972 34.2562 18.6039 33.5265 20.0203C32.7967 21.4356 31.7803 22.6111 30.4785 23.549C30.1269 23.8098 29.4579 24.1915 28.4735 24.6951C27.7874 25.0432 27.4443 25.5542 27.4443 26.2324C27.4443 26.6835 27.6116 27.0746 27.9451 27.4048C28.2785 27.7349 28.6833 27.9 29.1585 27.9C29.3694 27.9 29.59 27.8558 29.818 27.7696C32.28 26.7444 34.2605 25.1084 35.7552 22.8593L35.7563 22.8582Z" fill="#B3B3B3"/>
@@ -192,7 +276,7 @@
                           </button>
                           <input type="range" value="40" min="0" max="100" step="1" class="progress-small">
                           <button class="fullscreen-button">
-                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg  class="fullscreen-icon"  viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M30.6055 30.7513H22.4097V34.8638H34.7083V22.5069H30.6055V30.7513Z" fill="#B3B3B3"/>
                                 <path d="M4.10278 22.5069H0V34.8638H12.2986V30.7513H4.10278V22.5069Z" fill="#B3B3B3"/>
                                 <path d="M0 12.3569H4.10278V4.12222H12.2986V0H0V12.3569Z" fill="#B3B3B3"/>
@@ -206,7 +290,7 @@
                 <div class="other-video">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <iframe loading="lazy" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class = "video-escape" loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="slider-video">
                     <input type="radio" name="radio-btn" id="arr-1" />
@@ -218,7 +302,7 @@
                     <input type="radio" name="radio-btn" id="arr-2" />
                     <div class="nav-dots">
                         <label for="arr-1" class="prev">
-                            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="arrow-icon" width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4777 0.219168C5.87773 0.564178 5.94259 1.19347 5.62256 1.62473L2.37578 6.00004L5.62256 10.3753C5.94259 10.8066 5.87773 11.4359 5.4777 11.7809C5.07766 12.1259 4.49394 12.056 4.17391 11.6247L0 6.00004L4.17391 0.375342C4.49394 -0.0559202 5.07766 -0.125842 5.4777 0.219168ZM9.65184 0.219168C10.0519 0.564178 10.1167 1.19347 9.7967 1.62473L6.54992 6.00004L9.7967 10.3753C10.1167 10.8066 10.0519 11.4359 9.65184 11.7809C9.2518 12.1259 8.66808 12.056 8.34805 11.6247L4.17414 6.00004L8.34805 0.375342C8.66808 -0.0559202 9.2518 -0.125842 9.65184 0.219168Z" fill="#999999"/>
                                 </svg>
                                 
@@ -229,7 +313,7 @@
                         <label for="img-4" class="nav-dot" id="img-dot-4"></label>
                         <label for="img-5" class="nav-dot" id="img-dot-5"></label>
                         <label for="arr-2" class="next">
-                            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="arrow-icon" width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.348163 0.219168C0.748196 -0.125842 1.33192 -0.0559202 1.65195 0.375342L5.82586 6.00004L1.65194 11.6247C1.33192 12.056 0.748195 12.1259 0.348162 11.7809C-0.0518709 11.4359 -0.116729 10.8066 0.203297 10.3753L3.45008 6.00004L0.203298 1.62473C-0.116728 1.19347 -0.05187 0.564177 0.348163 0.219168ZM4.5223 0.219168C4.92234 -0.125841 5.50606 -0.0559197 5.82609 0.375342L10 6.00004L5.82609 11.6247C5.50606 12.056 4.92234 12.1259 4.5223 11.7809C4.12227 11.4359 4.05741 10.8066 4.37744 10.3753L7.62422 6.00004L4.37744 1.62473C4.05741 1.19347 4.12227 0.564178 4.5223 0.219168Z" fill="#999999"/>
                                 </svg>
                                 
@@ -247,7 +331,7 @@
                     <h2>Art gallery</h2>
                 </div>
                 <div class="picture-container">
-                    <img src="../museum/assets/img/gallery/Rectangle16.png" alt="">
+                    <img src="../museum-adaptive/assets/img/gallery/Rectangle16.png" alt="">
                     
                     <div class="picture-inner-container">
                         
@@ -282,7 +366,7 @@
                     <h2>Buy tickets</h2>                    
                 </div>
                 <div class="tickets-wrapper">
-                    <img src="../museum/assets/img/tickets.png" alt=""  >
+                    <img src="../museum-adaptive/assets/img/tickets.png" alt=""  >
                     <div class="tickets-type">
                       <p class="tickets-type-title">Ticket Type</p>
                       <label class="radio-label">Permanent exhibition
@@ -452,7 +536,7 @@
                                                     <p>Temporary exhibition</p>
                                             </div>
                                       </div>
-                                      <img src="../museum/assets/img/Buy-tickets.jpg" alt="">
+                                      <img src="../museum-adaptive/assets/img/Buy-tickets.jpg" alt="">
                                   </div>
                                   <div class="rows-count">
                                       <div class="first-column-types">
@@ -541,7 +625,7 @@
                             <p><a href="mailto:info@louvre.fr">mail:info@louvre.fr</a></p>
                            
                         </div>
-                        <img src="..//museum/assets/img/map.jpg" alt="">
+                        <img src="..//museum-adaptive/assets/img/map.jpg" alt="">
                     </div>                   
                 
 
@@ -568,6 +652,7 @@
                     <li><a href="#contactsanchor">Contacts</a></li>
                     </ul> 
                 </nav>
+                    <div class="break"></div>
                 <div class="social-footer">
                     <ul class="footer-menu-list">
                         <li class="social-link">
@@ -612,14 +697,15 @@
             </div>
             <div class="down-footer">
                 <p>© 2021</p>
-                <p>The Rolling Scopes School</p>
+                <p id="down-footer-escape">The Rolling Scopes School</p>
                 <p>rubiaqute</p>
             </div>
         </div>
 
     </footer>
-    <script src="../museum/self-estimation.js"></script>
-    <script src="../museum/gallery.js"></script>
-    <script src="../museum/progress-bar.js"></script> 
+    <script src="../museum-adaptive/self-estimation.js"></script>
+    <script src="../museum-adaptive/gallery.js"></script>
+    <script src="../museum-adaptive/progress-bar.js"></script>
+    <script src ="../museum-adaptive/burger-menu.js"></script> 
 </body>
 </html>
