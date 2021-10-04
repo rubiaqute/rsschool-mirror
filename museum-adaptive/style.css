@@ -2804,6 +2804,133 @@ margin-left: 250px;
         }
            
 }
+@media (max-width:420px){
+    .side-panel{
+        overflow:visible;
+        overflow: scroll;
+        height:100%;
+        width:420px;
+        overflow-y: auto;
+       
+    }
+    .side-title h2 {
+       
+        font-size: 32px;
+        line-height: 35px;
+       
+    }
+    #side-checkbox:checked + .side-panel{
+    
+       
+            right:calc(50% - 210px);
+        }
+        .container-side{
+            display: block;
+            margin: 0 auto;
+            padding: 80px 30px 50px 30px;
+        }
+        .side-button-close{
+           
+            top:30px;
+            right:30px;
+        }
+        .first-side-column {
+            max-width: 360px;
+            
+        }
+        .side-title p::after {
+           
+            max-width: 360px;
+            width: 100%;
+        }
+        .date-time-container {
+            display: block;
+            
+            
+        }
+        .date-container {
+            margin-top:50px;
+            max-width: 360px;
+            border: 1px solid #030303;
+        }
+        .time-container{
+            margin-top: 20px;
+            max-width: 360px;
+
+        }
+        .input-fielddt{
+            max-width: 360px;
+        }
+        .userinfo-container {
+            border: 1px solid #030303;
+            max-width: 360px;
+        }
+        .second-side-column {
+            margin-top: 51px;
+            padding: 26px 15px 26px 15px;
+        }
+        .credit-card-face {
+            margin-top: 15px;
+        }
+        .visa {
+            left: 254px;
+        }
+        .mastercard {
+            left: 254px;
+        }
+       
+        .credit-card-reverse {
+            position: relative;
+            margin-top: 0px;
+            left: 0px;
+            max-width: 360px;
+            width: 100%;
+            height: 211px;
+            top: 25px;
+        }
+        .header-summary img {
+            max-width: 120px;
+            width: 100%;
+            height: 96px;
+        }
+        .cvc-name {
+            position: absolute;
+            margin-top: 0px;
+            margin-left: 0px;
+            top:85px;
+            right:30px;
+            font-size: 13px;
+    line-height: 15px;
+        }
+        .credit-card-reverse input {
+            
+          position: absolute;
+            margin-top: 0px;
+            margin-left: 0px;
+            top:105px;
+            right:20px;
+        }
+        .cvc-discription {
+            position: absolute;
+            margin-top: 0px;
+            margin-left: 0px;
+            top:145px;
+            right:33px;
+            font-size: 9px;
+    line-height: 11px;
+        }
+        .book-button{
+            margin-left: 110px;
+            margin-right: 20px;
+            margin-top:60px;
+        }
+        .black-magnet {
+            top:25px;
+            position: absolute;
+            margin-top:0px;
+        }
+           
+}
 
 /*Parallax*/
 
