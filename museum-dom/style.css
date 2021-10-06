@@ -1080,18 +1080,49 @@ color: #000000;
     display: block;
     
 }
-.imagecompare{
+/* .imagecompare{
     
     z-index: 1;
     max-width: 100%;
     /* height:calc(100% - 15px); */
-    width: 100%;
-    margin-top:15px;
-}
+    /* width: 100%;
+    
+}  */
 .compare-slider{
+    margin-top:15px;
     position: relative;
+    max-width:720px;
+    width:100%;
+    height:auto;
+   
+    
 }
-.explore-slider{
+
+.img-comp-img {
+    
+    position: absolute;
+    width:auto;
+    height:auto;
+    overflow: hidden;
+}
+.img-comp-img img {
+    display:block;
+    
+}
+
+
+
+
+
+.img-comp-slider {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    width: 39px;
+    height:100%;
+    background-image: url("../museum-dom/assets/img/exploreslider.png");
+}
+/* .explore-slider{
     position:absolute;
     top:15px;
     right:calc(100% * (259 / 720));
@@ -1106,11 +1137,18 @@ color: #000000;
     right:0;
     max-width: calc(100% * (279 / 720));
     object-fit: cover;
-}
+} */
 
 .yellow-text{
     color: #CAAA7D;
 }
+/* @media (max-width:1440px){
+.img-comp-img img {
+    display:block;
+    width: 728px; 
+    height:705px;
+}
+} */
 @media (max-width:1024px){
     .explore{
         min-height: 865px;
@@ -1146,31 +1184,44 @@ color: #000000;
         letter-spacing: 0.6;
         
     }
-    .imagecompare{
+    .compare-slider{
+        margin-top:62px;
+        position: relative;
         max-width: calc(100% * (720 / 984));
         margin-right: calc(100% * (130/ 984));
         margin-left: calc(100% * (130 / 984));
-        margin-top:62px;
+        width:100%;
+        height:700px;
     }
-    .explore-slider{
+    .img-comp-img {
+        
+        position: absolute;
+        width:auto;
+        height:auto;
+        overflow: hidden;
+    }
+    .img-comp-img img {
+        display:block; 
+    }
+    .img-comp-slider {
+        
+        width: 39px;
+        height:100%;
+       
+    }
+   
+    /* .explore-slider{
         position:absolute;
         top: 62px;
         right:calc(100% * (392/ 984));
         object-fit: cover;
         max-width: calc(100% * (39 / 984));
         z-index: 10;
-    }
-    .after-cut{
-        right:calc(100% * (130/ 984));
-        z-index: 9;
-        position:absolute;
-        top:62px;
-        
-        max-width: calc(100% * (279 / 984));
-        object-fit: cover;
-    }
+    } */
+    
     
 }
+
 @media (max-width:768px){
 .section-title-black h2::after{  
     max-width: 728px;
@@ -1194,33 +1245,35 @@ color: #000000;
        display: none;
         
     }
-    .imagecompare{
+    .compare-slider{
+        margin-top:62px;
+        position: relative;
         max-width: 728px;
-        width:100%;
         margin-right: 0px;
         margin-left: 0px;
-        margin-top:0px;
+        width:100%;
+        height:705px;
+    }
+    .img-comp-img {
+        
+        position: absolute;
+        width:auto;
+        height:auto;
+        overflow: hidden;
+    }
+    .img-comp-img img {
+        display:block;
+        width: 728px; 
+        height:705px;
+    }
+    .img-comp-slider {
+        
+        width: 39px;
+        height:100%;
+       
     }
    
-    .explore-slider{
-        position:absolute;
-        top: 0px;
-        right:calc(100% * (269/ 728));
-        object-fit: cover;
-        max-width: calc(100% * (39 / 728));
-        width:100%;
-        z-index: 10;
-    }
-    .after-cut{
-        right:0;
-        z-index: 9;
-        position:absolute;
-        top:0px;
-        width:100%;
-        max-width: calc(100% * (283 / 728));
-
-        object-fit: cover;
-    }
+   
     
     
 }
@@ -1247,11 +1300,32 @@ color: #000000;
             line-height: 40px;
         }
        
-      
-        .imagecompare{
+        .compare-slider{
+            margin-top:62px;
+            position: relative;
             max-width: 380px;
+            margin-right: 0px;
+            margin-left: 0px;
             width:100%;
+            height:368px;
+        }
+        .img-comp-img {
             
+            position: absolute;
+            width:auto;
+            height:auto;
+            overflow: hidden;
+        }
+        .img-comp-img img {
+            display:block;
+            width: 380px; 
+            height:368px;
+        }
+        
+        .img-comp-slider{
+            width:20px;
+            
+            background-size: cover;
         }
     }
 /*Video*/
