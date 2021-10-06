@@ -116,7 +116,7 @@ section{
     color:#FFFFFF;
 }
 .logo-icon{
-    background-image: url("../museum-adaptive/assets/svg/Vector.svg");
+    background-image: url("../museum-dom/assets/svg/Vector.svg");
     transition: 1s;
     min-width: 49px;
     width:100%;
@@ -341,7 +341,7 @@ color: #FFFFFF;
         line-height: 18px; 
     }
     .logo-icon {
-        background-image: url("../museum-adaptive/assets/svg/Vector-small.svg");
+        background-image: url("../museum-dom/assets/svg/Vector-small.svg");
         min-width: 29px;
         width: 100%;
         height: 16px;
@@ -3029,7 +3029,7 @@ margin-left: 250px;
 /*Parallax*/
 
 .parallax{
-    background-image: url("../museum-adaptive/assets/img/parallax.jpg");
+    background-image: url("../museum-dom/assets/img/parallax.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -3063,8 +3063,10 @@ margin-left: 250px;
     max-width:282px;
     margin-right: calc(100% * (198 / 1440));
 }
-.contacts-wrap img{
+#map{
     max-width: calc(100% * (960 / 1440));
+    height:620px;
+   
     width:100%;
 }
 .address h4{
@@ -3103,8 +3105,9 @@ margin-bottom: 50px;
         max-width: calc(100% * (290 / 984));
         margin-right:0px;
     }
-    .contacts-wrap img{
+    #map{
         max-width: calc(100% * (694 / 984));
+        max-height:454px;
         width:100%;
     }
     .address h4{
@@ -3136,8 +3139,9 @@ margin-bottom: 50px;
         max-width: calc(100% * (234 / 728));
         
     }
-    .contacts-wrap img{
+    #map{
         max-width: 100%;
+        max-height: 818px;
         margin-top:25px;
     }
     .address h4{
@@ -3167,10 +3171,11 @@ margin-bottom: 50px;
         max-width: calc(100% * (208 / 380));
         
     }
-    .contacts-wrap img{
+    #map{
         max-width: 100%;
         margin-top:25px;
         object-fit: cover;
+        max-height: 248px;
 
     }
     .address h4{
