@@ -129,7 +129,44 @@
                             <a href="../museum-dom/tours/tour1.html" target="_blank" class="discover-button">Discover the Louvre</a>
                             
                     </div>
-                    <div class="slider-welcome">
+                    <div class="welcome-carousel">
+                        <div class="welcome-item-container">
+                            <div class="welcome-item active">
+                                <div class="description">
+                                    <!-- <div class="welcome-project-name">welcome-slider 1</div> -->
+                                    <img src="../museum-dom/assets/img/welcome-slider/01.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="welcome-item">
+                                <div class="description">
+                                    <!-- <div class="welcome-project-name">welcome-slider 2</div> -->
+                                    <img src="../museum-dom/assets/img/welcome-slider/02.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="welcome-item">
+                                <div class="description">
+                                    <!-- <div class="welcome-project-name">welcome-slider 3</div> -->
+                                    <img src="../museum-dom/assets/img/welcome-slider/03.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="welcome-item">
+                                <div class="description">
+                                    <!-- <div class="welcome-project-name">welcome-slider 4</div> -->
+                                    <img src="../museum-dom/assets/img/welcome-slider/04.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="welcome-item">
+                                <div class="description">
+                                    <!-- <div class="welcome-project-name">welcome-slider 5</div> -->
+                                    <img src="../museum-dom/assets/img/welcome-slider/05.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="slider-controls">
                         
                             
                             <input type="radio" name="radio-btn" id="welcome-1" checked/>
@@ -140,22 +177,20 @@
                             
                             <div class="welcome-squares">
                                      
-                                <span>01&nbsp; |&nbsp; 05</span>
+                                <span class="welcome-slider-counter">01&nbsp; |&nbsp; 05</span>
                                    
-                                <label for="welcome-1" class="welcome-square" id="welcome-square-1"></label>
+                                <label for="welcome-1" class="welcome-square activated-square" id="welcome-square-1"></label>
                                 <label for="welcome-2" class="welcome-square" id="welcome-square-2"></label>
                                 <label for="welcome-3" class="welcome-square" id="welcome-square-3"></label>
                                 <label for="welcome-4" class="welcome-square" id="welcome-square-4"></label>
                                 <label for="welcome-5" class="welcome-square" id="welcome-square-5"></label>
-                                <button  class="arrows-button" id="leftarrow">&#8592;</button>
-                                <button  class="arrows-button">&#8594;</button>
+                                <button  class="arrows-button left" id="leftarrow">&#8592;</button>
+                                <button  class="arrows-button right">&#8594;</button>
                                 
                                 
                             </div>
                         </div>
-                        <div class="welcome-img">
-                        <img class ="slider-image" src="../museum-dom/assets/img/welcome-slider.jpg" alt="">
-                        </div>
+                        
                 </div>
 
                 
@@ -713,6 +748,7 @@
         </div>
 
     </footer>
+    <script src="../museum-dom/welcome-slider-animation.js"></script>
     <script src="../museum-dom/explore-slider.js"></script>
     <script src="../museum-dom/mapbox.js"></script>
     <script src="../museum-dom/self-estimation.js"></script>
