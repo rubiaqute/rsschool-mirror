@@ -331,9 +331,23 @@
                     </div>
                 </div>
                 <div class="other-video">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class = "video-escape" loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div id="video0" class="video-item active">
+                        <iframe loading="lazy" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div id="video1" class="video-item active">
+                        <iframe loading="lazy" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                    </div>
+                    <div id="video2" class="video-item active">
+                        <iframe class = "video-escape" loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div id="video3" class="video-item">
+                        <iframe  loading="lazy" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+                    </div>
+                    <div id="video4" class="video-item">
+                        <iframe loading="lazy" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                    </div>
+                    
+                   
                 </div>
                 <div class="slider-video">
                     <input type="radio" name="radio-btn" id="arr-1" />
@@ -350,7 +364,7 @@
                                 </svg>
                                 
                         </label>
-                        <label for="img-1" class="nav-dot" id="img-dot-1"></label>
+                        <label for="img-1" class="nav-dot activated-dot" id="img-dot-1"></label>
                         <label for="img-2" class="nav-dot" id="img-dot-2"></label>
                         <label for="img-3" class="nav-dot" id="img-dot-3"></label>
                         <label for="img-4" class="nav-dot" id="img-dot-4"></label>
@@ -748,6 +762,7 @@
         </div>
 
     </footer>
+    <script src="../museum-dom/video-slider.js"></script>
     <script src="../museum-dom/welcome-slider-animation.js"></script>
     <script src="../museum-dom/explore-slider.js"></script>
     <script src="../museum-dom/mapbox.js"></script>

@@ -1536,9 +1536,18 @@ margin-top:0px;
       margin-top: 40px;
   }
   .other-video iframe{
-    max-width: calc(100% * (452 / 1445));
+   
       width:100%;
       min-height: 254px;
+  } 
+  .video-item{
+      display:none;
+      max-width: calc(100% * (452 / 1445));
+      width:100%;
+      min-height: 254px;
+  }
+  .video-item.active{
+      display:block;
   }
   .slider-video{
       width:100%;
