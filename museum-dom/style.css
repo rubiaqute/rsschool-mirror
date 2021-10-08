@@ -414,7 +414,7 @@ margin-top: 35px;
 
 .welcome-info{
     max-width: 598px;
-    z-index: 2;
+    z-index: 3;
     position:relative;
     padding:150px 0px 0px 0px;
 }
@@ -1459,14 +1459,17 @@ display: flex;
 justify-content: space-between;
 margin-top:0px;
 }
-.play-button, .fullscreen-button, .volume-button {
+.play-button, .fullscreen-button, .volume-button, .pause-button {
     border: none;
     background-color: rgba(0,0,0,0);
     cursor: pointer;
     
     transition: 0.3s;
 }
-.play-button{
+.pause-button{
+    display: none;
+}
+.play-button, .pause-button{
     margin:27px 50px 27px 30px;
 }
 .fullscreen-button{
@@ -1481,7 +1484,7 @@ margin-top:0px;
 .progress-big{
     margin: 42px 50px 42px 0px;
 }
-.play-button:hover svg path, .play-button :active svg path {
+.play-button:hover svg path, .play-button :active svg path, .pause-button:active svg path, .pause-button:hover svg path {
     fill: #989898;
 }
 .volume-button:hover svg path,  .volume-button :active svg path{
@@ -1519,7 +1522,7 @@ margin-top:0px;
     background: #ffffff;
   }
   .progress-big {
-    background: linear-gradient(to right, var(--dark-red) 0%, var(--dark-red) 40%, #fff 40%, #fff 100%);
+    background: linear-gradient(to right, var(--dark-red) 0%, var(--dark-red) 0%, #fff 0%, #fff 100%);
     border: none;
     height:8px;
     outline: none;
@@ -1651,7 +1654,7 @@ color: #000000;
        
         height:60px;
     }
-    .play-button{
+    .play-button, .pause-button{
         margin:15px 30px 14px 40px;
     }
     .fullscreen-button{
@@ -1686,11 +1689,12 @@ color: #000000;
         
         column-gap: calc(100% * (41 / 988));
     }
-    .other-video iframe{
+    .video-item{
         max-width: calc(100% * (300 / 988));
         
-        min-height: 170px;
+        min-height: 170px
     }
+   
     .slider-video{
         
         max-width:984px;
@@ -1735,7 +1739,7 @@ color: #000000;
        
         height:60px;
     }
-    .play-button{
+    .play-button, .pause-button{
         margin: 15px 35px 15px 30px;
     }
     .fullscreen-button{
@@ -1845,11 +1849,11 @@ color: #000000;
        
         height:55px;
     }
-    .miniplay-icon{
+    .miniplay-icon, .pause-icon{
         width: 14px;
         height: 18px;
     }
-    .play-button{
+    .play-button, .pause-button{
         margin: 19px 30px 16px 20px;
     }
     .fullscreen-button{

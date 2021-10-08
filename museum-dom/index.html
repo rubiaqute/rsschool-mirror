@@ -298,6 +298,7 @@
                             </svg>
                             
                     </button>
+                    
                     <video  class= "main-movie" src="../museum-dom/assets/video/video1.mp4" poster="../museum-dom/assets/video/poster1.jpg"></video>
                     <input type="range" value="30" min="0" max="100" step="1" class="progress progress-big" id="progress-mobile">
                     <div class="video-controls">
@@ -306,9 +307,16 @@
                                 <path d="M23 15.5053L0 0C0 23.3683 0 11.8996 0 31L23 15.5053Z" fill="#B3B3B3"/>
                             </svg>
                           </button>
+                          <button class="pause-button">
+                            <svg class = "pause-icon" width="21" height="30" viewBox="0 0 21 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 29.0471V0.944802C8 0.421605 7.55026 0 6.98347 0H1.01653C0.449742 0 0 0.421605 0 0.944802V29.0471C0 29.5703 0.449742 30 1.01653 30H6.98347C7.55026 30 8 29.5784 8 29.0471Z" fill="#B3B3B3"/>
+                                <path d="M19.9835 0H14.0165C13.4584 0 13 0.421605 13 0.944802V29.0471C13 29.5703 13.4497 30 14.0165 30H19.9835C20.5416 30 21 29.5784 21 29.0471V0.944802C21 0.421605 20.5503 0 19.9835 0Z" fill="#B3B3B3"/>
+                                </svg>
+                                
+                          </button>
                           
                           
-                          <input type="range" value="40" min="0" max="100" step="1" class="progress progress-big" id="progress-desktop">
+                          <input type="range" name ="playprogress" value="0" min="0" max="100" step="1" class="progress progress-big" id="progress-desktop">
                           <button class="volume-button">
                             <svg  class="volume-icon" width="38" height="31" viewBox="0 0 38 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.3511 0C18.875 0 18.4622 0.161587 18.1138 0.484761L8.9609 8.97374H1.76C1.28282 8.97374 0.871122 9.13533 0.522673 9.4585C0.174224 9.78167 0 10.1645 0 10.6061V20.3939C0 20.8355 0.174224 21.2183 0.522673 21.5415C0.871122 21.8647 1.28393 22.0263 1.76 22.0263H8.9609L18.1138 30.5152C18.4622 30.8384 18.8739 31 19.3511 31C19.8283 31 20.24 30.8384 20.5884 30.5152C20.9369 30.1921 21.1111 29.8102 21.1111 29.3677V1.63234C21.1111 1.1908 20.9369 0.807935 20.5895 0.484761C20.2422 0.161587 19.8294 0 19.3522 0H19.3511Z" fill="#B3B3B3"/>
@@ -317,7 +325,7 @@
                                 </svg>
                                 
                           </button>
-                          <input type="range" value="40" min="0" max="100" step="1" class="progress-small">
+                          <input type="range"  name ="volume" value="40" min="0" max="100" step="1" class="progress-small">
                           <button class="fullscreen-button">
                             <svg  class="fullscreen-icon"  viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M30.6055 30.7513H22.4097V34.8638H34.7083V22.5069H30.6055V30.7513Z" fill="#B3B3B3"/>
@@ -332,19 +340,19 @@
                 </div>
                 <div class="other-video">
                     <div id="video0" class="video-item active">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoYT0" loading="lazy" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div id="video1" class="video-item active">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                        <iframe id="videoYT1" loading="lazy" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
                     </div>
                     <div id="video2" class="video-item active">
-                        <iframe class = "video-escape" loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe  id="videoYT2" class = "video-escape" loading="lazy" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div id="video3" class="video-item">
-                        <iframe  loading="lazy" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+                        <iframe id="videoYT3" loading="lazy" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
                     </div>
                     <div id="video4" class="video-item">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                        <iframe id="videoYT4" loading="lazy" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
                     </div>
                     
                    
@@ -358,7 +366,7 @@
                     <input type="radio" name="radio-btn" id="img-5" />
                     <input type="radio" name="radio-btn" id="arr-2" />
                     <div class="nav-dots">
-                        <label for="arr-1" class="video-arrows left">
+                        <label for="arr-1" class="video-arrows left" id ="arrowsid">
                             <svg class="arrow-icon" width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4777 0.219168C5.87773 0.564178 5.94259 1.19347 5.62256 1.62473L2.37578 6.00004L5.62256 10.3753C5.94259 10.8066 5.87773 11.4359 5.4777 11.7809C5.07766 12.1259 4.49394 12.056 4.17391 11.6247L0 6.00004L4.17391 0.375342C4.49394 -0.0559202 5.07766 -0.125842 5.4777 0.219168ZM9.65184 0.219168C10.0519 0.564178 10.1167 1.19347 9.7967 1.62473L6.54992 6.00004L9.7967 10.3753C10.1167 10.8066 10.0519 11.4359 9.65184 11.7809C9.2518 12.1259 8.66808 12.056 8.34805 11.6247L4.17414 6.00004L8.34805 0.375342C8.66808 -0.0559202 9.2518 -0.125842 9.65184 0.219168Z" fill="#999999"/>
                                 </svg>
@@ -369,7 +377,7 @@
                         <label for="img-3" class="nav-dot" id="img-dot-3"></label>
                         <label for="img-4" class="nav-dot" id="img-dot-4"></label>
                         <label for="img-5" class="nav-dot" id="img-dot-5"></label>
-                        <label for="arr-2" class="video-arrows right">
+                        <label for="arr-2" class="video-arrows right" id ="arrowsid">
                             <svg class="arrow-icon" width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.348163 0.219168C0.748196 -0.125842 1.33192 -0.0559202 1.65195 0.375342L5.82586 6.00004L1.65194 11.6247C1.33192 12.056 0.748195 12.1259 0.348162 11.7809C-0.0518709 11.4359 -0.116729 10.8066 0.203297 10.3753L3.45008 6.00004L0.203298 1.62473C-0.116728 1.19347 -0.05187 0.564177 0.348163 0.219168ZM4.5223 0.219168C4.92234 -0.125841 5.50606 -0.0559197 5.82609 0.375342L10 6.00004L5.82609 11.6247C5.50606 12.056 4.92234 12.1259 4.5223 11.7809C4.12227 11.4359 4.05741 10.8066 4.37744 10.3753L7.62422 6.00004L4.37744 1.62473C4.05741 1.19347 4.12227 0.564178 4.5223 0.219168Z" fill="#999999"/>
                                 </svg>
@@ -762,6 +770,7 @@
         </div>
 
     </footer>
+    <script src ="../museum-dom/video-control.js"></script>
     <script src="../museum-dom/video-slider.js"></script>
     <script src="../museum-dom/welcome-slider-animation.js"></script>
     <script src="../museum-dom/explore-slider.js"></script>

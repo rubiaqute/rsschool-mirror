@@ -158,7 +158,7 @@ currentVideoItem = findActiveDot(dotsNavigation);
 console.log(currentVideoItem);
 dotRemoveActivate(currentVideoItem);
 do{
-    previousVideoItem(currentVideoItem);
+    nextVideoItemArrows(currentVideoItem);
     // dotActivate = (dotActivate + 1 + dotsNavigation.lenghth) % dotsNavigation;
 } while (currentVideoItem!=((i-1+dotsNavigation.length) % dotsNavigation.length));
 // currentVideoItem = i;
@@ -250,3 +250,20 @@ if(isVideoEnabled){
     }
 });
      
+// // Попытка управления Youtube-video
+// function onYouTubePlayerAPIReady(){
+//      player = new YT.Player('videoYT0',{
+//        events:{'onReady':onPlayerReady,
+//        'onStateChange': onPlayerStateChange
+//     }
+//  });
+//  }
+// function onPlayerStateChange(event){
+//     if (event.data == YT.PlayerState.PLAYING && !done){
+//         setTimeout(stopVideo, 1000)
+//         done=true;
+//     }
+// }
+//  document.getElementById ('arrowsid').addEventListener("click",function(){
+//      player.stopVideo();
+//  });
