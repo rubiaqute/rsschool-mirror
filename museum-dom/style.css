@@ -1399,7 +1399,7 @@ color: #000000;
 
 .video-player{
     background-color: #FFFFFF;
-    max-height: 1396px;
+    max-height: 1550px;
     height:100%;
 
     padding: 75px 0px 75px 0px;
@@ -1414,7 +1414,7 @@ display: none;
 .video-h2{
     white-space: nowrap;
 }
-.main-video video{
+.main-movie{
     width:100%;
     z-index: 0;
     margin-top:75px;
@@ -1546,7 +1546,7 @@ margin-top:0px;
       width:100%;
       min-height: 254px;
   }
-  .video-item.active{
+  .video-item.active, .video-item.next{
       display:block;
   }
   .slider-video{
@@ -1556,7 +1556,7 @@ margin-top:0px;
       max-width:1440px;
       margin-bottom: 75px;
   }
- .next:hover svg path, .prev:hover svg path{
+ .video-arrows:hover svg path{
      fill:var(--dark-red);
  }
  
@@ -1574,13 +1574,7 @@ margin-top:0px;
 }
 .slider-video input { display: none; }
 
-input#img-1:checked ~ .nav-dots label#img-dot-1,
-input#img-2:checked ~ .nav-dots label#img-dot-2,
-input#img-3:checked ~ .nav-dots label#img-dot-3,
-input#img-4:checked ~ .nav-dots label#img-dot-4,
-input#img-5:checked ~ .nav-dots label#img-dot-5 {
-	background: rgba(0, 0, 0, 0.8);
-}
+
 .slider-video input:checked { 
     display: none;
  }
@@ -1595,12 +1589,15 @@ input#img-5:checked ~ .nav-dots label#img-dot-5 {
 	display: inline-block;
 	background-color: rgba(0, 0, 0, 0.6);
 }
+.nav-dot.activated-dot{
+    background-color: rgba(0, 0, 0, 1); 
+}
 
 .nav-dots .nav-dot:hover {
 	cursor: pointer;
 	background-color:var(--dark-red);
 }
-.prev, .next:hover{
+.video-arrows:hover{
     cursor: pointer;
     color: var(--dark-red);
 }
@@ -1636,7 +1633,7 @@ color: #000000;
     }
    
     
-    .main-video video{
+    .main-movie{
         width:100%;
         margin-top:35px;
        
