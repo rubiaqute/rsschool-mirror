@@ -1463,6 +1463,22 @@ display: flex;
 justify-content: space-between;
 margin-top:-85px;
 }
+
+.video-speed{
+ position: absolute;
+ display: block;
+ color:#ffffff;
+ background-color: #000000;
+ opacity:0;
+ max-width:5%;
+ right:5%;
+ top:-30px;
+ font-family: "Roboto";
+font-weight: 300;
+font-size: 18px;
+line-height: 21px;
+
+}
 .play-button, .fullscreen-button, .volume-button, .pause-button, .mute-button, .innerscreen-button {
     border: none;
     background-color: rgba(0,0,0,0);

@@ -1,5 +1,5 @@
 const player =document.querySelector('.main-video');
-
+const videoSpeed = document.querySelector('.video-speed')
 const video = player.querySelector ('.main-movie');
 const bigToggle = document.querySelector('.main-button');
 const smallToggle = document.querySelector('.play-button');
@@ -142,33 +142,14 @@ function pressKeyButton(key) {
           key.preventDefault();
           togglePlay();
           break;
-        // case "Period":
-        //   if (video.playbackRate < 2) {
-        //     clearTimeout(timeoutSpeed);
-        //     video.playbackRate += 0.25;
-        //     speed.innerHTML = `${video.playbackRate}x`;
-        //     speed.style.opacity = "100%";
-        //     timeoutSpeed = setTimeout(() => {
-        //       speed.style.opacity = "0";
-        //     }, 2000);
-        //   }
-        //   break;
-        // case "Comma":
-        //   if (video.playbackRate > 0.25) {
-        //     clearTimeout(timeoutSpeed);
-        //     video.playbackRate -= 0.25;
-        //     speed.innerHTML = `${video.playbackRate}x`;
-        //     speed.style.opacity = "100%";
-        //     timeoutSpeed = setTimeout(() => {
-        //       speed.style.opacity = "0";
-        //     }, 2000);
-        //   }
-        //   break;
+       
         case "KeyM":
+            key.preventDefault();
             if (progressSmall.value==0) toggleVolume()
           else toggleMute();
           break;
         case "KeyF":
+            key.preventDefault();
             makeFullScreen();
           break;
         // case "ArrowRight":
@@ -192,3 +173,39 @@ function pressKeyButton(key) {
       }
     }
   }
+  document.addEventListener("keypress", (e) =>{
+    if (window.pageYOffset >= videoSection.offsetTop - 100 && window.pageYOffset < videoSection.offsetTop + videoSection.getBoundingClientRect().height) {
+      const keyName = e.key;
+      if ((e.shiftKey && e.key.toLowerCase() === '<')||(e.shiftKey && e.key.toLowerCase() === 'б')){
+          toggleSpeedUp();
+      }
+      if ((e.shiftKey && e.key.toLowerCase() === '>')||(e.shiftKey && e.key.toLowerCase() === 'ю')){
+        toggleSpeedDown();
+    }
+    }
+    
+  });
+   function toggleSpeedUp(){
+       if (video.playbackRate <2.5){
+    video.playbackRate =  video.playbackRate + 0.25;
+    videoSpeed.innerHTML = `${video.playbackRate}x`;
+    videoSpeed.style.opacity = 0.7;
+    setTimeout(() => {videoSpeed.style.opacity = 0}, 2500);
+       } else {
+        videoSpeed.innerHTML = `${video.playbackRate}x`;
+        videoSpeed.style.opacity = 0.7;
+        setTimeout(() => {videoSpeed.style.opacity = 0}, 2500);
+       }
+   }
+   function toggleSpeedDown(){
+    if (video.playbackRate >0.25){
+ video.playbackRate =  video.playbackRate - 0.25;
+ videoSpeed.innerHTML = `${video.playbackRate}x`;
+ videoSpeed.style.opacity = 0.7;
+ setTimeout(() => {videoSpeed.style.opacity = 0}, 2500);
+    } else {
+     videoSpeed.innerHTML = `${video.playbackRate}x`;
+     videoSpeed.style.opacity = 0.7;
+     setTimeout(() => {videoSpeed.style.opacity = 0}, 2500);
+    }
+}
