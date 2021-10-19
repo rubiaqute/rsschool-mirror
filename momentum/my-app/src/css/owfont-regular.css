@@ -7,7 +7,7 @@
 @font-face {
   font-family: 'owfont';
   src: url('../assets/fonts/owfont-regular.eot?v=1.0.0');
-  src: url('../assets/fonts/owfont-regular.eot?#iefix&v=1.0.0') format('embedded-opentype'),
+  src: url('../assets/') format('embedded-opentype'),
 	   url('../assets/fonts/owfont-regular.woff') format('woff'),
 	   url('../assets/fonts/owfont-regular.ttf') format('truetype'),
 	   url('../assets/fonts/owfont-regular.svg#owf-regular') format('svg');
