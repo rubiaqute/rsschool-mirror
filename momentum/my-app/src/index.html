@@ -16,6 +16,21 @@
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
+        <button class="volume-button player-icon"></button>
+        <div class="volume-container">
+          <input type="range"  name ="volume" value="40" min="0" max="100" step="1" class="progress-volume">
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-info">
+          <div class="time-audio">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+          </div>
+          <div class="song-name">Music Song</div>
+        </div>
+        <input type="range"  name ="progress" value="0" min="0" max="100" step="1" class="progress-play">
       </div>
       <ul class="play-list"></ul>
     </div>
@@ -52,6 +67,6 @@
       <div class="author"></div>
     </div>
   </footer>
-  <script src="./index.js"></script>
+  <script type="module" src="./index.js"></script>
 </body>
 </html>
