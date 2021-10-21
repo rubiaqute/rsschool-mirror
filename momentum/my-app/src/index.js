@@ -22,8 +22,12 @@ const changeQuoteButton = document.querySelector('.change-quote')
 const audio = new Audio();
 let languageMode = "EN";
 let languageKey = 1;
+let sourceKey=0;
 let dateMode = 'en-US'
 let weatherMode = "lang=en";
+let inputErrorMessage = "Wrong tag!"
+let unsplashTag = "morning";
+const inputTag = document.querySelector('.input-tag');
 
 
 let isPlay = false;
@@ -39,6 +43,7 @@ const progressVolume = document.querySelector('.progress-volume')
 const volumeToggle = document.querySelector('.volume-button');
 const progressTime = document.querySelector('.progress-play')
 const buttonSmallPlay = document.querySelectorAll('.small-play')
+
 audio.volume = progressVolume.value / 100;
 let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
 let settingsTranslation = [
@@ -53,13 +58,19 @@ let settingsTranslation = [
   ["Язык", "Languge"],
   ["Русский","Russian"],
   ["Английский", "English"],
-  ["Источник видео","Images source"]
+  ["Источник изображений","Images source"],
+  ["Тэг изображений","Images tag"]
   
 ]
 let quotesAddress = './assets/quotesEN.json'
 
 
-
+inputTag.addEventListener('change', (e) => changeTag());
+function changeTag(){
+  if (inputTag.value) {unsplashTag = inputTag.value;
+  setBg();
+  }
+}
 
 function showTime() {
     const date = new Date();
@@ -107,6 +118,8 @@ function setLocalStorage() {
       localStorage.setItem(`visibility${i}`, (sectionNames[i][1]))
     }
     localStorage.setItem('language',languageKey);
+    localStorage.setItem('imgSource',sourceKey);
+    localStorage.setItem('inputtag', unsplashTag);
   }
   
 
@@ -134,6 +147,16 @@ console.log(sectionNames)
         languageKey = localStorage.getItem('language');
         switchLanguage(languageKey);
       }
+      if(localStorage.getItem('inputtag')) {
+        
+        unsplashTag = localStorage.getItem('inputtag');
+        
+      }
+      if(localStorage.getItem('imgSource')) {
+        imgSourceTags[sourceKey].classList.remove('active');
+        sourceKey = localStorage.getItem('imgSource');
+        switchImgSource(sourceKey);
+      }
     }
   
 
@@ -157,16 +180,72 @@ function checkVisibility(){
     return Math.floor(Math.random() * 19 + 1);
   }
 function setBg(){
-    const bgNum = (randomNumber +1).toString().padStart(2,"0");
+  
+  if (sourceKey==0) setGithubImage();
+  if (sourceKey==1) setFlickrImage();
+  if (sourceKey==2) setUnsplashImage();
+  
+    
+}
+function setGithubImage(){
+const bgNum = (randomNumber +1).toString().padStart(2,"0");
     const timeOfDay = getFolderName();
     const img = new Image();
     
     const randomBG = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
     img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-    
     img.onload = () => {  
     body.style.backgroundImage = randomBG;
     }
+}
+async function setUnsplashImage() {
+  
+  const url = `https://api.unsplash.com/photos/random?query=${unsplashTag}&client_id=-LHVbAfsjEtQYmM1CEAmYotn-NEMWw2YpUls9nUaeuA`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data.urls==undefined) {
+    document.querySelector('.error').textContent = `${inputErrorMessage}`;
+    setTimeout(()=>{
+      document.querySelector('.error').textContent ="";
+    }, 2000)
+    
+    return;
+    
+  }
+  const link = await data.urls.regular;
+  const img = new Image();
+  img.src =  `${link}`;
+  console.log(img.src)
+  img.onload = () => {  
+      
+    body.style.backgroundImage = `url('${img.src}')`;
+    
+ }
+}
+async function setFlickrImage() {
+
+const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=6b0e62b31d36361714f3a06d8297328d&tags=${unsplashTag}&extras=url_l&format=json&nojsoncallback=1`;
+const res = await fetch(url);
+const data = await res.json();
+const imgNumber = Math.floor(Math.random() * data.photos.photo.length);
+if (data.photos.photo.length==0) {
+  document.querySelector('.error').textContent = `${inputErrorMessage}`;
+  setTimeout(()=>{
+    document.querySelector('.error').textContent ="";
+  }, 2000)
+  
+  return;
+}
+const link = await data.photos.photo[imgNumber].url_l;
+console.log(link);
+const img = new Image();
+img.src =  `${link}`;
+
+img.onload = () => {  
+      
+body.style.backgroundImage = `url('${img.src}')`;
+    
+}
 }
 function getFolderName(){
   const date = new Date();
@@ -405,6 +484,17 @@ const tagLanguage = document.querySelectorAll('.language');
 for (let i=0; i<tagLanguage.length; i++){
   tagLanguage[i].addEventListener('click', (e) => switchLanguage(i));
 }
+const imgSourceTags = document.querySelectorAll('.img-source');
+for (let i=0; i<imgSourceTags.length; i++){
+  imgSourceTags[i].addEventListener('click', (e) => switchImgSource(i));
+}
+
+function switchImgSource(i){
+imgSourceTags[sourceKey].classList.remove('active');
+sourceKey=i;
+imgSourceTags[sourceKey].classList.add('active');
+setBg();
+}
 
 function switchLanguage(i){
 tagLanguage[languageKey].classList.remove('active');
@@ -422,6 +512,8 @@ changeSettingsLanguage();
 
 }
 function changeSettingsLanguage(){
+  if (languageKey==0)inputErrorMessage = "Неверный тэг!"
+  else inputErrorMessage = "Wrong tag!"
   const settingsTranslationItem = document.querySelectorAll('.translate-item');
   for (let i=0; i<settingsTranslationItem.length; i++){
     settingsTranslationItem[i].textContent = settingsTranslation[i][languageKey];
