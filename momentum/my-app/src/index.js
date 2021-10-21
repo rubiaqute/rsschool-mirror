@@ -41,7 +41,21 @@ const progressTime = document.querySelector('.progress-play')
 const buttonSmallPlay = document.querySelectorAll('.small-play')
 audio.volume = progressVolume.value / 100;
 let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
-
+let settingsTranslation = [
+  ["Настройки", "Settings"],
+  ["Погода", "Weather"],
+  ["Цитаты", "Quotes"],
+  ["Время", "Time"],
+  ["Дата", "Date"],
+  ["Музыка","Music"],
+  ["Приветствие", "Greeting"],
+  ["Валюта", "Extra"],
+  ["Язык", "Languge"],
+  ["Русский","Russian"],
+  ["Английский", "English"],
+  ["Источник видео","Images source"]
+  
+]
 let quotesAddress = './assets/quotesEN.json'
 
 
@@ -92,7 +106,7 @@ function setLocalStorage() {
     for (let i=0;i<sectionNames.length; i++){
       localStorage.setItem(`visibility${i}`, (sectionNames[i][1]))
     }
-    
+    localStorage.setItem('language',languageKey);
   }
   
 
@@ -114,6 +128,11 @@ console.log(sectionNames)
       } else{
            cityUser.value = "Минск";
            getWeather();
+      }
+      if(localStorage.getItem('language')) {
+        tagLanguage[languageKey].classList.remove('active');
+        languageKey = localStorage.getItem('language');
+        switchLanguage(languageKey);
       }
     }
   
@@ -399,8 +418,14 @@ function changeLanguage(){
   changeDate();
   changeWeather();
   showGreeting();
+changeSettingsLanguage();
 
-
+}
+function changeSettingsLanguage(){
+  const settingsTranslationItem = document.querySelectorAll('.translate-item');
+  for (let i=0; i<settingsTranslationItem.length; i++){
+    settingsTranslationItem[i].textContent = settingsTranslation[i][languageKey];
+  }
 }
 function changeQuotes(){
   if (languageKey ==0) quotesAddress = './assets/quotesRU.json';
