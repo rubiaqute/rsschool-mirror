@@ -11,7 +11,7 @@
 
 body {
   min-width: 480px;
-  min-height: 100vh;
+  height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
   color: #fff;
@@ -19,9 +19,12 @@ body {
   background: rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
+  background-size: cover;
 }
 
 .header {
+  z-index: 1;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -233,6 +236,7 @@ body {
 }
 
 .main {
+  z-index:0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -331,6 +335,130 @@ body {
 .author {
   min-height: 20px;
 }
+.footer-instruments{
+  display: flex;
+  width:100%;
+  max-width: 100%;
+  height:7vh;
+
+}
+.settings-icon{
+  width:5%;
+  max-width:100%;
+  background: url(../assets/svg/settings.svg) no-repeat;
+  background-position: left bottom;
+
+}
+.settings-icon:hover{
+  cursor: pointer;
+  opacity: 0.6;
+}
+.settings{
+  padding:3%;
+  height:auto;
+  max-width: 50%;
+  width:100%;
+  background: #ffffff;
+  color:black;
+  position: absolute;
+  top:15vh;
+  left:5%;
+  z-index: 100;
+  border-radius: 5%;
+  transition: 0.5s;
+  transform: scale(0);
+  opacity: 0;
+
+
+}
+.settings.active{
+opacity: 1;
+transform:scale(1); 
+
+}
+h2{
+font-size: 2rem;
+margin-bottom: 5%;
+}
+.togglepanel{
+  display:flex;
+  justify-content: space-between;
+  width:100%;
+  max-width:100%;
+  margin-bottom: 2%;
+  flex-wrap: nowrap;
+}
+h3{
+  text-align: right;
+  font-size: 1.5rem;
+  display: inline;
+  margin:auto 0;
+
+  
+}
+.switch-btn {
+  display: inline-block;
+  width: 5rem; /* ширина */
+  height: 2rem; /* высота */
+  border-radius: 19px; /* радиус скругления */
+  background: #bfbfbf; /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+}
+.switch-btn::after {
+  content: "";
+  height: 1.5rem; /* высота кнопки */
+  width:1.5rem; /* ширина кнопки */
+  border-radius: 17px;
+  background: #fff; /* цвет кнопки */
+  top: 0.2rem; /* положение кнопки по вертикали относительно основы */
+  left: 0.2rem; /* положение кнопки по горизонтали относительно основы */
+  transition-duration: 300ms; /* анимация */
+  position: absolute;
+  z-index: 1;
+}
+.transition-item{
+transform: scale(1);
+opacity:1;
+transition:0.5s;
+}
+.hidden{
+  /* visibility:hidden; */
+  transform: scale(0);
+  opacity:0;
+}
+.switch-on {
+  background: #4e82cf;
+}
+.switch-on::after {
+  left:3.3rem;
+}
+.tag{
+  margin-left:1%;
+  border-radius: 10%;
+  background:#bfbfbf;
+  display: inline-block;
+  padding:3%;
+
+}
+.tag.active{
+  background:#4e82cf;
+  color:#ffffff
+  
+}
+.tags{
+  display: flex;
+  flex-wrap: nowrap;
+  max-width:50%;
+  width:100%;
+  justify-content: space-around;
+}
+
 
 @media (max-width: 768px) {
   .time {

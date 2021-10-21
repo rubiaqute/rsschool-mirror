@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="header">
-    <div class="player">
+    <div class="player transition-item">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
@@ -34,7 +34,7 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
+    <div class="weather transition-item">
       <input type="text" class="city" />
       <i class="weather-icon owf"></i>
       <div class="weather-error"></div>
@@ -53,20 +53,81 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <time class="time transition-item"></time>
+    <date class="date transition-item"></date>
+    <div class="greeting-container transition-item">
       <span class="greeting"></span>
       <input type="text" class="name" />
     </div>
   </main>
   <footer class="footer">
+    <div class="quote-container transition-item">
     <button class="change-quote"></button>
+    
     <div>
       <div class="quote"></div>
       <div class="author"></div>
     </div>
+  </div>
+    <div class="footer-instruments">
+      <div class="settings-icon"></div>
+      <div class="github-link"></div>
+      <div class="extra-tools transition-item"></div>
+      
+    </div>
   </footer>
+  <div class="settings">
+    <div class="settings_header">
+      <h2>Settings:</h2>
+    </div>
+<div class="settings_list">
+  <div class="weather-toggle togglepanel">
+    <h3>Weather</h3>
+    <div class="switch-btn switch-on"></div>
+  </div>
+  <div class="quotes-toggle togglepanel">
+    <h3>Quotes</h3>
+    <div class="switch-btn switch-on"></div>
+  </div>
+    <div class="time-toggle togglepanel">
+      <h3>Time</h3>
+    <div class="switch-btn switch-on"></div>
+    </div>
+    <div class="date-toggle togglepanel">
+      <h3>Date</h3>
+    <div class="switch-btn switch-on "></div>
+    </div>
+    <div class="audioplayer-toggle togglepanel">
+      <h3>Audio</h3>
+    <div class="switch-btn switch-on"></div>
+    </div>
+    <div class="greeting-toggle togglepanel">
+      <h3>Greeting</h3>
+    <div class="switch-btn switch-on"></div>
+    </div>
+    <div class="extra-toggle togglepanel">
+      <h3>Extra</h3>
+    <div class="switch-btn switch-on"></div>
+    </div>
+    <div class="languages-toggle togglepanel">
+      <h3>Languges</h3>
+      <div class="tags">
+    <div class="tag RU">Russian</div>
+    <div class="tag EN active">English</div>
+   
+    </div>
+    </div>
+    <div class="images-toggle togglepanel">
+      <h3>Images source</h3>
+      <div class="tags">
+    <div class="tag github active">Github</div>
+    <div class="tag flickr">Flickr</div>
+    <div class="tag unsplash">Unsplash</div>
+  </div>
+    </div>
+  
+</div>
+</div>
   <script type="module" src="./index.js"></script>
 </body>
 </html>

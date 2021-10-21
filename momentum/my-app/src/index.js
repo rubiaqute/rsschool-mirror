@@ -26,7 +26,7 @@ let isPlay = false;
 let playNum = 0;
 audio.src = playList[playNum].src;
 
-    document.querySelector('.song-name').textContent = playList[playNum].title;
+document.querySelector('.song-name').textContent = playList[playNum].title;
 document.querySelector('.time-audio .length').textContent = playList[playNum].duration;
 const buttonPlay = document.querySelector('.play')
 const buttonPlayNext = document.querySelector('.play-next')
@@ -34,10 +34,11 @@ const buttonPlayPrev = document.querySelector('.play-prev')
 const progressVolume = document.querySelector('.progress-volume')
 const volumeToggle = document.querySelector('.volume-button');
 const progressTime = document.querySelector('.progress-play')
-
 const buttonSmallPlay = document.querySelectorAll('.small-play')
-
 audio.volume = progressVolume.value / 100;
+let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
+
+
 
 
 
@@ -84,10 +85,22 @@ function getTimeOfDay()
 function setLocalStorage() {
     localStorage.setItem('name', nameUser.value);
     localStorage.setItem('city', cityUser.value);
+    for (let i=0;i<sectionNames.length; i++){
+      localStorage.setItem(`visibility${i}`, (sectionNames[i][1]))
+    }
+    
   }
   
 
   function getLocalStorage() {
+    for (let i=0;i<sectionNames.length; i++){
+      if (localStorage.getItem(`visibility${i}`)){
+      sectionNames[i][1] = localStorage.getItem(`visibility${i}`)}
+      
+    
+    checkVisibility();
+    };
+console.log(sectionNames)
     if(localStorage.getItem('name')) {
       nameUser.value = localStorage.getItem('name');
     }
@@ -98,7 +111,24 @@ function setLocalStorage() {
            cityUser.value = "Минск";
            getWeather();
       }
+    }
+  
+
+function checkVisibility(){
+  for (let i=0; i<sectionNames.length; i++){
+    
+    if (sectionNames[i][1]=="true"){
+      switchButtons[i].classList.add('switch-on');
+      const section = document.querySelector(`${sectionNames[i][0]}`);
+      section.classList.remove('hidden');
+    } else{
+      switchButtons[i].classList.remove('switch-on');
+      const section = document.querySelector(`${sectionNames[i][0]}`);
+      section.classList.add('hidden');
+    }
   }
+  console.log(sectionNames)
+}
 
   function getRandomNum() {
     return Math.floor(Math.random() * 19 + 1);
@@ -110,7 +140,7 @@ function setBg(){
     
     const randomBG = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
     img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-    console.log(bgNum);
+    
     img.onload = () => {  
     body.style.backgroundImage = randomBG;
     }
@@ -314,3 +344,28 @@ audio.addEventListener("loadeddata", () => {
   false
 );
 
+const settingsPanel = document.querySelector('.settings');
+const settingsButton = document.querySelector('.settings-icon')
+
+settingsButton.addEventListener('click', toggleSettings);
+function toggleSettings(){
+  settingsPanel.classList.toggle('active');
+}
+
+const switchButtons = document.querySelectorAll('.switch-btn');
+for (let i=0; i< switchButtons.length; i++){
+  switchButtons[i].addEventListener('click', (e)=>switchVisibility(i));
+}
+document.addEventListener('mousedown', function(e){
+  if(e.target.closest('.settings') === null&&e.target.classList!='settings-icon'){
+    settingsPanel.classList.remove('active');
+  }
+});
+function switchVisibility(i){
+  switchButtons[i].classList.toggle('switch-on');
+  let hiddenSection = document.querySelector(`${sectionNames[i][0]}`);
+  if (sectionNames[i][1]=="true") sectionNames[i][1]="false";
+  else sectionNames[i][1]="true";
+  hiddenSection.classList.toggle('hidden')
+  console.log(sectionNames)
+}
