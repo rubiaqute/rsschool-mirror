@@ -47,19 +47,20 @@ const buttonSmallPlay = document.querySelectorAll('.small-play')
 audio.volume = progressVolume.value / 100;
 let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
 let settingsTranslation = [
-  ["Настройки", "Settings"],
-  ["Погода", "Weather"],
-  ["Цитаты", "Quotes"],
-  ["Время", "Time"],
-  ["Дата", "Date"],
-  ["Музыка","Music"],
-  ["Приветствие", "Greeting"],
-  ["Валюта", "Extra"],
-  ["Язык", "Languge"],
-  ["Русский","Russian"],
-  ["Английский", "English"],
-  ["Источник изображений","Images source"],
-  ["Тэг изображений","Images tag"]
+  ["Настройки", "Settings", "Los ajustes"],
+  ["Погода", "Weather", "Estado del tiempo"],
+  ["Цитаты", "Quotes", "Las Citas"],
+  ["Время", "Time", "El tiempo"],
+  ["Дата", "Date", "La fecha"],
+  ["Музыка","Music", "La musica"],
+  ["Приветствие", "Greeting", "La salutacion"],
+  ["Валюта", "Extra", "extra"],
+  ["Язык", "Languge", "La lengua"],
+  ["Русский","Russian", "Ruso"],
+  ["Английский", "English", "Ingles"],
+  ["Испанский", "Spanish", "Espanol"],
+  ["Источник изображений","Images source", "El origen de imagines"],
+  ["Тэг изображений","Images tag", "El tag de imagines"]
   
 ]
 let quotesAddress = './assets/quotesEN.json'
@@ -98,7 +99,7 @@ function showGreeting(){
     greetingApp.textContent = greetingText;
 
 }
-let greetingTranslation=[["Доброго утречка", "Good morning"], ["Добрый день","Good afternoon"],["Добрый вечер","Good evening"],["Доброй ночи","Good night"] ]
+let greetingTranslation=[["Доброго утречка", "Good morning", "Buenos dias"], ["Добрый день","Good afternoon", "Buenas tardes"],["Добрый вечер","Good evening", "Buenas noches"],["Доброй ночи","Good night", "Buenas noches"] ]
 function getTimeOfDay()
 {
     const date = new Date();
@@ -265,7 +266,7 @@ function getSlideNext(){
     randomNumber = (randomNumber-1+20) % 20;
     setBg();
  }
-let weatherTranslation = [["Скорость ветра", "Wind speed"], ["м/с", "m/s"], ["Влажность","Humidity"], ["Ошибка! Не найден город", "Error! city not found for"]]
+let weatherTranslation = [["Скорость ветра", "Wind speed", "La velocidad del viento"], ["м/с", "m/s", "m/s"], ["Влажность","Humidity", "La humedad"], ["Ошибка! Не найден город", "Error! city not found for", "Error! La ciudad no encontrada"]]
  async function getWeather() {  
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityUser.value}&${weatherMode}&appid=e57257892292e552c0054a48a736b278&units=metric`;
@@ -512,8 +513,9 @@ changeSettingsLanguage();
 
 }
 function changeSettingsLanguage(){
-  if (languageKey==0)inputErrorMessage = "Неверный тэг!"
-  else inputErrorMessage = "Wrong tag!"
+  if (languageKey==0)inputErrorMessage = "Неверный тэг!";
+  if (languageKey==1)inputErrorMessage = "Wrong tag!"
+  if (languageKey==2)inputErrorMessage = "El tag incorrecto!"
   const settingsTranslationItem = document.querySelectorAll('.translate-item');
   for (let i=0; i<settingsTranslationItem.length; i++){
     settingsTranslationItem[i].textContent = settingsTranslation[i][languageKey];
@@ -521,20 +523,20 @@ function changeSettingsLanguage(){
 }
 function changeQuotes(){
   if (languageKey ==0) quotesAddress = './assets/quotesRU.json';
-  else quotesAddress = './assets/quotesEN.json';
+  if (languageKey ==1) quotesAddress = './assets/quotesEN.json';
+  if (languageKey ==2) quotesAddress = './assets/quotesES.json';
   getQuotes();
 }
 function changeDate(){
   if (languageKey ==0) dateMode = 'ru-RU';
-  else dateMode = 'en-US';
+  if (languageKey ==1) dateMode = 'en-US';
+  if (languageKey ==2) dateMode = 'es-ES'
   showDate();
 }
 function changeWeather(){
-  if (languageKey ==0){
-     weatherMode = 'lang=ru';
-  }
-  else {
-    weatherMode = 'lang=en';
-  }
+  if (languageKey ==0) weatherMode = 'lang=ru';
+  if (languageKey ==1) weatherMode = 'lang=en';
+  if (languageKey ==2) weatherMode = 'lang=es';
+ 
   getWeather();
 }
