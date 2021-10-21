@@ -20,6 +20,10 @@ const quoteApp = document.querySelector('.quote');
 const authorQuoteApp = document.querySelector('.author');
 const changeQuoteButton = document.querySelector('.change-quote')
 const audio = new Audio();
+let languageMode = "EN";
+let languageKey = 1;
+let dateMode = 'en-US'
+let weatherMode = "lang=en";
 
 
 let isPlay = false;
@@ -38,7 +42,7 @@ const buttonSmallPlay = document.querySelectorAll('.small-play')
 audio.volume = progressVolume.value / 100;
 let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
 
-
+let quotesAddress = './assets/quotesEN.json'
 
 
 
@@ -56,7 +60,7 @@ function showTime() {
 function showDate(){
     const date = new Date();
     const options = {weekday: 'long', month: 'long', day: 'numeric'};
-    const currentDate = date.toLocaleDateString('en-US', options);
+    const currentDate = date.toLocaleDateString(`${dateMode}`, options);
     dateApp.textContent = currentDate;
     
 }
@@ -65,20 +69,20 @@ function showGreeting(){
     
     const timeOfDay = getTimeOfDay();
 
-    const greetingText = `Good ${timeOfDay}`;
+    const greetingText = `${timeOfDay}`;
     greetingApp.textContent = greetingText;
 
 }
-
+let greetingTranslation=[["Доброго утречка", "Good morning"], ["Добрый день","Good afternoon"],["Добрый вечер","Good evening"],["Доброй ночи","Good night"] ]
 function getTimeOfDay()
 {
     const date = new Date();
     const hours = date.getHours();
    
-    if (hours>5&&hours<12) return "morning";
-    if (hours>11 && hours<18) return "afternoon";
-    if (hours>17 && hours<24) return "evening";
-    if ((hours>0 && hours<6)||hours==0) return "night";
+    if (hours>5&&hours<12) return `${greetingTranslation[0][languageKey]}`;
+    if (hours>11 && hours<18) return `${greetingTranslation[1][languageKey]}`;
+    if (hours>17 && hours<24) return `${greetingTranslation[2][languageKey]}`;
+    if ((hours>0 && hours<6)||hours==0) return `${greetingTranslation[3][languageKey]}`;
 
 }
 
@@ -135,7 +139,7 @@ function checkVisibility(){
   }
 function setBg(){
     const bgNum = (randomNumber +1).toString().padStart(2,"0");
-    const timeOfDay = getTimeOfDay();
+    const timeOfDay = getFolderName();
     const img = new Image();
     
     const randomBG = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
@@ -144,6 +148,15 @@ function setBg(){
     img.onload = () => {  
     body.style.backgroundImage = randomBG;
     }
+}
+function getFolderName(){
+  const date = new Date();
+  const hours = date.getHours();
+ 
+  if (hours>5&&hours<12) return `morning`;
+  if (hours>11 && hours<18) return `afternoon`;
+  if (hours>17 && hours<24) return `evening`;
+  if ((hours>0 && hours<6)||hours==0) return `night`;
 }
 
 function getSlideNext(){
@@ -154,10 +167,10 @@ function getSlideNext(){
     randomNumber = (randomNumber-1+20) % 20;
     setBg();
  }
-
+let weatherTranslation = [["Скорость ветра", "Wind speed"], ["м/с", "m/s"], ["Влажность","Humidity"], ["Ошибка! Не найден город", "Error! city not found for"]]
  async function getWeather() {  
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityUser.value}&lang=en&appid=e57257892292e552c0054a48a736b278&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityUser.value}&${weatherMode}&appid=e57257892292e552c0054a48a736b278&units=metric`;
         const res = await fetch(url);
         const data = await res.json(); 
         weatherError.textContent = '';
@@ -165,10 +178,10 @@ function getSlideNext(){
         weatherIcon.classList.add(`owf-${data.weather[0].id}`);
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
-        windSpeed.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-        humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+        windSpeed.textContent = `${weatherTranslation[0][languageKey]}: ${Math.round(data.wind.speed)} ${weatherTranslation[1][languageKey]}`;
+        humidity.textContent = `${weatherTranslation[2][languageKey]}: ${Math.round(data.main.humidity)}%`;
       } catch(err) {
-        weatherError.textContent = `Error! city not found for '${cityUser.value}'!`;
+        weatherError.textContent = `${weatherTranslation[3][languageKey]} '${cityUser.value}'!`;
         weatherIcon.className = 'weather-icon owf';
         temperature.textContent = ``;
         weatherDescription.textContent = '';
@@ -179,7 +192,7 @@ function getSlideNext(){
   
 
   async function getQuotes() {  
-    const quotes = './assets/quotesEN.json';
+    const quotes = quotesAddress;
     const res = await fetch(quotes);
     const data = await res.json(); 
     const pickQuote = Math.floor(Math.random() * data.quotes.length);
@@ -368,4 +381,43 @@ function switchVisibility(i){
   else sectionNames[i][1]="true";
   hiddenSection.classList.toggle('hidden')
   console.log(sectionNames)
+}
+const tagLanguage = document.querySelectorAll('.language');
+for (let i=0; i<tagLanguage.length; i++){
+  tagLanguage[i].addEventListener('click', (e) => switchLanguage(i));
+}
+
+function switchLanguage(i){
+tagLanguage[languageKey].classList.remove('active');
+languageKey=i;
+tagLanguage[languageKey].classList.add('active');
+changeLanguage();
+}
+
+function changeLanguage(){
+  changeQuotes();
+  changeDate();
+  changeWeather();
+  showGreeting();
+
+
+}
+function changeQuotes(){
+  if (languageKey ==0) quotesAddress = './assets/quotesRU.json';
+  else quotesAddress = './assets/quotesEN.json';
+  getQuotes();
+}
+function changeDate(){
+  if (languageKey ==0) dateMode = 'ru-RU';
+  else dateMode = 'en-US';
+  showDate();
+}
+function changeWeather(){
+  if (languageKey ==0){
+     weatherMode = 'lang=ru';
+  }
+  else {
+    weatherMode = 'lang=en';
+  }
+  getWeather();
 }

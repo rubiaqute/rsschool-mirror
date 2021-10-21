@@ -445,10 +445,15 @@ transition:0.5s;
   display: inline-block;
   padding:3%;
 
+
+}
+.tag:hover{
+  cursor: pointer;
+  opacity: 0.8;
 }
 .tag.active{
   background:#4e82cf;
-  color:#ffffff
+  color:#ffffff;
   
 }
 .tags{
