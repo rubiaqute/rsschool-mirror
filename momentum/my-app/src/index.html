@@ -57,7 +57,7 @@
     <date class="date transition-item"></date>
     <div class="greeting-container transition-item">
       <span class="greeting"></span>
-      <input type="text" class="name" />
+      <input type="text" class="name" placeholder="Name" />
     </div>
   </main>
   <footer class="footer">
@@ -71,8 +71,42 @@
   </div>
     <div class="footer-instruments">
       <div class="settings-icon"></div>
-      <div class="github-link"></div>
-      <div class="extra-tools transition-item"></div>
+      <div class="github-link">
+        <p>2021</p>
+        <a href="https://rs.school/js/" class="course-link"> <img src="./assets/svg/rs_school_js.svg" alt="school-icon" class="school-icon"></a>
+        <a href="https://github.com/rubiaqute" class="githublink">Visit my Github</a>
+      </div>
+      <div class="extra-tools transition-item">
+        <span class = "covid-translation"> COVID19 stats for</span>
+        <select class="country-select">
+          <option disabled class = "covid-translation">Country:</option>
+        <option class = "covid-translation" value =1>United Kingdom</option>
+        <option class = "covid-translation" value =0>Russian Federation</option>
+        <option class = "covid-translation" value =2> Spain</option>
+        </select>
+        <div class="covid-block">
+        <div class="confirmed">
+          <div class="covid-string">
+            <p class = "covid-translation">New confirmed:</p>
+            <p  class ="new-confirmed">33162</p>
+            </div>
+            <div class=" covid-string">
+              <p class = "covid-translation">Total confirmed:</p>
+              <p class = "total-confirmed">33162</p>
+              </div>
+        </div>
+        <div class="deaths">
+          <div class="covid-string">
+            <p class = "covid-translation">New deaths:</p>
+            <p class="new-deaths">33162</p>
+            </div>
+            <div class="covid-string">
+              <p class = "covid-translation">Total deaths:</p>
+              <p class="total-deaths">33162</p>
+              </div>
+        </div>
+      </div>
+      </div>
       
     </div>
   </footer>
@@ -106,7 +140,7 @@
     <div class="switch-btn switch-on"></div>
     </div>
     <div class="extra-toggle togglepanel">
-      <h3 class = "translate-item">Extra</h3>
+      <h3 class = "translate-item">COVID-19 info</h3>
     <div class="switch-btn switch-on"></div>
     </div>
     <div class="languages-toggle togglepanel">

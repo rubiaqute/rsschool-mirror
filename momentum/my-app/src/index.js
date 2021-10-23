@@ -1,4 +1,5 @@
-import playList from './assets/playlist.js';
+import {settingsTranslation, greetingTranslation, weatherTranslation, covidTranslationitems} from './js/translation.js';
+import playList from './js/playlist.js';
 const tracks= document.querySelectorAll('.track')
 tracks[0].classList.add('current-track');
 const timeApp = document.querySelector('.time');
@@ -9,12 +10,7 @@ const body =document.querySelector('body');
 let randomNumber =getRandomNum();
 const slideNext = document.querySelector('.slide-next');
 const slidePrev = document.querySelector('.slide-prev');
-const weatherIcon = document.querySelector('.weather-icon');
-const temperature = document.querySelector('.temperature');
-const windSpeed = document.querySelector('.wind');
-const humidity = document.querySelector('.humidity')
-const weatherDescription = document.querySelector('.weather-description');
-const weatherError = document.querySelector('.weather-error');
+
 const cityUser = document.querySelector('.city');
 const quoteApp = document.querySelector('.quote');
 const authorQuoteApp = document.querySelector('.author');
@@ -26,7 +22,7 @@ let sourceKey=0;
 let dateMode = 'en-US'
 let weatherMode = "lang=en";
 let inputErrorMessage = "Wrong tag!"
-let unsplashTag = "morning";
+let unsplashTag;
 const inputTag = document.querySelector('.input-tag');
 
 
@@ -46,24 +42,8 @@ const buttonSmallPlay = document.querySelectorAll('.small-play')
 
 audio.volume = progressVolume.value / 100;
 let sectionNames=[['.weather', "true"], ['.quote-container',"true"], ['.time',"true"], ['.date', "true"], ['.player',"true"], ['.greeting-container', "true"], ['.extra-tools',"true"]];
-let settingsTranslation = [
-  ["Настройки", "Settings", "Los ajustes"],
-  ["Погода", "Weather", "Estado del tiempo"],
-  ["Цитаты", "Quotes", "Las Citas"],
-  ["Время", "Time", "El tiempo"],
-  ["Дата", "Date", "La fecha"],
-  ["Музыка","Music", "La musica"],
-  ["Приветствие", "Greeting", "La salutacion"],
-  ["Валюта", "Extra", "extra"],
-  ["Язык", "Languge", "La lengua"],
-  ["Русский","Russian", "Ruso"],
-  ["Английский", "English", "Ingles"],
-  ["Испанский", "Spanish", "Espanol"],
-  ["Источник изображений","Images source", "El origen de imagines"],
-  ["Тэг изображений","Images tag", "El tag de imagines"]
-  
-]
-let quotesAddress = './assets/quotesEN.json'
+
+let quotesAddress = './js/quotesEN.json'
 
 
 inputTag.addEventListener('change', (e) => changeTag());
@@ -99,7 +79,7 @@ function showGreeting(){
     greetingApp.textContent = greetingText;
 
 }
-let greetingTranslation=[["Доброго утречка", "Good morning", "Buenos dias"], ["Добрый день","Good afternoon", "Buenas tardes"],["Добрый вечер","Good evening", "Buenas noches"],["Доброй ночи","Good night", "Buenas noches"] ]
+
 function getTimeOfDay()
 {
     const date = new Date();
@@ -137,17 +117,21 @@ console.log(sectionNames)
       nameUser.value = localStorage.getItem('name');
     }
     if(localStorage.getItem('city')) {
-        cityUser.value = localStorage.getItem('city');
-        getWeather();
-      } else{
-           cityUser.value = "Минск";
-           getWeather();
-      }
+      cityUser.value = localStorage.getItem('city');
+      getWeather();
+    } else{
+      if (languageKey ==0) cityUser.value = "Минск";
+      if (languageKey ==1) cityUser.value = "Minsk";
+      if (languageKey ==2) cityUser.value = "Minsk";
+         
+         getWeather();
+    }
       if(localStorage.getItem('language')) {
         tagLanguage[languageKey].classList.remove('active');
         languageKey = localStorage.getItem('language');
         switchLanguage(languageKey);
       }
+      
       if(localStorage.getItem('inputtag')) {
         
         unsplashTag = localStorage.getItem('inputtag');
@@ -185,14 +169,13 @@ function setBg(){
   if (sourceKey==0) setGithubImage();
   if (sourceKey==1) setFlickrImage();
   if (sourceKey==2) setUnsplashImage();
-  
+  console.log(unsplashTag)
     
 }
 function setGithubImage(){
 const bgNum = (randomNumber +1).toString().padStart(2,"0");
     const timeOfDay = getFolderName();
     const img = new Image();
-    
     const randomBG = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
     img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
     img.onload = () => {  
@@ -200,7 +183,7 @@ const bgNum = (randomNumber +1).toString().padStart(2,"0");
     }
 }
 async function setUnsplashImage() {
-  
+  if (unsplashTag==undefined) unsplashTag = getFolderName();
   const url = `https://api.unsplash.com/photos/random?query=${unsplashTag}&client_id=-LHVbAfsjEtQYmM1CEAmYotn-NEMWw2YpUls9nUaeuA`;
   const res = await fetch(url);
   const data = await res.json();
@@ -224,7 +207,7 @@ async function setUnsplashImage() {
  }
 }
 async function setFlickrImage() {
-
+  if (unsplashTag==undefined) unsplashTag = getFolderName();
 const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=6b0e62b31d36361714f3a06d8297328d&tags=${unsplashTag}&extras=url_l&format=json&nojsoncallback=1`;
 const res = await fetch(url);
 const data = await res.json();
@@ -266,8 +249,14 @@ function getSlideNext(){
     randomNumber = (randomNumber-1+20) % 20;
     setBg();
  }
-let weatherTranslation = [["Скорость ветра", "Wind speed", "La velocidad del viento"], ["м/с", "m/s", "m/s"], ["Влажность","Humidity", "La humedad"], ["Ошибка! Не найден город", "Error! city not found for", "Error! La ciudad no encontrada"]]
+
  async function getWeather() {  
+  const weatherIcon = document.querySelector('.weather-icon');
+  const temperature = document.querySelector('.temperature');
+  const windSpeed = document.querySelector('.wind');
+  const humidity = document.querySelector('.humidity')
+  const weatherDescription = document.querySelector('.weather-description');
+  const weatherError = document.querySelector('.weather-error');
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityUser.value}&${weatherMode}&appid=e57257892292e552c0054a48a736b278&units=metric`;
         const res = await fetch(url);
@@ -304,7 +293,6 @@ let weatherTranslation = [["Скорость ветра", "Wind speed", "La velo
     
     if(!isPlay){
       console.log(audio.src);
-    // audio.currentTime = 0;
     audio.play();
     isPlay = true;
     
@@ -510,7 +498,23 @@ function changeLanguage(){
   changeWeather();
   showGreeting();
 changeSettingsLanguage();
+changeCovidInfo();
+changeNamePlaceholder();
+}
+function changeNamePlaceholder(){
+  const name = document.querySelector('.name');
+  if (languageKey==0)name.placeholder = "Имя";
+  if (languageKey==1)name.placeholder = "Name";
+  if (languageKey==2)name.placeholder = "Nombre";
 
+}
+function changeCovidInfo(){
+  const covidTranslation = document.querySelectorAll('.covid-translation');
+  countrySelect.value = languageKey;
+  for (let i=0; i<covidTranslation.length;i++){
+    covidTranslation[i].textContent = covidTranslationitems[i][languageKey];
+  }
+  getCovidInfo();
 }
 function changeSettingsLanguage(){
   if (languageKey==0)inputErrorMessage = "Неверный тэг!";
@@ -522,9 +526,9 @@ function changeSettingsLanguage(){
   }
 }
 function changeQuotes(){
-  if (languageKey ==0) quotesAddress = './assets/quotesRU.json';
-  if (languageKey ==1) quotesAddress = './assets/quotesEN.json';
-  if (languageKey ==2) quotesAddress = './assets/quotesES.json';
+  if (languageKey ==0) quotesAddress = './js/quotesRU.json';
+  if (languageKey ==1) quotesAddress = './js/quotesEN.json';
+  if (languageKey ==2) quotesAddress = './js/quotesES.json';
   getQuotes();
 }
 function changeDate(){
@@ -537,6 +541,44 @@ function changeWeather(){
   if (languageKey ==0) weatherMode = 'lang=ru';
   if (languageKey ==1) weatherMode = 'lang=en';
   if (languageKey ==2) weatherMode = 'lang=es';
- 
-  getWeather();
+  if(localStorage.getItem('city')) {
+    cityUser.value = localStorage.getItem('city');
+    getWeather();
+  } else{
+    if (languageKey ==0) cityUser.value = "Минск";
+    if (languageKey ==1) cityUser.value = "Minsk";
+    if (languageKey ==2) cityUser.value = "Minsk";
+       
+       getWeather();
+  }
 }
+const newConfirmed = document.querySelector('.new-confirmed')
+const totalConfirmed = document.querySelector('.total-confirmed')
+const newDeaths = document.querySelector('.new-deaths')
+const totalDeaths = document.querySelector('.total-deaths')
+const countrySelect = document.querySelector('.country-select')
+countrySelect.addEventListener('change', getCovidInfo)
+
+getCovidInfo();
+
+async function getCovidInfo() { 
+  let index; 
+  if (countrySelect.value==1) index = 182;
+  if (countrySelect.value==0) index = 142;
+  if (countrySelect.value==2) index = 162;
+  try{
+
+  const url = `https://api.covid19api.com/summary`;
+  const res = await fetch(url);
+  const data = await res.json();
+  
+  newConfirmed.textContent = data.Countries[index].NewConfirmed; 
+  totalConfirmed.textContent = data.Countries[index].TotalConfirmed; 
+  newDeaths.textContent = data.Countries[index].NewDeaths; 
+  totalDeaths.textContent = data.Countries[index].TotalDeaths;
+  }
+  catch(err){
+console.log("Error")
+  }
+}
+ 
