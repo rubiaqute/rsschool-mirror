@@ -8,10 +8,12 @@
   margin: 0;
   padding: 0;
 }
-
+html{
+  height: 100vh;
+}
 body {
   overflow-x: hidden;
-  min-width: 480px;
+  /* min-width: 480px; */
   height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -80,6 +82,7 @@ body {
   margin-top: 4%;
   display: flex;
   justify-content: space-between;
+  
   
   
 }
@@ -231,7 +234,8 @@ body {
 }
 
 .city {
-  width: 170px;
+  max-width: 100%;
+  width:100%;
   height: 34px;
   padding: 5px;
   font-size: 20px;
@@ -335,7 +339,7 @@ body {
   width: 100%;
   height: 30vh;
   min-height: 160px;  
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
 }
 
 .change-quote {
@@ -353,6 +357,7 @@ body {
 .footer-instruments{
   display: flex;
   justify-content: space-between;
+  
   width:100%;
   max-width: 100%;
   height:7vh;
@@ -360,8 +365,7 @@ body {
 
 }
 .extra-tools{
-  max-width: 35%;
-  width:100%;
+  flex-basis: 45%;
   margin-top:-2%;
 }
 
@@ -378,17 +382,18 @@ body {
 white-space: nowrap; 
 }
 .settings-icon{
-  width:5%;
-  max-width:100%;
+  flex-basis: 9%;
   background: url(../assets/svg/settings.svg) no-repeat;
   background-position: left bottom;
+  align-items: flex-end;
+  
 
 }
 .settings-icon:hover{
   cursor: pointer;
   opacity: 0.6;
 }
-.settings{
+.settings {
   padding:3%;
   height:auto;
   max-width: 50%;
@@ -424,7 +429,7 @@ margin-bottom: 5%;
   flex-wrap: nowrap;
 }
 h3{
-  text-align: right;
+  text-align: left;
   font-size: 1.5rem;
   display: inline;
   margin:auto 0;
@@ -500,6 +505,7 @@ transition:0.5s;
 }
 .input-tag{
   border: 2px solid #4e82cf;
+ 
 
 }
 .error{
@@ -510,6 +516,8 @@ transition:0.5s;
 display: flex;
 justify-content: space-between;
 align-items: flex-end;
+margin-top: 2%;
+
 
 }
 .school-icon{
@@ -560,24 +568,38 @@ text-decoration: none;
   .covid-translation {
     white-space: normal;
 }
+.track{
+  font-size: 1rem;
+}
 }
 @media (max-width: 540px){
   body{
     font-size: 7px;
   }
+  .main{
+    
+    height: 35vh;
+    min-height: 30vh;
+  }
   .settings {
-    max-width: 100%;
+    font-size: 0.5rem;
+    max-width: 90%;
   }
   .time {
-    min-height: 60px;
-    font-size: 48px;    
+    min-height: 50px;
+    font-size: 36px;    
   }
   .player{
     max-width:50%;
   }
   .greeting-container {
-    min-height: 30px;
-    font-size: 24px;
+    min-height: 25px;
+    font-size: 18px;
+  }
+
+  .name {
+    font-size: 18px;
+    padding: 5px;
   }
   .weather{
     width:100%;
@@ -585,10 +607,19 @@ text-decoration: none;
   }
   .player-icon,
 .slider-icon,
-.change-quote {
+.change-quote,
+.settings-icon {
   width: 16px;
   height: 16px;
   background-size: 16px 16px;
   
+}
+.input-tag{
+  
+  max-width:25%;
+
+}
+.track{
+  font-size: 0.9rem;
 }
 }
