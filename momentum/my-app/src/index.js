@@ -1,5 +1,6 @@
 import {settingsTranslation, greetingTranslation, weatherTranslation, covidTranslationitems} from './js/translation.js';
 import playList from './js/playlist.js';
+import'./js/self-estimation.js';
 const tracks= document.querySelectorAll('.track')
 tracks[0].classList.add('current-track');
 const timeApp = document.querySelector('.time');
@@ -112,7 +113,7 @@ function setLocalStorage() {
     
     checkVisibility();
     };
-console.log(sectionNames)
+
     if(localStorage.getItem('name')) {
       nameUser.value = localStorage.getItem('name');
     }
@@ -158,7 +159,7 @@ function checkVisibility(){
       section.classList.add('hidden');
     }
   }
-  console.log(sectionNames)
+  
 }
 
   function getRandomNum() {
@@ -292,7 +293,7 @@ function getSlideNext(){
   function playAudio() {
     
     if(!isPlay){
-      console.log(audio.src);
+     
     audio.play();
     isPlay = true;
     
@@ -467,7 +468,7 @@ function switchVisibility(i){
   if (sectionNames[i][1]=="true") sectionNames[i][1]="false";
   else sectionNames[i][1]="true";
   hiddenSection.classList.toggle('hidden')
-  console.log(sectionNames)
+  
 }
 const tagLanguage = document.querySelectorAll('.language');
 for (let i=0; i<tagLanguage.length; i++){
