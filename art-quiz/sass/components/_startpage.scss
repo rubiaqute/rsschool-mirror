@@ -1,0 +1,41 @@
+.settings_button{
+    background-color: $color-primary;
+    color:$color-innertext;
+
+    @include font(2.2rem, 2.8rem, normal, uppercase);
+    padding:5%;
+    max-width: 50%;
+    width: 100%;
+    text-align:center;
+    display:block;
+    margin:0 auto;
+}
+
+.game-select{
+    width:100%;
+    margin:0 auto;
+    height:30vh;
+    position:relative;
+}
+
+
+.artists-quiz{
+    
+    &:before{
+        content:"";
+        background: url("./../image-data/full/0full.jpg") no-repeat;
+        background-size: cover;
+        @extend %cover-style;
+    }
+    
+}
+
+.paintings-quiz{
+    &:before{
+        content:"";
+        background: url("./../image-data/full/1full.jpg") no-repeat;
+        background-size: cover;
+        @extend %cover-style;
+    }
+}
+

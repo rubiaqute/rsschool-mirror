@@ -1,3 +1,10 @@
-html{
-    background-color: #933fe2;
-}
+@import "abstract/constants";
+@import "abstract/mixin";
+@import "abstract/placeholders";
+
+@import "base/base";
+
+@import "components/startpage";
+@import "components/categories"
+
+
