@@ -37,6 +37,36 @@ html{
         cursor: pointer;
     }
 }
+.back{
+    position:absolute;
+    width:24px;
+    height: 24px;
+    z-index: 1;
+    @extend %transition;
+    background: url("../../image-data/svg/home.svg") no-repeat;
+    background-position:top left;
+    top:2%;
+    left:5%;
+    &:hover{
+        cursor:pointer;
+        opacity:60%;
+    }
+}
+.categories-icon{
+    position:absolute;
+    width:24px;
+    height: 24px;
+    z-index: 1;
+    @extend %transition;
+    background: url("../../image-data/svg/list.svg") no-repeat;
+    background-position:top center;
+    top:2%;
+    left:50%;
+    &:hover{
+        cursor:pointer;
+        opacity:60%;
+    }
+}
 // h1{
 //     @include font(4.4rem, 5.4rem, bold, uppercase);
 //     color: $color-primary;
@@ -74,8 +104,7 @@ h4{
     
 }
 .hide{
-    opacity:0%;
-    visibility: hidden;
+    
     display:none;
     @extend %transition;
 }

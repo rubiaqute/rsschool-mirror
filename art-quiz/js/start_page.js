@@ -1,20 +1,64 @@
+import{backButton, categoryButton} from './index.js'
 export function showStartPage(){
     
-    toggleStartPage();
-    toggleCategories();
+    appearStartPage();
+    hideCategories();
+    hideBackIcon();
+    hideCategoryIcon();
+    eliminateQuizPage();
     
 }
-export function toggleStartPage(){
+export function showCategories(){
+    
+    hideStartPage();
+    appearCategories();
+    appearBackIcon();
+    hideCategoryIcon();
+    eliminateQuizPage();
+    
+}
+export function showQuestion(){
+    appearBackIcon();
+    appearCategoryIcon();
+    hideStartPage();
+    hideCategories();
+}
+export function appearStartPage(){
     const startPage = document.querySelector('.container');
-    if(startPage.classList.contains('hide')){
-        startPage.classList.remove('hide')
-    } else startPage.classList.add('hide')
+    startPage.classList.remove('hide')
+}
+export function hideStartPage(){
+    const startPage = document.querySelector('.container');
+    startPage.classList.add('hide')
+}
+export function appearBackIcon(){
+    backButton.classList.remove('hide')
+}
+export function hideBackIcon(){
+    backButton.classList.add('hide')
+}
+export function appearCategories(){
+    const containerCategory = document.querySelector('.categories');
+    containerCategory.classList.remove('hide')
 }
 
-export function toggleCategories(){
+export function hideCategories(){
     const containerCategory = document.querySelector('.categories');
+    containerCategory.classList.add('hide')
+}
+export function appearCategoryIcon(){
+    categoryButton.classList.remove('hide')
+}
+export function hideCategoryIcon(){
+    categoryButton.classList.add('hide')
+}
+export function appearQuizPage(){
+    const quizPage = document.querySelector('.container-question');
+    quizPage.classList.remove('hide')
+}
+export function eliminateQuizPage(){
+    const game = document.querySelector('.wrapper');
+    const quizPage = document.querySelector('.container-question');
+    if (quizPage) game.removeChild(quizPage);
     
-    if(containerCategory.classList.contains('hide')){
-        containerCategory.classList.remove('hide')
-    } else containerCategory.classList.add('hide')
 }

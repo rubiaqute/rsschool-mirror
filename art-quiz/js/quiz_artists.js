@@ -1,9 +1,8 @@
-import {toggleCategories} from './start_page.js';
-import {getImageData} from "./category_section.js";
+import {showQuestion} from './start_page.js';
 import Questions from './questions.js';
 
 export default async function startQuiz(i){
-    toggleCategories();
+    showQuestion();
     const game = document.querySelector('.wrapper');
     const containerQuestion = document.createElement('div');
     game.append(containerQuestion)
@@ -21,20 +20,22 @@ export default async function startQuiz(i){
     const containerOptions = document.createElement('div')
     containerOptions.className="container_options";
     containerQuestion.append(containerBullets,questionText,questionImage, containerOptions);
-
+    const options=await new Questions(i*10).makeOptions();
+    console.log(options);
     for (let i=0; i<4; i++){
     const questionOptions=document.createElement('div');
     questionOptions.className = "options"
+    questionOptions.innerText = options[i];
     containerOptions.append(questionOptions)
     }
     
 }
 function getImage(i){
-    const src =  `./image-data/img/${i*10+1}.jpg`;
+    const src =  `./image-data/img/${i*10}.jpg`;
     return src;
 }
 function getQuestion(i){
-    const question =  new Questions(i*10+1).makeQuestion()
+    const question =  new Questions(i*10).makeQuestion()
     return question;
 }
 
