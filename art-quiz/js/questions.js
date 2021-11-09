@@ -1,11 +1,20 @@
-class Questions{
-     constructor (author, name, year, imageNum){
-         this.author = author;
-         this.name = name;
-         this.year = year;
-         this.imageNum= imageNum;
+import {getImageData} from './category_section.js'
+export default class Questions{
+     constructor (id){
+         this.id = id;
      }
-     makeQuestion(){
-         let questionText= `Who is the author of ${this.name}?`
+     async makeQuestion(){
+         const name = await getName(this.id);
+         let questionText= `Who is the author of "${name}"?`
+         return questionText;
      }
+     async makeOptions(){
+         let options=[];
+         const author = await getAuthor(this.id);
+
+     }
+}
+async function getName(id){
+    const data = await getImageData();
+    return await data.images[id].name;
 }

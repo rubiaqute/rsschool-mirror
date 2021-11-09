@@ -7,7 +7,7 @@
   transition: 0.5s;
 }
 
-.category .number, h3, h2 {
+.category .number, h4, h3, h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -85,6 +85,17 @@ h2 {
 h3 {
   font-size: 2.4rem;
   line-height: 2.8rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+h4 {
+  font-size: 2.2rem;
+  line-height: 2.4rem;
   font-weight: 500;
   font-style: normal;
   text-transform: normal;
@@ -187,6 +198,27 @@ h3 {
 .back:hover {
   cursor: pointer;
   opacity: 60%;
+}
+
+.container-question {
+  height: 100vh;
+  padding: 5%;
+}
+.container-question img {
+  width: 100%;
+  border: 1px solid #ffffff;
+  border-radius: 5%;
+}
+
+.bullets {
+  width: 100%;
+  height: 10%;
+}
+
+.options {
+  width: 45%;
+  border: 1px solid #ffffff;
+  border-radius: 5%;
 }
 
 /*# sourceMappingURL=style.css.map */

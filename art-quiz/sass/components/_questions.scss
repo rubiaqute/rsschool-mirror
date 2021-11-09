@@ -1,0 +1,19 @@
+.container-question{
+    height: 100vh;
+    padding:5%;
+    img{
+        width:100%;
+        border:1px solid $color-border;
+        border-radius: 5%;
+    }
+
+}
+.bullets{
+    width:100%;
+    height:10%;
+}
+.options{
+    width:45%;
+    border:1px solid $color-border;
+    border-radius: 5%;
+}

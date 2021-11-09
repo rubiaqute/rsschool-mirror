@@ -1,8 +1,8 @@
 import Category from './category_constructor.js';
-import showStartPage from './start_page.js';
+import {showStartPage} from './start_page.js';
+import startQuiz from './quiz_artists.js'
 
-
-export default function createCategoriesPage(){
+function createCategoriesPage(){
     createCategories();
 }
 
@@ -38,10 +38,11 @@ async function createCategories(){
     for (let i=0; i< quantityOfCategories; i++){
         category[i] = new Category(i).fillCategory();
         containerCategory.append(category[i])
+        category[i].addEventListener('click', ()=>startQuiz(i))
     }
 }
 
-
+export {createCategoriesPage, getImageData}
 
     
 

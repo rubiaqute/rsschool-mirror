@@ -14,9 +14,7 @@
 }
 .category{
     width: 45%;
-    
     border: 1px solid $color-border;
-    
     position:relative;
     border-radius:5%;
     &:hover{
@@ -37,10 +35,7 @@
     img{
         display:block;
         width:100%;
-       
-        // max-height:100%;
         @extend %cover-style;
-    
     }
 }
 .back{

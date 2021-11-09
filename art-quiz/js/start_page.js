@@ -1,4 +1,4 @@
-export default function showStartPage(){
+export function showStartPage(){
     
     toggleStartPage();
     toggleCategories();
@@ -11,7 +11,7 @@ export function toggleStartPage(){
     } else startPage.classList.add('hide')
 }
 
-function toggleCategories(){
+export function toggleCategories(){
     const containerCategory = document.querySelector('.categories');
     
     if(containerCategory.classList.contains('hide')){

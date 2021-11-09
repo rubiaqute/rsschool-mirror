@@ -1,5 +1,5 @@
-import createCategoriesPage from './category_section.js';
-import showStartPage from './start_page.js'
+import {createCategoriesPage} from './category_section.js';
+import {showStartPage} from './start_page.js'
 
 
 window.onload = function(){
