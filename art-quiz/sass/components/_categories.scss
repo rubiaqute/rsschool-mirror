@@ -4,39 +4,41 @@
     width:100%;
     
 }
-.categories.hide{
-    opacity:0%;
-    visibility: hidden;
-    display:none;
+.categories_container{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    row-gap:5%;
+    flex-wrap: wrap;
+    
 }
 .category{
-    width:100%;
-    background-size: cover;
-    height:10vh;
+    width: 45%;
+    
+    border: 1px solid $color-border;
+    
     position:relative;
-    border-radius: 2%;
-    padding:5%;
+    border-radius:5%;
     &:hover{
         cursor: pointer;
         opacity:60%;
     }
     .number{
-    @include font(1.6rem, 2.0rem, bold, uppercase);
-    max-width:10%;
-    opacity:90%;
-    border-radius: 50%;
-    color:$color-darkdetails;
-    background-color: $color-background;
+    @include font(2.4rem, 2.8rem, bold, uppercase);
+    @extend %font-roboto;
+    color:$color-innertext;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     z-index:1;
-    position:relative;
+    position:absolute;
+    top:45%;
+    left:5%;
     text-align:center;
     }
     img{
-        object-fit: cover;
+        display:block;
         width:100%;
-        position:absolute;
-        max-height:100%;
+       
+        // max-height:100%;
         @extend %cover-style;
     
     }

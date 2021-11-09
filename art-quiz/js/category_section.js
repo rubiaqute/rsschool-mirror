@@ -16,18 +16,21 @@ async function getImageData() {
 
 
 async function createCategories(){
-    const game = document.querySelector('body');
-    let containerCategory = document.createElement('div');
-    game.append(containerCategory)
-    containerCategory.classList.add("categories")
-    containerCategory.classList.add("hide")
+    const game = document.querySelector('.wrapper');
+    let sectionCategory = document.createElement('div');
+    game.append(sectionCategory)
+    sectionCategory.classList.add("categories")
+    sectionCategory.classList.add("hide")
     const categoryHeader=document.createElement('h3');
     categoryHeader.innerText = "Choose category:";
-    containerCategory.append(categoryHeader);
+    sectionCategory.append(categoryHeader);
     const backButton=document.createElement("button");
     backButton.className = "back";
     backButton.addEventListener('click', ()=>{showStartPage()})
-    containerCategory.append(backButton)
+    sectionCategory.append(backButton)
+    let containerCategory = document.createElement('div')
+    containerCategory.className = "categories_container";
+    sectionCategory.append(containerCategory)
     const data = await getImageData();
     console.log(await data.images[0])
     const quantityOfCategories = Math.floor(data.images.length/20);

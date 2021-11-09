@@ -1,41 +1,51 @@
-.settings_button{
-    background-color: $color-primary;
-    color:$color-innertext;
-
-    @include font(2.2rem, 2.8rem, normal, uppercase);
-    padding:5%;
-    max-width: 50%;
-    width: 100%;
-    text-align:center;
-    display:block;
-    margin:0 auto;
+.logo{
+    background: url('../../image-data/svg/Group\ 1438.svg') no-repeat;
+    background-position: center;
+    width:100%;
+    height:20%;
+    margin:auto;
+    
 }
 
 .game-select{
     width:100%;
-    margin:0 auto;
-    height:30vh;
-    position:relative;
-}
-
-
-.artists-quiz{
+    margin:5% auto;
+    padding-top:10%;
+    padding-bottom:10%;
     
-    &:before{
-        content:"";
-        background: url("./../image-data/full/0full.jpg") no-repeat;
-        background-size: cover;
-        @extend %cover-style;
+    border:1px solid $color-border;
+    border-radius: 56px;
+    &:hover{
+        cursor: pointer;
+        background-color: $color-darkdetails;
+        
+        opacity:40%;
+        @extend %transition;
+        h2{
+            color:$color-darktext
+        }
     }
     
 }
 
-.paintings-quiz{
-    &:before{
-        content:"";
-        background: url("./../image-data/full/1full.jpg") no-repeat;
-        background-size: cover;
-        @extend %cover-style;
-    }
-}
+
+// .artists-quiz{
+    
+//     &:before{
+//         content:"";
+//         background: url("./../image-data/full/0full.jpg") no-repeat;
+//         background-size: cover;
+//         @extend %cover-style;
+//     }
+    
+// }
+
+// .paintings-quiz{
+//     &:before{
+//         content:"";
+//         background: url("./../image-data/full/1full.jpg") no-repeat;
+//         background-size: cover;
+//         @extend %cover-style;
+//     }
+// }
 

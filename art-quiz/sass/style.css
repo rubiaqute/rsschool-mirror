@@ -1,15 +1,17 @@
-.category img, .paintings-quiz:before, .artists-quiz:before {
-  filter: blur(2px);
+.category img {
+  filter: grayscale(50%);
   opacity: 85%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+}
+
+.game-select:hover, .hide, .settings {
+  transition: 0.5s;
+}
+
+.category .number, h3, h2 {
+  font-family: "Roboto", sans-serif;
 }
 
 * {
-  background-color: #ffffff;
   scroll-behavior: smooth;
   box-sizing: border-box;
   margin: 0;
@@ -46,91 +48,87 @@ html {
   font-size: 10px;
 }
 
-h1 {
-  font-size: 4.4rem;
-  line-height: 5.4rem;
-  font-weight: bold;
-  font-style: normal;
-  text-transform: uppercase;
-  color: #7ca3c4;
-  width: 100%;
-  text-align: center;
+.wrapper {
+  background: url("../../image-data/cover.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.settings {
+  background: url("../../image-data/svg/settings.svg") no-repeat;
+  background-position: top right;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  z-index: 1;
+}
+.settings:hover {
+  transform: rotate(-120deg);
+  cursor: pointer;
 }
 
 h2 {
   background-color: transparent;
   color: #ffffff;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   line-height: 2.8rem;
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
   width: 100%;
   text-align: center;
-  position: absolute;
-  margin: 0 auto;
-  top: 50%;
 }
 
 h3 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   line-height: 2.8rem;
-  font-weight: bold;
+  font-weight: 500;
   font-style: normal;
   text-transform: normal;
-  color: #7ca3c4;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 5%;
 }
 
 .container {
   margin: 0 auto;
-  padding: 5% 10%;
+  padding: 50% 10% 5% 10%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  max-height: 100vh;
 }
 
-.container.hide {
+.hide {
   opacity: 0%;
   visibility: hidden;
   display: none;
 }
 
-.settings_button {
-  background-color: #7ca3c4;
-  color: #ffffff;
-  font-size: 2.2rem;
-  line-height: 2.8rem;
-  font-weight: normal;
-  font-style: normal;
-  text-transform: uppercase;
-  padding: 5%;
-  max-width: 50%;
+.logo {
+  background: url("../../image-data/svg/Group 1438.svg") no-repeat;
+  background-position: center;
   width: 100%;
-  text-align: center;
-  display: block;
-  margin: 0 auto;
+  height: 20%;
+  margin: auto;
 }
 
 .game-select {
   width: 100%;
-  margin: 0 auto;
-  height: 30vh;
-  position: relative;
+  margin: 5% auto;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  border: 1px solid #ffffff;
+  border-radius: 56px;
 }
-
-.artists-quiz:before {
-  content: "";
-  background: url("./../image-data/full/0full.jpg") no-repeat;
-  background-size: cover;
+.game-select:hover {
+  cursor: pointer;
+  background-color: #FFBCA2;
+  opacity: 40%;
 }
-
-.paintings-quiz:before {
-  content: "";
-  background: url("./../image-data/full/1full.jpg") no-repeat;
-  background-size: cover;
+.game-select:hover h2 {
+  color: #000000;
 }
 
 .categories {
@@ -139,45 +137,41 @@ h3 {
   width: 100%;
 }
 
-.categories.hide {
-  opacity: 0%;
-  visibility: hidden;
-  display: none;
+.categories_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  row-gap: 5%;
+  flex-wrap: wrap;
 }
 
 .category {
-  width: 100%;
-  background-size: cover;
-  height: 10vh;
+  width: 45%;
+  border: 1px solid #ffffff;
   position: relative;
-  border-radius: 2%;
-  padding: 5%;
+  border-radius: 5%;
 }
 .category:hover {
   cursor: pointer;
   opacity: 60%;
 }
 .category .number {
-  font-size: 1.6rem;
-  line-height: 2rem;
+  font-size: 2.4rem;
+  line-height: 2.8rem;
   font-weight: bold;
   font-style: normal;
   text-transform: uppercase;
-  max-width: 10%;
-  opacity: 90%;
-  border-radius: 50%;
-  color: #111ba7;
-  background-color: #ffffff;
+  color: #ffffff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   z-index: 1;
-  position: relative;
+  position: absolute;
+  top: 45%;
+  left: 5%;
   text-align: center;
 }
 .category img {
-  object-fit: cover;
+  display: block;
   width: 100%;
-  position: absolute;
-  max-height: 100%;
 }
 
 .back {

@@ -1,9 +1,11 @@
 %cover-style{
-    filter: blur(2px);
+    filter: grayscale(50%);
     opacity:85%;
-    position:absolute;
-    top:0;
-    right:0;
-    left:0;
-    bottom:0;
+    
+}
+%transition{
+    transition: 0.5s;
+}
+%font-roboto{
+    font-family: "Roboto", sans-serif;
 }

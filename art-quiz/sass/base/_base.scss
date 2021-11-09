@@ -1,5 +1,5 @@
 *{
-    background-color: $color-background;
+    
     scroll-behavior: smooth;
     box-sizing: border-box;
     margin: 0;
@@ -15,40 +15,60 @@ img {vertical-align: top;}
 html{
     font-size: 10px;
 }
-h1{
-    @include font(4.4rem, 5.4rem, bold, uppercase);
-    color: $color-primary;
-    width:100%;
-    text-align: center;
+.wrapper{
+    background: url('../../image-data/cover.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    // height:100vh;
+    position:relative;
 }
+.settings{
+    background:url('../../image-data/svg/settings.svg') no-repeat;
+    background-position: top right;
+    width:24px;
+    height: 24px;
+    position:absolute;
+    top:2%;
+    right:5%;
+    z-index: 1;
+    @extend %transition;
+    &:hover{
+        transform: rotate(-120deg);
+        cursor: pointer;
+    }
+}
+// h1{
+//     @include font(4.4rem, 5.4rem, bold, uppercase);
+//     color: $color-primary;
+//     width:100%;
+//     text-align: center;
+// }
 h2{
     background-color:transparent;
     color:$color-innertext;
-    @include font(2.2rem, 2.8rem, normal, uppercase);
+    @extend %font-roboto;
+    @include font(2.4rem, 2.8rem, 500, uppercase);
     width:100%;
-    text-align: center;
-    position:absolute;
-    margin:0 auto;
-    top:50%;
+    text-align: center; 
     
 }
 h3{
-    @include font(2.2rem, 2.8rem, bold, normal);
-    color: $color-primary;
-    
+    @include font(2.4rem, 2.8rem, 500, normal);
+    color:$color-innertext;
+    @extend %font-roboto;
     text-align: center;
     margin-bottom:5%;
 }
 .container{
     margin:0 auto;
-    padding: 5% 10%;
+    padding: 50% 10% 5% 10%;
     height:100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    max-height:100vh;
+    
 }
-.container.hide {
+.hide{
     opacity:0%;
     visibility: hidden;
     display:none;
+    @extend %transition;
 }
