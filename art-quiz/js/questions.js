@@ -27,6 +27,11 @@ export default class Questions{
          return shuffledOptions;
 
      }
+     async getRightAnswer(){
+        const author = await getAuthor(this.id);
+        return author;
+     }
+     
 }
 async function getName(id){
     const data = await getImageData();
