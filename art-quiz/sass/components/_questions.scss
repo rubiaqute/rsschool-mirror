@@ -51,6 +51,12 @@
     color:$color-innertext;
     @extend %font-roboto;
     text-align: center;
+    .right{
+        background-color: $color-right;
+    }
+    .wrong{
+        background-color: $color-wrong;
+    }
 }
 .container-question.hide{
     display:none;

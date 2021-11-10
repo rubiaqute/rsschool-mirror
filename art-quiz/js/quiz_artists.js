@@ -1,5 +1,6 @@
 import {showQuestion} from './start_page.js';
 import Questions from './questions.js';
+import Modal from './modals.js';
 
 export default async function startQuiz(index){
     showQuestion();
@@ -54,21 +55,28 @@ async function checkAnswer(e,i,index){
     const rightAnswer = await new Questions(index*10).getRightAnswer();
     
     if (e.target.innerText ==rightAnswer) {
-        makeBulletRight(index);
-        appearModal();
+        colorAnswer(e.target, "right")
+        colorBullet(index, "right");
+        appearModal("right");
     } else {
-        makeBulletWrong(index);
-        appearModal();
+        colorBullet(index, "wrong");
+        colorAnswer(e.target, "wrong");
+        appearModal("wrong");
     }
 
 }
-function makeBulletRight(i){
+function colorBullet(i, type){
     const bullets=document.querySelectorAll('.bullet');
     const index= i%i;
-    bullets.item(index).classList.add('right');
+    bullets.item(index).classList.add(type);
 }
-function makeBulletWrong(i){
-    const bullets=document.querySelectorAll('.bullet');
-    const index= i%i;
-    bullets.item(index).classList.add('wrong');
+function colorAnswer(target, type){
+    target.classList.add(type)
+    setTimeout(()=>{
+        target.classList.remove(type)
+    }, 1000)
 }
+function appearModal(type){
+    const modal = new Modal(type).makeModal();
+}
+
