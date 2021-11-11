@@ -22,13 +22,35 @@ export default class Modal{
         template+='</div></div>';
         template+=`<p class="note">You're ${this.type}!</p>`;
         template+='<button class="next-question">Next</button>';
-        const modalContainer = createNodetoDom('div', 'modal-container');
-        modalContainer.innerHTML=template;
-        const overlay = createNodetoDom('div', 'overlay');
-        overlay.append(modalContainer);
-        const game = document.querySelector('.wrapper');
-        game.append(overlay);
+        createModalWrapper(template);
         const nextButton=document.querySelector('.next-question');
         nextButton.addEventListener('click', (e)=>getNextQuestion(this.id, this.indexCategory));
     }
+    
+    makeFinalModal(){
+        let template="";
+        const rightBullets=document.querySelectorAll('.bullet.right');
+        const score = rightBullets.length;
+        
+        template+=`<p class="note">Your score: <span>${score}/10</span></p>`;
+        if (score==10) {
+            template +=`<img class="image-result"src="./image-data/younglady.jpg" alt="">`
+            template +=`<p class="note-result">You are the BEST!</p>`;
+        } else{
+            template +=`<img class="image-result"src="./image-data/oldlady.jpg" alt="">`
+            template +=`<p class="note-result">Try better next time...</p>`;
+        }
+        template+='<button class="final-modal-button">&#8634; Once again</button>';
+        template+='<button class="final-modal-button">Resume</button>';
+        createModalWrapper(template);
+    }
+    
+}
+function createModalWrapper(template){
+    const modalContainer = createNodetoDom('div', 'modal-container');
+    modalContainer.innerHTML=template;
+    const overlay = createNodetoDom('div', 'overlay');
+    overlay.append(modalContainer);
+    const game = document.querySelector('.wrapper');
+    game.append(overlay); 
 }

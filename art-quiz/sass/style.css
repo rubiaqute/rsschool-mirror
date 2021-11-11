@@ -7,7 +7,7 @@
   transition: 0.5s;
 }
 
-.next-question, .note, .description, .options, .category .number, h4, h3, h2 {
+.final-modal-button, .next-question, .note-result, .note, .description, .options, .category .number, h4, h3, h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -363,6 +363,19 @@ h4 {
   color: #ffffff;
   text-align: center;
 }
+.note span {
+  color: #FFBCA2;
+}
+
+.note-result {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
+  color: #ffffff;
+  text-align: center;
+}
 
 .next-question {
   border-radius: 56px;
@@ -376,6 +389,28 @@ h4 {
   font-weight: 700;
   font-style: normal;
   text-transform: normal;
+}
+
+.final-modal-button {
+  border-radius: 56px;
+  width: 100%;
+  max-width: 60%;
+  border-radius: 56px;
+  background-color: #FFBCA2;
+  color: #000000;
+  padding: 2%;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: normal;
+}
+
+.image-result {
+  max-width: 50%;
+  width: 100%;
+  border-radius: 1px solid #ffffff;
+  border-radius: 5%;
 }
 
 /*# sourceMappingURL=style.css.map */

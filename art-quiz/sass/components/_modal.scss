@@ -73,6 +73,15 @@
     color:$color-innertext;
     @extend %font-roboto;
     text-align: center;
+    span{
+        color:$color-darkdetails;
+    }
+}
+.note-result{
+    @include font(1.4rem, 1.6rem, 500, normal);
+    color:$color-innertext;
+    @extend %font-roboto;
+    text-align: center;
 }
 .next-question{
     border-radius: 56px;
@@ -84,4 +93,23 @@
     @include font(1.8rem, 2.0rem, 700, normal);
     
     @extend %font-roboto;
+}
+.final-modal-button{
+    border-radius: 56px;
+    width:100%;
+    max-width: 60%;
+    border-radius: 56px;
+    background-color: $color-darkdetails;
+    color:$color-darktext;
+    padding:2%;
+    
+    @include font(1.8rem, 2.0rem, 700, normal);
+    
+    @extend %font-roboto;
+}
+.image-result{
+    max-width:50%;
+    width:100%;
+    border-radius: 1px solid $color-border;
+    border-radius: 5%;
 }

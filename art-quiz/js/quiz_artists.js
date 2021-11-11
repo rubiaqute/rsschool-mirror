@@ -72,17 +72,22 @@ function colorAnswer(target, type){
 function appearModal(type, id, indexCategory){
     setTimeout(()=>{
         const modal = new Modal(type, id, indexCategory).makeModal();
-        console.log(modal)
-    },500);
+    },0);
         
 }
 export function getNextQuestion(id, indexCategory){
-const index=id+1;
-eliminateModal();
-changeQuestion(index);
-changeImage(index);
-changeOptions(index, indexCategory);
+    const index=id+1;
+    eliminateModal();
+    if (index - indexCategory==10) showFinalModal();
+    else{
+    changeQuestion(index);
+    changeImage(index);
+    changeOptions(index, indexCategory);
+    }
 
+}
+function showFinalModal(){
+    const finalModal = new Modal().makeFinalModal();
 }
 function eliminateModal(){
     const game = document.querySelector('.wrapper');
