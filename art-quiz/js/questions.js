@@ -1,4 +1,5 @@
-import {getImageData} from './category_section.js'
+
+import {createNodetoDom, getImageData, getAuthor, getName} from './base_functions.js';
 export default class Questions{
      constructor (id){
          this.id = id;
@@ -33,15 +34,7 @@ export default class Questions{
      }
      
 }
-async function getName(id){
-    const data = await getImageData();
-    return await data.images[id].name;
-}
 
-async function getAuthor(id){
-    const data = await getImageData();
-    return await data.images[id].author;
-}
 function shuffle(array){
     array.sort(() => Math.random()-0.5);
     return array;

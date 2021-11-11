@@ -7,7 +7,7 @@
   transition: 0.5s;
 }
 
-.next-question, .note, .options, .category .number, h4, h3, h2 {
+.next-question, .note, .description, .options, .category .number, h4, h3, h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -249,7 +249,7 @@ h4 {
   background-color: #135810;
 }
 
-.container_options {
+.container-options {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -290,6 +290,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .modal-container {
@@ -309,10 +310,42 @@ h4 {
   padding: 5%;
 }
 
+.image-answer {
+  max-width: 50%;
+  width: 100%;
+  border-radius: 1px solid #ffffff;
+  border-radius: 5%;
+}
+
+.container-answer {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2%;
+}
+
 .icon-wrong {
   background: url("../../image-data/svg/cross.svg") no-repeat;
   width: 48px;
   height: 48px;
+}
+
+.description {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
+  color: #ffffff;
+  text-align: left;
 }
 
 .icon-right {

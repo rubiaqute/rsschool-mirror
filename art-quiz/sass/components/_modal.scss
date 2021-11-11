@@ -8,6 +8,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    z-index:1;
 
 }
 .modal-container{
@@ -25,13 +26,41 @@
     border-radius: 5%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     padding:5%;
+    
 
+}
+.image-answer{
+    max-width:50%;
+    width:100%;
+    border-radius: 1px solid $color-border;
+    border-radius: 5%;
+}
+.container-answer{
+    max-width:100%;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container-description{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:2%;
+   
 }
 .icon-wrong{
     background:url('../../image-data/svg/cross.svg') no-repeat;
     width: 48px;
     height:48px;
 
+}
+.description{
+    @include font(1.4rem, 1.4rem, 500, normal);
+    color:$color-innertext;
+    @extend %font-roboto;
+    text-align: left;
+    
 }
 .icon-right{
     background:url('../../image-data/svg/checkmark.svg') no-repeat;

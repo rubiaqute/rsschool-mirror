@@ -1,28 +1,17 @@
 import Category from './category_constructor.js';
-import startQuiz from './quiz_artists.js'
+import createQuiz from './quiz_artists.js'
+import {createNodetoDom, getImageData} from './base_functions.js';
 
 
-export async function getImageData() {  
-    const images = './js/image_data.json';
-    const res = await fetch(images);
-    const data = await res.json(); 
-    return await data;
-}
-
-
-
-export async function createCategories(){
+export async function createCategoryPage(){
     const game = document.querySelector('.wrapper');
-    let sectionCategory = document.createElement('div');
+    let sectionCategory = createNodetoDom('div', 'categories hide')
     game.append(sectionCategory)
-    sectionCategory.classList.add("categories")
-    sectionCategory.classList.add("hide")
     const categoryHeader=document.createElement('h3');
     categoryHeader.innerText = "Choose category:";
     sectionCategory.append(categoryHeader);
     
-    let containerCategory = document.createElement('div')
-    containerCategory.className = "categories_container";
+    let containerCategory = createNodetoDom('div', 'categories_container')
     sectionCategory.append(containerCategory)
     const data = await getImageData();
     const quantityOfCategories = Math.floor(data.images.length/20);
@@ -30,7 +19,7 @@ export async function createCategories(){
     for (let i=0; i< quantityOfCategories; i++){
         category[i] = new Category(i).fillCategory();
         containerCategory.append(category[i])
-        category[i].addEventListener('click', ()=>startQuiz(i))
+        category[i].addEventListener('click', ()=>createQuiz(i))
     }
 }
 

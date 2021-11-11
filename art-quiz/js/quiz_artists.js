@@ -1,73 +1,66 @@
 import {showQuestion} from './start_page.js';
 import Questions from './questions.js';
 import Modal from './modals.js';
+import {createNodetoDom, getImageData, getImageSrc} from './base_functions.js';
 
-export default async function startQuiz(index){
+export default async function createQuiz(index){
+    const indexCategory = index*10;
+    const indexQuestion = index*10;
     showQuestion();
     const game = document.querySelector('.wrapper');
-    const containerQuestion = document.createElement('div');
+    const containerQuestion = createNodetoDom('div', 'container-question')
     game.append(containerQuestion)
-    containerQuestion.className="container-question";
-
-    const containerBullets = document.createElement('div')
-    containerBullets.className="bullets";
+    const containerBullets = createNodetoDom('div', 'bullets')
     for (let i=0; i<10; i++){
-        const bullet=document.createElement('div');
-        bullet.className = "bullet";
-        
+        const bullet=createNodetoDom('div', 'bullet')
         containerBullets.append(bullet);
         }
+    const questionText = createNodetoDom('h4', 'text-question')
+    questionText.innerText = await getQuestion(indexQuestion);
 
+    const questionImage = createNodetoDom('img', 'image-question')
+    questionImage.src = getImageSrc(indexQuestion);
 
-    const questionText = document.createElement('h4')
-    questionText.innerText = await getQuestion(index);
-
-    const questionImage = document.createElement('img')
-    questionImage.src = getImage(index);
-
-    const containerOptions = document.createElement('div')
-    containerOptions.className="container_options";
+    const containerOptions = createNodetoDom('div', 'container-options')
     containerQuestion.append(containerBullets,questionText,questionImage, containerOptions);
-    const options=await new Questions(index*10).makeOptions();
-    console.log(options);
+    const options=await new Questions(indexQuestion).makeOptions();
     for (let i=0; i<4; i++){
-    const questionOptions=document.createElement('div');
-    questionOptions.className = "options"
+    const questionOptions=createNodetoDom('div', 'options')
     questionOptions.innerText = options[i];
     containerOptions.append(questionOptions)
-    questionOptions.addEventListener('click', (e)=>checkAnswer(e,i,index));
+    questionOptions.addEventListener('click', (e)=>{
+        checkAnswer(e,indexQuestion, indexCategory);
+       });
     }
     
 }
-function getImage(i){
-    const src =  `./image-data/img/${i*10}.jpg`;
-    return src;
-}
+
+
 function getQuestion(i){
-    const question =  new Questions(i*10).makeQuestion()
+    const question =  new Questions(i).makeQuestion()
     return question;
 }
 
 
-async function checkAnswer(e,i,index){
+async function checkAnswer(e,index, indexCategory){
     console.log(e.target.innerText);
     
-    const rightAnswer = await new Questions(index*10).getRightAnswer();
+    const rightAnswer = await new Questions(index).getRightAnswer();
     
     if (e.target.innerText ==rightAnswer) {
         colorAnswer(e.target, "right")
-        colorBullet(index, "right");
-        appearModal("right");
+        colorBullet(index, "right", indexCategory);
+        appearModal("right",index, indexCategory);
     } else {
-        colorBullet(index, "wrong");
+        colorBullet(index, "wrong", indexCategory);
         colorAnswer(e.target, "wrong");
-        appearModal("wrong");
+        appearModal("wrong", index, indexCategory);
     }
 
 }
-function colorBullet(i, type){
+function colorBullet(i, type, indexCategory){
     const bullets=document.querySelectorAll('.bullet');
-    const index= i%i;
+    const index= i%indexCategory;
     bullets.item(index).classList.add(type);
 }
 function colorAnswer(target, type){
@@ -76,7 +69,58 @@ function colorAnswer(target, type){
         target.classList.remove(type)
     }, 1000)
 }
-function appearModal(type){
-    const modal = new Modal(type).makeModal();
+function appearModal(type, id, indexCategory){
+    setTimeout(()=>{
+        const modal = new Modal(type, id, indexCategory).makeModal();
+        console.log(modal)
+    },500);
+        
 }
+export function getNextQuestion(id, indexCategory){
+const index=id+1;
+eliminateModal();
+changeQuestion(index);
+changeImage(index);
+changeOptions(index, indexCategory);
 
+}
+function eliminateModal(){
+    const game = document.querySelector('.wrapper');
+    const overlay = document.querySelector('.overlay');
+    console.log(overlay);
+    if (overlay) game.removeChild(overlay);
+
+}
+async function changeQuestion(id){
+    const questionText = document.querySelector('.text-question')
+    questionText.innerText = await getQuestion(id);
+}
+function changeImage(id){
+    const questionImage = document.querySelector('.image-question')
+    questionImage.src = getImageSrc(id);
+}
+async function changeOptions(id, indexCategory){
+    const options=await new Questions(id).makeOptions();
+    deleteOptions();
+    createOptions();
+    const questionOptions=document.querySelectorAll('.options')
+    for (let i=0; i<4; i++){
+    
+    questionOptions.item(i).innerText =options[i];
+    questionOptions.item(i).addEventListener('click', (e)=>checkAnswer(e,id, indexCategory));
+    }
+}
+function deleteOptions(){
+    const questionOptions=document.querySelectorAll('.options');
+    const containerOptions = document.querySelector('.container-options');
+    questionOptions.forEach(el=>containerOptions.removeChild(el))
+    
+}
+function createOptions(){
+    const containerOptions = document.querySelector('.container-options');
+    for(let i=0; i<4;i++){
+        const questionOptions = createNodetoDom('div', 'options');
+        containerOptions.append(questionOptions);
+    }
+    
+}
