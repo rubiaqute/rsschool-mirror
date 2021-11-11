@@ -1,10 +1,12 @@
-import {showQuestion} from './start_page.js';
+import {eliminateQuizPage, showQuestion, showCategories} from './start_page.js';
 import Questions from './questions.js';
 import Modal from './modals.js';
 import {createNodetoDom, getImageData, getImageSrc} from './base_functions.js';
+import { results } from './index.js';
 
 export default async function createQuiz(index){
-    const indexCategory = index*10;
+    results[index]=[];
+    const indexCategory = index;
     const indexQuestion = index*10;
     showQuestion();
     const game = document.querySelector('.wrapper');
@@ -48,10 +50,12 @@ async function checkAnswer(e,index, indexCategory){
     const rightAnswer = await new Questions(index).getRightAnswer();
     
     if (e.target.innerText ==rightAnswer) {
+        results[indexCategory].push('right')
         colorAnswer(e.target, "right")
         colorBullet(index, "right", indexCategory);
         appearModal("right",index, indexCategory);
     } else {
+        results[indexCategory].push('wrong')
         colorBullet(index, "wrong", indexCategory);
         colorAnswer(e.target, "wrong");
         appearModal("wrong", index, indexCategory);
@@ -60,7 +64,7 @@ async function checkAnswer(e,index, indexCategory){
 }
 function colorBullet(i, type, indexCategory){
     const bullets=document.querySelectorAll('.bullet');
-    const index= i%indexCategory;
+    const index= i-indexCategory*10;
     bullets.item(index).classList.add(type);
 }
 function colorAnswer(target, type){
@@ -78,7 +82,7 @@ function appearModal(type, id, indexCategory){
 export function getNextQuestion(id, indexCategory){
     const index=id+1;
     eliminateModal();
-    if (index - indexCategory==10) showFinalModal();
+    if (index - indexCategory*10==10) showFinalModal(indexCategory);
     else{
     changeQuestion(index);
     changeImage(index);
@@ -86,8 +90,8 @@ export function getNextQuestion(id, indexCategory){
     }
 
 }
-function showFinalModal(){
-    const finalModal = new Modal().makeFinalModal();
+function showFinalModal(index){
+    const finalModal = new Modal().makeFinalModal(index);
 }
 function eliminateModal(){
     const game = document.querySelector('.wrapper');
@@ -128,4 +132,20 @@ function createOptions(){
         containerOptions.append(questionOptions);
     }
     
+}
+export function finishLevel(){
+    console.log("finish")
+    eliminateModal();
+    showCategories();
+    writeResult();
+
+}
+export function replayLevel(index){
+    eliminateModal();
+    eliminateQuizPage();
+    createQuiz(index);
+
+}
+function writeResult(){
+    console.log(results);
 }

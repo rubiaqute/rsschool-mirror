@@ -2,6 +2,7 @@ import {createCategoryPage} from './category_section.js';
 import {showStartPage, showCategories} from './start_page.js'
 export const backButton=document.querySelector('.back');
 export const categoryButton = document.querySelector('.categories-icon')
+export let results={};
 
 window.onload = function(){
     createCategoryPage();

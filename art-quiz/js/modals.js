@@ -1,5 +1,5 @@
 import {createNodetoDom, getImageData, getImageSrc, getAuthor, getName, getYear} from './base_functions.js';
-import {getNextQuestion} from './quiz_artists.js';
+import {getNextQuestion, replayLevel, finishLevel} from './quiz_artists.js';
 export default class Modal{
     constructor(type, id, indexCategory){
         this.type=type;
@@ -27,7 +27,7 @@ export default class Modal{
         nextButton.addEventListener('click', (e)=>getNextQuestion(this.id, this.indexCategory));
     }
     
-    makeFinalModal(){
+    makeFinalModal(index){
         let template="";
         const rightBullets=document.querySelectorAll('.bullet.right');
         const score = rightBullets.length;
@@ -40,9 +40,13 @@ export default class Modal{
             template +=`<img class="image-result"src="./image-data/oldlady.jpg" alt="">`
             template +=`<p class="note-result">Try better next time...</p>`;
         }
-        template+='<button class="final-modal-button">&#8634; Once again</button>';
-        template+='<button class="final-modal-button">Resume</button>';
+        template+='<button class="final-modal-button play-again">&#8634; Once again</button>';
+        template+='<button class="final-modal-button resume">Resume</button>';
         createModalWrapper(template);
+        const playAgainButton = document.querySelector('.play-again');
+        playAgainButton.addEventListener('click', (e)=>replayLevel(index))
+        const resumeButton = document.querySelector('.resume');
+        resumeButton.addEventListener('click', (e)=>finishLevel());
     }
     
 }
@@ -53,4 +57,6 @@ function createModalWrapper(template){
     overlay.append(modalContainer);
     const game = document.querySelector('.wrapper');
     game.append(overlay); 
+    
+
 }
