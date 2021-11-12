@@ -1,5 +1,5 @@
 import {createNodetoDom, getImageData, getImageSrc, getAuthor, getName, getYear} from './base_functions.js';
-import {getNextQuestion, replayLevel, finishLevel} from './quiz_artists.js';
+import {getNextQuestion, replayLevel, finishLevel, eliminateModal} from './quiz_artists.js';
 export default class Modal{
     constructor(type, id, indexCategory){
         this.type=type;
@@ -48,8 +48,25 @@ export default class Modal{
         const resumeButton = document.querySelector('.resume');
         resumeButton.addEventListener('click', (e)=>finishLevel(index));
     }
-    makePictureModal(index, indexCategory){
-        console.log("Картинка "+index + " Категория "+ indexCategory)
+    async makePictureModal(index, indexCategory){
+        console.log("Картинка "+index + " Категория "+ indexCategory);
+        let template="";
+        const imageSrc = getImageSrc(indexCategory*10+index);
+        const author = await getAuthor(indexCategory*10+index);
+        const name = await getName(indexCategory*10+index);
+        const year = await getYear(indexCategory*10+index);
+        // template+=`<div class="container-picture-modal">`
+        template+=`<img class="image-answer big"src="${imageSrc}" alt="">`;
+        template+='<div class="container-description">';
+        template+=`<p class="description">${author}</p>`;
+        template+=`<p class="description">"${name}"</p>`;
+        template+=`<p class="description">${year}</p>`;
+        template+='</div>';
+        template+='<button class="next-question">Close</button>';
+        
+        createModalWrapper(template);
+        const closeButton=document.querySelector('.next-question');
+        closeButton.addEventListener('click', (e)=>eliminateModal());
     }
     
 }

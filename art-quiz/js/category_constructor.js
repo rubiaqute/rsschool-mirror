@@ -26,7 +26,6 @@ export default class Category{
         const categoryResult = createNodetoDom('div','score');
         const score = results[this.index].filter((el)=>el=="right").length;
         if (score==10) categoryResult.classList.add('best-score');
-        console.log(score);
         categoryResult.innerHTML=`<p>${score}/10</p><p>see results<p>`;
         category.append(categoryResult);
         categoryResult.addEventListener('click', (e)=>createResults(this.index));

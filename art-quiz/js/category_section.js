@@ -8,7 +8,7 @@ export async function createCategoryPage(){
     let sectionCategory = createNodetoDom('div', 'categories hide')
     game.append(sectionCategory)
     const categoryHeader=document.createElement('h3');
-    categoryHeader.innerText = "Choose category:";
+    categoryHeader.innerText = "Choose round:";
     sectionCategory.append(categoryHeader);
     
     let containerCategory = createNodetoDom('div', 'categories_container')

@@ -93,7 +93,7 @@ export function getNextQuestion(id, indexCategory){
 function showFinalModal(index){
     const finalModal = new Modal().makeFinalModal(index);
 }
-function eliminateModal(){
+export function eliminateModal(){
     const game = document.querySelector('.wrapper');
     const overlay = document.querySelector('.overlay');
     if (overlay) game.removeChild(overlay);
