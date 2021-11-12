@@ -1,11 +1,13 @@
 import {eliminateQuizPage, showQuestion, showCategories} from './start_page.js';
 import Questions from './questions.js';
 import Modal from './modals.js';
+import Category from './category_constructor.js';
 import {createNodetoDom, getImageData, getImageSrc} from './base_functions.js';
 import { results } from './index.js';
+let preResults=[];
 
 export default async function createQuiz(index){
-    results[index]=[];
+    preResults[index]=[];
     const indexCategory = index;
     const indexQuestion = index*10;
     showQuestion();
@@ -45,17 +47,15 @@ function getQuestion(i){
 
 
 async function checkAnswer(e,index, indexCategory){
-    console.log(e.target.innerText);
-    
     const rightAnswer = await new Questions(index).getRightAnswer();
     
     if (e.target.innerText ==rightAnswer) {
-        results[indexCategory].push('right')
+        preResults[indexCategory].push('right')
         colorAnswer(e.target, "right")
         colorBullet(index, "right", indexCategory);
         appearModal("right",index, indexCategory);
     } else {
-        results[indexCategory].push('wrong')
+        preResults[indexCategory].push('wrong')
         colorBullet(index, "wrong", indexCategory);
         colorAnswer(e.target, "wrong");
         appearModal("wrong", index, indexCategory);
@@ -96,7 +96,6 @@ function showFinalModal(index){
 function eliminateModal(){
     const game = document.querySelector('.wrapper');
     const overlay = document.querySelector('.overlay');
-    console.log(overlay);
     if (overlay) game.removeChild(overlay);
 
 }
@@ -133,11 +132,11 @@ function createOptions(){
     }
     
 }
-export function finishLevel(){
-    console.log("finish")
+export function finishLevel(index){
     eliminateModal();
     showCategories();
-    writeResult();
+    writeResult(index);
+    const newCategory = new Category(index).updateCategory();
 
 }
 export function replayLevel(index){
@@ -146,6 +145,6 @@ export function replayLevel(index){
     createQuiz(index);
 
 }
-function writeResult(){
-    console.log(results);
+function writeResult(index){
+    if (preResults[index].length==10) results[index]=preResults[index];
 }

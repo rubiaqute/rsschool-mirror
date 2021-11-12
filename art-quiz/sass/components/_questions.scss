@@ -23,18 +23,16 @@
         height:1rem;
         border-radius: 50%;
         border: 1px solid $color-border;
-        
-        
+        &.wrong{
+            background-color: $color-wrong;
+            
+        }
+        &.right{
+            background-color: $color-right;
+        }
     }
 }
-.wrong{
-    background-color: $color-wrong;
-    
-}
-.right{
-    background-color: $color-right;
-    
-}
+
 .container-options{
     display:flex;
     flex-wrap: wrap;

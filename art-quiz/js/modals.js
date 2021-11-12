@@ -46,7 +46,10 @@ export default class Modal{
         const playAgainButton = document.querySelector('.play-again');
         playAgainButton.addEventListener('click', (e)=>replayLevel(index))
         const resumeButton = document.querySelector('.resume');
-        resumeButton.addEventListener('click', (e)=>finishLevel());
+        resumeButton.addEventListener('click', (e)=>finishLevel(index));
+    }
+    makePictureModal(index, indexCategory){
+        console.log("Картинка "+index + " Категория "+ indexCategory)
     }
     
 }

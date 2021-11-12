@@ -6,6 +6,7 @@ export function showStartPage(){
     hideBackIcon();
     hideCategoryIcon();
     eliminateQuizPage();
+    eliminateResultsPage();
     
 }
 export function showCategories(){
@@ -15,6 +16,7 @@ export function showCategories(){
     appearBackIcon();
     hideCategoryIcon();
     eliminateQuizPage();
+    eliminateResultsPage();
     
 }
 export function showQuestion(){
@@ -61,4 +63,9 @@ export function eliminateQuizPage(){
     const quizPage = document.querySelector('.container-question');
     if (quizPage) game.removeChild(quizPage);
     
+}
+export function eliminateResultsPage(){
+    const resultsPage = document.querySelector('.container-results')
+    const game = document.querySelector('.wrapper');
+    if (resultsPage) game.removeChild(resultsPage);
 }

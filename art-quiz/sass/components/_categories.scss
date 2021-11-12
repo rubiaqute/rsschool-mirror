@@ -17,10 +17,7 @@
     border: 1px solid $color-border;
     position:relative;
     border-radius:5%;
-    &:hover{
-        cursor: pointer;
-        opacity:60%;
-    }
+    
     .number{
     @include font(2.4rem, 2.8rem, bold, uppercase);
     @extend %font-roboto;
@@ -36,6 +33,42 @@
         display:block;
         width:100%;
         @extend %cover-style;
+        &:hover{
+            cursor: pointer;
+            opacity:60%;
+        }
+        &.not-colored{
+            filter: grayscale(80%);
+        }
     }
 }
+.score {
+    position:absolute;
+    width:100%;
+    max-width:50%;
+    background: $color-wrong;
+    border:1px solid $color-border;
+    border-radius: 5%;
+    bottom:0;
+    right:0;
+    p{
+        @include font(1.2rem, 1.4rem, 500, normal);
+        color:$color-innertext;
+        @extend %font-roboto;
+        text-align: center; 
+        
+    }
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+        @extend %transition;
+    }
+    &.best-score{
+        background: $color-right;
+    }
+
+}
+
+
+
 

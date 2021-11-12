@@ -1,0 +1,40 @@
+
+.container-results{
+    height:100vh;
+    padding:15% 5% 5% 5%;
+}
+.results-header_score{
+    @include font(1.6rem, 1.8rem, 500, normal);
+    color:$color-innertext;
+    @extend %font-roboto;
+    text-align: center;
+    margin-bottom:5%;
+    
+}
+.images-results{
+    display:flex;
+    flex-wrap: wrap;
+    width:100%;
+    justify-content: space-between;
+    row-gap:3%;
+    .image-results{
+        max-width:30%;
+        border-radius: 50%;
+        &.colored{
+            border: 5px solid $color-right;
+        }
+        &.black-white{
+            border: 5px solid $color-wrong;
+        }
+
+        img{
+            width:100%;
+            border-radius: 50%;
+            &.black-white{
+                filter:grayscale(100%);               
+            }
+            
+        }
+    }
+
+}

@@ -1,3 +1,6 @@
+import { results } from "./index.js";
+
+
 export function createNodetoDom(element, ...classes){
     const node = document.createElement(element);
     node.className=classes;
@@ -26,3 +29,7 @@ export async function getYear(id){
     const data = await getImageData();
     return await data.images[id].year;
 }
+
+
+
+    

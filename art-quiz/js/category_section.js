@@ -19,7 +19,7 @@ export async function createCategoryPage(){
     for (let i=0; i< quantityOfCategories; i++){
         category[i] = new Category(i).fillCategory();
         containerCategory.append(category[i])
-        category[i].addEventListener('click', ()=>createQuiz(i))
+        // category[i].addEventListener('click', ()=>createQuiz(i))
     }
 }
 
