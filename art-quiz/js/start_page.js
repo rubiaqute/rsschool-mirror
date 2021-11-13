@@ -1,4 +1,4 @@
-import{backButton, categoryButton} from './index.js'
+import{backButton, categoryButton, game} from './index.js'
 export function showStartPage(){
     
     appearStartPage();
@@ -59,13 +59,19 @@ export function appearQuizPage(){
     quizPage.classList.remove('hide')
 }
 export function eliminateQuizPage(){
-    const game = document.querySelector('.wrapper');
+    
     const quizPage = document.querySelector('.container-question');
     if (quizPage) game.removeChild(quizPage);
     
 }
 export function eliminateResultsPage(){
     const resultsPage = document.querySelector('.container-results')
-    const game = document.querySelector('.wrapper');
+   
     if (resultsPage) game.removeChild(resultsPage);
+}
+export function eliminateModal(){
+    
+    const overlay = document.querySelector('.overlay');
+    if (overlay) game.removeChild(overlay);
+
 }

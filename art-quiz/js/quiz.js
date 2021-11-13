@@ -1,52 +1,57 @@
-import {eliminateQuizPage, showQuestion, showCategories} from './start_page.js';
+import {eliminateQuizPage, showQuestion, showCategories, eliminateModal} from './start_page.js';
 import Questions from './questions.js';
-import Modal from './modals.js';
+import {Modal} from './modals.js';
 import Category from './category_constructor.js';
 import {createNodetoDom, getImageData, getImageSrc} from './base_functions.js';
-import { results } from './index.js';
+import { results, game } from './index.js';
+
+
 let preResults=[];
+let containerQuestion;
 
-export default async function createQuiz(index){
-    preResults[index]=[];
-    const indexCategory = index;
-    const indexQuestion = index*10;
-    showQuestion();
-    const game = document.querySelector('.wrapper');
-    const containerQuestion = createNodetoDom('div', 'container-question')
-    game.append(containerQuestion)
-    const containerBullets = createNodetoDom('div', 'bullets')
-    for (let i=0; i<10; i++){
-        const bullet=createNodetoDom('div', 'bullet')
-        containerBullets.append(bullet);
-        }
-    const questionText = createNodetoDom('h4', 'text-question')
-    questionText.innerText = await getQuestion(indexQuestion);
-
-    const questionImage = createNodetoDom('img', 'image-question')
-    questionImage.src = getImageSrc(indexQuestion);
-
-    const containerOptions = createNodetoDom('div', 'container-options')
-    containerQuestion.append(containerBullets,questionText,questionImage, containerOptions);
-    const options=await new Questions(indexQuestion).makeOptions();
-    for (let i=0; i<4; i++){
-    const questionOptions=createNodetoDom('div', 'options')
-    questionOptions.innerText = options[i];
-    containerOptions.append(questionOptions)
-    questionOptions.addEventListener('click', (e)=>{
-        checkAnswer(e,indexQuestion, indexCategory);
-       });
+export class Quiz{
+    constructor(index){
+    this.index=index;
     }
+    async createQuiz(){
+        preResults[this.index]=[];
+        const indexCategory = this.index;
+        const indexQuestion = this.index*10;
+        showQuestion();
+        createQuestionContainer();
+        const questionText = createNodetoDom('h4', 'text-question')
+        questionText.innerText = await new Questions(indexQuestion).makeQuestion()
     
+        const questionImage = createNodetoDom('img', 'image-question')
+        questionImage.src = getImageSrc(indexQuestion);
+    
+        const containerOptions = createNodetoDom('div', 'container-options')
+        containerQuestion.append(questionText,questionImage, containerOptions);
+        const options=await new Questions(indexQuestion).makeOptions();
+        for (let i=0; i<4; i++){
+        const questionOptions=createNodetoDom('div', 'options')
+        questionOptions.innerText = options[i];
+        containerOptions.append(questionOptions)
+        questionOptions.addEventListener('click', (e)=>{
+            checkAnswer(e,indexQuestion, indexCategory);
+           });
+        }
+        
+    }
+
 }
 
-
-function getQuestion(i){
-    const question =  new Questions(i).makeQuestion()
-    return question;
+function createQuestionContainer(){
+        containerQuestion = createNodetoDom('div', 'container-question')
+        game.append(containerQuestion)
+        const containerBullets = createNodetoDom('div', 'bullets')
+        for (let i=0; i<10; i++){
+            const bullet=createNodetoDom('div', 'bullet')
+            containerBullets.append(bullet);
+            }
+        containerQuestion.append(containerBullets);
 }
-
-
-async function checkAnswer(e,index, indexCategory){
+export async function checkAnswer(e, index, indexCategory){
     const rightAnswer = await new Questions(index).getRightAnswer();
     
     if (e.target.innerText ==rightAnswer) {
@@ -75,14 +80,16 @@ function colorAnswer(target, type){
 }
 function appearModal(type, id, indexCategory){
     setTimeout(()=>{
-        const modal = new Modal(type, id, indexCategory).makeModal();
+        new Modal(indexCategory, id, type).makeRightAnswerModal();
     },0);
         
 }
 export function getNextQuestion(id, indexCategory){
     const index=id+1;
     eliminateModal();
-    if (index - indexCategory*10==10) showFinalModal(indexCategory);
+    if (index - indexCategory*10==10) {
+        new Modal(indexCategory).makeFinalModal();
+    }
     else{
     changeQuestion(index);
     changeImage(index);
@@ -90,18 +97,11 @@ export function getNextQuestion(id, indexCategory){
     }
 
 }
-function showFinalModal(index){
-    const finalModal = new Modal().makeFinalModal(index);
-}
-export function eliminateModal(){
-    const game = document.querySelector('.wrapper');
-    const overlay = document.querySelector('.overlay');
-    if (overlay) game.removeChild(overlay);
 
-}
+
 async function changeQuestion(id){
     const questionText = document.querySelector('.text-question')
-    questionText.innerText = await getQuestion(id);
+    questionText.innerText = await new Questions(id).makeQuestion();
 }
 function changeImage(id){
     const questionImage = document.querySelector('.image-question')
@@ -115,7 +115,7 @@ async function changeOptions(id, indexCategory){
     for (let i=0; i<4; i++){
     
     questionOptions.item(i).innerText =options[i];
-    questionOptions.item(i).addEventListener('click', (e)=>checkAnswer(e,id, indexCategory));
+    questionOptions.item(i).addEventListener('click', (e)=>checkAnswer(e, id, indexCategory));
     }
 }
 function deleteOptions(){
@@ -136,7 +136,7 @@ export function finishLevel(index){
     eliminateModal();
     showCategories();
     writeResult(index);
-    const newCategory = new Category(index).updateCategory();
+    new Category(index).updateCategory();
 
 }
 export function replayLevel(index){

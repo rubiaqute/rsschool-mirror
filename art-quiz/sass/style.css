@@ -307,10 +307,10 @@ h5 {
   color: #ffffff;
   text-align: center;
 }
-.options .right {
+.options.right {
   background-color: #135810;
 }
-.options .wrong {
+.options.wrong {
   background-color: #6e0707;
 }
 

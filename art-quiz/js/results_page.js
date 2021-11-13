@@ -1,14 +1,14 @@
 import { createNodetoDom } from "./base_functions.js"
-import { results } from "./index.js";
+import { results, game } from "./index.js";
 import { getImageSrc } from "./base_functions.js";
-import Modal from "./modals.js"
+import {Modal} from "./modals.js"
 
 export default class Results{
     constructor(indexCategory){
         this.index = indexCategory
     }
     makeResultsPage(){
-        const game = document.querySelector('.wrapper');
+        
         const resultsContainer = createNodetoDom('div', 'container-results');
         let template='';
         const score = results[this.index].filter((el)=>el=="right").length;
@@ -26,7 +26,7 @@ export default class Results{
         game.append(resultsContainer);
         const imageResults=document.querySelectorAll('.image-results');
         imageResults.forEach((el, index)=> el.addEventListener('click', (e) => {
-            const pictureModal = new Modal().makePictureModal(index, this.index)}));
+          new Modal(this.index,index).makePictureModal()}));
             
 
     }

@@ -49,10 +49,10 @@
     color:$color-innertext;
     @extend %font-roboto;
     text-align: center;
-    .right{
+    &.right{
         background-color: $color-right;
     }
-    .wrong{
+    &.wrong{
         background-color: $color-wrong;
     }
 }

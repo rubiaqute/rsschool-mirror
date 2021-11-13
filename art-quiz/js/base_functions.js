@@ -1,4 +1,4 @@
-import { results } from "./index.js";
+
 
 
 export function createNodetoDom(element, ...classes){

@@ -1,11 +1,21 @@
 import {createNodetoDom, getImageData} from './base_functions.js';
-import { results } from './index.js';
-import createQuiz from './quiz_artists.js';
+import { results, game } from './index.js';
+import { Quiz } from './quiz.js';
 import Results from './results_page.js';
 import { showQuestion } from './start_page.js';
 export default class Category{
     constructor (index){
         this.index=index
+    }
+    async  createCategoryArtistPage(){
+    
+        let sectionCategory = createNodetoDom('div', 'categories artists hide')
+        makeCategoryWrapper(sectionCategory, 0);
+        
+    }
+    async  createCategoryPaintingsPage(){
+        let sectionCategory = createNodetoDom('div', 'categories paintings hide')
+        makeCategoryWrapper(sectionCategory, 12);
     }
     fillCategory(){
 
@@ -15,7 +25,7 @@ export default class Category{
         const categoryImage = createNodetoDom('img', 'category-image not-colored')
         categoryImage.src=`./image-data/img/${this.index*10}.jpg`
         category.append(categoryNumber, categoryImage);
-        categoryImage.addEventListener('click', ()=>createQuiz(this.index))
+        categoryImage.addEventListener('click', ()=>{const quiz = new Quiz(this.index).createQuiz()})
         return category;
     }
     updateCategory(){
@@ -34,5 +44,21 @@ export default class Category{
 }
 function createResults(id){
     showQuestion();
-    const resultsPage = new Results(id).makeResultsPage();
+    new Results(id).makeResultsPage();
+}
+function makeCategoryWrapper(sectionCategory, mode){
+    game.append(sectionCategory)
+    const categoryHeader=document.createElement('h3');
+    categoryHeader.innerText = "Choose round:";
+    sectionCategory.append(categoryHeader);
+    
+    let containerCategory = createNodetoDom('div', 'categories_container')
+    sectionCategory.append(containerCategory)
+    
+    let category=[];
+    for (let i=mode; i< 12+mode; i++){
+        category[i] = new Category(i).fillCategory();
+        containerCategory.append(category[i])
+        
+    }
 }
