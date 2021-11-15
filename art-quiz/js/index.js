@@ -1,48 +1,46 @@
+import { createCategoryArtistPage, createCategoryPaintingsPage } from './category_constructor.js';
+import {
+  showStartPage, showCategories, backButton, categoryButton,
+} from './navigation_functions.js';
+import Quiz from './quiz.js';
 
-import {showStartPage, showCategories} from './start_page.js'
-import Category from './category_constructor.js'
-export const backButton=document.querySelector('.back');
-export const categoryButton = document.querySelector('.categories-icon')
-window.addEventListener('beforeunload', setLocalStorage)
-window.addEventListener('load', getLocalStorage);
-let results=[];
-export const game = document.querySelector('.wrapper');
+globalThis.results = [];
+globalThis.game = document.querySelector('.wrapper');
 
-window.onload = function(){
-    new Category().createCategoryArtistPage();
-    new Category().createCategoryPaintingsPage()
-    
-}
+window.onload = () => {
+  createCategoryArtistPage();
+  createCategoryPaintingsPage();
+};
 
-const gameSelector = document.querySelectorAll('.game-select')
-gameSelector.forEach(el=>{
-    el.addEventListener('click', ()=>{
-        for (let i=0; i<12; i++){
-            if (results[i]) {
-                new Category(i).updateCategory();
-            }
-        }
-        showCategories()})
-})
+const gameSelector = document.querySelectorAll('.game-select');
+gameSelector.forEach((el) => {
+  el.addEventListener('click', (e) => {
+    for (let i = 0; i < 24; i += 1) {
+      if (globalThis.results[i]) {
+        new Quiz(i).updateCategory();
+      }
+    }
+    if (e.target.closest('.artists-quiz')) showCategories('artists');
+    else showCategories('paintings');
+  });
+});
 
-backButton.addEventListener('click', ()=>{showStartPage()});
-categoryButton.addEventListener('click', ()=>{showCategories()});
+backButton.addEventListener('click', () => { showStartPage(); });
+categoryButton.addEventListener('click', () => {
+  if (categoryButton.classList.contains('artists-type')) showCategories('artists');
+  else showCategories('paintings');
+});
 
 function setLocalStorage() {
-    localStorage.setItem ('object', JSON.stringify(results));
-   
+  localStorage.setItem('object', JSON.stringify(globalThis.results));
 }
-  
 
 function getLocalStorage() {
-    if(localStorage.getItem('object')) {
-    results = JSON.parse (localStorage.getItem ('object'));
-    console.log(results)
-    } else results =[];
-  }
+  if (localStorage.getItem('object')) {
+    globalThis.results = JSON.parse(localStorage.getItem('object'));
+    console.log(globalThis.results);
+  } else globalThis.results = [];
+}
 
-export {results};
-
-
-
-
+window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('load', getLocalStorage);

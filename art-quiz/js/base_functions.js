@@ -1,35 +1,44 @@
-
-
-
-export function createNodetoDom(element, ...classes){
-    const node = document.createElement(element);
-    node.className=classes;
-    return node;
+export function createNodetoDom(element, ...classes) {
+  const node = document.createElement(element);
+  node.className = classes;
+  return node;
 }
-export async function getImageData() {  
-    const images = './js/image_data.json';
-    const res = await fetch(images);
-    const data = await res.json(); 
-    return await data;
+export async function getImageData() {
+  const images = './js/image_data.json';
+  const res = await fetch(images);
+  const data = await res.json();
+  await data;
+  return data;
 }
-export function getImageSrc(i){
-    const src =  `./image-data/img/${i}.jpg`;
-    return src;
+export function getImageSrc(i) {
+  const src = `./image-data/img/${i}.jpg`;
+  return src;
 }
-export async function getName(id){
-    const data = await getImageData();
-    return await data.images[id].name;
-}
-
-export async function getAuthor(id){
-    const data = await getImageData();
-    return await data.images[id].author;
-}
-export async function getYear(id){
-    const data = await getImageData();
-    return await data.images[id].year;
+export async function getName(id) {
+  const data = await getImageData();
+  await data.images[id].name;
+  return data.images[id].name;
 }
 
-
-
-    
+export async function getAuthor(id) {
+  const data = await getImageData();
+  await data.images[id].author;
+  return data.images[id].author;
+}
+export async function getYear(id) {
+  const data = await getImageData();
+  await data.images[id].year;
+  return data.images[id].year;
+}
+export function writeResult(index) {
+  if (globalThis.preResults[index].length === 10) {
+    globalThis.results[index] = globalThis.preResults[index];
+  }
+}
+export function createModalWrapper(template) {
+  const modalContainer = createNodetoDom('div', 'modal-container');
+  modalContainer.innerHTML = template;
+  const overlay = createNodetoDom('div', 'overlay');
+  overlay.append(modalContainer);
+  globalThis.game.append(overlay);
+}

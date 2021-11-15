@@ -16,14 +16,14 @@ html{
     font-size: 10px;
 }
 .wrapper{
-    background: url('../../image-data/cover.jpg') no-repeat;
+    background: url('../../../art-quiz/image-data/cover.jpg') no-repeat;
     background-size: cover;
     background-position: center;
     // height:100vh;
     position:relative;
 }
 .settings{
-    background:url('../../image-data/svg/settings.svg') no-repeat;
+    background:url('../../../art-quiz/image-data/svg/settings.svg') no-repeat;
     background-position: top right;
     width:24px;
     height: 24px;
@@ -43,7 +43,7 @@ html{
     height: 24px;
     z-index: 1;
     @extend %transition;
-    background: url("../../image-data/svg/home.svg") no-repeat;
+    background: url("../../../art-quiz/image-data/svg/home.svg") no-repeat;
     background-position:top left;
     top:2%;
     left:5%;
@@ -58,7 +58,7 @@ html{
     height: 24px;
     z-index: 1;
     @extend %transition;
-    background: url("../../image-data/svg/list.svg") no-repeat;
+    background: url("../../../art-quiz/image-data/svg/list.svg") no-repeat;
     background-position:top center;
     top:2%;
     left:50%;
