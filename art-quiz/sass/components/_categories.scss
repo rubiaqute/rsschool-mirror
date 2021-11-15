@@ -2,6 +2,17 @@
     padding:5% 10%;
     margin:0 auto;
     width:100%;
+    transform:translateY(0);
+    @extend %transition-categories;
+    display: block;
+    &.hidden{
+        display:none;
+        
+    }
+    &.visually-hidden{
+        transform:translateY(200%);
+        @extend %transition-categories;
+    }
     
 }
 .categories_container{

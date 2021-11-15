@@ -57,7 +57,7 @@ html{
     width:24px;
     height: 24px;
     z-index: 1;
-    @extend %transition;
+    @extend %transition !optional;
     background: url("../../../art-quiz/image-data/svg/list.svg") no-repeat;
     background-position:top center;
     top:2%;

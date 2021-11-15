@@ -1,6 +1,6 @@
-import { createCategoryArtistPage, createCategoryPaintingsPage } from './category_constructor.js';
+import Category from './category_constructor.js';
 import {
-  showStartPage, showCategories, backButton, categoryButton,
+  Interface, backButton, categoryButton,
 } from './navigation_functions.js';
 import Quiz from './quiz.js';
 
@@ -8,8 +8,8 @@ globalThis.results = [];
 globalThis.game = document.querySelector('.wrapper');
 
 window.onload = () => {
-  createCategoryArtistPage();
-  createCategoryPaintingsPage();
+  new Category('', 0).createCategoryPage('artists');
+  new Category('', 12).createCategoryPage('paintings');
 };
 
 const gameSelector = document.querySelectorAll('.game-select');
@@ -20,15 +20,15 @@ gameSelector.forEach((el) => {
         new Quiz(i).updateCategory();
       }
     }
-    if (e.target.closest('.artists-quiz')) showCategories('artists');
-    else showCategories('paintings');
+    if (e.target.closest('.artists-quiz')) Interface.showCategories('artists');
+    else Interface.showCategories('paintings');
   });
 });
 
-backButton.addEventListener('click', () => { showStartPage(); });
+backButton.addEventListener('click', () => { Interface.showStartPage(); });
 categoryButton.addEventListener('click', () => {
-  if (categoryButton.classList.contains('artists-type')) showCategories('artists');
-  else showCategories('paintings');
+  if (categoryButton.classList.contains('artists-type')) Interface.showCategories('artists');
+  else Interface.showCategories('paintings');
 });
 
 function setLocalStorage() {

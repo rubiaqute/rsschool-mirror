@@ -1,7 +1,7 @@
 import {
   createNodetoDom, getImageSrc, getAuthor, getName, getYear, createModalWrapper,
 } from './base_functions.js';
-import { eliminateModal } from './navigation_functions.js';
+import { Interface } from './navigation_functions.js';
 
 export default class Results {
   constructor(indexCategory) {
@@ -45,10 +45,10 @@ export default class Results {
     template += '<button class="next-question">Close</button>';
     createModalWrapper(template);
     const closeButton = document.querySelector('.next-question');
-    closeButton.addEventListener('click', () => eliminateModal());
+    closeButton.addEventListener('click', () => Interface.eliminateModal());
     const overlay = document.querySelector('.overlay');
     overlay.addEventListener('mousedown', ((e) => {
-      if (e.target.closest('.modal-container') === null) eliminateModal();
+      if (e.target.closest('.modal-container') === null) Interface.eliminateModal();
     }));
   }
 }
