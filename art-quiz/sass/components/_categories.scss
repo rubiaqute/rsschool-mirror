@@ -10,7 +10,7 @@
         
     }
     &.visually-hidden{
-        transform:translateY(200%);
+        transform:translateY(100%);
         @extend %transition-categories;
     }
     

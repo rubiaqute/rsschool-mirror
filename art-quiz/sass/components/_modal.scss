@@ -26,6 +26,11 @@
     border-radius: 5%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     padding:5%;
+    opacity: 0;
+    animation: escape-rotating 0.5s 1 ease-in;
+    &.animated{
+        opacity: 1;
+    }
     
 
 }

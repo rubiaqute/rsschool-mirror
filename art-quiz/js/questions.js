@@ -11,7 +11,7 @@ export default class Questions {
 
   async makeQuestion() {
     let questionText;
-    if (this.id * 10 < 120) {
+    if (this.id < 120) {
       const name = await getName(this.id);
       questionText = `Who is the author of "${name}"?`;
     } else {

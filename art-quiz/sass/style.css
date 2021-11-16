@@ -2,11 +2,11 @@
   opacity: 85%;
 }
 
-.score:hover, .game-select:hover, .hide, .categories-icon, .back, .settings {
+.options:hover, .score:hover, .game-select:hover, .hide, .categories-icon, .back, .settings {
   transition: 0.5s;
 }
 
-.options.loaded, .options, .container-question .image-question.loaded {
+.options.loaded, .options {
   transition: 0.5s ease-out;
 }
 
@@ -14,10 +14,43 @@
   font-family: "Roboto", sans-serif;
 }
 
-.categories.visually-hidden, .categories {
+.container-question .image-question.loaded, .categories.visually-hidden, .categories {
   transition: 1.5s ease-out;
 }
 
+.container-results.loaded {
+  transition: 1s ease-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes escape-rotating {
+  0% {
+    opacity: 0;
+    transform: rotateY(-60deg);
+  }
+  25% {
+    opacity: 1;
+    transform: rotateY(-45deg);
+  }
+  75% {
+    opacity: 1;
+    transform: rotateY(-15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
 * {
   scroll-behavior: smooth;
   box-sizing: border-box;
@@ -199,7 +232,7 @@ h5 {
   display: none;
 }
 .categories.visually-hidden {
-  transform: translateY(200%);
+  transform: translateY(100%);
 }
 
 .categories_container {
@@ -340,6 +373,10 @@ h5 {
 .options.loaded {
   transform: scale(1);
 }
+.options:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
 
 .container-question.hide {
   display: none;
@@ -373,6 +410,11 @@ h5 {
   border-radius: 5%;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   padding: 5%;
+  opacity: 0;
+  animation: escape-rotating 0.5s 1 ease-in;
+}
+.modal-container.animated {
+  opacity: 1;
 }
 
 .image-answer {
@@ -492,6 +534,10 @@ h5 {
 .container-results {
   height: 100vh;
   padding: 15% 5% 5% 5%;
+  transform: translateY(-100%);
+}
+.container-results.loaded {
+  transform: translateY(0);
 }
 
 .results-header_score {
@@ -521,6 +567,10 @@ h5 {
 }
 .images-results .image-results.black-white {
   border: 5px solid #6e0707;
+}
+.images-results .image-results:hover {
+  cursor: pointer;
+  animation: bounce 0.5s 1 ease;
 }
 .images-results .image-results img {
   width: 100%;

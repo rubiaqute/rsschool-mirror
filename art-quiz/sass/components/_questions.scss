@@ -16,7 +16,7 @@
         transform: scale(0);
         
         &.loaded{
-            @extend %transition-images;
+            @extend %transition-categories;
             transform: scale(1);
         }
     }
@@ -75,6 +75,13 @@
         
         transform: scale(1);
     }
+    &:hover{
+        cursor: pointer;
+        @extend %transition;
+        opacity: 0.8;
+
+    }
+    
 }
 .container-question.hide{
     display:none;

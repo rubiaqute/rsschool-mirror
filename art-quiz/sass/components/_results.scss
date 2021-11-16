@@ -2,6 +2,11 @@
 .container-results{
     height:100vh;
     padding:15% 5% 5% 5%;
+    transform: translateY(-100%);
+    &.loaded{
+        transform: translateY(0);
+        @extend %transition-results;
+    }
 }
 .results-header_score{
     @include font(1.6rem, 1.8rem, 500, normal);
@@ -11,6 +16,7 @@
     margin-bottom:5%;
     
 }
+
 .images-results{
     display:flex;
     flex-wrap: wrap;
@@ -26,10 +32,17 @@
         &.black-white{
             border: 5px solid $color-wrong;
         }
+        &:hover{
+            cursor: pointer;
+            animation: bounce 0.5s 1 ease;
+            // opacity: 70%;
+            // @extend %transition;
+        }
 
         img{
             width:100%;
             border-radius: 50%;
+            
             &.black-white{
                 filter:grayscale(100%);               
             }

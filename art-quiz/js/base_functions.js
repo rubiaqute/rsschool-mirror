@@ -41,4 +41,5 @@ export function createModalWrapper(template) {
   const overlay = createNodetoDom('div', 'overlay');
   overlay.append(modalContainer);
   globalThis.game.append(overlay);
+  setTimeout(() => modalContainer.classList.add('animated'), 500);
 }

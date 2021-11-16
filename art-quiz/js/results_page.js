@@ -8,23 +8,34 @@ export default class Results {
     this.index = indexCategory;
   }
 
-  makeResultsPage() {
+  async makeResultsPage() {
     const resultsContainer = createNodetoDom('div', 'container-results');
     let template = '';
     const score = globalThis.results[this.index].filter((el) => el === 'right').length;
     template += `<div class="results-header"><h5>Round ${this.index + 1}</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
-    template += '<div class="images-results">';
+    resultsContainer.innerHTML = template;
+    const imgContainer = createNodetoDom('div', 'images-results');
+    resultsContainer.append(imgContainer);
     for (let i = 0; i < 10; i += 1) {
       const imageSrc = getImageSrc(this.index * 10 + i);
       let imageClass;
       if (globalThis.results[this.index][i] === 'right') imageClass = 'colored';
       else imageClass = 'black-white';
-      template += `<div class="image-results ${imageClass}"><img class="${imageClass}" alt="" src =${imageSrc}></div>`;
+      const imgBordered = createNodetoDom('div', `image-results ${imageClass}`);
+      const img = new Image();
+      img.src = imageSrc;
+      img.class = `${imageClass}`;
+      img.alt = '';
+      img.onload = () => {
+        imgBordered.append(img);
+      };
+      imgContainer.append(imgBordered);
     }
-    template += '</div>';
-    resultsContainer.innerHTML = template;
     globalThis.game.append(resultsContainer);
     const imageResults = document.querySelectorAll('.image-results');
+    setTimeout(() => {
+      resultsContainer.classList.add('loaded');
+    }, 500);
     imageResults.forEach((el, id) => el.addEventListener('click', () => {
       new Results(this.index).makePictureModal(id);
     }));

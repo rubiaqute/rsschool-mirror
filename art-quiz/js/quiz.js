@@ -77,7 +77,7 @@ export default class Quiz {
       questionImage.src = getImageSrc(indexQuestion);
       containerQuestion.append(questionImage);
       questionImage.onload = () => {
-        setTimeout(() => questionImage.classList.add('loaded'), 500);
+        setTimeout(() => questionImage.classList.add('loaded'), 0);
       };
     }
     const containerOptions = createNodetoDom('div', 'container-options');
