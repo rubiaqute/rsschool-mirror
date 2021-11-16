@@ -1,17 +1,36 @@
 import {
   createNodetoDom, getImageSrc, getAuthor, getName, getYear, createModalWrapper,
 } from './base_functions.js';
-import { Interface } from './navigation_functions.js';
+import { Interface, game } from './navigation_functions.js';
 
+let results = [];
 export default class Results {
   constructor(indexCategory) {
     this.index = indexCategory;
   }
 
+  checkResults() {
+    if (results[this.index]) return results[this.index];
+    return null;
+  }
+
+  changeResults(array) {
+    results[this.index] = array;
+  }
+
+  static rewriteResults(array) {
+    results = array;
+    return results;
+  }
+
+  static returnResults() {
+    return results;
+  }
+
   async makeResultsPage() {
     const resultsContainer = createNodetoDom('div', 'container-results');
     let template = '';
-    const score = globalThis.results[this.index].filter((el) => el === 'right').length;
+    const score = results[this.index].filter((el) => el === 'right').length;
     template += `<div class="results-header"><h5>Round ${this.index + 1}</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
     resultsContainer.innerHTML = template;
     const imgContainer = createNodetoDom('div', 'images-results');
@@ -19,7 +38,7 @@ export default class Results {
     for (let i = 0; i < 10; i += 1) {
       const imageSrc = getImageSrc(this.index * 10 + i);
       let imageClass;
-      if (globalThis.results[this.index][i] === 'right') imageClass = 'colored';
+      if (this.results[this.index][i] === 'right') imageClass = 'colored';
       else imageClass = 'black-white';
       const imgBordered = createNodetoDom('div', `image-results ${imageClass}`);
       const img = new Image();
@@ -31,7 +50,7 @@ export default class Results {
       };
       imgContainer.append(imgBordered);
     }
-    globalThis.game.append(resultsContainer);
+    game.append(resultsContainer);
     const imageResults = document.querySelectorAll('.image-results');
     setTimeout(() => {
       resultsContainer.classList.add('loaded');

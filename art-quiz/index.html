@@ -24,6 +24,61 @@
                 <h2>Paintings Quiz</h2>
             </div> 
         </div>
+        <div class="container-settings hidden">
+            <h3>Settings:</h3>
+            <div class="sound">
+                <div class="sound_toggle toggle">  
+                    <p class="header">Sound</p>
+                    <div class="switch-button"></div>
+                </div>
+                <div class="sound_volume volume">
+                    <div class="icon"></div> 
+                    <input type="range" name ="volume" value="40" min="0" max="100" step="1" class="sound-volume">
+                </div>
+            </div>
+            <div class="container-music">
+            <div class="music">
+                <div class="music_toggle toggle">
+                    <p class="header">Music</p>
+                    <div class="switch-button"></div>  
+                </div>
+                <div class="music_volume volume"> 
+                    <div class="icon"></div> 
+                    <input type="range" name ="volume" value="40" min="0" max="100" step="1" class="music-volume">
+                </div>
+            </div>
+            <div class="music_selection selection">
+                <p class="header">Choose soundtrack:</p>
+                <select class="music-select">
+                    <option disabled class = "music-select__option">Choose soundtrack:</option>
+                  <option class = "music-select__option" value =0>01 sound</option>
+                  <option class = "music-select__option" value =1>02 sound</option>
+                  <option class = "music-select__option" value =2>03 sound</option>
+                  </select>
+            </div>
+            </div>
+            <div class="time-mode">
+                <div class="time-mode_toggle toggle">
+                    <p class="header">Time-mode</p>
+                    <div class="button"></div>
+                </div>
+                <div class="time-mode_toggle selection">
+                    <select class="time-select">
+                      <option disabled class = "time-select__option">Time for answer:</option>
+                      <option class = "time-select__option" value =0>5 sec</option>
+                      <option class = "time-select__option" value =1>10 sec</option>
+                      <option class = "time-select__option" value =2>15 sec</option>
+                      <option class = "time-select__option" value =3>20 sec</option>
+                      <option class = "time-select__option" value =4>25 sec</option>
+                      <option class = "time-select__option" value =5>30 sec</option>
+                      </select>
+                </div>
+            </div>
+            <div class="save-buttons">
+                <button class="button_default">Default</button>
+                <button class="button_default">Save</button>
+            </div>
+        </div>
     </div>
 </div>
     <script type = "module" src="./js/index.js"></script>

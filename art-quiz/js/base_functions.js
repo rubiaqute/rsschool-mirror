@@ -1,3 +1,5 @@
+import { game } from './navigation_functions.js';
+
 export function createNodetoDom(element, ...classes) {
   const node = document.createElement(element);
   node.className = classes;
@@ -30,16 +32,12 @@ export async function getYear(id) {
   await data.images[id].year;
   return data.images[id].year;
 }
-export function writeResult(index) {
-  if (globalThis.preResults[index].length === 10) {
-    globalThis.results[index] = globalThis.preResults[index];
-  }
-}
+
 export function createModalWrapper(template) {
   const modalContainer = createNodetoDom('div', 'modal-container');
   modalContainer.innerHTML = template;
   const overlay = createNodetoDom('div', 'overlay');
   overlay.append(modalContainer);
-  globalThis.game.append(overlay);
+  game.append(overlay);
   setTimeout(() => modalContainer.classList.add('animated'), 500);
 }

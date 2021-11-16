@@ -1,8 +1,9 @@
+@charset "UTF-8";
 .category img {
   opacity: 85%;
 }
 
-.options:hover, .score:hover, .game-select:hover, .hide, .categories-icon, .back, .settings {
+.options:hover, .score:hover, .game-select:hover, .game-select, .hide, .categories-icon, .back, .settings {
   transition: 0.5s;
 }
 
@@ -10,7 +11,7 @@
   transition: 0.5s ease-out;
 }
 
-.results-header_score, .final-modal-button, .next-question, .note-result, .note, .description, .options, .score p, .category .number, h5, h4, h3, h2 {
+.header, .container-settings .header, .results-header_score, .final-modal-button, .next-question, .note-result, .note, .description, .options, .score p, .category .number, h5, h4, h3, h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -534,7 +535,7 @@ h5 {
 .container-results {
   height: 100vh;
   padding: 15% 5% 5% 5%;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
 }
 .container-results.loaded {
   transform: translateY(0);
@@ -578,6 +579,124 @@ h5 {
 }
 .images-results .image-results img.black-white {
   filter: grayscale(100%);
+}
+
+.container-settings {
+  height: 100vh;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container-settings.hidden {
+  display: none;
+}
+.container-settings .header {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
+  color: #ffffff;
+  text-align: left;
+}
+
+.sound, .music {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toggle {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
+  color: #ffffff;
+  text-align: left;
+}
+
+.switch-button {
+  display: block;
+  width: 5rem;
+  /* ширина */
+  height: 2rem;
+  /* высота */
+  border-radius: 19px;
+  /* радиус скругления */
+  background: rgba(80, 80, 80, 0.5);
+  /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms;
+  /* анимация */
+}
+
+.switch-button::after {
+  content: "";
+  height: 1.5rem;
+  /* высота кнопки */
+  width: 1.5rem;
+  /* ширина кнопки */
+  border-radius: 17px;
+  background: #ffffff;
+  /* цвет кнопки */
+  top: 0.2rem;
+  /* положение кнопки по вертикали относительно основы */
+  left: 0.2rem;
+  /* положение кнопки по горизонтали относительно основы */
+  transition-duration: 300ms;
+  /* анимация */
+  position: absolute;
+  z-index: 1;
+}
+
+.switch-on {
+  background: #FFBCA2;
+}
+
+.switch-on::after {
+  left: 3.3rem;
+}
+
+.volume {
+  display: flex;
+  justify-content: space-between;
+}
+.volume .icon {
+  background: url("../../../art-quiz/image-data/svg/volume-medium.svg") no-repeat;
+  width: 2rem;
+  height: 2rem;
+}
+.volume .sound-volume, .volume .music-volume {
+  width: 80%;
+}
+
+.selection {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  vertical-align: baseline;
+}
+
+.music-select {
+  display: inline-block;
+  outline: none;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background: transparent;
 }
 
 /*# sourceMappingURL=style.css.map */

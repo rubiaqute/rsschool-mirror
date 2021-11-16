@@ -15,6 +15,7 @@
     
     border:1px solid $color-border;
     border-radius: 56px;
+    @extend %transition;
     &:hover{
         cursor: pointer;
         background-color: $color-darkdetails;

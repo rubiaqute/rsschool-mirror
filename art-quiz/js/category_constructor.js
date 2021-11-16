@@ -1,5 +1,6 @@
 import Quiz from './quiz.js';
 import { createNodetoDom } from './base_functions.js';
+import { game } from './navigation_functions.js';
 
 export default class Category {
   constructor(index, mode) {
@@ -19,7 +20,7 @@ export default class Category {
   }
 
   makeCategoryWrapper(sectionCategory) {
-    globalThis.game.append(sectionCategory);
+    game.append(sectionCategory);
     const categoryHeader = document.createElement('h3');
     categoryHeader.innerText = 'Choose round:';
     sectionCategory.append(categoryHeader);

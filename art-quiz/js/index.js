@@ -1,11 +1,9 @@
 import Category from './category_constructor.js';
 import {
-  Interface, backButton, categoryButton,
+  Interface, backButton, categoryButton, settingsButton,
 } from './navigation_functions.js';
 import Quiz from './quiz.js';
-
-globalThis.results = [];
-globalThis.game = document.querySelector('.wrapper');
+import Results from './results_page.js';
 
 window.onload = () => {
   new Category('', 0).createCategoryPage('artists');
@@ -16,7 +14,7 @@ const gameSelector = document.querySelectorAll('.game-select');
 gameSelector.forEach((el) => {
   el.addEventListener('click', (e) => {
     for (let i = 0; i < 24; i += 1) {
-      if (globalThis.results[i]) {
+      if (new Results(i).checkResults()) {
         new Quiz(i).updateCategory();
       }
     }
@@ -30,17 +28,16 @@ categoryButton.addEventListener('click', () => {
   if (categoryButton.classList.contains('artists-type')) Interface.showCategories('artists');
   else Interface.showCategories('paintings');
 });
-
-function setLocalStorage() {
-  localStorage.setItem('object', JSON.stringify(globalThis.results));
-}
+settingsButton.addEventListener('click', () => {
+  Interface.showSettings();
+});
 
 function getLocalStorage() {
-  if (localStorage.getItem('object')) {
-    globalThis.results = JSON.parse(localStorage.getItem('object'));
-    console.log(globalThis.results);
-  } else globalThis.results = [];
+  if (localStorage.getItem('results')) {
+    const results = JSON.parse(localStorage.getItem('results'));
+    Results.rewriteResults(results);
+  }
+  console.log(Results.returnResults());
 }
 
-window.addEventListener('beforeunload', setLocalStorage);
-window.addEventListener('load', getLocalStorage);
+window.addEventListener('load', () => getLocalStorage());

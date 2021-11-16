@@ -1,12 +1,23 @@
 import {
-  getAuthor, getName, getYear, createModalWrapper, createNodetoDom, getImageSrc, writeResult,
+  getAuthor, getName, getYear, createModalWrapper, createNodetoDom, getImageSrc,
 } from './base_functions.js';
-import { Interface } from './navigation_functions.js';
+import { Interface, game } from './navigation_functions.js';
 import Questions from './questions.js';
 import Results from './results_page.js';
 
-globalThis.preResults = [];
+const preResults = [];
 let containerQuestion;
+
+function setResultsToLocalStorage() {
+  const results = Results.returnResults();
+  localStorage.setItem('results', JSON.stringify(results));
+}
+function writeResult(index) {
+  if (preResults[index].length === 10) {
+    new Results(index).changeResults(preResults[index]);
+  }
+  setResultsToLocalStorage();
+}
 
 function colorBullet(i, type, indexCategory) {
   const bullets = document.querySelectorAll('.bullet');
@@ -49,7 +60,7 @@ function changeImage(id) {
 
 function createQuestionContainer() {
   containerQuestion = createNodetoDom('div', 'container-question');
-  globalThis.game.append(containerQuestion);
+  game.append(containerQuestion);
   const containerBullets = createNodetoDom('div', 'bullets');
   for (let i = 0; i < 10; i += 1) {
     const bullet = createNodetoDom('div', 'bullet');
@@ -64,7 +75,7 @@ export default class Quiz {
   }
 
   async createQuiz() {
-    globalThis.preResults[this.index] = [];
+    preResults[this.index] = [];
     const indexCategory = this.index;
     const indexQuestion = this.index * 10;
     Interface.showQuestion(this.index);
@@ -125,7 +136,7 @@ export default class Quiz {
   }
 
   informIsRight(e, id, type) {
-    globalThis.preResults[this.index].push(type);
+    preResults[this.index].push(type);
     colorAnswer(e.target, type);
     colorBullet(id, type, this.index);
     new Quiz(this.index).appearModal(type, id);
@@ -210,7 +221,7 @@ export default class Quiz {
     categoryImage.classList.remove('not-colored');
     if (category.querySelector('div', 'score')) category.removeChild(category.querySelector('div', 'score'));
     const categoryResult = createNodetoDom('div', 'score');
-    const score = globalThis.results[this.index].filter((el) => el === 'right').length;
+    const score = new Results(this.index).checkResults().filter((el) => el === 'right').length;
     if (score === 10) categoryResult.classList.add('best-score');
     categoryResult.innerHTML = `<p>${score}/10</p><p>see results<p>`;
     category.append(categoryResult);
