@@ -1,0 +1,37 @@
+// h1{
+//     @include font(4.4rem, 5.4rem, bold, uppercase);
+//     color: $color-primary;
+//     width:100%;
+//     text-align: center;
+// }
+h2{
+  background-color:transparent;
+  color:$color-innertext;
+  @extend %font-roboto;
+  @include font(2.4rem, 2.8rem, 500, uppercase);
+  width:100%;
+  text-align: center; 
+  
+}
+h3{
+  @include font(2.4rem, 2.8rem, 500, normal);
+  color:$color-innertext;
+  @extend %font-roboto;
+  text-align: center;
+  margin-bottom:5%;
+}
+h4{
+  @include font(2.2rem, 2.4rem, 500, normal);
+  color:$color-innertext;
+  @extend %font-roboto;
+  text-align: center;
+  margin-bottom:5%;
+}
+h5{
+  @include font(2.2rem, 2.4rem, 500, normal);
+  color:$color-innertext;
+  @extend %font-roboto;
+  text-align: center;
+  margin-bottom:5%;
+  
+}

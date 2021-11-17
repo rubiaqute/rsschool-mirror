@@ -2,6 +2,7 @@
     width:100%;
     height: 100vh;
     padding:5%;
+    position: relative;
     // display:flex;
     // flex-direction: column;
     // justify-content: space-around;
@@ -20,6 +21,16 @@
             transform: scale(1);
         }
     }
+
+}
+.timer{
+    position:absolute;
+    top:2%;
+    right:3%;
+    width:15%;
+    color:$color-innertext;
+    @extend %font-roboto;
+    @include font(1.4rem, 1.4rem, 500, normal);
 
 }
 .bullets{

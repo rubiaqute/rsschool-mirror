@@ -2,6 +2,9 @@ export const backButton = document.querySelector('.back');
 export const categoryButton = document.querySelector('.categories-icon');
 export const settingsButton = document.querySelector('.settings');
 export const game = document.querySelector('.wrapper');
+export const switchers = document.querySelectorAll('.switch-button');
+export const range = document.querySelectorAll('.volume-range');
+export const musicSelection = document.querySelector('.music-select');
 
 export class Interface {
   static appearStartPage() {
@@ -12,6 +15,7 @@ export class Interface {
   static appearSettings() {
     const settingsPage = document.querySelector('.container-settings');
     settingsPage.classList.remove('hidden');
+    setTimeout(() => settingsPage.classList.add('loaded'), 100);
   }
 
   static hideCategories() {
@@ -21,6 +25,7 @@ export class Interface {
 
   static hideSettings() {
     const settingsPage = document.querySelector('.container-settings');
+    settingsPage.classList.remove('loaded');
     settingsPage.classList.add('hidden');
   }
 

@@ -3,7 +3,7 @@
   opacity: 85%;
 }
 
-.options:hover, .score:hover, .game-select:hover, .game-select, .hide, .categories-icon, .back, .settings {
+.button-settings:hover, .switch-button::after, .container-settings.loaded, .container-settings, .options:hover, .score:hover, .game-select:hover, .game-select, .categories-icon, .back, .settings, .hide {
   transition: 0.5s;
 }
 
@@ -11,7 +11,7 @@
   transition: 0.5s ease-out;
 }
 
-.header, .container-settings .header, .results-header_score, .final-modal-button, .next-question, .note-result, .note, .description, .options, .score p, .category .number, h5, h4, h3, h2 {
+.header, .results-header_score, .final-modal-button, .next-question, .note-result, .note, .description, .options, .timer, .score p, .category .number, h5, h4, h3, h2 {
   font-family: "Roboto", sans-serif;
 }
 
@@ -96,49 +96,32 @@ html {
   position: relative;
 }
 
-.settings {
-  background: url("../../../art-quiz/image-data/svg/settings.svg") no-repeat;
-  background-position: top right;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 2%;
-  right: 5%;
-  z-index: 1;
-}
-.settings:hover {
-  transform: rotate(-120deg);
-  cursor: pointer;
+.container {
+  margin: 0 auto;
+  padding: 50% 10% 5% 10%;
+  height: 100vh;
+  max-height: 100vh;
 }
 
-.back {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  z-index: 1;
-  background: url("../../../art-quiz/image-data/svg/home.svg") no-repeat;
-  background-position: top left;
-  top: 2%;
-  left: 5%;
-}
-.back:hover {
-  cursor: pointer;
-  opacity: 60%;
+.hide {
+  display: none;
 }
 
-.categories-icon {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  z-index: 1;
-  background: url("../../../art-quiz/image-data/svg/list.svg") no-repeat;
-  background-position: top center;
-  top: 2%;
-  left: 50%;
+.volume-range {
+  background: linear-gradient(to right, #FFBCA2 0%, #FFBCA2 40%, rgba(80, 80, 80, 0.5) 40%, rgba(80, 80, 80, 0.5) 100%);
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  height: 1rem;
 }
-.categories-icon:hover {
+
+.volume-range::-webkit-slider-thumb {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  -webkit-appearance: none;
   cursor: pointer;
-  opacity: 60%;
+  background: #FFBCA2;
 }
 
 h2 {
@@ -186,15 +169,55 @@ h5 {
   margin-bottom: 5%;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 50% 10% 5% 10%;
-  height: 100vh;
-  max-height: 100vh;
+.settings {
+  background: url("../../../art-quiz/image-data/svg/settings.svg") no-repeat;
+  background-position: top right;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  z-index: 1;
+}
+.settings:hover {
+  transform: rotate(-120deg);
+  cursor: pointer;
 }
 
-.hide {
-  display: none;
+.back {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+  background: url("../../../art-quiz/image-data/svg/home.svg") no-repeat;
+  background-position: top left;
+  top: 2%;
+  left: 5%;
+}
+.back:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.categories-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+  background: url("../../../art-quiz/image-data/svg/list.svg") no-repeat;
+  background-position: top center;
+  top: 2%;
+  left: 50%;
+}
+.categories-icon:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.volume .icon {
+  background: url("../../../art-quiz/image-data/svg/volume-medium.svg") no-repeat;
+  width: 2rem;
+  height: 2rem;
 }
 
 .logo {
@@ -307,6 +330,7 @@ h5 {
   width: 100%;
   height: 100vh;
   padding: 5%;
+  position: relative;
 }
 .container-question img {
   width: 100%;
@@ -319,6 +343,19 @@ h5 {
 }
 .container-question .image-question.loaded {
   transform: scale(1);
+}
+
+.timer {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  width: 15%;
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: normal;
 }
 
 .bullets {
@@ -584,24 +621,21 @@ h5 {
 .container-settings {
   height: 100vh;
   padding: 5%;
+  padding-bottom: 10%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: rgba(80, 80, 80, 0.5);
+  transform: translateX(-150%);
 }
 .container-settings.hidden {
   display: none;
 }
-.container-settings .header {
-  font-size: 1.4rem;
-  line-height: 2rem;
-  font-weight: 500;
-  font-style: normal;
-  text-transform: normal;
-  color: #ffffff;
-  text-align: left;
+.container-settings.loaded {
+  transform: translateX(0);
 }
 
-.sound, .music {
+.sound, .music, .time-mode {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -621,6 +655,8 @@ h5 {
   text-transform: normal;
   color: #ffffff;
   text-align: left;
+  display: flex;
+  align-items: flex-end;
 }
 
 .switch-button {
@@ -631,7 +667,7 @@ h5 {
   /* высота */
   border-radius: 19px;
   /* радиус скругления */
-  background: rgba(80, 80, 80, 0.5);
+  background: rgba(59, 58, 58, 0.8);
   /* цвет фона */
   z-index: 0;
   margin: 0;
@@ -656,7 +692,6 @@ h5 {
   /* положение кнопки по вертикали относительно основы */
   left: 0.2rem;
   /* положение кнопки по горизонтали относительно основы */
-  transition-duration: 300ms;
   /* анимация */
   position: absolute;
   z-index: 1;
@@ -673,11 +708,8 @@ h5 {
 .volume {
   display: flex;
   justify-content: space-between;
-}
-.volume .icon {
-  background: url("../../../art-quiz/image-data/svg/volume-medium.svg") no-repeat;
-  width: 2rem;
-  height: 2rem;
+  width: 50%;
+  align-items: center;
 }
 .volume .sound-volume, .volume .music-volume {
   width: 80%;
@@ -687,16 +719,48 @@ h5 {
   display: flex;
   justify-content: space-between;
   margin-top: 2%;
-  vertical-align: baseline;
 }
 
-.music-select {
+.music-select, .time-select {
   display: inline-block;
   outline: none;
-  color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid #FFBCA2;
   border-radius: 5px;
+  width: 50%;
+}
+.music-select:hover, .time-select:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.time-mode_toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.button-settings {
+  width: 30%;
   background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 56px;
+  padding: 3%;
+}
+.button-settings.colored {
+  color: #000000;
+  background-color: #FFBCA2;
+}
+.button-settings:hover {
+  opacity: 80%;
+  border: 1px solid #FFBCA2;
+}
+
+.save-buttons {
+  width: 100%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

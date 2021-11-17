@@ -1,20 +1,22 @@
 .container-settings{
   height:100vh;
   padding: 5%;
+  padding-bottom: 10%;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
+  @extend %transition;
+  background: $color-overlay;
+  transform: translateX(-150%);
   &.hidden{
-    display: none;
+    display:none;
   }
-  .header{
-    @include font(1.4rem, 2rem, 500, normal);
-    color:$color-innertext;
-    @extend %font-roboto;
-    text-align: left;
+  &.loaded{
+    @extend %transition;
+    transform: translateX(0);
   }
 }
-.sound, .music{
+.sound, .music, .time-mode{
   width:100%;
   display:flex;
   justify-content:space-between;
@@ -29,13 +31,15 @@
   color:$color-innertext;
   @extend %font-roboto;
   text-align: left;
+  display: flex;
+  align-items: flex-end;
 }
 .switch-button {
   display: block;
   width: 5rem; /* ширина */
   height: 2rem; /* высота */
   border-radius: 19px; /* радиус скругления */
-  background: $color-overlay; /* цвет фона */
+  background: $color-switchers; /* цвет фона */
   z-index: 0;
   margin: 0;
   padding: 0;
@@ -52,7 +56,7 @@
   background: $color-innertext; /* цвет кнопки */
   top: 0.2rem; /* положение кнопки по вертикали относительно основы */
   left: 0.2rem; /* положение кнопки по горизонтали относительно основы */
-  transition-duration: 300ms; /* анимация */
+  @extend %transition; /* анимация */
   position: absolute;
   z-index: 1;
 }
@@ -66,11 +70,8 @@
 .volume{
   display:flex;
   justify-content: space-between;
-  .icon{
-    background: url("../../../art-quiz/image-data/svg/volume-medium.svg") no-repeat;
-    width:2rem;
-    height:2rem;
-  }
+  width:50%;
+  align-items: center;
   .sound-volume, .music-volume{
     width:80%;
   }
@@ -79,13 +80,45 @@
   display:flex;
   justify-content: space-between;
   margin-top:2%;
- vertical-align: baseline;
+  
 }
-.music-select {
+.music-select, .time-select {
   display: inline-block;
   outline: none;
-  color: $color-innertext;
-  border: 1px solid $color-innertext;
+  border: 1px solid $color-darkdetails;
   border-radius: 5px;
-  background: transparent;
+  width:50%;
+  &:hover{
+    cursor:pointer;
+    opacity:80%;
+  }
   } 
+ .time-mode_toggle {
+   display: flex;
+   justify-content:space-between;
+   width:40%;
+ }
+  .button-settings{
+    width:30%;
+    background: transparent;
+    border: 1px solid $color-border;
+    color: $color-innertext;
+    text-align: center;
+    vertical-align: center;
+    border-radius: 56px;
+    padding:  3%;
+    &.colored{
+      color: $color-darktext;
+      background-color: $color-darkdetails;
+    }
+    &:hover{
+      opacity: 80%;
+      border: 1px solid $color-darkdetails;
+      @extend %transition;
+    }
+  }
+  .save-buttons{
+    width:100%;
+    text-align: center;
+    
+  }

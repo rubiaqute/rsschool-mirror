@@ -1,0 +1,52 @@
+.settings{
+  background:url('../../../art-quiz/image-data/svg/settings.svg') no-repeat;
+  background-position: top right;
+  width:24px;
+  height: 24px;
+  position:absolute;
+  top:2%;
+  right:5%;
+  z-index: 1;
+  @extend %transition;
+  &:hover{
+      transform: rotate(-120deg);
+      cursor: pointer;
+  }
+}
+.back{
+  position:absolute;
+  width:24px;
+  height: 24px;
+  z-index: 1;
+  @extend %transition;
+  background: url("../../../art-quiz/image-data/svg/home.svg") no-repeat;
+  background-position:top left;
+  top:2%;
+  left:5%;
+  &:hover{
+      cursor:pointer;
+      opacity:60%;
+  }
+}
+.categories-icon{
+  position:absolute;
+  width:24px;
+  height: 24px;
+  z-index: 1;
+  @extend %transition !optional;
+  background: url("../../../art-quiz/image-data/svg/list.svg") no-repeat;
+  background-position:top center;
+  top:2%;
+  left:50%;
+  &:hover{
+      cursor:pointer;
+      opacity:60%;
+  }
+}
+.volume{
+  .icon{
+    background: url("../../../art-quiz/image-data/svg/volume-medium.svg") no-repeat;
+    width:2rem;
+    height:2rem;
+  }
+}

@@ -1,9 +1,10 @@
 import Category from './category_constructor.js';
 import {
-  Interface, backButton, categoryButton, settingsButton,
+  Interface, backButton, categoryButton, settingsButton, switchers, range, musicSelection,
 } from './navigation_functions.js';
 import Quiz from './quiz.js';
 import Results from './results_page.js';
+import Settings from './settings.js';
 
 window.onload = () => {
   new Category('', 0).createCategoryPage('artists');
@@ -31,13 +32,29 @@ categoryButton.addEventListener('click', () => {
 settingsButton.addEventListener('click', () => {
   Interface.showSettings();
 });
+switchers.forEach((button, index) => button.addEventListener('click', (e) => {
+  e.preventDefault();
+  Settings.switchSettings(button, index);
+}));
+
+range.forEach((el, index) => el.addEventListener('change', () => Settings.changeVolume(el, index)));
+musicSelection.addEventListener('change', () => Settings.playMusic());
 
 function getLocalStorage() {
-  if (localStorage.getItem('results')) {
-    const results = JSON.parse(localStorage.getItem('results'));
+  if (localStorage.getItem('resultsRubiaqute')) {
+    const results = JSON.parse(localStorage.getItem('resultsRubiaqute'));
     Results.rewriteResults(results);
   }
-  console.log(Results.returnResults());
+  if (localStorage.getItem('settingsRubiaqute')) {
+    console.log(localStorage.getItem('settingsRubiaqute'));
+    const settings = JSON.parse(localStorage.getItem('settingsRubiaqute'));
+    Settings.rewriteSettings(settings);
+  } else Settings.rewriteSettings(Settings.returnDefaultSettings());
+  switchers.forEach((button, index) => Settings.updateSettingsInterface(button, index));
+  range.forEach((el, index) => Settings.updateRanges(index));
+  Settings.updateTrack();
+  console.log(Settings.returnSettings());
 }
 
 window.addEventListener('load', () => getLocalStorage());
+document.addEventListener('click', () => Settings.playMusic(), { once: true });

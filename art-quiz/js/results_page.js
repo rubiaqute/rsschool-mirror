@@ -31,14 +31,15 @@ export default class Results {
     const resultsContainer = createNodetoDom('div', 'container-results');
     let template = '';
     const score = results[this.index].filter((el) => el === 'right').length;
-    template += `<div class="results-header"><h5>Round ${this.index + 1}</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
+    if (this.index < 12) template += `<div class="results-header"><h5>Round ${this.index + 1}</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
+    else template += `<div class="results-header"><h5>Round ${this.index + 1 - 12}</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
     resultsContainer.innerHTML = template;
     const imgContainer = createNodetoDom('div', 'images-results');
     resultsContainer.append(imgContainer);
     for (let i = 0; i < 10; i += 1) {
       const imageSrc = getImageSrc(this.index * 10 + i);
       let imageClass;
-      if (this.results[this.index][i] === 'right') imageClass = 'colored';
+      if (results[this.index][i] === 'right') imageClass = 'colored';
       else imageClass = 'black-white';
       const imgBordered = createNodetoDom('div', `image-results ${imageClass}`);
       const img = new Image();

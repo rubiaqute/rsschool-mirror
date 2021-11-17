@@ -1,22 +1,31 @@
 import {
   getAuthor, getName, getYear, createModalWrapper, createNodetoDom, getImageSrc,
 } from './base_functions.js';
-import { Interface, game } from './navigation_functions.js';
+import { Interface, game, range } from './navigation_functions.js';
 import Questions from './questions.js';
 import Results from './results_page.js';
+import Settings from './settings.js';
 
 const preResults = [];
 let containerQuestion;
 
 function setResultsToLocalStorage() {
   const results = Results.returnResults();
-  localStorage.setItem('results', JSON.stringify(results));
+  localStorage.setItem('resultsRubiaqute', JSON.stringify(results));
 }
 function writeResult(index) {
   if (preResults[index].length === 10) {
     new Results(index).changeResults(preResults[index]);
   }
   setResultsToLocalStorage();
+}
+function playSoundEffect(type) {
+  if (Settings.returnSettingsOption(0) === 'true') {
+    const audio = document.querySelector('.audio-sound');
+    audio.src = `./sounds/${type}.mp3`;
+    audio.volume = range[0].value / 100;
+    audio.play();
+  }
 }
 
 function colorBullet(i, type, indexCategory) {
@@ -74,12 +83,28 @@ export default class Quiz {
     this.index = index;
   }
 
+  countTimer(seconds, id) {
+    const timer = document.querySelector('.timer');
+    let timeLeft = seconds;
+    setInterval(() => {
+      if (timeLeft < 10) timer.innerText = `00:0${timeLeft}`;
+      else timer.innerText = `00:${timeLeft}`;
+      timeLeft -= 1;
+      if (timeLeft === 0) new Quiz(this.index).informIsRightByTimer(id, 'wrong');
+    }, 1000);
+  }
+
   async createQuiz() {
     preResults[this.index] = [];
     const indexCategory = this.index;
     const indexQuestion = this.index * 10;
     Interface.showQuestion(this.index);
     createQuestionContainer();
+    const timer = createNodetoDom('span', 'timer');
+    containerQuestion.append(timer);
+    // timer.innerText = Settings.returnSettingsOption(6);
+    timer.innerText = '00:10';
+    new Quiz(indexCategory).countTimer(10, indexQuestion);
     const questionText = createNodetoDom('h4', 'text-question');
     questionText.innerText = await new Questions(indexQuestion).makeQuestion();
     containerQuestion.append(questionText);
@@ -139,6 +164,14 @@ export default class Quiz {
     preResults[this.index].push(type);
     colorAnswer(e.target, type);
     colorBullet(id, type, this.index);
+    playSoundEffect(type);
+    new Quiz(this.index).appearModal(type, id);
+  }
+
+  informIsRightByTimer(id, type) {
+    preResults[this.index].push(type);
+    colorBullet(id, type, this.index);
+    playSoundEffect(type);
     new Quiz(this.index).appearModal(type, id);
   }
 
@@ -217,14 +250,18 @@ export default class Quiz {
   updateCategory() {
     const categories = document.querySelectorAll('.category');
     const category = categories.item(this.index);
+    const categoryNumber = createNodetoDom('div', 'number');
+    if (this.index < 12)categoryNumber.innerText = this.index + 1;
+    else categoryNumber.innerText = this.index + 1 - 12;
     const categoryImage = category.querySelector('.category-image');
     categoryImage.classList.remove('not-colored');
     if (category.querySelector('div', 'score')) category.removeChild(category.querySelector('div', 'score'));
     const categoryResult = createNodetoDom('div', 'score');
     const score = new Results(this.index).checkResults().filter((el) => el === 'right').length;
+    console.log(category);
     if (score === 10) categoryResult.classList.add('best-score');
     categoryResult.innerHTML = `<p>${score}/10</p><p>see results<p>`;
-    category.append(categoryResult);
+    category.append(categoryResult, categoryNumber);
     categoryResult.addEventListener('click', () => {
       Interface.showQuestion(this.index);
       new Results(this.index).makeResultsPage();
@@ -239,9 +276,11 @@ export default class Quiz {
     if (score === 10) {
       template += '<img class="image-result"src="./image-data/younglady.jpg" alt="">';
       template += '<p class="note-result">You are the BEST!</p>';
+      playSoundEffect('finish-right');
     } else {
       template += '<img class="image-result"src="./image-data/oldlady.jpg" alt="">';
       template += '<p class="note-result">Try better next time...</p>';
+      playSoundEffect('finish-wrong');
     }
     template += '<button class="final-modal-button play-again">&#8634; Once again</button>';
     template += '<button class="final-modal-button resume">Resume</button>';
