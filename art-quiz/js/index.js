@@ -1,6 +1,7 @@
 import Category from './category_constructor.js';
 import {
-  Interface, backButton, categoryButton, settingsButton, switchers, range, musicSelection,
+  Interface, backButton, categoryButton, settingsButton, switchers, range, defaultSettingsButton,
+  musicSelection, timeModeSelection, clearResultsButton,
 } from './navigation_functions.js';
 import Quiz from './quiz.js';
 import Results from './results_page.js';
@@ -14,6 +15,7 @@ window.onload = () => {
 const gameSelector = document.querySelectorAll('.game-select');
 gameSelector.forEach((el) => {
   el.addEventListener('click', (e) => {
+    e.preventDefault();
     for (let i = 0; i < 24; i += 1) {
       if (new Results(i).checkResults()) {
         new Quiz(i).updateCategory();
@@ -39,6 +41,9 @@ switchers.forEach((button, index) => button.addEventListener('click', (e) => {
 
 range.forEach((el, index) => el.addEventListener('change', () => Settings.changeVolume(el, index)));
 musicSelection.addEventListener('change', () => Settings.playMusic());
+timeModeSelection.addEventListener('change', () => Settings.changeTimeModeTimeLeft());
+defaultSettingsButton.addEventListener('click', () => Settings.makeSettingsDefault());
+clearResultsButton.addEventListener('click', () => Results.cleanResults());
 
 function getLocalStorage() {
   if (localStorage.getItem('resultsRubiaqute')) {
@@ -46,14 +51,15 @@ function getLocalStorage() {
     Results.rewriteResults(results);
   }
   if (localStorage.getItem('settingsRubiaqute')) {
-    console.log(localStorage.getItem('settingsRubiaqute'));
     const settings = JSON.parse(localStorage.getItem('settingsRubiaqute'));
     Settings.rewriteSettings(settings);
-  } else Settings.rewriteSettings(Settings.returnDefaultSettings());
-  switchers.forEach((button, index) => Settings.updateSettingsInterface(button, index));
-  range.forEach((el, index) => Settings.updateRanges(index));
-  Settings.updateTrack();
+  } else {
+    Settings.rewriteSettings(new Settings().settingsDefault);
+    Settings.setSettingstoLocalStorage();
+  }
+  Settings.updateSettingsPage();
   console.log(Settings.returnSettings());
+  console.log(Results.returnResults());
 }
 
 window.addEventListener('load', () => getLocalStorage());

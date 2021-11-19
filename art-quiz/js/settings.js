@@ -1,4 +1,4 @@
-import { range } from './navigation_functions.js';
+import { switchers, range, timeModeSelection } from './navigation_functions.js';
 
 export default class Settings {
   constructor() {
@@ -10,10 +10,9 @@ export default class Settings {
     localStorage.setItem('settingsRubiaqute', JSON.stringify(this.settings));
   }
 
-  static formatTimeLeft(time) {
-    let seconds = time % 60;
-    if (seconds < 10) seconds = `0${seconds}`;
-    return `00:${seconds}`;
+  static changeTimeModeTimeLeft() {
+    this.settings[6] = timeModeSelection.value;
+    Settings.setSettingstoLocalStorage();
   }
 
   static playMusic() {
@@ -24,7 +23,6 @@ export default class Settings {
     if (this.settings[1] === 'true') {
       audio.src = `./sounds/${numberTrack}.mp3`;
       audio.volume = range[1].value / 100;
-      console.log(audio);
       audio.play();
     }
     Settings.setSettingstoLocalStorage();
@@ -43,6 +41,10 @@ export default class Settings {
   static updateTrack() {
     const musicSelection = document.querySelector('.music-select');
     musicSelection.value = +this.settings[5];
+  }
+
+  static updateTimeLeft() {
+    timeModeSelection.value = +this.settings[6];
   }
 
   static updateRanges(index) {
@@ -71,27 +73,34 @@ export default class Settings {
   static changeVolume(rangeBar, index) {
     const audio = document.getElementsByTagName('audio');
     audio[index].volume = rangeBar.value / 100;
-    console.log(audio[index].volume);
     this.settings[index + 3] = rangeBar.value;
     Settings.changeProgressColor(index, rangeBar.value);
     Settings.setSettingstoLocalStorage();
   }
 
-  static returnSettingsOption(index) {
-    return this.settings[index];
+  static rewriteSettings(array) {
+    if (array) {
+      this.settings = array;
+    } else this.settings = this.settingsDefault;
+    return this.settings;
   }
 
   static returnSettings() {
     return this.settings;
   }
 
-  static rewriteSettings(array) {
-    this.settings = array;
+  static makeSettingsDefault() {
+    Settings.rewriteSettings(new Settings().settingsDefault);
     console.log(this.settings);
-    return this.settings;
+    Settings.setSettingstoLocalStorage();
+    Settings.updateSettingsPage();
+    window.location.reload();
   }
 
-  static returnDefaultSettings() {
-    return this.settingsDefault;
+  static updateSettingsPage() {
+    switchers.forEach((button, index) => Settings.updateSettingsInterface(button, index));
+    range.forEach((el, index) => Settings.updateRanges(index));
+    Settings.updateTrack();
+    Settings.updateTimeLeft();
   }
 }

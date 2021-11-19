@@ -5,6 +5,9 @@ export const game = document.querySelector('.wrapper');
 export const switchers = document.querySelectorAll('.switch-button');
 export const range = document.querySelectorAll('.volume-range');
 export const musicSelection = document.querySelector('.music-select');
+export const timeModeSelection = document.querySelector('.time-select');
+export const defaultSettingsButton = document.querySelector('.default');
+export const clearResultsButton = document.querySelector('.clean-results');
 
 export class Interface {
   static appearStartPage() {

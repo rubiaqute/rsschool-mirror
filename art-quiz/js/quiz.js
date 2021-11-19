@@ -20,7 +20,7 @@ function writeResult(index) {
   setResultsToLocalStorage();
 }
 function playSoundEffect(type) {
-  if (Settings.returnSettingsOption(0) === 'true') {
+  if (Settings.returnSettings()[0] === 'true') {
     const audio = document.querySelector('.audio-sound');
     audio.src = `./sounds/${type}.mp3`;
     audio.volume = range[0].value / 100;
@@ -85,13 +85,37 @@ export default class Quiz {
 
   countTimer(seconds, id) {
     const timer = document.querySelector('.timer');
-    let timeLeft = seconds;
-    setInterval(() => {
-      if (timeLeft < 10) timer.innerText = `00:0${timeLeft}`;
-      else timer.innerText = `00:${timeLeft}`;
-      timeLeft -= 1;
-      if (timeLeft === 0) new Quiz(this.index).informIsRightByTimer(id, 'wrong');
-    }, 1000);
+    let secondsLeft = seconds;
+    let timerBlock;
+    const timerPlay = () => {
+      timerBlock = setInterval(() => {
+        if (!document.querySelector('.timer')) clearInterval(timerBlock);
+        else {
+          secondsLeft -= 1;
+          if (secondsLeft <= 0) {
+            clearInterval(timerBlock);
+            new Quiz(this.index).informIsRightByTimer(id, 'wrong');
+            Quiz.killTimer();
+          }
+          if (secondsLeft < 10) {
+            timer.innerText = `00:0${secondsLeft}`;
+          } else timer.innerText = `00:${secondsLeft}`;
+        }
+      }, 1000);
+    };
+    timerPlay();
+  }
+
+  static killTimer() {
+    const timer = document.querySelector('.timer');
+    if (timer) containerQuestion.removeChild(timer);
+  }
+
+  createTimer(indexQuestion) {
+    const timer = createNodetoDom('span', 'timer');
+    containerQuestion.append(timer);
+    const timeLeft = +Settings.returnSettings()[6];
+    new Quiz(this.index).countTimer(timeLeft, indexQuestion);
   }
 
   async createQuiz() {
@@ -100,11 +124,7 @@ export default class Quiz {
     const indexQuestion = this.index * 10;
     Interface.showQuestion(this.index);
     createQuestionContainer();
-    const timer = createNodetoDom('span', 'timer');
-    containerQuestion.append(timer);
-    // timer.innerText = Settings.returnSettingsOption(6);
-    timer.innerText = '00:10';
-    new Quiz(indexCategory).countTimer(10, indexQuestion);
+    if (Settings.returnSettings()[2] === 'true') new Quiz(indexCategory).createTimer(indexQuestion);
     const questionText = createNodetoDom('h4', 'text-question');
     questionText.innerText = await new Questions(indexQuestion).makeQuestion();
     containerQuestion.append(questionText);
@@ -131,11 +151,9 @@ export default class Quiz {
         };
       }
       containerOptions.append(questionOption);
-      // questionOptions.onload = () => {
-      //   questionOptions.classList.add('loaded');
-      // };
       questionOption.addEventListener('click', (e) => {
         new Quiz(this.index).checkAnswer(e, indexQuestion);
+        Quiz.killTimer();
       });
     }
     const gettedOptions = document.querySelectorAll('.options');
@@ -190,6 +208,7 @@ export default class Quiz {
       changeQuestion(index);
       changeImage(index);
       new Quiz(this.index).changeOptions(index);
+      if (Settings.returnSettings()[2] === 'true') new Quiz(this.index).createTimer(index);
     }
   }
 
@@ -200,8 +219,18 @@ export default class Quiz {
     const questionOptions = document.querySelectorAll('.options');
     for (let i = 0; i < 4; i += 1) {
       if (this.index < 12) questionOptions.item(i).innerText = options[i];
-      else questionOptions.item(i).innerHTML = `<img src ="${options[i]}" alt = "">`;
-      questionOptions.item(i).addEventListener('click', (e) => new Quiz(this.index).checkAnswer(e, id));
+      else {
+        const img = new Image();
+        img.src = `${options[i]}`;
+        img.alt = '';
+        img.onload = () => {
+          questionOptions.item(i).append(img);
+        };
+      }
+      questionOptions.item(i).addEventListener('click', (e) => {
+        new Quiz(this.index).checkAnswer(e, id);
+        Quiz.killTimer();
+      });
     }
     setTimeout(() => {
       questionOptions.forEach((item) => {
@@ -258,7 +287,6 @@ export default class Quiz {
     if (category.querySelector('div', 'score')) category.removeChild(category.querySelector('div', 'score'));
     const categoryResult = createNodetoDom('div', 'score');
     const score = new Results(this.index).checkResults().filter((el) => el === 'right').length;
-    console.log(category);
     if (score === 10) categoryResult.classList.add('best-score');
     categoryResult.innerHTML = `<p>${score}/10</p><p>see results<p>`;
     category.append(categoryResult, categoryNumber);

@@ -99,7 +99,8 @@
    width:40%;
  }
   .button-settings{
-    width:30%;
+    max-width:50%;
+    white-space: nowrap;
     background: transparent;
     border: 1px solid $color-border;
     color: $color-innertext;
@@ -107,11 +108,9 @@
     vertical-align: center;
     border-radius: 56px;
     padding:  3%;
-    &.colored{
+    &:hover{
       color: $color-darktext;
       background-color: $color-darkdetails;
-    }
-    &:hover{
       opacity: 80%;
       border: 1px solid $color-darkdetails;
       @extend %transition;

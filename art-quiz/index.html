@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./image-data/favicon.ico">
     <link rel="stylesheet" href="sass/style.css">
     <title>Art-quiz</title>
 </head>
@@ -69,20 +70,25 @@
                 
                     <select class="time-select">
                       <option disabled class = "time-select__option">Time for answer:</option>
-                      <option class = "time-select__option" value =0>5 sec</option>
-                      <option selected class = "time-select__option" value =1>10 sec</option>
-                      <option class = "time-select__option" value =2>15 sec</option>
-                      <option class = "time-select__option" value =3>20 sec</option>
-                      <option class = "time-select__option" value =4>25 sec</option>
-                      <option class = "time-select__option" value =5>30 sec</option>
+                      <option class = "time-select__option" value =5>5 sec</option>
+                      <option selected class = "time-select__option" value =10>10 sec</option>
+                      <option class = "time-select__option" value =15>15 sec</option>
+                      <option class = "time-select__option" value =20>20 sec</option>
+                      <option class = "time-select__option" value =25>25 sec</option>
+                      <option class = "time-select__option" value =30>30 sec</option>
                       </select>
                 
             </div>
             <div class="save-buttons">
-                <button class="button-settings default">Default</button>
-                <button class="button-settings save colored">Save</button>
+                <button class="button-settings default">Default settings</button>
+                <button class="button-settings clean-results">Clear results</button>
             </div>
         </div>
+        <footer class="github-link">
+            <p>2021</p>
+            <a href="https://rs.school/js/" class="course-link"> <img src="./image-data/svg/rs_school_js.svg" alt="school-icon" class="school-icon"></a>
+            <a href="https://github.com/rubiaqute" class="githublink">rubiaqute</a>
+        </footer>
     </div>
 </div>
     <script type = "module" src="./js/index.js"></script>

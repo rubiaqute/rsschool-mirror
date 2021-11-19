@@ -9,6 +9,11 @@ export default class Results {
     this.index = indexCategory;
   }
 
+  static cleanResults() {
+    localStorage.removeItem('resultsRubiaqute');
+    window.location.reload();
+  }
+
   checkResults() {
     if (results[this.index]) return results[this.index];
     return null;
@@ -44,7 +49,7 @@ export default class Results {
       const imgBordered = createNodetoDom('div', `image-results ${imageClass}`);
       const img = new Image();
       img.src = imageSrc;
-      img.class = `${imageClass}`;
+      img.classList.add(`${imageClass}`);
       img.alt = '';
       img.onload = () => {
         imgBordered.append(img);
