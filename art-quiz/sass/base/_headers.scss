@@ -33,5 +33,7 @@ h5{
   @extend %font-roboto;
   text-align: center;
   margin-bottom:5%;
-  
+  @include media-mobile{
+    margin-bottom:1%;
+    }
 }

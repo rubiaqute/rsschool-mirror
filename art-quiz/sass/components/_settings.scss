@@ -1,7 +1,8 @@
 .container-settings{
   height:100vh;
   padding: 5%;
-  padding-bottom: 10%;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,6 +26,12 @@
   width:40%;
   display:flex;
   justify-content: space-between;
+  @include media-mobile{
+    width:30%;
+}
+@include media-desktop{
+  width:20%;
+}
 }
 .header{
   @include font(1.4rem, 2rem, 500, normal);
@@ -97,6 +104,12 @@
    display: flex;
    justify-content:space-between;
    width:40%;
+   @include media-mobile{
+    width:30%;
+    }
+    @include media-desktop{
+      width:20%;
+    }
  }
   .button-settings{
     max-width:50%;
@@ -108,6 +121,8 @@
     vertical-align: center;
     border-radius: 56px;
     padding:  3%;
+    @include font(1.4rem, 1.4rem, 500, normal);
+  @extend %font-roboto;
     &:hover{
       color: $color-darktext;
       background-color: $color-darkdetails;

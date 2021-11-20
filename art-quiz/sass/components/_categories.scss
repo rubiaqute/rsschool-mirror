@@ -28,7 +28,12 @@
     border: 1px solid $color-border;
     position:relative;
     border-radius:5%;
-    
+    @include media-mobile{
+        width: 30%;
+    }
+    @include media-desktop{
+        width: 22%;
+    }
     .number{
     @include font(2.4rem, 2.8rem, bold, uppercase);
     @extend %font-roboto;
@@ -43,6 +48,7 @@
     img{
         display:block;
         width:100%;
+        border-radius:5%;
         @extend %cover-style;
         &:hover{
             cursor: pointer;

@@ -128,16 +128,22 @@ export default class Quiz {
     const questionText = createNodetoDom('h4', 'text-question');
     questionText.innerText = await new Questions(indexQuestion).makeQuestion();
     containerQuestion.append(questionText);
+    const imageOptionsContainer = createNodetoDom('div', 'container-question-image');
+    containerQuestion.append(imageOptionsContainer);
     if (indexCategory < 12) {
-      const questionImage = createNodetoDom('img', 'image-question');
+      const questionImage = new Image();
       questionImage.src = getImageSrc(indexQuestion);
-      containerQuestion.append(questionImage);
-      questionImage.onload = () => {
-        setTimeout(() => questionImage.classList.add('loaded'), 0);
-      };
+      questionImage.alt = '';
+      await questionImage.decode();
+      // questionImage.onload = () => {
+      //   containerQuestion.append(questionImage);
+      // };
+      imageOptionsContainer.append(questionImage);
+      questionImage.className = 'image-question';
+      setTimeout(() => questionImage.classList.add('loaded'), 1000);
     }
     const containerOptions = createNodetoDom('div', 'container-options');
-    containerQuestion.append(containerOptions);
+    imageOptionsContainer.append(containerOptions);
     const options = await new Questions(indexQuestion).makeOptions();
     for (let i = 0; i < 4; i += 1) {
       const questionOption = createNodetoDom('div', 'options');
@@ -149,6 +155,7 @@ export default class Quiz {
         img.onload = () => {
           questionOption.append(img);
         };
+        questionOption.classList.add('image-type-options');
       }
       containerOptions.append(questionOption);
       questionOption.addEventListener('click', (e) => {
@@ -199,23 +206,23 @@ export default class Quiz {
     }, 0);
   }
 
-  getNextQuestion(id) {
+  async getNextQuestion(id) {
     const index = id + 1;
     Interface.eliminateModal();
     if (index - this.index * 10 === 10) {
       new Quiz(this.index).makeFinalModal();
     } else {
+      deleteOptions();
+      createOptions();
       changeQuestion(index);
       changeImage(index);
-      new Quiz(this.index).changeOptions(index);
+      await new Quiz(this.index).changeOptions(index);
       if (Settings.returnSettings()[2] === 'true') new Quiz(this.index).createTimer(index);
     }
   }
 
   async changeOptions(id) {
     const options = await new Questions(id).makeOptions();
-    deleteOptions();
-    createOptions();
     const questionOptions = document.querySelectorAll('.options');
     for (let i = 0; i < 4; i += 1) {
       if (this.index < 12) questionOptions.item(i).innerText = options[i];
@@ -225,6 +232,7 @@ export default class Quiz {
         img.alt = '';
         img.onload = () => {
           questionOptions.item(i).append(img);
+          questionOptions.item(i).classList.add('image-type-options');
         };
       }
       questionOptions.item(i).addEventListener('click', (e) => {
@@ -255,7 +263,7 @@ export default class Quiz {
     template += '</div></div>';
     template += `<p class="note">You're ${type}!</p>`;
     template += '<button class="next-question">Next</button>';
-    createModalWrapper(template);
+    await createModalWrapper(template);
     const nextButton = document.querySelector('.next-question');
     nextButton.addEventListener('click', () => new Quiz(this.index).getNextQuestion(id));
   }
@@ -296,7 +304,7 @@ export default class Quiz {
     });
   }
 
-  makeFinalModal() {
+  async makeFinalModal() {
     let template = '';
     const rightBullets = document.querySelectorAll('.bullet.right');
     const score = rightBullets.length;
@@ -312,7 +320,7 @@ export default class Quiz {
     }
     template += '<button class="final-modal-button play-again">&#8634; Once again</button>';
     template += '<button class="final-modal-button resume">Resume</button>';
-    createModalWrapper(template);
+    await createModalWrapper(template);
     const playAgainButton = document.querySelector('.play-again');
     playAgainButton.addEventListener('click', () => new Quiz(this.index).replayLevel());
     const resumeButton = document.querySelector('.resume');

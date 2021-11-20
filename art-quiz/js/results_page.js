@@ -79,7 +79,7 @@ export default class Results {
     template += `<p class="description">${year}</p>`;
     template += '</div>';
     template += '<button class="next-question">Close</button>';
-    createModalWrapper(template);
+    await createModalWrapper(template);
     const closeButton = document.querySelector('.next-question');
     closeButton.addEventListener('click', () => Interface.eliminateModal());
     const overlay = document.querySelector('.overlay');

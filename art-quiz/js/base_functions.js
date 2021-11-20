@@ -33,11 +33,11 @@ export async function getYear(id) {
   return data.images[id].year;
 }
 
-export function createModalWrapper(template) {
+export async function createModalWrapper(template) {
   const modalContainer = createNodetoDom('div', 'modal-container');
-  modalContainer.innerHTML = template;
+  modalContainer.innerHTML = await template;
   const overlay = createNodetoDom('div', 'overlay');
-  overlay.append(modalContainer);
+  await overlay.append(modalContainer);
   game.append(overlay);
   setTimeout(() => modalContainer.classList.add('animated'), 500);
 }

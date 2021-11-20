@@ -12,6 +12,6 @@
 @mixin media-tablet{
     @media(min-width: $width-tablet){ @content; }
 }
-@mixin media-desctop{
+@mixin media-desktop{
     @media(min-width: $width-desktop) { @content; }
 }

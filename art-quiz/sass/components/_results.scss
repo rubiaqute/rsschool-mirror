@@ -7,6 +7,12 @@
         transform: translateY(0);
         @extend %transition-results;
     }
+    @include media-mobile{
+        padding:10% 5% 5% 5%;
+        }
+        @include media-desktop{
+            padding:5% 5% 5% 5%;
+            }
 }
 .results-header_score{
     @include font(1.6rem, 1.8rem, 500, normal);
@@ -14,6 +20,9 @@
     @extend %font-roboto;
     text-align: center;
     margin-bottom:5%;
+    @include media-mobile{
+        margin-bottom:1%;
+        }
     
 }
 
@@ -24,6 +33,9 @@
     justify-content: space-between;
     row-gap:3%;
     .image-results{
+        @include media-mobile{
+            max-width:18%;
+            }
         max-width:30%;
         border-radius: 50%;
         &.colored{

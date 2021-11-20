@@ -1,13 +1,16 @@
 .settings{
   background:url('../../image-data/svg/settings.svg') no-repeat;
   background-position: top right;
-  width:24px;
-  height: 24px;
+  width:2.4rem;
+  height: 2.4rem;
   position:absolute;
   top:2%;
   right:5%;
   z-index: 1;
   @extend %transition;
+  @include media-mobile{
+    background-size: 70%;
+}
   &:hover{
       transform: rotate(-120deg);
       cursor: pointer;
@@ -15,14 +18,17 @@
 }
 .back{
   position:absolute;
-  width:24px;
-  height: 24px;
+  width:2.4rem;
+  height: 2.4rem;
   z-index: 1;
   @extend %transition;
   background: url("../../image-data/svg/home.svg") no-repeat;
   background-position:top left;
   top:2%;
   left:5%;
+  @include media-mobile{
+    background-size: 70%;
+}
   &:hover{
       cursor:pointer;
       opacity:60%;
@@ -30,14 +36,17 @@
 }
 .categories-icon{
   position:absolute;
-  width:24px;
-  height: 24px;
+  width:2.4rem;
+  height: 2.4rem;
   z-index: 1;
   @extend %transition !optional;
   background: url("../../image-data/svg/list.svg") no-repeat;
   background-position:top center;
   top:2%;
   left:50%;
+  @include media-mobile{
+    background-size: 70%;
+}
   &:hover{
       cursor:pointer;
       opacity:60%;
@@ -48,5 +57,26 @@
     background: url("../../image-data/svg/volume-medium.svg") no-repeat;
     width:2rem;
     height:2rem;
+    @include media-mobile{
+      background-size: 70%;
   }
+  }
+}
+.icon-wrong{
+  background:url('../../image-data/svg/cross.svg') no-repeat;
+  width: 4.8rem;
+  height:4.8rem;
+  @include media-mobile{
+    background-size: 70%;
+}
+
+}
+.icon-right{
+  background:url('../../image-data/svg/checkmark.svg') no-repeat;
+  width: 4.8rem;
+  height:4.8rem;
+  @include media-mobile{
+    background-size: 70%;
+}
+  
 }

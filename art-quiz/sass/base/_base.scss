@@ -14,6 +14,12 @@ ul li{list-style: none;}
 img {vertical-align: top;}
 html{
     font-size: 10px;
+    @include media-tablet{
+        font-size: 15px;
+    }
+    @include media-desktop{
+        font-size: 20px;
+    }
 }
 .wrapper{
     background: url('../../image-data/cover.jpg') no-repeat;
@@ -27,13 +33,12 @@ html{
 
 .container{
     margin:0 auto;
-    padding: 50% 10% 5% 10%;
+    padding: 25vh 10% 5vh 10%;
     height:100vh;
     max-height:100vh;
     
 }
 .hide{
-    
     display:none;
     @extend %transition;
 }
