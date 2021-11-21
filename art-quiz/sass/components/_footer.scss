@@ -1,33 +1,34 @@
 .github-link {
-  width:90%;
-  position:absolute;
-  bottom:2%;
+  width: 90%;
+  position: absolute;
+  bottom: 2%;
   max-height: 10%;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   color: $color-overlay;
-  right:5%;
+  right: 5%;
   left: 5%;
   @extend %font-roboto;
   @include font(1.4rem, 1.4rem, 500, normal);
   a {
     text-decoration: none;
-    &:hover, &:active, &:visited{
+    &:hover,
+    &:active,
+    &:visited {
       text-decoration: none;
       color: $color-overlay;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 }
 
-
 .school-icon {
-  width:5rem;
- background-color: $color-overlay;
- border-radius: 3px;
- opacity:70%;
- &:hover{
-   opacity:100%;
-   cursor:pointer;
- }
+  width: 5rem;
+  background-color: $color-overlay;
+  border-radius: 3px;
+  opacity: 70%;
+  &:hover {
+    opacity: 100%;
+    cursor: pointer;
+  }
 }

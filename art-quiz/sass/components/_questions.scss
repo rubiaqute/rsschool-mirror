@@ -1,119 +1,111 @@
-.container-question{
-    overflow-y: hidden;
-    width:100%;
-    height: 100vh;
-    padding:5%;
-    position: relative;
-    text-align: center;
-    // display:flex;
-    // flex-direction: column;
-    // justify-content: space-around;
-    img{
-        width:100%;
-        max-width:100%;
-        border:1px solid $color-border;
-        border-radius: 5%;
+.container-question {
+  overflow-y: hidden;
+  width: 100%;
+  height: 100vh;
+  padding: 5%;
+  position: relative;
+  text-align: center;
+  img {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid $color-border;
+    border-radius: 5%;
+  }
+  .image-question {
+    transform: scale(0);
+    @include media-mobile {
+      width: 30%;
     }
-    .image-question{
-        transform: scale(0);
-        @include media-mobile{
-            width: 30%;
-            }
-        @include media-desktop{
-            width: 30%;
-            }
-        &.loaded{
-            @extend %transition-categories;
-            transform: scale(1);
-        }
+    @include media-desktop {
+      width: 30%;
     }
-
+    &.loaded {
+      @extend %transition-categories;
+      transform: scale(1);
+    }
+  }
 }
-.container-question-image{
-    @include media-mobile{
-    display:flex;
+.container-question-image {
+  @include media-mobile {
+    display: flex;
     justify-content: space-between;
     column-gap: 2%;
-    }
+  }
 }
-.timer{
-    position:absolute;
-    top:2%;
-    right:3%;
-    width:15%;
-    color:$color-innertext;
-    @extend %font-roboto;
-    @include font(1.4rem, 1.4rem, 500, normal);
-
+.timer {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  width: 15%;
+  color: $color-innertext;
+  @extend %font-roboto;
+  @include font(1.4rem, 1.4rem, 500, normal);
 }
-.bullets{
-    width:100%;
-    height:10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding-top:10vh;
-    margin-bottom: 5vh;
-    .bullet{
-        width:1rem;
-        height:1rem;
-        border-radius: 50%;
-        border: 1px solid $color-border;
-        &.wrong{
-            background-color: $color-wrong;
-            
-        }
-        &.right{
-            background-color: $color-right;
-        }
+.bullets {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 10vh;
+  margin-bottom: 5vh;
+  .bullet {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid $color-border;
+    &.wrong {
+      background-color: $color-wrong;
     }
+    &.right {
+      background-color: $color-right;
+    }
+  }
 }
 
-.container-options{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap:10px;
-    margin-bottom:5vh;
-    margin-top: 3vh;
-    
-    
+.container-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 10px;
+  margin-bottom: 5vh;
+  margin-top: 3vh;
 }
-.options{
-    width:45%;
-    border:1px solid $color-border;
-    border-radius: 5%;
-    @include font(1.4rem, 1.8rem, 500, normal);
-    color:$color-innertext;
-    @extend %font-roboto;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    transform: scale(0);
+.options {
+  width: 45%;
+  border: 1px solid $color-border;
+  border-radius: 5%;
+  @include font(1.4rem, 1.8rem, 500, normal);
+  color: $color-innertext;
+  @extend %font-roboto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  transform: scale(0);
+  @extend %transition-images;
+
+  &.right {
+    background-color: $color-right;
+  }
+  &.wrong {
+    background-color: $color-wrong;
+  }
+  &.loaded {
     @extend %transition-images;
-    
-    &.right{
-        background-color: $color-right;
-    }
-    &.wrong{
-        background-color: $color-wrong;
-    }
-    &.loaded{
-        @extend %transition-images;
-        
-        transform: scale(1);
-    }
-    &:hover{
-        cursor: pointer;
-        @extend %transition;
-        opacity: 0.8;
 
-    }
-    &.image-type-options {
-        width:22%;
-    }
-    
+    transform: scale(1);
+  }
+  &:hover {
+    cursor: pointer;
+    @extend %transition;
+    opacity: 0.8;
+  }
+  &.image-type-options {
+    @include media-mobile {
+        width: 22%;
+      }
+  }
 }
-.container-question.hide{
-    display:none;
+.container-question.hide {
+  display: none;
 }

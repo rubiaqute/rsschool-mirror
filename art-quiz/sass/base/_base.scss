@@ -1,44 +1,54 @@
-*{
-    
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border:0;
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img {vertical-align: top;}
-html{
-    font-size: 10px;
-    @include media-tablet{
-        font-size: 15px;
-    }
-    @include media-desktop{
-        font-size: 20px;
-    }
+button {
+  cursor: pointer;
 }
-.wrapper{
-    background: url('../../image-data/cover.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    // height:100vh;
-    position:relative;
-    
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+html {
+  font-size: 10px;
+  @include media-tablet {
+    font-size: 15px;
+  }
+  @include media-desktop {
+    font-size: 20px;
+  }
+}
+.wrapper {
+  background: url("../../image-data/cover.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  // height:100vh;
+  position: relative;
 }
 
-
-.container{
-    margin:0 auto;
-    padding: 25vh 10% 5vh 10%;
-    height:100vh;
-    max-height:100vh;
-    
+.container {
+  margin: 0 auto;
+  padding: 25vh 10% 5vh 10%;
+  height: 100vh;
+  max-height: 100vh;
 }
-.hide{
-    display:none;
-    @extend %transition;
+.hide {
+  display: none;
+  @extend %transition;
 }

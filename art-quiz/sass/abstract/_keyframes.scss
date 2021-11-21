@@ -1,15 +1,29 @@
-@keyframes bounce{
-  0% { transform:translateY(0);}
-  50% { transform:translateY(-10%);}
-  100% { transform:translateY(0);}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
-@keyframes escape-rotating{
-  0% { opacity: 0;
-      transform: rotateY(-60deg);}
-  25% { opacity: 1;
-      transform: rotateY(-45deg);}
-  75% { opacity: 1;
-      transform: rotateY(-15deg);}
-  100% { opacity: 1;
-      transform: rotateY(0deg);}
+@keyframes escape-rotating {
+  0% {
+    opacity: 0;
+    transform: rotateY(-60deg);
+  }
+  25% {
+    opacity: 1;
+    transform: rotateY(-45deg);
+  }
+  75% {
+    opacity: 1;
+    transform: rotateY(-15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
 }

@@ -1,17 +1,23 @@
-.volume-range{
-  background: linear-gradient(to right, $color-darkdetails 0%, $color-darkdetails 40%, $color-overlay 40%, $color-overlay 100%);
+.volume-range {
+  background: linear-gradient(
+    to right,
+    $color-darkdetails 0%,
+    $color-darkdetails 40%,
+    $color-overlay 40%,
+    $color-overlay 100%
+  );
   border: none;
   outline: none;
   -webkit-appearance: none;
   height: 1rem;
-  width:80%;
+  width: 80%;
 }
 
 .volume-range::-webkit-slider-thumb {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    -webkit-appearance: none;
-    cursor: pointer;
-    background: $color-darkdetails;
-  }
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: $color-darkdetails;
+}

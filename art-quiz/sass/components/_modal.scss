@@ -1,143 +1,144 @@
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:$color-overlay;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    z-index:1;
-
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
-.modal-container{
-    position:relative;
-    overflow-y: hidden;
-    width:70%;
-    max-height:80%;
-    min-height: 50%;
-    border: 1px solid $color-border;
-    background-color: $color-modal;
+.modal-container {
+  position: relative;
+  overflow-y: hidden;
+  width: 70%;
+  max-height: 80%;
+  min-height: 50%;
+  border: 1px solid $color-border;
+  background-color: $color-modal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 5%;
+  opacity: 0;
+  animation: escape-rotating 0.5s 1 ease-in;
+  &.animated {
+    opacity: 1;
+  }
+}
+.image-answer {
+  max-width: 50%;
+  width: 100%;
+  border: 1px solid $color-border;
+  border-radius: 5%;
+  &.big {
+    max-width: 70%;
+    @include media-mobile {
+      max-width: 50%;
+    }
+  }
+  @include media-mobile {
+    width: 30%;
+  }
+  @include media-desktop {
+    width: 30%;
+  }
+}
+.container-answer {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-picture-modal {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2%;
+  @include media-desktop {
+    width: 50%;
+    row-gap: 2%;
+  }
+}
+
+.description {
+  @include font(1.4rem, 1.4rem, 500, normal);
+  color: $color-innertext;
+  @extend %font-roboto;
+  text-align: left;
+}
+
+.note {
+  @include font(2.2rem, 2.4rem, 500, normal);
+  color: $color-innertext;
+  @extend %font-roboto;
+  text-align: center;
+  span {
+    color: $color-darkdetails;
+  }
+}
+.note-result {
+  @include font(1.4rem, 1.6rem, 500, normal);
+  color: $color-innertext;
+  @extend %font-roboto;
+  text-align: center;
+}
+.next-question {
+  border-radius: 56px;
+  width: 30%;
+  border-radius: 5%;
+  background-color: $color-darkdetails;
+  color: $color-darktext;
+  padding: 2%;
+  @include font(1.8rem, 2rem, 700, normal);
+  @extend %font-roboto;
+  &.results {
+    width: 45%;
+    text-align: center;
+  }
+}
+.results-modal_buttons{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5%;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    padding:5%;
-    opacity: 0;
-    animation: escape-rotating 0.5s 1 ease-in;
-    &.animated{
-        opacity: 1;
-    }
-    
+    width:100%;
+    justify-content: space-around;
+}
+.final-modal-button {
+  border-radius: 56px;
+  width: 100%;
+  max-width: 60%;
+  border-radius: 56px;
+  background-color: $color-darkdetails;
+  color: $color-darktext;
+  padding: 2%;
 
-}
-.image-answer{
-    max-width:50%;
-    width:100%;
-    border: 1px solid $color-border;
-    border-radius: 5%;
-    &.big{
-        max-width: 70%;
-        @include media-mobile{
-            max-width: 50%;
-            }
-    }
-    @include media-mobile{
-        width: 30%;
-        }
-    @include media-desktop{
-        width: 30%;
-        }
-}
-.container-answer{
-    max-width:100%;
-    width:100%;
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    
-}
-.container-picture-modal{
-    max-width:100%;
-    width:100%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.container-description{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding:2%;
-    @include media-desktop{
-        width: 50%;
-        row-gap: 2%;
-        }
-   
-}
+  @include font(1.8rem, 2rem, 700, normal);
 
-.description{
-    @include font(1.4rem, 1.4rem, 500, normal);
-    color:$color-innertext;
-    @extend %font-roboto;
-    text-align: left;
-    
-}
-
-.note{
-    @include font(2.2rem, 2.4rem, 500, normal);
-    color:$color-innertext;
-    @extend %font-roboto;
-    text-align: center;
-    span{
-        color:$color-darkdetails;
-    }
-}
-.note-result{
-    @include font(1.4rem, 1.6rem, 500, normal);
-    color:$color-innertext;
-    @extend %font-roboto;
-    text-align: center;
-}
-.next-question{
-    border-radius: 56px;
-    width:30%;
-    border-radius: 5%;
-    background-color: $color-darkdetails;
-    color:$color-darktext;
-    padding:2%;
-    @include font(1.8rem, 2.0rem, 700, normal);
-    
-    @extend %font-roboto;
-}
-.final-modal-button{
-    border-radius: 56px;
-    width:100%;
-    max-width: 60%;
-    border-radius: 56px;
-    background-color: $color-darkdetails;
-    color:$color-darktext;
-    padding:2%;
-    
-    @include font(1.8rem, 2.0rem, 700, normal);
-    
-    @extend %font-roboto;
-    @include media-mobile{
-        padding: 1%;
-        @include font(1.4rem, 1.4rem, 700, normal);
-        border-radius: 1px solid $color-border;
-        }
-}
-.image-result{
-    max-width:50%;
-    width:100%;
+  @extend %font-roboto;
+  @include media-mobile {
+    padding: 1%;
+    @include font(1.4rem, 1.4rem, 700, normal);
     border-radius: 1px solid $color-border;
-    border-radius: 5%;
-    @include media-mobile{
-        width: 30%;
-        }
+  }
+}
+.image-result {
+  max-width: 50%;
+  width: 100%;
+  border-radius: 1px solid $color-border;
+  border-radius: 5%;
+  @include media-mobile {
+    width: 30%;
+  }
 }

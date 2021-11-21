@@ -69,7 +69,8 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
 }
 
@@ -118,7 +119,7 @@ html {
 }
 
 .volume-range {
-  background: linear-gradient(to right, #FFBCA2 0%, #FFBCA2 40%, rgba(80, 80, 80, 0.5) 40%, rgba(80, 80, 80, 0.5) 100%);
+  background: linear-gradient(to right, #ffbca2 0%, #ffbca2 40%, rgba(80, 80, 80, 0.5) 40%, rgba(80, 80, 80, 0.5) 100%);
   border: none;
   outline: none;
   -webkit-appearance: none;
@@ -132,7 +133,7 @@ html {
   border-radius: 50%;
   -webkit-appearance: none;
   cursor: pointer;
-  background: #FFBCA2;
+  background: #ffbca2;
 }
 
 h2 {
@@ -301,7 +302,7 @@ h5 {
 }
 .game-select:hover {
   cursor: pointer;
-  background-color: #FFBCA2;
+  background-color: #ffbca2;
   opacity: 40%;
 }
 .game-select:hover h2 {
@@ -511,8 +512,10 @@ h5 {
   cursor: pointer;
   opacity: 0.8;
 }
-.options.image-type-options {
-  width: 22%;
+@media (min-width: 520px) {
+  .options.image-type-options {
+    width: 22%;
+  }
 }
 
 .container-question.hide {
@@ -628,7 +631,7 @@ h5 {
   text-align: center;
 }
 .note span {
-  color: #FFBCA2;
+  color: #ffbca2;
 }
 
 .note-result {
@@ -645,7 +648,7 @@ h5 {
   border-radius: 56px;
   width: 30%;
   border-radius: 5%;
-  background-color: #FFBCA2;
+  background-color: #ffbca2;
   color: #000000;
   padding: 2%;
   font-size: 1.8rem;
@@ -654,13 +657,23 @@ h5 {
   font-style: normal;
   text-transform: normal;
 }
+.next-question.results {
+  width: 45%;
+  text-align: center;
+}
+
+.results-modal_buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
 
 .final-modal-button {
   border-radius: 56px;
   width: 100%;
   max-width: 60%;
   border-radius: 56px;
-  background-color: #FFBCA2;
+  background-color: #ffbca2;
   color: #000000;
   padding: 2%;
   font-size: 1.8rem;
@@ -780,7 +793,9 @@ h5 {
   transform: translateX(0);
 }
 
-.sound, .music, .time-mode {
+.sound,
+.music,
+.time-mode {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -853,7 +868,7 @@ h5 {
 }
 
 .switch-on {
-  background: #FFBCA2;
+  background: #ffbca2;
 }
 
 .switch-on::after {
@@ -866,7 +881,8 @@ h5 {
   width: 50%;
   align-items: center;
 }
-.volume .sound-volume, .volume .music-volume {
+.volume .sound-volume,
+.volume .music-volume {
   width: 80%;
 }
 
@@ -876,14 +892,16 @@ h5 {
   margin-top: 2%;
 }
 
-.music-select, .time-select {
+.music-select,
+.time-select {
   display: inline-block;
   outline: none;
-  border: 1px solid #FFBCA2;
+  border: 1px solid #ffbca2;
   border-radius: 5px;
   width: 50%;
 }
-.music-select:hover, .time-select:hover {
+.music-select:hover,
+.time-select:hover {
   cursor: pointer;
   opacity: 80%;
 }
@@ -922,9 +940,9 @@ h5 {
 }
 .button-settings:hover {
   color: #000000;
-  background-color: #FFBCA2;
+  background-color: #ffbca2;
   opacity: 80%;
-  border: 1px solid #FFBCA2;
+  border: 1px solid #ffbca2;
 }
 
 .save-buttons {

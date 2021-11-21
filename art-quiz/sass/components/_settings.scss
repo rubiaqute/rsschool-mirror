@@ -1,41 +1,43 @@
-.container-settings{
-  height:100vh;
+.container-settings {
+  height: 100vh;
   padding: 5%;
   padding-top: 5vh;
   padding-bottom: 5vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   @extend %transition;
   background: $color-overlay;
   transform: translateX(-150%);
-  &.hidden{
-    display:none;
+  &.hidden {
+    display: none;
   }
-  &.loaded{
+  &.loaded {
     @extend %transition;
     transform: translateX(0);
   }
 }
-.sound, .music, .time-mode{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-}
-.toggle{
-  width:40%;
-  display:flex;
+.sound,
+.music,
+.time-mode {
+  width: 100%;
+  display: flex;
   justify-content: space-between;
-  @include media-mobile{
-    width:30%;
 }
-@include media-desktop{
-  width:20%;
+.toggle {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  @include media-mobile {
+    width: 30%;
+  }
+  @include media-desktop {
+    width: 20%;
+  }
 }
-}
-.header{
+.header {
   @include font(1.4rem, 2rem, 500, normal);
-  color:$color-innertext;
+  color: $color-innertext;
   @extend %font-roboto;
   text-align: left;
   display: flex;
@@ -58,7 +60,7 @@
 .switch-button::after {
   content: "";
   height: 1.5rem; /* высота кнопки */
-  width:1.5rem; /* ширина кнопки */
+  width: 1.5rem; /* ширина кнопки */
   border-radius: 17px;
   background: $color-innertext; /* цвет кнопки */
   top: 0.2rem; /* положение кнопки по вертикали относительно основы */
@@ -72,67 +74,67 @@
   background: $color-darkdetails;
 }
 .switch-on::after {
-  left:3.3rem;
+  left: 3.3rem;
 }
-.volume{
-  display:flex;
+.volume {
+  display: flex;
   justify-content: space-between;
-  width:50%;
+  width: 50%;
   align-items: center;
-  .sound-volume, .music-volume{
-    width:80%;
+  .sound-volume,
+  .music-volume {
+    width: 80%;
   }
 }
-.selection{
-  display:flex;
+.selection {
+  display: flex;
   justify-content: space-between;
-  margin-top:2%;
-  
+  margin-top: 2%;
 }
-.music-select, .time-select {
+.music-select,
+.time-select {
   display: inline-block;
   outline: none;
   border: 1px solid $color-darkdetails;
   border-radius: 5px;
-  width:50%;
-  &:hover{
-    cursor:pointer;
-    opacity:80%;
+  width: 50%;
+  &:hover {
+    cursor: pointer;
+    opacity: 80%;
   }
-  } 
- .time-mode_toggle {
-   display: flex;
-   justify-content:space-between;
-   width:40%;
-   @include media-mobile{
-    width:30%;
-    }
-    @include media-desktop{
-      width:20%;
-    }
- }
-  .button-settings{
-    max-width:50%;
-    white-space: nowrap;
-    background: transparent;
-    border: 1px solid $color-border;
-    color: $color-innertext;
-    text-align: center;
-    vertical-align: center;
-    border-radius: 56px;
-    padding:  3%;
-    @include font(1.4rem, 1.4rem, 500, normal);
+}
+.time-mode_toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  @include media-mobile {
+    width: 30%;
+  }
+  @include media-desktop {
+    width: 20%;
+  }
+}
+.button-settings {
+  max-width: 50%;
+  white-space: nowrap;
+  background: transparent;
+  border: 1px solid $color-border;
+  color: $color-innertext;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 56px;
+  padding: 3%;
+  @include font(1.4rem, 1.4rem, 500, normal);
   @extend %font-roboto;
-    &:hover{
-      color: $color-darktext;
-      background-color: $color-darkdetails;
-      opacity: 80%;
-      border: 1px solid $color-darkdetails;
-      @extend %transition;
-    }
+  &:hover {
+    color: $color-darktext;
+    background-color: $color-darkdetails;
+    opacity: 80%;
+    border: 1px solid $color-darkdetails;
+    @extend %transition;
   }
-  .save-buttons{
-    width:100%;
-    text-align: center;
-    
-  }
+}
+.save-buttons {
+  width: 100%;
+  text-align: center;
+}

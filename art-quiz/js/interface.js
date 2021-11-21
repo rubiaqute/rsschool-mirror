@@ -1,15 +1,28 @@
-export const backButton = document.querySelector('.back');
-export const categoryButton = document.querySelector('.categories-icon');
-export const settingsButton = document.querySelector('.settings');
-export const game = document.querySelector('.wrapper');
-export const switchers = document.querySelectorAll('.switch-button');
-export const range = document.querySelectorAll('.volume-range');
-export const musicSelection = document.querySelector('.music-select');
-export const timeModeSelection = document.querySelector('.time-select');
-export const defaultSettingsButton = document.querySelector('.default');
-export const clearResultsButton = document.querySelector('.clean-results');
+export default class Interface {
+  constructor() {
+    this.game = document.querySelector('.wrapper');
+    this.backButton = document.querySelector('.back');
+    this.categoryButton = document.querySelector('.categories-icon');
+    this.settingsButton = document.querySelector('.settings');
+    this.gameSelector = document.querySelectorAll('.game-select');
+  }
 
-export class Interface {
+  static async createModalWrapper() {
+    const modalContainer = Interface.createNodetoDom('div', 'modal-container');
+    // modalContainer.innerHTML = await template;
+    const overlay = Interface.createNodetoDom('div', 'overlay');
+    await overlay.append(modalContainer);
+    new Interface().game.append(overlay);
+    setTimeout(() => modalContainer.classList.add('animated'), 500);
+    return modalContainer;
+  }
+
+  static createNodetoDom(element, ...classes) {
+    const node = document.createElement(element);
+    node.className = classes;
+    return node;
+  }
+
   static appearStartPage() {
     const startPage = document.querySelector('.container');
     startPage.classList.remove('hide');
@@ -38,19 +51,19 @@ export class Interface {
   }
 
   static appearBackIcon() {
-    backButton.classList.remove('hide');
+    new Interface().backButton.classList.remove('hide');
   }
 
   static hideBackIcon() {
-    backButton.classList.add('hide');
+    new Interface().backButton.classList.add('hide');
   }
 
   static appearSettingsIcon() {
-    settingsButton.classList.remove('hide');
+    new Interface().settingsButton.classList.remove('hide');
   }
 
   static hideSettingsIcon() {
-    settingsButton.classList.add('hide');
+    new Interface().settingsButton.classList.add('hide');
   }
 
   static appearCategories(type) {
@@ -60,14 +73,14 @@ export class Interface {
   }
 
   static appearCategoryIcon(id) {
-    categoryButton.classList.remove('hide');
-    if (id > 11) categoryButton.classList.add('paintings-type');
-    else categoryButton.classList.add('artists-type');
+    new Interface().categoryButton.classList.remove('hide');
+    if (id > 11) new Interface().categoryButton.classList.add('paintings-type');
+    else new Interface().categoryButton.classList.add('artists-type');
   }
 
   static hideCategoryIcon() {
-    categoryButton.classList.add('hide');
-    categoryButton.classList.remove('paintings-type', 'artists-type');
+    new Interface().categoryButton.classList.add('hide');
+    new Interface().categoryButton.classList.remove('paintings-type', 'artists-type');
   }
 
   static appearQuizPage() {
@@ -77,17 +90,17 @@ export class Interface {
 
   static eliminateQuizPage() {
     const quizPage = document.querySelector('.container-question');
-    if (quizPage) game.removeChild(quizPage);
+    if (quizPage) new Interface().game.removeChild(quizPage);
   }
 
   static eliminateResultsPage() {
     const resultsPage = document.querySelector('.container-results');
-    if (resultsPage) game.removeChild(resultsPage);
+    if (resultsPage) new Interface().game.removeChild(resultsPage);
   }
 
   static eliminateModal() {
     const overlay = document.querySelector('.overlay');
-    if (overlay) game.removeChild(overlay);
+    if (overlay) new Interface().game.removeChild(overlay);
   }
 
   static showStartPage() {
@@ -129,3 +142,20 @@ export class Interface {
     Interface.hideSettingsIcon();
   }
 }
+new Interface().backButton.addEventListener('click', () => {
+  Interface.showStartPage();
+});
+new Interface().categoryButton.addEventListener('click', () => {
+  if (new Interface().categoryButton.classList.contains('artists-type')) { Interface.showCategories('artists'); } else Interface.showCategories('paintings');
+});
+new Interface().settingsButton.addEventListener('click', () => {
+  Interface.showSettings();
+});
+
+new Interface().gameSelector.forEach((el) => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.closest('.artists-quiz')) Interface.showCategories('artists');
+    else Interface.showCategories('paintings');
+  });
+});
