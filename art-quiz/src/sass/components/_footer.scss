@@ -12,6 +12,7 @@
   @include font(1.4rem, 1.4rem, 500, normal);
   a {
     text-decoration: none;
+    color: $color-overlay;
     &:hover,
     &:active,
     &:visited {
