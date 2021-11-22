@@ -1,5 +1,7 @@
 import Questions from './questions.js';
 import Interface from './interface.js';
+import translation from './translation.js';
+import Settings from './settings.js';
 
 export default class Results {
   constructor(indexCategory) {
@@ -13,11 +15,6 @@ export default class Results {
       resultsLocalStorage = JSON.parse(localStorage.getItem('resultsRubiaqute'));
       return Results.rewriteResults(resultsLocalStorage);
     } return Results.rewriteResults([]);
-  }
-
-  static cleanResults() {
-    localStorage.removeItem('resultsRubiaqute');
-    window.location.reload();
   }
 
   checkResults() {
@@ -43,13 +40,13 @@ export default class Results {
     let template = '';
     const score = this.results[this.index].filter((el) => el === 'right').length;
     if (this.index < 12) {
-      template += `<div class="results-header"><h5>Round ${
+      template += `<div class="results-header"><h5>${translation[12][new Settings().returnSettings()['language-key']]} ${
         this.index + 1
-      }</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
+      }</h5><p class="results-header_score">${translation[7][new Settings().returnSettings()['language-key']]}: ${score}/10</p></div>`;
     } else {
-      template += `<div class="results-header"><h5>Round ${
+      template += `<div class="results-header"><h5>${translation[12][new Settings().returnSettings()['language-key']]} ${
         this.index + 1 - 12
-      }</h5><p class="results-header_score">Your score: ${score}/10</p></div>`;
+      }</h5><p class="results-header_score">${translation[7][new Settings().returnSettings()['language-key']]}: ${score}/10</p></div>`;
     }
     resultsContainer.innerHTML = template;
     const imgContainer = Interface.createNodetoDom('div', 'images-results');
@@ -98,8 +95,8 @@ export default class Results {
     template += `<p class="description">${year}</p>`;
     template += '</div>';
     template += '<div class="results-modal_buttons">';
-    template += `<a class="next-question results" target="_blank" href="${imageSrc}" download>Download</a>`;
-    template += '<button class="next-question results close">Close</button>';
+    template += `<a class="next-question results" target="_blank" href="${imageSrc}" download>${translation[13][new Settings().returnSettings()['language-key']]}</a>`;
+    template += `<button class="next-question results close">${translation[14][new Settings().returnSettings()['language-key']]}</button>`;
     template += '</div>';
     modalPage.insertAdjacentHTML('beforeend', template);
     const closeButton = document.querySelector('.next-question.results.close');

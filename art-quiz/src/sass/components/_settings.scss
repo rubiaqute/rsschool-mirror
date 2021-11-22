@@ -92,7 +92,10 @@
   margin-top: 2%;
 }
 .music-select,
-.time-select {
+.time-select,
+.language-select {
+  @include font(1.4rem, 1.4rem, 500, normal);
+  @extend %font-roboto;
   display: inline-block;
   outline: none;
   border: 1px solid $color-darkdetails;

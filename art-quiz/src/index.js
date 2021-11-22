@@ -1,7 +1,9 @@
 import Category from './js/categories.js';
+import Questions from './js/questions.js';
 import Quiz from './js/quiz.js';
 import Results from './js/results.js';
 import Settings from './js/settings.js';
+import selfEstimation from './js/self-estimation.js';
 import './sass/style.scss';
 
 async function getSettingsfromLocalStorage() {
@@ -13,14 +15,12 @@ async function getSettingsfromLocalStorage() {
     Settings.setSettingstoLocalStorage();
   }
   Settings.updateSettingsPage();
-  console.log(new Settings().returnSettings());
 }
 window.onload = async () => {
   await getSettingsfromLocalStorage();
   document.addEventListener('click', () => Settings.playMusic(), { once: true });
-};
-
-window.addEventListener('load', async () => {
+  Settings.translateApplication();
+  Questions.preloadImages();
   new Category('', 0).createCategoryPage('artists');
   new Category('', 12).createCategoryPage('paintings');
   for (let i = 0; i < 24; i += 1) {
@@ -28,6 +28,5 @@ window.addEventListener('load', async () => {
       new Quiz(i).updateCategory();
     }
   }
-});
-
-// document.addEventListener('click', () => Settings.playMusic(), { once: true });
+  console.log(selfEstimation);
+};

@@ -1,3 +1,6 @@
+import translation from './translation.js';
+import Settings from './settings.js';
+
 export default class Questions {
   constructor(id) {
     this.index = id;
@@ -7,10 +10,10 @@ export default class Questions {
     let questionText;
     if (this.index < 120) {
       const name = await new Questions(this.index).getName();
-      questionText = `Who is the author of "${name}"?`;
+      questionText = `${translation[1][new Settings().returnSettings()['language-key']]} "${name}"?`;
     } else {
       const author = await new Questions(this.index).getAuthor();
-      questionText = `Which picture was made by ${author}?`;
+      questionText = `${translation[2][new Settings().returnSettings()['language-key']]} ${author}?`;
     }
     return questionText;
   }
@@ -50,7 +53,9 @@ export default class Questions {
   }
 
   static async getImageData() {
-    const images = './assets/image-data/image_data.json';
+    let images;
+    if (new Settings().returnSettings()['language-key'] === '0') images = './assets/image-data/image_data_EN.json';
+    else images = './assets/image-data/image_data_RU.json';
     const res = await fetch(images);
     const data = await res.json();
     await data;
@@ -83,5 +88,14 @@ export default class Questions {
   static shuffle(array) {
     array.sort(() => Math.random() - 0.5);
     return array;
+  }
+
+  static preloadImages() {
+    const imagesPreload = [];
+    for (let i = 0; i < 240; i += 1) {
+      const img = new Image();
+      img.src = `./assets/image-data/img/${i}.jpg`;
+      imagesPreload.push(img);
+    }
   }
 }

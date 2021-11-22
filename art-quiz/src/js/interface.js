@@ -74,6 +74,7 @@ export default class Interface {
 
   static appearCategoryIcon(id) {
     new Interface().categoryButton.classList.remove('hide');
+    console.log(id);
     if (id > 11) new Interface().categoryButton.classList.add('paintings-type');
     else new Interface().categoryButton.classList.add('artists-type');
   }

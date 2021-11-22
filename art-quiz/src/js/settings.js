@@ -1,4 +1,4 @@
-import Results from './results.js';
+import translationStatic from './translation-static.js';
 
 export default class Settings {
   constructor() {
@@ -11,6 +11,7 @@ export default class Settings {
       'volume-music': '40',
       'track-number': '0',
       'time-left': '10',
+      'language-key': '0',
     };
     this.switchers = document.querySelectorAll('.switch-button');
     this.range = document.querySelectorAll('.volume-range');
@@ -18,6 +19,14 @@ export default class Settings {
     this.timeModeSelection = document.querySelector('.time-select');
     this.defaultSettingsButton = document.querySelector('.default');
     this.clearResultsButton = document.querySelector('.clean-results');
+    this.languageSelection = document.querySelector('.language-select');
+  }
+
+  static translateApplication() {
+    const translationItems = document.querySelectorAll('.translation-item');
+    for (let i = 0; i < translationItems.length; i += 1) {
+      translationItems.item(i).innerText = translationStatic[i][new Settings().returnSettings()['language-key']];
+    }
   }
 
   static setSettingstoLocalStorage() {
@@ -28,6 +37,14 @@ export default class Settings {
     if (this.settings) {
       this.settings['time-left'] = new Settings().timeModeSelection.value.toString();
       Settings.setSettingstoLocalStorage();
+    }
+  }
+
+  static changeLanguage() {
+    if (this.settings) {
+      this.settings['language-key'] = new Settings().languageSelection.value.toString();
+      Settings.setSettingstoLocalStorage();
+      window.location.reload();
     }
   }
 
@@ -76,6 +93,10 @@ export default class Settings {
 
   static updateTimeLeft() {
     new Settings().timeModeSelection.value = Number(this.settings['time-left']);
+  }
+
+  static updateLanguage() {
+    new Settings().languageSelection.value = this.settings['language-key'];
   }
 
   static updateRanges(index) {
@@ -142,6 +163,12 @@ export default class Settings {
     new Settings().range.forEach((el, index) => Settings.updateRanges(index));
     Settings.updateTrack();
     Settings.updateTimeLeft();
+    Settings.updateLanguage();
+  }
+
+  static cleanResults() {
+    localStorage.removeItem('resultsRubiaqute');
+    window.location.reload();
   }
 }
 new Settings().range.forEach((el, index) => el.addEventListener('change', () => Settings.changeVolume(el, index)));
@@ -150,8 +177,8 @@ new Settings().timeModeSelection.addEventListener('change', () => Settings.chang
 new Settings().defaultSettingsButton.addEventListener('click', () => Settings.makeSettingsDefault());
 new Settings().switchers.forEach((button, index) => button.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(new Settings().returnSettings());
   Settings.switchSettings(button, index);
 }));
+new Settings().languageSelection.addEventListener('change', () => Settings.changeLanguage());
 
-new Settings().clearResultsButton.addEventListener('click', () => Results.cleanResults());
+new Settings().clearResultsButton.addEventListener('click', () => Settings.cleanResults());

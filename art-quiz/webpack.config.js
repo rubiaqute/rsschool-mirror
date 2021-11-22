@@ -1,8 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, options) => {
@@ -17,7 +15,6 @@ module.exports = (env, options) => {
       path: path.join(__dirname, '/dist'),
       filename: 'script.js',
     },
-
     module: {
       rules: [
         // {
@@ -30,8 +27,9 @@ module.exports = (env, options) => {
         //       plugins: ['@babel/plugin-transform-runtime'],
         //     },
         //   },
-        // }, 
-        {test: /\.s[ac]ss$/i,
+        // },
+        {
+          test: /\.s[ac]ss$/i,
           use: [
             {
               loader: 'style-loader',
@@ -44,17 +42,16 @@ module.exports = (env, options) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-              }
-            }
+              },
+            },
           ],
-        }
+        },
       ],
     },
 
     plugins: [
-      // new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({ template: './src/index.html'}),
+      new HtmlWebpackPlugin({ template: './src/index.html' }),
       new CopyPlugin({
         patterns: [
           { from: './src/assets', to: 'assets' },

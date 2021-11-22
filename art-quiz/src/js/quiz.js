@@ -2,6 +2,7 @@ import Interface from './interface.js';
 import Questions from './questions.js';
 import Results from './results.js';
 import Settings from './settings.js';
+import translation from './translation.js';
 
 const preResults = [];
 let containerQuestion;
@@ -277,8 +278,9 @@ export default class Quiz {
     const modalPage = await Interface.createModalWrapper();
     modalPage.append(containerAnswer);
     modalPage.insertAdjacentHTML('afterbegin', `<div class="icon-${type}"></div>`);
-    modalPage.insertAdjacentHTML('beforeend', `<p class="note">You're ${type}!</p>`);
-    modalPage.insertAdjacentHTML('beforeend', '<button class="next-question">Next</button>');
+    if (type === 'wrong') modalPage.insertAdjacentHTML('beforeend', `<p class="note">${translation[3][new Settings().returnSettings()['language-key']]}!</p>`);
+    else modalPage.insertAdjacentHTML('beforeend', `<p class="note">${translation[4][new Settings().returnSettings()['language-key']]}!</p>`);
+    modalPage.insertAdjacentHTML('beforeend', `<button class="next-question">${translation[5][new Settings().returnSettings()['language-key']]}</button>`);
     const nextButton = document.querySelector('.next-question');
     nextButton.addEventListener('click', () => new Quiz(this.index).getNextQuestion(id));
   }
@@ -313,7 +315,7 @@ export default class Quiz {
       .checkResults()
       .filter((el) => el === 'right').length;
     if (score === 10) categoryResult.classList.add('best-score');
-    categoryResult.innerHTML = `<p>${score}/10</p><p>see results<p>`;
+    categoryResult.innerHTML = `<p>${score}/10</p><p>${translation[6][new Settings().returnSettings()['language-key']]}<p>`;
     category.append(categoryResult, categoryNumber);
     categoryResult.addEventListener('click', () => {
       Interface.showQuestion(this.index);
@@ -326,21 +328,21 @@ export default class Quiz {
     const modalPage = await Interface.createModalWrapper();
     const rightBullets = document.querySelectorAll('.bullet.right');
     const score = rightBullets.length;
-    modalPage.insertAdjacentHTML('beforeend', `<p class="note">Your score: <span>${score}/10</span></p>`);
+    modalPage.insertAdjacentHTML('beforeend', `<p class="note">${translation[7][new Settings().returnSettings()['language-key']]}: <span>${score}/10</span></p>`);
     const finalImage = new Image();
     finalImage.alt = '';
     if (score === 10) {
       finalImage.src = './assets/image-data/younglady.jpg';
-      template += '<p class="note-result">You are the BEST!</p>';
+      template += `<p class="note-result">${translation[8][new Settings().returnSettings()['language-key']]}!</p>`;
       await Quiz.playSoundEffect('finish-right');
     } else {
       finalImage.src = './assets/image-data/oldlady.jpg';
-      template += '<p class="note-result">Try better next time...</p>';
+      template += `<p class="note-result">${translation[9][new Settings().returnSettings()['language-key']]}...</p>`;
       await Quiz.playSoundEffect('finish-wrong');
     }
     template
-      += '<button class="final-modal-button play-again">&#8634; Once again</button>';
-    template += '<button class="final-modal-button resume">Resume</button>';
+      += `<button class="final-modal-button play-again">&#8634; ${translation[10][new Settings().returnSettings()['language-key']]}</button>`;
+    template += `<button class="final-modal-button resume">${translation[11][new Settings().returnSettings()['language-key']]}</button>`;
     await finalImage.decode();
     modalPage.append(finalImage);
     finalImage.className = 'image-result';

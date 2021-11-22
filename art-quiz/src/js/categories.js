@@ -1,5 +1,7 @@
 import Quiz from './quiz.js';
 import Interface from './interface.js';
+import translation from './translation.js';
+import Settings from './settings.js';
 
 export default class Category {
   constructor(index, mode) {
@@ -23,7 +25,7 @@ export default class Category {
   makeCategoryWrapper(sectionCategory) {
     new Interface().game.append(sectionCategory);
     const categoryHeader = document.createElement('h3');
-    categoryHeader.innerText = 'Choose round:';
+    categoryHeader.innerText = `${translation[0][new Settings().returnSettings()['language-key']]}:`;
     sectionCategory.append(categoryHeader);
 
     const containerCategory = Interface.createNodetoDom('div', 'categories_container');

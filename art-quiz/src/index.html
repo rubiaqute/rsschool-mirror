@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../src/assets/image-data/favicon.ico">
+    <link rel="icon" href="./assets/image-data/favicon.ico">
     <!-- <link rel="stylesheet" href="./sass/style.css"> -->
     <title>Art-quiz</title>
 </head>
@@ -19,20 +19,20 @@
         <div class="container">
             <div class="logo"></div>        
             <div class="game-select artists-quiz">
-                <h2>Artists Quiz</h2>
+                <h2 class = "translation-item">Artists Quiz</h2>
             </div>
             <div class="game-select paintings-quiz">
-                <h2>Paintings Quiz</h2>
+                <h2 class = "translation-item">Paintings Quiz</h2>
             </div> 
         </div>
         <div class="container-settings hidden">
-            <iframe src="../src/assets/sounds/silence.mp3" allow="autoplay" style="display: none"></iframe>;
+            <iframe src="./assets/sounds/silence.mp3" allow="autoplay" style="display: none"></iframe>;
             <audio class = "audio-sound"></audio>
             <audio class = "audio-music" loop></audio>
-            <h3>Settings:</h3>
+            <h3 class = "translation-item">Settings:</h3>
             <div class="sound">
                 <div class="sound_toggle toggle">  
-                    <p class="header">Sound</p>
+                    <p class="header translation-item">Sound</p>
                     <div class="switch-button switch-on"></div>
                 </div>
                 <div class="sound_volume volume">
@@ -43,7 +43,7 @@
             <div class="container-music">
             <div class="music">
                 <div class="music_toggle toggle">
-                    <p class="header">Music</p>
+                    <p class="header translation-item">Music</p>
                     <div class="switch-button"></div>  
                 </div>
                 <div class="music_volume volume"> 
@@ -52,45 +52,53 @@
                 </div>
             </div>
             <div class="music_selection selection">
-                <p class="header">Choose soundtrack:</p>
+                <p class="header translation-item">Choose soundtrack:</p>
                 <select class="music-select">
-                    <option disabled class = "music-select__option">Choose soundtrack:</option>
-                  <option class = "music-select__option" value =0>Track 01</option>
-                  <option class = "music-select__option" value =1>Track 02</option>
-                  <option class = "music-select__option" value =2>Track 03</option>
-                  <option class = "music-select__option" value =3>Track 04</option>
+                    <option disabled class = "music-select__option translation-item">Choose soundtrack:</option>
+                  <option class = "music-select__option translation-item" value =0>Track 01</option>
+                  <option class = "music-select__option translation-item" value =1>Track 02</option>
+                  <option class = "music-select__option translation-item" value =2>Track 03</option>
+                  <option class = "music-select__option translation-item" value =3>Track 04</option>
                   </select>
             </div>
             </div>
             <div class="time-mode">
                 <div class="time-mode_toggle ">
-                    <p class="header">Time-mode</p>
+                    <p class="header translation-item">Time-mode</p>
                     <div class="switch-button"></div>
                 </div>
                 
                     <select class="time-select">
-                      <option disabled class = "time-select__option">Time for answer:</option>
-                      <option class = "time-select__option" value =5>5 sec</option>
-                      <option selected class = "time-select__option" value =10>10 sec</option>
-                      <option class = "time-select__option" value =15>15 sec</option>
-                      <option class = "time-select__option" value =20>20 sec</option>
-                      <option class = "time-select__option" value =25>25 sec</option>
-                      <option class = "time-select__option" value =30>30 sec</option>
+                      <option disabled class = "time-select__option translation-item">Time for answer:</option>
+                      <option class = "time-select__option translation-item" value =5>5 sec</option>
+                      <option selected class = "time-select__option translation-item" value =10>10 sec</option>
+                      <option class = "time-select__option translation-item" value =15>15 sec</option>
+                      <option class = "time-select__option translation-item" value =20>20 sec</option>
+                      <option class = "time-select__option translation-item" value =25>25 sec</option>
+                      <option class = "time-select__option translation-item" value =30>30 sec</option>
                       </select>
                 
             </div>
+            <div class="language_selection selection">
+                <p class="header translation-item">Choose language:</p>
+                <select class="language-select">
+                    <option disabled class = "language-select__option translation-item">Choose language:</option>
+                  <option class = "language-select__option translation-item" value =0>English</option>
+                  <option class = "language-select__option translation-item" value =1>Russian</option>
+                  </select>
+            </div>
             <div class="save-buttons">
-                <button class="button-settings default">Default settings</button>
-                <button class="button-settings clean-results">Clear results</button>
+                <button class="button-settings default translation-item">Default settings</button>
+                <button class="button-settings clean-results translation-item">Clear results</button>
             </div>
         </div>
         <footer class="github-link">
             <p>2021</p>
-            <a href="https://rs.school/js/" class="course-link"> <img src="../src/assets/image-data/svg/rs_school_js.svg" alt="school-icon" class="school-icon"></a>
+            <a href="https://rs.school/js/" class="course-link"> <img src="./assets/image-data/svg/rs_school_js.svg" alt="school-icon" class="school-icon"></a>
             <a href="https://github.com/rubiaqute" class="githublink">rubiaqute</a>
         </footer>
     </div>
 </div>
-    <script src="./script.js"></script>
+    <!-- <script src="./script.js"></script> -->
 </body>
 </html>
