@@ -46,8 +46,8 @@ export default class Quiz {
         img.alt = '';
         img.onload = () => {
           questionOption.append(img);
+          questionOption.classList.add('image-type-options');
         };
-        questionOption.classList.add('image-type-options');
       }
       containerOptions.append(questionOption);
     }
@@ -56,7 +56,7 @@ export default class Quiz {
       await new Quiz(this.index).checkAnswer(e, indexQuestion);
       Quiz.killTimer();
     }, { once: true });
-    if (Settings.returnSettings()['time-mode'] === 'true') { new Quiz(indexCategory).createTimer(indexQuestion); }
+    if (new Settings().returnSettings()['time-mode'] === 'true') { new Quiz(indexCategory).createTimer(indexQuestion); }
     const gettedOptions = document.querySelectorAll('.options');
     setTimeout(() => {
       gettedOptions.forEach((item) => {
@@ -111,7 +111,7 @@ export default class Quiz {
       Quiz.changeQuestion(index);
       Quiz.changeImage(index);
       await new Quiz(this.index).changeOptions(index);
-      if (Settings.returnSettings()['time-mode'] === 'true') { new Quiz(this.index).createTimer(index); }
+      if (new Settings().returnSettings()['time-mode'] === 'true') { new Quiz(this.index).createTimer(index); }
     }
   }
 
@@ -156,17 +156,20 @@ export default class Quiz {
   }
 
   static deleteOptions() {
-    const questionOptions = document.querySelectorAll('.options');
+    // const questionOptions = document.querySelectorAll('.options');
     const containerOptions = document.querySelector('.container-options');
-    questionOptions.forEach((el) => containerOptions.removeChild(el));
+    const containerImageQuestion = document.querySelector('.container-question-image');
+    containerImageQuestion.removeChild(containerOptions);
   }
 
   static createOptions() {
-    const containerOptions = document.querySelector('.container-options');
+    const containerOptions = Interface.createNodetoDom('div', 'container-options');
     for (let i = 0; i < 4; i += 1) {
       const questionOptions = Interface.createNodetoDom('div', 'options');
       containerOptions.append(questionOptions);
     }
+    const containerImageQuestion = document.querySelector('.container-question-image');
+    containerImageQuestion.append(containerOptions);
   }
 
   static async changeQuestion(id) {
@@ -197,11 +200,12 @@ export default class Quiz {
   }
 
   static async playSoundEffect(type) {
-    if (Settings.returnSettings()['sound-mode'] === 'true') {
+    if (new Settings().returnSettings()['sound-mode'] === 'true') {
       const audio = document.querySelector('.audio-sound');
-      audio.src = `./sounds/${type}.mp3`;
+      audio.src = `./assets/sounds/${type}.mp3`;
       audio.volume = new Settings().range[0].value / 100;
       await audio.play();
+      audio.removeAttribute('src');
     }
   }
 
@@ -247,7 +251,7 @@ export default class Quiz {
   createTimer(indexQuestion) {
     const timer = Interface.createNodetoDom('span', 'timer');
     containerQuestion.append(timer);
-    const timeLeft = Settings.returnSettings()['time-left'];
+    const timeLeft = new Settings().returnSettings()['time-left'];
     new Quiz(this.index).countTimer(timeLeft, indexQuestion);
   }
 
@@ -326,11 +330,11 @@ export default class Quiz {
     const finalImage = new Image();
     finalImage.alt = '';
     if (score === 10) {
-      finalImage.src = './image-data/younglady.jpg';
+      finalImage.src = './assets/image-data/younglady.jpg';
       template += '<p class="note-result">You are the BEST!</p>';
       await Quiz.playSoundEffect('finish-right');
     } else {
-      finalImage.src = './image-data/oldlady.jpg';
+      finalImage.src = './assets/image-data/oldlady.jpg';
       template += '<p class="note-result">Try better next time...</p>';
       await Quiz.playSoundEffect('finish-wrong');
     }

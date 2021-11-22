@@ -2,7 +2,7 @@ import Results from './results.js';
 
 export default class Settings {
   constructor() {
-    this.settings = {};
+    this.settings = Settings.getSettingsfromLS();
     this.settingsDefault = {
       'sound-mode': 'true',
       'music-mode': 'false',
@@ -25,21 +25,32 @@ export default class Settings {
   }
 
   static changeTimeModeTimeLeft() {
-    this.settings['time-left'] = new Settings().timeModeSelection.value.toString();
-    Settings.setSettingstoLocalStorage();
+    if (this.settings) {
+      this.settings['time-left'] = new Settings().timeModeSelection.value.toString();
+      Settings.setSettingstoLocalStorage();
+    }
+  }
+
+  static getSettingsfromLS() {
+    if (localStorage.getItem('settingsRubiaqute')) {
+      const settings = JSON.parse(localStorage.getItem('settingsRubiaqute'));
+      return settings;
+    } return {};
   }
 
   static playMusic() {
-    const audio = document.querySelector('.audio-music');
-    const musicSelection = document.querySelector('.music-select');
-    const numberTrack = musicSelection.value;
-    this.settings['track-number'] = musicSelection.value.toString();
-    if (this.settings['music-mode'] === 'true') {
-      audio.src = `./sounds/${numberTrack}.mp3`;
-      audio.volume = new Settings().range[1].value / 100;
-      audio.play();
+    if (this.settings) {
+      const audio = document.querySelector('.audio-music');
+      const musicSelection = document.querySelector('.music-select');
+      const numberTrack = musicSelection.value;
+      this.settings['track-number'] = musicSelection.value.toString();
+      if (this.settings['music-mode'] === 'true') {
+        audio.src = `./assets/sounds/${numberTrack}.mp3`;
+        audio.volume = new Settings().range[1].value / 100;
+        audio.play();
+      }
+      Settings.setSettingstoLocalStorage();
     }
-    Settings.setSettingstoLocalStorage();
   }
 
   static stopMusic() {
@@ -48,12 +59,14 @@ export default class Settings {
   }
 
   static updateSettingsView(button, index) {
-    let type;
-    if (index === 0) type = 'sound-mode';
-    if (index === 1) type = 'music-mode';
-    if (index === 2) type = 'time-mode';
-    if (this.settings[type] === 'true') button.classList.add('switch-on');
-    else button.classList.remove('switch-on');
+    if (this.settings) {
+      let type;
+      if (index === 0) type = 'sound-mode';
+      if (index === 1) type = 'music-mode';
+      if (index === 2) type = 'time-mode';
+      if (this.settings[type] === 'true') button.classList.add('switch-on');
+      else button.classList.remove('switch-on');
+    }
   }
 
   static updateTrack() {
@@ -77,29 +90,33 @@ export default class Settings {
   }
 
   static switchSettings(button, index) {
-    let type;
-    if (index === 0) type = 'sound-mode';
-    if (index === 1) type = 'music-mode';
-    if (index === 2) type = 'time-mode';
-    if (button.classList.contains('switch-on')) {
-      button.classList.remove('switch-on');
-      this.settings[type] = 'false';
-      if (index === 1) Settings.stopMusic();
-    } else {
-      button.classList.add('switch-on');
-      this.settings[type] = 'true';
-      if (index === 1) Settings.playMusic();
+    if (this.settings) {
+      let type;
+      if (index === 0) type = 'sound-mode';
+      if (index === 1) type = 'music-mode';
+      if (index === 2) type = 'time-mode';
+      if (button.classList.contains('switch-on')) {
+        button.classList.remove('switch-on');
+        this.settings[type] = 'false';
+        if (index === 1) Settings.stopMusic();
+      } else {
+        button.classList.add('switch-on');
+        this.settings[type] = 'true';
+        if (index === 1) Settings.playMusic();
+      }
+      Settings.setSettingstoLocalStorage();
     }
-    Settings.setSettingstoLocalStorage();
   }
 
   static changeVolume(rangeBar, index) {
-    const audio = document.getElementsByTagName('audio');
-    audio[index].volume = rangeBar.value / 100;
-    if (index === 0) this.settings['volume-sound'] = rangeBar.value;
-    else this.settings['volume-music'] = rangeBar.value;
-    Settings.changeProgressColor(index, rangeBar.value);
-    Settings.setSettingstoLocalStorage();
+    if (this.settings) {
+      const audio = document.getElementsByTagName('audio');
+      audio[index].volume = rangeBar.value / 100;
+      if (index === 0) this.settings['volume-sound'] = rangeBar.value;
+      else this.settings['volume-music'] = rangeBar.value;
+      Settings.changeProgressColor(index, rangeBar.value);
+      Settings.setSettingstoLocalStorage();
+    }
   }
 
   static rewriteSettings(array) {
@@ -109,7 +126,7 @@ export default class Settings {
     return this.settings;
   }
 
-  static returnSettings() {
+  returnSettings() {
     return this.settings;
   }
 
@@ -133,6 +150,7 @@ new Settings().timeModeSelection.addEventListener('change', () => Settings.chang
 new Settings().defaultSettingsButton.addEventListener('click', () => Settings.makeSettingsDefault());
 new Settings().switchers.forEach((button, index) => button.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log(new Settings().returnSettings());
   Settings.switchSettings(button, index);
 }));
 

@@ -1,9 +1,10 @@
-import Category from './categories.js';
-import Quiz from './quiz.js';
-import Results from './results.js';
-import Settings from './settings.js';
+import Category from './js/categories.js';
+import Quiz from './js/quiz.js';
+import Results from './js/results.js';
+import Settings from './js/settings.js';
+import './sass/style.scss';
 
-async function getLocalStorage() {
+async function getSettingsfromLocalStorage() {
   if (localStorage.getItem('settingsRubiaqute')) {
     const settings = JSON.parse(localStorage.getItem('settingsRubiaqute'));
     await Settings.rewriteSettings(settings);
@@ -12,11 +13,13 @@ async function getLocalStorage() {
     Settings.setSettingstoLocalStorage();
   }
   Settings.updateSettingsPage();
-  console.log(Settings.returnSettings());
+  console.log(new Settings().returnSettings());
 }
-window.onload = () => {
-  getLocalStorage();
+window.onload = async () => {
+  await getSettingsfromLocalStorage();
+  document.addEventListener('click', () => Settings.playMusic(), { once: true });
 };
+
 window.addEventListener('load', async () => {
   new Category('', 0).createCategoryPage('artists');
   new Category('', 12).createCategoryPage('paintings');
@@ -26,4 +29,5 @@ window.addEventListener('load', async () => {
     }
   }
 });
-document.addEventListener('click', () => Settings.playMusic(), { once: true });
+
+// document.addEventListener('click', () => Settings.playMusic(), { once: true });

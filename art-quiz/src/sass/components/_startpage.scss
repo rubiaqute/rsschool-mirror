@@ -1,0 +1,32 @@
+.logo {
+  background: url("../../../src/assets/image-data/svg/Group_1438.svg") no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 20vh;
+  margin: auto;
+  @include media-mobile {
+    background-size: 20%;
+  }
+}
+
+.game-select {
+  width: 100%;
+  margin: 5vh auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  border: 1px solid $color-border;
+  border-radius: 56px;
+  @extend %transition;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-darkdetails;
+
+    opacity: 40%;
+    @extend %transition;
+    h2 {
+      color: $color-darktext;
+    }
+  }
+}
+

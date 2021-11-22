@@ -50,7 +50,7 @@ export default class Questions {
   }
 
   static async getImageData() {
-    const images = './js/image_data.json';
+    const images = './assets/image-data/image_data.json';
     const res = await fetch(images);
     const data = await res.json();
     await data;
@@ -58,7 +58,7 @@ export default class Questions {
   }
 
   getImageSrc() {
-    const src = `./image-data/img/${this.index}.jpg`;
+    const src = `./assets/image-data/img/${this.index}.jpg`;
     return src;
   }
 

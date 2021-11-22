@@ -4,15 +4,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "style": "sass --watch sass/style.scss sass/style.css",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "style": "sass --watch src/sass/style.scss src/sass/style.css",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
     "eslint": "eslint"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.5.1",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.2"
+    "eslint-plugin-import": "^2.25.2",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "node-sass": "^6.0.1",
+    "resolve-url-loader": "^4.0.0",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0"
   }
 }

@@ -12,7 +12,7 @@ export default class Category {
     const categoryNumber = Interface.createNodetoDom('div', 'number');
     categoryNumber.innerText = this.index + 1 - this.mode;
     const categoryImage = Interface.createNodetoDom('img', 'category-image not-colored');
-    categoryImage.src = `./image-data/img/${this.index * 10}.jpg`;
+    categoryImage.src = `./assets/image-data/img/${this.index * 10}.jpg`;
     category.append(categoryNumber, categoryImage);
     categoryImage.addEventListener('click', () => {
       new Quiz(this.index).createQuiz();
