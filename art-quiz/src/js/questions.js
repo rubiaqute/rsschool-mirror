@@ -1,5 +1,6 @@
 import translation from './translation.js';
 import Settings from './settings.js';
+import initial from './constants.js';
 
 export default class Questions {
   constructor(id) {
@@ -8,7 +9,7 @@ export default class Questions {
 
   async makeQuestion() {
     let questionText;
-    if (this.index < 120) {
+    if (this.index < initial.quantityOfQuestionsInQuiz) {
       const name = await new Questions(this.index).getName();
       questionText = `${translation[1][new Settings().returnSettings()['language-key']]} "${name}"?`;
     } else {
@@ -26,13 +27,13 @@ export default class Questions {
     optionsAuthors.push(author);
     optionsImg.push(imageSrc);
     /* eslint-disable no-await-in-loop */
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < initial.quantityOfOptions - 1; i += 1) {
       let fakeAuthor;
       let fakeImageSrc;
       do {
         let fakeId;
         do {
-          fakeId = Math.round(Math.random() * 240);
+          fakeId = Math.round(Math.random() * initial.totalQuantityOfQuestions);
         } while (fakeId === this.index);
         fakeAuthor = await new Questions(fakeId).getAuthor();
         fakeImageSrc = new Questions(fakeId).getImageSrc();
@@ -42,8 +43,9 @@ export default class Questions {
     }
     /* eslint-enable no-await-in-loop */
     let shuffledOptions;
-    if (this.index < 120) shuffledOptions = Questions.shuffle(optionsAuthors);
-    else shuffledOptions = Questions.shuffle(optionsImg);
+    if (this.index < initial.quantityOfQuestionsInQuiz) {
+      shuffledOptions = Questions.shuffle(optionsAuthors);
+    } else shuffledOptions = Questions.shuffle(optionsImg);
     return shuffledOptions;
   }
 
@@ -92,7 +94,7 @@ export default class Questions {
 
   static preloadImages() {
     const imagesPreload = [];
-    for (let i = 0; i < 240; i += 1) {
+    for (let i = 0; i < initial.totalQuantityOfQuestions; i += 1) {
       const img = new Image();
       img.src = `./assets/image-data/img/${i}.jpg`;
       imagesPreload.push(img);

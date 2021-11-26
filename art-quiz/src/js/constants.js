@@ -6,6 +6,9 @@ class Constants {
     this.quantityOfCategoriesInQuiz = 12;
     this.numberOfFirstArtistsQuizCategory = 0;
     this.numberOfFirstPaintingsQuizCategory = 12;
+    this.quantityOfQuestionsInQuiz = this.quantityOfCategoriesInQuiz
+                                     * this.quantityOfQuestionsInCategory;
+    this.totalQuantityOfQuestions = this.quantityOfQuizes * this.quantityOfQuestionsInQuiz;
   }
 }
 const initial = new Constants();

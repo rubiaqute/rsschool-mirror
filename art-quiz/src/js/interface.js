@@ -9,7 +9,6 @@ export default class Interface {
 
   static async createModalWrapper() {
     const modalContainer = Interface.createNodetoDom('div', 'modal-container');
-    // modalContainer.innerHTML = await template;
     const overlay = Interface.createNodetoDom('div', 'overlay');
     await overlay.append(modalContainer);
     new Interface().game.append(overlay);
@@ -142,17 +141,18 @@ export default class Interface {
     Interface.hideSettingsIcon();
   }
 }
-new Interface().backButton.addEventListener('click', () => {
+const app = new Interface();
+app.backButton.addEventListener('click', () => {
   Interface.showStartPage();
 });
-new Interface().categoryButton.addEventListener('click', () => {
+app.categoryButton.addEventListener('click', () => {
   if (new Interface().categoryButton.classList.contains('artists-type')) { Interface.showCategories('artists'); } else Interface.showCategories('paintings');
 });
-new Interface().settingsButton.addEventListener('click', () => {
+app.settingsButton.addEventListener('click', () => {
   Interface.showSettings();
 });
 
-new Interface().gameSelector.forEach((el) => {
+app.gameSelector.forEach((el) => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
     if (e.target.closest('.artists-quiz')) Interface.showCategories('artists');

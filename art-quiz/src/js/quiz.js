@@ -3,6 +3,7 @@ import Questions from './questions.js';
 import Results from './results.js';
 import Settings from './settings.js';
 import translation from './translation.js';
+import initial from './constants.js';
 
 const preResults = [];
 let containerQuestion;
@@ -15,7 +16,7 @@ export default class Quiz {
   async createQuiz() {
     preResults[this.index] = [];
     const indexCategory = this.index;
-    const indexQuestion = this.index * 10;
+    const indexQuestion = this.index * initial.quantityOfQuestionsInCategory;
     Interface.showQuestion(this.index);
     Quiz.createQuestionContainer();
     const questionText = Interface.createNodetoDom('h4', 'text-question');
@@ -26,7 +27,7 @@ export default class Quiz {
       'container-question-image',
     );
     containerQuestion.append(imageOptionsContainer);
-    if (indexCategory < 12) {
+    if (indexCategory < initial.numberOfFirstPaintingsQuizCategory) {
       const questionImage = new Image();
       questionImage.src = new Questions(indexQuestion).getImageSrc();
       questionImage.alt = '';
@@ -38,10 +39,11 @@ export default class Quiz {
     const containerOptions = Interface.createNodetoDom('div', 'container-options');
     imageOptionsContainer.append(containerOptions);
     const options = await new Questions(indexQuestion).makeOptions();
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < initial.quantityOfOptions; i += 1) {
       const questionOption = Interface.createNodetoDom('div', 'options');
-      if (indexCategory < 12) questionOption.innerText = options[i];
-      else {
+      if (indexCategory < initial.numberOfFirstPaintingsQuizCategory) {
+        questionOption.innerText = options[i];
+      } else {
         const img = new Image();
         img.src = `${options[i]}`;
         img.alt = '';
@@ -67,7 +69,7 @@ export default class Quiz {
   }
 
   async checkAnswer(e, id) {
-    if (this.index > 11) {
+    if (this.index >= initial.numberOfFirstPaintingsQuizCategory) {
       if (e.target.src) {
         if (+/\d{1,3}.jpg/.exec(e.target.src)[0].slice(0, -4) === id) {
           await new Quiz(this.index).informIsRight(e, id, 'right');
@@ -105,7 +107,8 @@ export default class Quiz {
   async getNextQuestion(id) {
     const index = id + 1;
     Interface.eliminateModal();
-    if (index - this.index * 10 === 10) {
+    if (index - this.index * initial.quantityOfQuestionsInCategory
+                    === initial.quantityOfQuestionsInCategory) {
       new Quiz(this.index).makeFinalModal();
     } else {
       Quiz.createOptions();
@@ -120,9 +123,10 @@ export default class Quiz {
     const options = await new Questions(id).makeOptions();
     const questionOptions = document.querySelectorAll('.options');
     const containerOptions = document.querySelector('.container-options');
-    for (let i = 0; i < 4; i += 1) {
-      if (this.index < 12) questionOptions.item(i).innerText = options[i];
-      else {
+    for (let i = 0; i < initial.quantityOfOptions; i += 1) {
+      if (this.index < initial.numberOfFirstPaintingsQuizCategory) {
+        questionOptions.item(i).innerText = options[i];
+      } else {
         const img = new Image();
         img.src = `${options[i]}`;
         img.alt = '';
@@ -145,7 +149,7 @@ export default class Quiz {
 
   colorBullet(i, type) {
     const bullets = document.querySelectorAll('.bullet');
-    const index = i - this.index * 10;
+    const index = i - this.index * initial.quantityOfQuestionsInCategory;
     bullets.item(index).classList.add(type);
   }
 
@@ -165,7 +169,7 @@ export default class Quiz {
 
   static createOptions() {
     const containerOptions = Interface.createNodetoDom('div', 'container-options');
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < initial.quantityOfOptions; i += 1) {
       const questionOptions = Interface.createNodetoDom('div', 'options');
       containerOptions.append(questionOptions);
     }
@@ -179,7 +183,7 @@ export default class Quiz {
   }
 
   static changeImage(id) {
-    if (id < 120) {
+    if (id < initial.quantityOfQuestionsInQuiz) {
       const questionImage = document.querySelector('.image-question');
       questionImage.classList.remove('loaded');
       questionImage.src = new Questions(id).getImageSrc();
@@ -193,7 +197,7 @@ export default class Quiz {
     containerQuestion = Interface.createNodetoDom('div', 'container-question');
     new Interface().game.append(containerQuestion);
     const containerBullets = Interface.createNodetoDom('div', 'bullets');
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < initial.quantityOfQuestionsInCategory; i += 1) {
       const bullet = Interface.createNodetoDom('div', 'bullet');
       containerBullets.append(bullet);
     }
@@ -216,7 +220,7 @@ export default class Quiz {
   }
 
   writeResult() {
-    if (preResults[this.index].length === 10) {
+    if (preResults[this.index].length === initial.quantityOfQuestionsInCategory) {
       new Results(this.index).changeResults(preResults[this.index]);
     }
     Quiz.setResultsToLocalStorage();
@@ -295,7 +299,7 @@ export default class Quiz {
 
   finishLevel() {
     Interface.eliminateModal();
-    if (this.index > 11) Interface.showCategories('paintings');
+    if (this.index >= initial.numberOfFirstPaintingsQuizCategory) Interface.showCategories('paintings');
     else Interface.showCategories('artists');
     new Quiz(this.index).writeResult();
     new Quiz(this.index).updateCategory();
@@ -305,8 +309,9 @@ export default class Quiz {
     const categories = document.querySelectorAll('.category');
     const category = categories.item(this.index);
     const categoryNumber = Interface.createNodetoDom('div', 'number');
-    if (this.index < 12) categoryNumber.innerText = this.index + 1;
-    else categoryNumber.innerText = this.index + 1 - 12;
+    if (this.index < initial.numberOfFirstPaintingsQuizCategory) {
+      categoryNumber.innerText = this.index + 1;
+    } else categoryNumber.innerText = this.index + 1 - initial.numberOfFirstPaintingsQuizCategory;
     const categoryImage = category.querySelector('.category-image');
     categoryImage.classList.remove('not-colored');
     if (category.querySelector('div', 'score')) { category.removeChild(category.querySelector('div', 'score')); }
@@ -314,8 +319,8 @@ export default class Quiz {
     const score = new Results(this.index)
       .checkResults()
       .filter((el) => el === 'right').length;
-    if (score === 10) categoryResult.classList.add('best-score');
-    categoryResult.innerHTML = `<p>${score}/10</p><p>${translation[6][new Settings().returnSettings()['language-key']]}<p>`;
+    if (score === initial.quantityOfQuestionsInCategory) categoryResult.classList.add('best-score');
+    categoryResult.innerHTML = `<p>${score}/${initial.quantityOfQuestionsInCategory}</p><p>${translation[6][new Settings().returnSettings()['language-key']]}<p>`;
     category.append(categoryResult, categoryNumber);
     categoryResult.addEventListener('click', () => {
       Interface.showQuestion(this.index);
@@ -331,7 +336,7 @@ export default class Quiz {
     modalPage.insertAdjacentHTML('beforeend', `<p class="note">${translation[7][new Settings().returnSettings()['language-key']]}: <span>${score}/10</span></p>`);
     const finalImage = new Image();
     finalImage.alt = '';
-    if (score === 10) {
+    if (score === initial.quantityOfQuestionsInCategory) {
       finalImage.src = './assets/image-data/younglady.jpg';
       template += `<p class="note-result">${translation[8][new Settings().returnSettings()['language-key']]}!</p>`;
       await Quiz.playSoundEffect('finish-right');

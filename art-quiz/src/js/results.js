@@ -2,6 +2,7 @@ import Questions from './questions.js';
 import Interface from './interface.js';
 import translation from './translation.js';
 import Settings from './settings.js';
+import initial from './constants.js';
 
 export default class Results {
   constructor(indexCategory) {
@@ -39,20 +40,21 @@ export default class Results {
     const resultsContainer = Interface.createNodetoDom('div', 'container-results');
     let template = '';
     const score = this.results[this.index].filter((el) => el === 'right').length;
-    if (this.index < 12) {
+    if (this.index < initial.numberOfFirstPaintingsQuizCategory) {
       template += `<div class="results-header"><h5>${translation[12][new Settings().returnSettings()['language-key']]} ${
         this.index + 1
       }</h5><p class="results-header_score">${translation[7][new Settings().returnSettings()['language-key']]}: ${score}/10</p></div>`;
     } else {
       template += `<div class="results-header"><h5>${translation[12][new Settings().returnSettings()['language-key']]} ${
-        this.index + 1 - 12
+        this.index + 1 - initial.numberOfFirstPaintingsQuizCategory
       }</h5><p class="results-header_score">${translation[7][new Settings().returnSettings()['language-key']]}: ${score}/10</p></div>`;
     }
     resultsContainer.innerHTML = template;
     const imgContainer = Interface.createNodetoDom('div', 'images-results');
     resultsContainer.append(imgContainer);
-    for (let i = 0; i < 10; i += 1) {
-      const imageSrc = new Questions(this.index * 10 + i).getImageSrc();
+    for (let i = 0; i < initial.quantityOfQuestionsInCategory; i += 1) {
+      const imageSrc = new Questions(this.index * initial.quantityOfQuestionsInCategory
+                                                + i).getImageSrc();
       let imageClass;
       if (this.results[this.index][i] === 'right') imageClass = 'colored';
       else imageClass = 'black-white';
@@ -78,10 +80,14 @@ export default class Results {
 
   async makePictureModal(id) {
     let template = '';
-    const imageSrc = new Questions(this.index * 10 + id).getImageSrc();
-    const author = await new Questions(this.index * 10 + id).getAuthor();
-    const name = await new Questions(this.index * 10 + id).getName();
-    const year = await new Questions(this.index * 10 + id).getYear();
+    const imageSrc = new Questions(this.index * initial.quantityOfQuestionsInCategory
+                                              + id).getImageSrc();
+    const author = await new Questions(this.index * initial.quantityOfQuestionsInCategory
+                                                  + id).getAuthor();
+    const name = await new Questions(this.index * initial.quantityOfQuestionsInCategory
+                                                + id).getName();
+    const year = await new Questions(this.index * initial.quantityOfQuestionsInCategory
+                                                + id).getYear();
     const modalPage = await Interface.createModalWrapper();
     const imageResultsModal = new Image();
     imageResultsModal.alt = '';
