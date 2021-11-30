@@ -1,24 +1,14 @@
 import './sources.css';
+import {IDataSources, ISources} from './../../app/interfaces'
 
-interface IData {
-    category : string | null,
-    country: string | null,
-    description: string | null,
-    id: string | null,
-    language: string | null,
-    name: string | null,
-    url: string |null,
-}
-interface ISources {
-    draw(data: Array<IData>): void;
-}
+
 
 class Sources implements ISources{
-    draw(data: Array<IData>) {
+    draw(data: Array<IDataSources>) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 
-        data.forEach((item : IData) => {
+        data.forEach((item : IDataSources) => {
             const sourceClone: Node = sourceItemTemp.content.cloneNode(true);
             (<HTMLElement>sourceClone).querySelector('.source__item-name').textContent = item.name;
             (<HTMLElement>sourceClone).querySelector('.source__item').setAttribute('data-source-id', item.id);

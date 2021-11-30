@@ -1,17 +1,6 @@
 import './news.css';
-interface IDataNews {
-    author: string | null,
-    content: string | null,
-    description: string | null,
-    publishedAt: string | null,
-    source: {id: string, name: string | null}
-    title: string | null,
-    url: string | null,
-    urlToImage: string | null,
-}
-interface INews {
-    draw(data: Array<IDataNews>): void
-}
+import {IDataNews, INews} from './../../app/interfaces'
+
 
 class News implements INews{
     draw(data: Array<IDataNews>) {

@@ -1,49 +1,5 @@
-interface ILoader {
-    baseLink: string,
-    options?: {
-        [key: string]: string
-    },
-    getResp({ endpoint, options }: {
-        endpoint: string;
-        options?: {[key: string]: string};
-    }, callback?: () => void): void
+import {ILoader, IDataLoader} from './../app/interfaces'
 
-    makeUrl(options: {[key: string]: string},endpoint: string,): string
-    errorHandler(res: Response) : Response
-    load(method:string, endpoint:string, callback:(data:IDataLoader) => void, options:{}):void
-
-}
-interface IDataAppViewSources {
-    status: string,
-    sources?: Array<IDataSources>
-}
-interface IDataSources {
-    category : string | null,
-    country: string | null,
-    description: string | null,
-    id: string | null,
-    language: string | null,
-    name: string | null,
-    url: string |null,
-}
-interface IDataAppViewNews {
-    status: string,
-    articles?: Array<IDataNews>
-    totalResults?: number
-    }
-interface IDataNews {
-    author: string | null,
-    content: string | null,
-    description: string | null,
-    publishedAt: string | null,
-    source: {id: string, name: string | null}
-    title: string | null,
-    url: string | null,
-    urlToImage: string | null,
-}
-interface IDataLoader extends IDataAppViewNews, IDataAppViewSources{
-
-}
 class Loader implements ILoader {
     baseLink: string
     options: {
