@@ -5,7 +5,7 @@ class Loader implements ILoader {
     options: {
         [key: string]: string
     }
-    constructor(baseLink:string, options:{apiKey?:string}) {
+    constructor(baseLink:string, options:{[key: string]: string}) {
         this.baseLink = baseLink;
         this.options = options;
     }

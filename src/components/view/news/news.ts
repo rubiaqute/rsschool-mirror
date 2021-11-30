@@ -2,7 +2,7 @@ import './news.css';
 import {IDataNews, INews} from './../../app/interfaces'
 
 
-class News implements INews{
+class News {
     draw(data: Array<IDataNews>) {
         const news: Array<IDataNews> = data.length >= 10 ? data.filter((_item:IDataNews, idx: number) => idx < 10) : data;
         const fragment: DocumentFragment = document.createDocumentFragment();

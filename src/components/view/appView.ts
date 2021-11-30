@@ -1,10 +1,10 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import {IAppView, INews, ISources, IDataAppViewNews, IDataAppViewSources} from './../app/interfaces'
+import {IDataAppViewNews, IDataAppViewSources} from './../app/interfaces'
 
-export class AppView implements IAppView{
-    news: INews;
-    sources: ISources;
+export class AppView {
+    news = new News;
+    sources = new Sources;
     constructor() {
         this.news = new News();
         this.sources = new Sources();
