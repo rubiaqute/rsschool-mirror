@@ -9,8 +9,11 @@ interface IDataNews {
     url: string | null,
     urlToImage: string | null,
 }
+interface INews {
+    draw(data: Array<IDataNews>): void
+}
 
-class News {
+class News implements INews{
     draw(data: Array<IDataNews>) {
         const news: Array<IDataNews> = data.length >= 10 ? data.filter((_item:IDataNews, idx: number) => idx < 10) : data;
         const fragment: DocumentFragment = document.createDocumentFragment();

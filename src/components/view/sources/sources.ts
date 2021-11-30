@@ -9,9 +9,11 @@ interface IData {
     name: string | null,
     url: string |null,
 }
+interface ISources {
+    draw(data: Array<IData>): void;
+}
 
-
-class Sources {
+class Sources implements ISources{
     draw(data: Array<IData>) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
