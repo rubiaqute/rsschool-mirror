@@ -3,9 +3,9 @@ import { AppView } from '../view/appView';
 
 
 class App {
-  controller = new AppController();
+  private readonly controller = new AppController();
 
-  view = new AppView();
+  private readonly view = new AppView();
 
   constructor() {
     this.controller = new AppController();

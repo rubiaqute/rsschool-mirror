@@ -27,8 +27,3 @@ export interface IDataSources {
   name: string | null,
   url: string | null,
 }
-
-
-export interface IDataLoader extends IDataAppViewNews, IDataAppViewSources{
-
-}

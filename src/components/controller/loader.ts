@@ -1,9 +1,10 @@
-import { IDataLoader } from './../app/interfaces';
+import { IDataAppViewNews, IDataAppViewSources } from './../app/interfaces';
+import { Endpoint, Method } from './../app/enum';
 
 class Loader {
-  baseLink: string;
+  readonly baseLink: string;
 
-  options: {
+  readonly options: {
     [key: string]: string
   };
 
@@ -14,17 +15,17 @@ class Loader {
 
   getResp(
     { endpoint, options = {} }:{
-      endpoint: string;
+      endpoint: Endpoint;
       options?: { [key: string]: string };
     },
     callback = () => {
-      console.error('No callback for GET response');
+      console.error(`No callback for ${Method.get} response`);
     },
   ) {
-    this.load('GET', endpoint, callback, options);
+    this.load(Method.get, endpoint, callback, options);
   }
 
-  errorHandler(res: Response) {
+  private errorHandler(res: Response) {
 
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
@@ -35,7 +36,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: { [key: string]: string }, endpoint: string) {
+  private makeUrl(options: { [key: string]: string }, endpoint: Endpoint) {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
     Object.keys(urlOptions).forEach((key) => {
@@ -45,11 +46,11 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint:string, callback:(data:IDataLoader) => void, options = {}) {
+  private load(method: Method.get, endpoint:Endpoint, callback:(data:IDataAppViewNews | IDataAppViewSources) => void, options = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
-      .then((data: IDataLoader) => {callback(data); console.log(data);})
+      .then((data: IDataAppViewNews | IDataAppViewSources) => {callback(data); console.log(data);})
       .catch((err) => console.error(err));
             
   }
