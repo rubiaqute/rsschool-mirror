@@ -1,10 +1,10 @@
 {
     "plugins": ["prettier", "import"],
     "extends": [
-        "plugin:prettier/recommended",
-        "prettier"
+        "airbnb-typescript"
     ],
     "parserOptions": {
+        "project": "./tsconfig.json",
         "ecmaVersion": 2020,
         "sourceType": "module"
     },
@@ -17,6 +17,6 @@
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
-        "no-explicit-any": true
+        "react/jsx-filename-extension": 0
     }
 }
