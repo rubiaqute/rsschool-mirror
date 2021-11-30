@@ -7,6 +7,7 @@ interface IDataAppViewSources {
 interface IDataAppViewNews {
     status: string,
     articles?: Array<IDataNews>
+    totalResults?: number
     }
 interface IDataNews {
     author: string | null,
