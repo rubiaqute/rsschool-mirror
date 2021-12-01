@@ -18,14 +18,14 @@ class Loader {
       endpoint: Endpoint;
       options?: { [key: string]: string };
     },
-    callback = () => {
+    callback = ():void => {
       console.error(`No callback for ${Method.get} response`);
     },
-  ) {
+  ): void {
     this.load(Method.get, endpoint, callback, options);
   }
 
-  private errorHandler(res: Response) {
+  private errorHandler(res: Response): Response {
 
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
@@ -36,22 +36,22 @@ class Loader {
     return res;
   }
 
-  private makeUrl(options: { [key: string]: string }, endpoint: Endpoint) {
-    const urlOptions = { ...this.options, ...options };
-    let url = `${this.baseLink}${endpoint}?`;
-    Object.keys(urlOptions).forEach((key) => {
+  private makeUrl(options: { [key: string]: string }, endpoint: Endpoint): string {
+    const urlOptions:{ [key: string]: string } = { ...this.options, ...options };
+    let url:string = `${this.baseLink}${endpoint}?`;
+    Object.keys(urlOptions).forEach((key: string):void => {
       url += `${key}=${urlOptions[key]}&`;
     });
 
     return url.slice(0, -1);
   }
 
-  private load(method: Method.get, endpoint:Endpoint, callback:(data:IDataAppViewNews | IDataAppViewSources) => void, options = {}) {
+  private load(method: Method, endpoint:Endpoint, callback:(data:IDataAppViewNews | IDataAppViewSources) => void, options: { [key: string]: string } = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
-      .then((res) => res.json())
-      .then((data: IDataAppViewNews | IDataAppViewSources) => {callback(data); console.log(data);})
-      .catch((err) => console.error(err));
+      .then((res: Response) => res.json())
+      .then((data: IDataAppViewNews | IDataAppViewSources) => callback(data))
+      .catch((err: Error) => console.error(err));
             
   }
 }

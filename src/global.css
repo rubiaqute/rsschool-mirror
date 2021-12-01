@@ -3,7 +3,10 @@ body {
     background: #17181c;
     font-family: sans-serif;
 }
+main {
+    display:flex;
 
+}
 header {
     padding: 10px 30px;
 }

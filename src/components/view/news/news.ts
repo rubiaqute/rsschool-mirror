@@ -3,11 +3,11 @@ import { IDataNews } from './../../app/interfaces';
 
 
 class News {
-  draw(data: Array<IDataNews>) {
+  draw(data: Array<IDataNews>): void {
     const news: Array<IDataNews> = data.length >= 10 ? data.filter((_item:IDataNews, idx: number) => idx < 10) : data;
     const fragment: DocumentFragment = document.createDocumentFragment();
     const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp');
-    news.forEach((item, idx) => {
+    news.forEach((item: IDataNews, idx: number): void => {
       const newsClone: Node = newsItemTemp.content.cloneNode(true);
 
       if (idx % 2) (<HTMLElement>newsClone).querySelector('.news__item').classList.add('alt');

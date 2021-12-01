@@ -4,7 +4,7 @@ import { IDataSources } from './../../app/interfaces';
 
 
 class Sources {
-  draw(data: Array<IDataSources>) {
+  draw(data: Array<IDataSources>): void {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 
