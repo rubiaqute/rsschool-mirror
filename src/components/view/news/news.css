@@ -1,3 +1,4 @@
+
 .news__item {
     display: flex;
     flex-direction: column;
@@ -124,7 +125,7 @@
 @media (min-width: 640px) {
     .news__item {
         flex-direction: row;
-        max-width: 700px;
+        /* max-width: 700px; */
     }
 
     .news__item .news__meta {

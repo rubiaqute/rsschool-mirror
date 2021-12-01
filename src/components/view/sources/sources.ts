@@ -8,7 +8,7 @@ class Sources {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 
-    data.forEach((item : IDataSources) => {
+    data.forEach((item : IDataSources): void => {
       const sourceClone: Node = sourceItemTemp.content.cloneNode(true);
       (<HTMLElement>sourceClone).querySelector('.source__item-name').textContent = item.name;
       (<HTMLElement>sourceClone).querySelector('.source__item').setAttribute('data-source-id', item.id);

@@ -3,10 +3,7 @@ body {
     background: #17181c;
     font-family: sans-serif;
 }
-main {
-    display:flex;
 
-}
 header {
     padding: 10px 30px;
 }
@@ -16,7 +13,7 @@ header h1 {
     font-weight: 800;
 }
 
-footer {
+/* footer {
     height: 100px;
     display: flex;
     align-items: center;
@@ -35,4 +32,40 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
-}
+} */
+.github-link {
+    align-items: center;
+    width: 90%;
+    margin-top: 2%;
+    bottom: 2%;
+    max-height: 10%;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(80, 80, 80, 0.5);
+    right: 5%;
+    left: 5%;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 500;
+    font-style: normal;
+    text-transform: normal;
+  }
+  .github-link a {
+    text-decoration: none;
+  }
+  .github-link a:hover, .github-link a:active, .github-link a:visited {
+    text-decoration: none;
+    color: rgba(80, 80, 80, 0.5);
+    cursor: pointer;
+  }
+  
+  .school-icon {
+    width: 5rem;
+    background-color: rgba(80, 80, 80, 0.5);
+    border-radius: 3px;
+    opacity: 70%;
+  }
+  .school-icon:hover {
+    opacity: 100%;
+    cursor: pointer;
+  }

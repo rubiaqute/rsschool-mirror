@@ -15,7 +15,7 @@ export interface IDataNews {
   source: { id: string, name: string | null }
   title: string | null,
   url: string | null,
-  urlToImage: string | null,
+  urlToImage?: string,
 }
 
 export interface IDataSources {
