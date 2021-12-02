@@ -29,23 +29,25 @@ header h1 {
     font-weight: 500;
     font-style: normal;
     text-transform: normal;
-  }
-  .github-link a {
+}
+.github-link a {
     text-decoration: none;
-  }
-  .github-link a:hover, .github-link a:active, .github-link a:visited {
+}
+.github-link a:hover,
+.github-link a:active,
+.github-link a:visited {
     text-decoration: none;
     color: rgba(80, 80, 80, 0.5);
     cursor: pointer;
-  }
-  
-  .school-icon {
+}
+
+.school-icon {
     width: 5rem;
     background-color: rgba(80, 80, 80, 0.5);
     border-radius: 3px;
     opacity: 70%;
-  }
-  .school-icon:hover {
+}
+.school-icon:hover {
     opacity: 100%;
     cursor: pointer;
-  }
+}
