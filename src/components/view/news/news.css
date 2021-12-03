@@ -27,7 +27,7 @@
     bottom: 0;
     left: 0;
     background-size: cover;
-    background-position: center;
+    background-position: top;
     transition: transform 0.2s;
 }
 
