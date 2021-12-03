@@ -1,6 +1,10 @@
 import { IDataAppViewNews, IDataAppViewSources } from './../app/interfaces';
 import { Endpoint, Method } from './../app/enum';
 
+type UnionData = {
+  data: IDataAppViewNews | IDataAppViewSources
+};
+
 class Loader {
   readonly baseLink: string;
 
@@ -46,11 +50,11 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  private load(method: Method, endpoint:Endpoint, callback:(data:IDataAppViewNews | IDataAppViewSources) => void, options: { [key: string]: string } = {}) {
+  private load(method: Method, endpoint:Endpoint, callback:(data:UnionData) => void, options: { [key: string]: string } = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res: Response) => res.json())
-      .then((data: IDataAppViewNews | IDataAppViewSources) => callback(data))
+      .then((data: UnionData) => callback(data))
       .catch((err: Error) => console.error(err));
             
   }
