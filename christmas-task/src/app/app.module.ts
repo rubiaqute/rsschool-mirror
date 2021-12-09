@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToysBoxComponent } from './toys-box/toys-box.component';
+
 
 
 registerLocaleData(localeRu, 'ru')
@@ -14,6 +16,8 @@ registerLocaleData(localeRu, 'ru')
 @NgModule({
   declarations: [
     AppComponent,
+    ToysBoxComponent,
+    
     
   ],
   imports: [

@@ -1,0 +1,40 @@
+@import "./../../sass_global/mixins";
+@import "./../../sass_global/placeholders";
+@import "./../../sass_global/constants";
+
+.toys-container__header {
+  @extend %font-neucha;
+  @include font(4.2rem, 4.6rem, 400, uppercase);
+  color: $color-text;
+  text-align: center;
+}
+.toys-container__items {
+  padding:1%;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.toys-container__item {
+  padding: 1rem;
+  width:19%;
+  background: $background-cards;
+  border-radius: 10px;
+  p {
+    color: $color-text;
+    @extend %font-roboto;
+    @include font(1rem, 1.2rem, 300, normal);
+  }
+  h4 {
+    color: $color-text;
+    @extend %font-neucha;
+    @include font(1.8rem, 2.0rem, 400, normal);
+  }
+}
+.toys-container__image {
+  
+  width: 37%;
+  margin:1rem auto;
+  img{
+    width:100%;
+  }
+}

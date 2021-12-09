@@ -5,5 +5,13 @@ background-size: cover;
 }
 .container {
   margin: 0 auto;
-  padding:5%;
+  padding:0 5%;
+  display: flex;
+}
+.side-bar {
+  height: 100vh;
+  min-width: 30%;
+}
+.toys-container{
+  padding-top:2%;
 }

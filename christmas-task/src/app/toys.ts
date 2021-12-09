@@ -1,4 +1,15 @@
-const data = [
+export interface ToyCard {
+  num:string,
+  name: string,
+  count: string,
+  year: string,
+  shape: string,
+  color: string,
+  size: string,
+  favorite: boolean,
+}
+
+export const toys: Array<ToyCard> = [
   {
     num: '1',
     name: 'Большой шар с рисунком',
@@ -601,4 +612,3 @@ const data = [
   },
 ];
 
-export default data;
