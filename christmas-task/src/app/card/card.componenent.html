@@ -1,7 +1,37 @@
-<div class="card">
-  <h2>Card component</h2>
-  <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem,
-    cupiditate!
-  </p>
-</div>
+<!-- <div class="card">
+  <h2 [ngStyle] = "{
+    color: card.title.length < 5 ? 'black': 'green',
+    fontWeight: card.title.length < 7 ? 'normal': 'bold'
+  }">{{index}}{{ card.title }}</h2>
+  <p class = "text" [ngClass]="{
+    blue:textColor === 'blue',
+    green:textColor === 'green',
+    red:textColor === 'red'
+  }">{{ text }}</p>
+  <p class = "text"
+  [class.blue]="textColor ==='blue'"
+  [class.green]="textColor ==='green'"
+  [class.red]="textColor ==='red'"
+  >{{ card.text }}</p>
+  <strong>Number: {{ number }}</strong>
+  <p>{{getInfo()}}</p>
+  <div class="buttons">
+    <button (click)="changeTitle()">Change title</button>
+    <button (click)="card.title = 'Inline title'">Change title inline</button>
+  </div>
+  <div class="buttons">
+    <button (click)="textColor = 'blue'">Set blue</button>
+    <button (click)="textColor = 'green'">Set green</button>
+    <button (click)="textColor = 'red'">Set red</button>
+  </div>
+  <div>
+    <strong>{{cardDate | date: 'dd MMMM yyyy HH:mm:ss':undefined:'ru'}}</strong>
+  </div>
+
+  <div>
+    <input type="text" #myInput (input) = "inputHandler(myInput.value)" [value] = "title"/>
+  </div>
+  <div>
+    <input type="text"[(ngModel)]="card.title" (ngModelChange) = "changeHandler()">
+  </div>
+</div> -->
