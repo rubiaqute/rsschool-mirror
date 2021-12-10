@@ -1,22 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
-import localeRu from '@angular/common/locales/ru'
 import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 import { ToysBoxComponent } from './toys-box/toys-box.component';
 
-
-
-registerLocaleData(localeRu, 'ru')
 
 @NgModule({
   declarations: [
     AppComponent,
     ToysBoxComponent,
+    FavouriteComponent,
     
     
   ],
@@ -24,11 +21,14 @@ registerLocaleData(localeRu, 'ru')
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: ProductListComponent },
-    // ])
+    RouterModule.forRoot([
+      { path: '', component: ToysBoxComponent },
+      { path: '', component: FavouriteComponent },
+    ])
   ],
-  providers: [],
+  providers: [
+    ToysBoxComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

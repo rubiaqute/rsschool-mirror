@@ -1,10 +1,17 @@
 <h2 class="toys-container__header" (click)="mix()">Игрушки</h2>
-
+<div class="favourites-container">
+  <object
+    class="favourites-container__svg"
+    type="image/svg+xml"
+    data="./../../assets/svg/heart.svg"
+  ></object>
+  <p class="favourites-container__counter">{{ getFavouritesLength() }}</p>
+</div>
 <div class="toys-container__items">
-  <div class="toys-container__item" *ngFor="let toy of toys">
+  <div *ngFor="let toy of toys" class="toys-container__item" [class.toys-container__item-colored] = "changeStylesforFavourites(toy)" >
     <h4>{{ toy.name }}</h4>
-    <div class="toys-container__image">
-      <img src="./../../assets/toys/{{toy.num}}.png" alt="toy-image" />
+    <div class="toys-container__image" (click)="addToFavourite(toy)">
+      <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" />
     </div>
     <p>Количество: {{ toy.count }}</p>
     <p>Год покупки: {{ toy.year }}</p>

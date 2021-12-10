@@ -1,14 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, TemplateRef, EmbeddedViewRef, ViewContainerRef } from '@angular/core';
 import { toys, ToyCard } from './../toys';
-
+import { FavouriteComponent } from '../favourite/favourite.component';
 
 @Component({
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
-  styleUrls: ['./toys-box.component.scss']
+  styleUrls: ['./toys-box.component.scss'],
 })
-export class ToysBoxComponent {
-  toys=toys;
+
+export class ToysBoxComponent implements OnInit{
+
+  @Input() toys: ToyCard[] = [];
+  constructor (private favourites: FavouriteComponent) {
+    this.toys=toys;
+  }
+  ngOnInit(): void {
+  }
+  changeStylesforFavourites(toy: ToyCard){
+    if (toy.favorite === true) return true;
+    else return false;
+  }
+  addToFavourite(toy: ToyCard) {
+    const check:boolean = this.favourites.addToFavourites(toy);
+    if (check) toy.favorite = true;
+    else toy.favorite = false;
+  }
+  getFavouritesLength() {
+    return this.favourites.getFavouritesLength();
+  }
   isFavourite(favouriteValue: boolean):string {
     if (favouriteValue===false) return "нет"
     else return "да"
