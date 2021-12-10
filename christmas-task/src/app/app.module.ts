@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { ToysBoxComponent } from './toys-box/toys-box.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
+import { FilterBarComponent } from './filter-bar/filter-bar.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SortBarComponent } from './sort-bar/sort-bar.component';
     ToysBoxComponent,
     FavouriteComponent,
     SortBarComponent,
+    FilterBarComponent,
     
     
   ],

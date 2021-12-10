@@ -8,7 +8,10 @@ export interface ToyCard {
   size: string,
   favorite: boolean,
 }
-
+export interface IShape {
+  shape: string,
+  svgName: string
+}
 export const toys: Array<ToyCard> = [
   {
     num: '1',
@@ -612,3 +615,19 @@ export const toys: Array<ToyCard> = [
   },
 ];
 
+const shapesDefine = (toys:ToyCard[]):string[] => {
+  const shapesArray: string[]=[];
+  toys.forEach((toy: ToyCard): void => {
+    if (!shapesArray.includes(toy.shape)) {
+      shapesArray.push(toy.shape);
+    }
+  })
+ return shapesArray;
+}
+export const shapes:IShape[] = [
+{shape: "шар", svgName:'ball'},
+{shape: "фигурка", svgName:'toy'},
+{shape: "колокольчик", svgName:'bell'},
+{shape: "шишка", svgName:'cone'},
+{shape: "снежинка", svgName:'snowflake'},
+]

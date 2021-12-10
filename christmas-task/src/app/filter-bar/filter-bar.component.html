@@ -1,0 +1,10 @@
+<p>filter-bar works!</p>
+<div class="shape-filter-container">
+  <p class="shape-filter-container__header">Форма</p>
+  <div class="shape-filter-container__items">
+    <div class="shape-filter-container__item" *ngFor="let shape of shapes">
+    <img class="shape-filter-container__svg" src="./../../assets/svg/{{shape.svgName}}.svg" alt="{{shape.shape}} icon">
+    <p class="shape-filter-container__description">{{shape.shape}}</p>
+    </div>
+  </div>
+</div>
