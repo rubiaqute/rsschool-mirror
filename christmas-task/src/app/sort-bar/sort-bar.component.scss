@@ -1,0 +1,34 @@
+@import "./../../sass_global/mixins";
+@import "./../../sass_global/placeholders";
+@import "./../../sass_global/constants";
+
+.sort-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .sort-container__header {
+    @extend %font-neucha;
+    @include font(2rem, 2.2rem, 400, uppercase);
+    color: $color-text;
+  }
+  .sort-container__select {
+    @include font(1.4rem, 1.4rem, 500, normal);
+    @extend %font-roboto;
+    display: inline-block;
+    outline: none;
+    border: 1px solid $color-border;
+    background: $background-selection;
+    border-radius: 3rem;
+    color: $color-text;
+    min-width: 60%;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      opacity: 80%;
+    }
+  }
+}
+.sort-container__option {
+  color: $color-darktext;
+  text-align: left;
+}

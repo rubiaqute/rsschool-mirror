@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { ToysBoxComponent } from './toys-box/toys-box.component';
+import { SortBarComponent } from './sort-bar/sort-bar.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ToysBoxComponent } from './toys-box/toys-box.component';
     AppComponent,
     ToysBoxComponent,
     FavouriteComponent,
+    SortBarComponent,
     
     
   ],
@@ -24,11 +26,10 @@ import { ToysBoxComponent } from './toys-box/toys-box.component';
     RouterModule.forRoot([
       { path: '', component: ToysBoxComponent },
       { path: '', component: FavouriteComponent },
+      { path: '', component: SortBarComponent },
     ])
   ],
-  providers: [
-    ToysBoxComponent,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,7 @@
 import {
   Component,
-  OnInit,
   Injectable,
   ChangeDetectorRef,
-  Input,
-  OnChanges,
 } from '@angular/core';
 import { toys, ToyCard } from '../toys';
 
@@ -16,7 +13,7 @@ import { toys, ToyCard } from '../toys';
 @Injectable({
   providedIn: 'root',
 })
-export class FavouriteComponent implements OnInit {
+export class FavouriteComponent {
   favourites: ToyCard[] = this.updateFavourites();
   addToFavourites(toy: ToyCard): boolean {
     if (!this.favourites.includes(toy)) {
@@ -52,7 +49,4 @@ export class FavouriteComponent implements OnInit {
     return this.favourites;
   }
 
-  ngOnInit(): void {
-    this.changeDetector.detectChanges();
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, TemplateRef, EmbeddedViewRef, ViewContainerRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { toys, ToyCard } from './../toys';
 import { FavouriteComponent } from '../favourite/favourite.component';
 
@@ -8,13 +8,11 @@ import { FavouriteComponent } from '../favourite/favourite.component';
   styleUrls: ['./toys-box.component.scss'],
 })
 
-export class ToysBoxComponent implements OnInit{
+export class ToysBoxComponent {
 
   @Input() toys: ToyCard[] = [];
   constructor (private favourites: FavouriteComponent) {
     this.toys=toys;
-  }
-  ngOnInit(): void {
   }
   changeStylesforFavourites(toy: ToyCard):boolean {
     if (toy.favorite === true) return true;
