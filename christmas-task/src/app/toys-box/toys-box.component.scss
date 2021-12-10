@@ -19,6 +19,11 @@
   width:19%;
   background: $background-cards;
   border-radius: 10px;
+  @extend %transition-cards;
+  &:hover{
+    cursor:pointer;
+    opacity:0.8;
+  }
   &.toys-container__item-colored {
     background: $background-favcards;
   }
@@ -42,9 +47,11 @@
   }
 }
 .favourites-container {
-  position: relative;
+  position: absolute;
   width:4rem;
   height: 4rem;
+  top: 0.5%;
+  right:2%;
 }
 .favourites-container__svg {
   width:4rem;

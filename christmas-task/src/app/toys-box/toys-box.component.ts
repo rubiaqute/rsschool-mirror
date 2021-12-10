@@ -16,16 +16,16 @@ export class ToysBoxComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  changeStylesforFavourites(toy: ToyCard){
+  changeStylesforFavourites(toy: ToyCard):boolean {
     if (toy.favorite === true) return true;
     else return false;
   }
-  addToFavourite(toy: ToyCard) {
+  addToFavourite(toy: ToyCard) :void {
     const check:boolean = this.favourites.addToFavourites(toy);
     if (check) toy.favorite = true;
     else toy.favorite = false;
   }
-  getFavouritesLength() {
+  getFavouritesLength() :string {
     return this.favourites.getFavouritesLength();
   }
   isFavourite(favouriteValue: boolean):string {

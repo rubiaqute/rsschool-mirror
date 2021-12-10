@@ -8,9 +8,9 @@
   <p class="favourites-container__counter">{{ getFavouritesLength() }}</p>
 </div>
 <div class="toys-container__items">
-  <div *ngFor="let toy of toys" class="toys-container__item" [class.toys-container__item-colored] = "changeStylesforFavourites(toy)" >
+  <div *ngFor="let toy of toys" class="toys-container__item" (click)="addToFavourite(toy)" [class.toys-container__item-colored] = "changeStylesforFavourites(toy)" >
     <h4>{{ toy.name }}</h4>
-    <div class="toys-container__image" (click)="addToFavourite(toy)">
+    <div class="toys-container__image" >
       <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" />
     </div>
     <p>Количество: {{ toy.count }}</p>
