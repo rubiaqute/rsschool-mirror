@@ -1,0 +1,16 @@
+@import "./../../sass_global/mixins";
+@import "./../../sass_global/placeholders";
+@import "./../../sass_global/constants";
+
+.favourites-container__svg {
+  width:4rem;
+  height: 4rem;
+}
+.favourites-container__counter {
+  color: $color-darktext;
+  position: absolute;
+  top:25%;
+  left:25%;
+  @extend %font-roboto;
+  @include font(1.8rem, 2.0rem, 700, normal);
+}

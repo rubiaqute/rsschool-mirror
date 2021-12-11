@@ -1,7 +1,6 @@
 import {
   Component,
   Injectable,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { toys, ToyCard } from '../toys';
 
@@ -33,13 +32,13 @@ export class FavouriteComponent {
     return this.favourites;
   }
   getFavouritesLength(): string {
-    return String(this.favourites.length).padStart(2, '0');
+    return String(this.updateFavourites().length).padStart(2, '0');
   }
   // clearFavourites() {
   //   this.favourites = [];
   //   return this.favourites;
   // }
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor() {}
   updateFavourites(): ToyCard[] {
     this.favourites = [];
     toys.forEach((toy: ToyCard) => {

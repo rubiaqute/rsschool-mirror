@@ -10,6 +10,7 @@ import { ToysBoxComponent } from './toys-box/toys-box.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
 import { FilterServiceComponent } from './filter-service/filter-service.component';
+import { ToyCardsComponent } from './toy-cards/toy-cards.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FilterServiceComponent } from './filter-service/filter-service.componen
     SortBarComponent,
     FilterBarComponent,
     FilterServiceComponent,
+    ToyCardsComponent,
     
     
   ],

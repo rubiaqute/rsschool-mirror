@@ -1,0 +1,17 @@
+<div
+    *ngFor="let toy of updateToys()"
+    class="toys-container__item"
+    (click)="addToFavourite(toy)"
+    [class.toys-container__item-colored]="changeStylesforFavourites(toy)"
+  >
+    <h4>{{ toy.name }}</h4>
+    <div class="toys-container__image">
+      <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" />
+    </div>
+    <p>Количество: {{ toy.count }}</p>
+    <p>Год покупки: {{ toy.year }}</p>
+    <p>Форма: {{ toy.shape }}</p>
+    <p>Цвет: {{ toy.color }}</p>
+    <p>Размер: {{ toy.size }}</p>
+    <p>Любимая: {{ isFavourite(toy.favorite) }}</p>
+  </div>

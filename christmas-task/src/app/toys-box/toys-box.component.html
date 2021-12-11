@@ -1,31 +1,11 @@
-
 <aside class="side-bar">
   <!-- <app-search-bar></app-search-bar> -->
-  <app-filter-bar (filterThis) = "rewriteToys($event)"></app-filter-bar>
+  <app-filter-bar (filterThis)="rewriteToys($event)"></app-filter-bar>
   <app-sort-bar></app-sort-bar>
 </aside>
 <main class="toys-container">
-<h2 class="toys-container__header" (click)="mix()">Игрушки</h2>
-<div class="favourites-container">
-  <object
-    class="favourites-container__svg"
-    type="image/svg+xml"
-    data="./../../assets/svg/heart.svg"
-  ></object>
-  <p class="favourites-container__counter">{{ getFavouritesLength() }}</p>
-</div>
-<div class="toys-container__items">
-  <div *ngFor="let toy of this.toys" class="toys-container__item" (click)="addToFavourite(toy)" [class.toys-container__item-colored] = "changeStylesforFavourites(toy)" >
-    <h4>{{ toy.name }}</h4>
-    <div class="toys-container__image" >
-      <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" />
-    </div>
-    <p>Количество: {{ toy.count }}</p>
-    <p>Год покупки: {{ toy.year }}</p>
-    <p>Форма: {{ toy.shape }}</p>
-    <p>Цвет: {{ toy.color }}</p>
-    <p>Размер: {{ toy.size }}</p>
-    <p>Любимая: {{ isFavourite(toy.favorite) }}</p>
-  </div>
-</div>
+  <h2 class="toys-container__header" >Игрушки</h2>
+  <app-favourite class="favourites-container"> </app-favourite>
+  <app-toy-cards class="toys-container__items"> </app-toy-cards>
+  
 </main>

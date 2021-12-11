@@ -25,54 +25,11 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-.toys-container__item {
-  padding: 1rem;
-  width:19%;
-  background: $background-cards;
-  border-radius: 10px;
-  @extend %transition-cards;
-  &:hover{
-    cursor:pointer;
-    opacity:0.8;
-  }
-  &.toys-container__item-colored {
-    background: $background-favcards;
-  }
-  p {
-    color: $color-text;
-    @extend %font-roboto;
-    @include font(1rem, 1.2rem, 300, normal);
-  }
-  h4 {
-    color: $color-text;
-    @extend %font-neucha;
-    @include font(1.8rem, 2.0rem, 400, normal);
-  }
-}
-.toys-container__image {
-  
-  width: 37%;
-  margin:1rem auto;
-  img{
-    width:100%;
-  }
-}
+
 .favourites-container {
   position: absolute;
   width:4rem;
   height: 4rem;
   top: 0.5%;
   right:2%;
-}
-.favourites-container__svg {
-  width:4rem;
-  height: 4rem;
-}
-.favourites-container__counter {
-  color: $color-darktext;
-  position: absolute;
-  top:25%;
-  left:25%;
-  @extend %font-roboto;
-  @include font(1.8rem, 2.0rem, 700, normal);
 }
