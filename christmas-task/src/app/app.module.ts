@@ -9,6 +9,7 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { ToysBoxComponent } from './toys-box/toys-box.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { FilterServiceComponent } from './filter-service/filter-service.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FilterBarComponent } from './filter-bar/filter-bar.component';
     FavouriteComponent,
     SortBarComponent,
     FilterBarComponent,
+    FilterServiceComponent,
     
     
   ],

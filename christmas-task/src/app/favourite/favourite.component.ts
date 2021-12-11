@@ -43,7 +43,6 @@ export class FavouriteComponent {
   updateFavourites(): ToyCard[] {
     this.favourites = [];
     toys.forEach((toy: ToyCard) => {
-      console.log(this.favourites);
       if (toy.favorite === true) this.favourites.push(toy);
     });
     return this.favourites;

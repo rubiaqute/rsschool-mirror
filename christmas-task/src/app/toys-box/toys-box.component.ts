@@ -1,7 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Injectable } from '@angular/core';
 import { toys, ToyCard } from './../toys';
 import { FavouriteComponent } from '../favourite/favourite.component';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
@@ -30,7 +33,10 @@ export class ToysBoxComponent {
     if (favouriteValue===false) return "нет"
     else return "да"
   }
+  rewriteToys(toysNew: ToyCard[]){
+    this.toys = toysNew;
+  }
   mix() {
-    this.toys=toys.sort((el1:ToyCard,el2:ToyCard): number=>{return Number(el1.year) - Number(el2.year)} )
+    this.toys=this.toys.sort((el1:ToyCard,el2:ToyCard): number=>{return Number(el1.year) - Number(el2.year)} )
   }
 }
