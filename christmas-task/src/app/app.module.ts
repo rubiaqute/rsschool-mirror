@@ -5,23 +5,19 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FavouriteComponent } from './favourite/favourite.component';
-import { ToysBoxComponent } from './toys-box/toys-box.component';
-import { SortBarComponent } from './sort-bar/sort-bar.component';
-import { FilterBarComponent } from './filter-bar/filter-bar.component';
-import { FilterServiceComponent } from './filter-service/filter-service.component';
-import { ToyCardsComponent } from './toy-cards/toy-cards.component';
+import { ToysComponent } from './toys/toys.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToysBoxComponent,
-    FavouriteComponent,
-    SortBarComponent,
-    FilterBarComponent,
-    FilterServiceComponent,
-    ToyCardsComponent,
+    // ToysBoxComponent,
+    // FavouriteComponent,
+    // SortBarComponent,
+    // FilterBarComponent,
+    // FilterServiceComponent,
+    // ToyCardsComponent,
     
     
   ],
@@ -30,9 +26,10 @@ import { ToyCardsComponent } from './toy-cards/toy-cards.component';
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: ToysBoxComponent },
-      { path: '', component: FavouriteComponent },
-      { path: '', component: SortBarComponent },
+      { path: 'toys', component: ToysComponent },
+      // { path: '', component: ToysBoxComponent },
+      // { path: '', component: FavouriteComponent },
+      // { path: '', component: SortBarComponent },
     ])
   ],
   providers: [],

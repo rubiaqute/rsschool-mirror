@@ -1,8 +1,6 @@
-import {
-  Component,
-  Injectable,
-} from '@angular/core';
-import { toys, ToyCard } from '../toys';
+import { Component, Injectable } from '@angular/core';
+import { toys } from '../../app_mocks/toys';
+import { ToyCard } from '../../app_models/interfaces';
 
 @Component({
   selector: 'app-favourite',
@@ -46,5 +44,4 @@ export class FavouriteComponent {
     });
     return this.favourites;
   }
-
 }
