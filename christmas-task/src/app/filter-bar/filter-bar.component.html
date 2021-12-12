@@ -2,9 +2,22 @@
 <div class="shape-filter-container">
   <p class="shape-filter-container__header">Форма</p>
   <div class="shape-filter-container__items">
-    <div class="shape-filter-container__item" *ngFor="let shape of shapes" (click) = "filterBy(shape)">
-    <img class="shape-filter-container__svg"  src="./../../assets/svg/{{shape.svgName}}.svg" alt="{{shape.shape}} icon">
-    <p class="shape-filter-container__description">{{shape.shape}}</p>
+    <div class="shape-filter-container__item" *ngFor="let shape of shapes" >
+    <img class="shape-filter-container__svg"  src="./../../assets/svg/{{shape.svgName}}.svg" alt="{{shape.name}} icon">
+    <p class="shape-filter-container__description">{{shape.name}}</p>
+    <input  type ="checkbox" class="filter-container__checkbox" id = "shape-checkbox" value = "yes" (change) = "filterByShape(shape, $event)">
+    <label for ="shape-checkbox"></label>
+    </div>
+  </div>
+</div>
+<div class="color-filter-container">
+  <p class="color-filter-container__header">Цвет</p>
+  <div class="color-filter-container__items">
+    <div class="color-filter-container__item" *ngFor="let color of this.colors" >
+    <span [ngStyle] = "{'background-color':color.colorCode}" class="color-filter-container__box" ></span>
+    <p class="color-filter-container__description">{{color.name}}</p>
+    <input  type ="checkbox" class="filter-container__checkbox" id = "shape-checkbox" value = "yes" (change) = "filterByColor(color, $event)">
+    <label for ="shape-checkbox"></label>
     </div>
   </div>
 </div>

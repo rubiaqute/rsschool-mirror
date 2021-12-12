@@ -16,7 +16,6 @@ export class ToysBoxComponent {
   }
   rewriteToys(toysNew: ToyCard[]) {
     this.toysOnScreen = toysNew;
-    console.log(this.toysOnScreen)
   }
   returnToys() {
     return this.toysOnScreen;

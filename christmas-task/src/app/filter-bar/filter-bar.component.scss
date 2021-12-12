@@ -6,26 +6,40 @@
   width: 4rem;
   height: 4rem;
 }
-.shape-filter-container__items {
+.color-filter-container__box {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  content:'';
+
+}
+.shape-filter-container__items,
+.color-filter-container__items  {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-.shape-filter-container__item {
+.shape-filter-container__item,
+.color-filter-container__item {
   text-align: center;
-  &:hover {
-    cursor: pointer;
-    opacity: 80%;
-  }
+  
 }
-.shape-filter-container__description {
+.shape-filter-container__description,
+.color-filter-container__description  {
   color: $color-text;
   @extend %font-roboto;
   @include font(1rem, 1.2rem, 300, normal);
 }
-.shape-filter-container__header {
+.shape-filter-container__header,
+.color-filter-container__header{
   @extend %font-neucha;
   @include font(2rem, 2.2rem, 400, uppercase);
   color: $color-text;
   margin-top: 2%;
+}
+.filter-container__checkbox {
+  &:hover {
+    cursor: pointer;
+    opacity: 80%;
+  }
 }
