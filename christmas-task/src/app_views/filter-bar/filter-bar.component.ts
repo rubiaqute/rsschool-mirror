@@ -19,14 +19,14 @@ export class FilterBarComponent {
     this.colors = colors;
     this.sizes = sizes;
   }
-  filterByShape(shape: IShape, e: Event) {
+  filterByShape(shape: IShape) {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.shapeFilter,
       shape
     );
     this.filterThis.emit(toys);
   }
-  filterByColor(color: IColor, e: Event) {
+  filterByColor(color: IColor) {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.colorFilter,
       color
