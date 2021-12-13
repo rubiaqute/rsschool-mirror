@@ -1,4 +1,4 @@
-import { IShape, IColor } from "../app_models/interfaces";
+import { IShape, IColor, ISize } from "../app_models/interfaces";
 
 export const shapes: IShape[] = [
   { id: 0, name: 'шар', svgName: 'ball', isOn: false },
@@ -15,8 +15,14 @@ export const colors: IColor[] = [
   { id: 3, name: 'красный', colorCode: 'red', isOn: false },
   { id: 4, name: 'синий', colorCode: 'blue', isOn: false },
 ];
+export const sizes: ISize[] = [
+  { id: 0, name: 'большой', isOn: false },
+  { id: 1, name: 'средний', isOn: false },
+  { id: 2, name: 'малый', isOn: false },
+];
 
 export const filterObject = {
   shapeFilter: shapes,
   colorFilter: colors,
+  sizeFilter: sizes,
 };

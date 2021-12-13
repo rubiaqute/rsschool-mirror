@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { shapes, colors } from '../../app_mocks/filter';
-import { IShape, ToyCard, IColor } from '../../app_models/interfaces';
+import { shapes, colors, sizes } from '../../app_mocks/filter';
+import { IShape, ToyCard, IColor, ISize } from '../../app_models/interfaces';
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { Filter } from '../../app_models/enum';
 
@@ -12,10 +12,12 @@ import { Filter } from '../../app_models/enum';
 export class FilterBarComponent {
   @Input() shapes: IShape[];
   @Input() colors: IColor[];
+  @Input() sizes: ISize[];
   @Output() filterThis = new EventEmitter<ToyCard[]>();
   constructor(private filter: FilterServiceComponent) {
     this.shapes = shapes;
     this.colors = colors;
+    this.sizes = sizes;
   }
   filterByShape(shape: IShape, e: Event) {
     const toys: ToyCard[] = this.filter.updateFilterObject(
@@ -28,6 +30,13 @@ export class FilterBarComponent {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.colorFilter,
       color
+    );
+    this.filterThis.emit(toys);
+  }
+  filterBySize(size: ISize) {
+    const toys: ToyCard[] = this.filter.updateFilterObject(
+      Filter.sizeFilter,
+      size
     );
     this.filterThis.emit(toys);
   }
