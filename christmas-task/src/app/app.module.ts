@@ -5,13 +5,17 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToysComponent } from './toys/toys.component';
+import { ToysComponent } from '../app_pages/toys/toys.component';
+import { FooterComponent } from '../app_views/footer/footer.component';
+import { NavigationComponent } from '../app_views/navigation/navigation.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FooterComponent,
+    NavigationComponent,
     // ToysBoxComponent,
     // FavouriteComponent,
     // SortBarComponent,

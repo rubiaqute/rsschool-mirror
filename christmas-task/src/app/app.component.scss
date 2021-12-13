@@ -1,9 +1,24 @@
+@import "../sass_global/constants";
+@import "../sass_global/mixins";
+@import "../sass_global/placeholders";
 .wrapper {
-width: 100%;
-background: url('./../assets/bg.jpg') no-repeat;
-background-size: cover;
-}
-.wrapper__button {
-  background-color: red;
+  width: 100%;
+  background: url("./../assets/bg.jpg") repeat-y;
+  position: relative;
+  min-height: 100vh;
 }
 
+.app-navigation {
+  width: 100%;
+  position: absolute;
+  top: 0%;
+  min-height: 5vh;
+}
+.app-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0% 5%;
+  position:absolute;
+  bottom:0.5%;
+}

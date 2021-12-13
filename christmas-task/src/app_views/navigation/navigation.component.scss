@@ -1,0 +1,45 @@
+@import "../../sass_global/constants";
+@import "../../sass_global/mixins";
+@import "../../sass_global/placeholders";
+
+.app-navigation__items {
+  display: flex;
+  gap: 2rem;
+  z-index: 1;
+  position: absolute;
+  top: 0%;
+  width:100%;
+  background-color: $color-header-background;
+  .app-navigation__item {
+    margin: 1%;
+  }
+  .app-navigation__link {
+    color: $color-text;
+    @extend %font-neucha;
+    @include font(2.4rem, 2.4rem, 400, uppercase);
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: none;
+      color: $color-text;
+      cursor: pointer;
+    }
+    &:hover {
+      filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
+141deg) brightness(89%) contrast(90%);
+      @extend %transition-cards;
+      cursor:pointer;
+    }
+  }
+}
+.app-navigation__item_home {
+background: url('../../assets/svg/home.svg') no-repeat;
+height:2.4rem;
+width:2.4rem;
+&:hover {
+  @extend %transition-cards;
+  cursor: pointer;
+  filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
+141deg) brightness(89%) contrast(90%);
+}
+}

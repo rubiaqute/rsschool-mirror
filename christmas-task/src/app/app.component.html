@@ -1,11 +1,6 @@
 
 <div class="wrapper">
-  <div class="start-page" *ngIf = "this.hideStartPage">
-  <button class="start__button" routerLink="/toys" (click)="hide()">Начать</button>
-  <button class="start__button" routerLink="/tree" (click)="hide()">Ёлка</button>
-  </div>
-  <router-outlet>
-    
-  </router-outlet>
-  <footer></footer>
+  <app-navigation class="app-navigation"></app-navigation>
+  <router-outlet></router-outlet>
+  <app-footer class="app-footer"></app-footer>
 </div>

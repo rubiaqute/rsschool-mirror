@@ -1,0 +1,32 @@
+@import "../../sass_global/constants";
+@import "../../sass_global/mixins";
+@import "../../sass_global/placeholders";
+
+.footer__link {
+  color: $color-text;
+  @extend %font-roboto;
+  @include font(2.4rem, 2.4rem, 400, normal);
+  a {
+    text-decoration: none;
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: none;
+      color: $color-text;
+      cursor: pointer;
+    }
+  }
+  
+}
+.school-icon {
+width: 5rem;
+opacity: 70%;
+vertical-align: bottom;
+&:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+img{
+  width:3rem;
+}
+}

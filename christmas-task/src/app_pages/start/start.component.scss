@@ -1,0 +1,89 @@
+@import "../../sass_global/constants";
+@import "../../sass_global/mixins";
+@import "../../sass_global/placeholders";
+
+.start-page {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0%;
+  z-index: 0;
+}
+.ball {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $color-balltie;
+  }
+  &.ball_big {
+    width: 50rem;
+    height: 50rem;
+    left: calc(50% - 55rem);
+    top: 15rem;
+    background-image: url("../../assets/ball/1.png");
+    &::before {
+      top: -21rem;
+      left: calc(50% - 4.7rem);
+      height: 22rem;
+      width: 0.5rem;
+    }
+  }
+  &.ball_small {
+    width: 30rem;
+    height: 30rem;
+    left: calc(50% + 15rem);
+    top: 15rem;
+    background-image: url("../../assets/ball/2.png");
+    &::before {
+      top: -20.5rem;
+      left: calc(50% - 3.2rem);
+      height: 21rem;
+      width: 0.5rem;
+    }
+  }
+}
+.start-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 55rem;
+  padding: 5rem;
+  height: 25rem;
+  margin: 15% auto;
+  margin-bottom: 5%;
+  color: $color-text;
+  @extend %font-neucha;
+  @include font(4.8rem, 4.8rem, 400, normal);
+  letter-spacing: 0.1rem;
+  text-align: center;
+  border: 3px solid $color-header-border;
+  border-radius: 2.5rem;
+  background-color: $color-header-background;
+}
+.start-page__buttons {
+  width: 100%;
+  text-align: center;
+  .button__start {
+    white-space: nowrap;
+    min-width: 20%;
+    color: $color-text;
+    border: 1px solid $color-header-border;
+    text-align: center;
+    padding: 2rem;
+    @extend %font-roboto;
+    @include font(2.2rem, 2.2rem, 300, normal);
+    margin-right: 2%;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    border-radius: 3rem;
+    background-color: $color-header-background;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
