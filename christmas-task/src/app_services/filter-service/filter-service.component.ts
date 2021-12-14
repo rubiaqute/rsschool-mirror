@@ -1,8 +1,8 @@
 import { Component, Injectable, Input } from '@angular/core';
 import { toys } from '../../app_mocks/toys';
-import { FilterPam, ToyCard } from '../../app_models/interfaces';
+import { FilterPam, ToyCard, IRanges } from '../../app_models/interfaces';
 import { filterObject } from '../../app_mocks/filter';
-import { Filter } from '../../app_models/enum';
+import { Filter, Range } from '../../app_models/enum';
 
 @Injectable({
   providedIn: 'root',
@@ -44,8 +44,6 @@ export class FilterServiceComponent {
       }
     }
     console.log(filterItems);
-    if (filterItems.length === 0)
-      alert('Для данных фильтров ничего не найдено!');
     return filterItems;
   }
   checkFilterObject(): boolean {
@@ -65,4 +63,16 @@ export class FilterServiceComponent {
     if (this.checkFilterObject()) return this.filterAll();
     else return this.toysToFilter;
   }
+  filterByRange(rangeObject:IRanges[]){
+    let toysToFilterByRange: ToyCard[]=[]
+    if (this.checkFilterObject())  toysToFilterByRange = this.filterAll();
+    else toysToFilterByRange = toys;
+    rangeObject.forEach ((rangeBar:IRanges)=>{
+      toysToFilterByRange = toysToFilterByRange.filter((el)=>{
+        return Number(el[rangeBar.range as keyof ToyCard])>=rangeBar.value && Number(el[rangeBar.range as keyof ToyCard])<=rangeBar.highValue
+      })
+    })
+     return toysToFilterByRange;
+     }
+
 }

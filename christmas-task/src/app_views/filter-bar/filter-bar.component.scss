@@ -38,3 +38,13 @@
     opacity: 80%;
   }
 }
+::ng-deep {
+  .filter-slider .ngx-slider .ngx-slider-span {
+    color: $color-text
+  }
+  .filter-slider .ngx-slider{
+    &:hover{
+      cursor:pointer;
+    }
+  }
+}

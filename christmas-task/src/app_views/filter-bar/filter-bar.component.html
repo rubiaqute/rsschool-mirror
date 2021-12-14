@@ -40,3 +40,11 @@
     </div>
   </div>
 </div>
+<p class="filter-container__header">Год покупки</p>
+<div class="filter-slider">
+<ngx-slider [(value)]="valueYear" (click)="filterByRanges()" (valueChange)="filterByRanges()" (highValueChange)="filterByRanges()" [(highValue)]="highValueYear" [options]="optionsYear"></ngx-slider>
+</div>
+<p class="filter-container__header">Количество</p>
+<div class="filter-slider">
+<ngx-slider class="filter-slider" (click)="filterByRanges()" (valueChange)="filterByRanges()" (highValueChange)="filterByRanges()" [(value)]="valueQuantity" [(highValue)]="highValueQuantity" [options]="optionsQuantity"></ngx-slider>
+</div>

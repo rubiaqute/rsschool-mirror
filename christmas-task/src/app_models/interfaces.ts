@@ -1,3 +1,4 @@
+import { Range } from './enum'
 export type FilterPam = IShape| IColor | ISize | IFavorite;
 export interface ToyCard {
   num:string,
@@ -8,6 +9,11 @@ export interface ToyCard {
   color: string,
   size: string,
   favorite: boolean,
+}
+export interface IRanges {
+  range: Range,
+  value: number,
+  highValue: number,
 }
 export interface IShape {
   id: number,

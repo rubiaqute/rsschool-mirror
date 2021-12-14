@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ToysComponent } from '../app_pages/toys/toys.component';
 import { FooterComponent } from '../app_views/footer/footer.component';
 import { NavigationComponent } from '../app_views/navigation/navigation.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 
@@ -29,6 +30,7 @@ import { NavigationComponent } from '../app_views/navigation/navigation.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgxSliderModule,
     RouterModule.forRoot([
       { path: 'toys', component: ToysComponent },
       // { path: '', component: ToysBoxComponent },
