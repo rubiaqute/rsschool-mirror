@@ -30,3 +30,13 @@
     </div>
   </div>
 </div>
+<div class="filter-container">
+  <p class="filter-container__header">Избранное</p>
+  <div class="filter-container__items">
+    <div class="filter-container__item" *ngFor="let favorite of this.favorites" >
+    <p class="filter-container__description">{{favorite.description}}</p>
+    <input  type ="checkbox" class="filter-container__checkbox" id = "favorite-checkbox" value = "yes" (change) = "filterByFavorite(favorite)">
+    <label for ="favorite-checkbox"></label>
+    </div>
+  </div>
+</div>

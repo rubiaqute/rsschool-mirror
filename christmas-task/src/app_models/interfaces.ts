@@ -1,4 +1,4 @@
-export type FilterPam = IShape| IColor | ISize;
+export type FilterPam = IShape| IColor | ISize | IFavorite;
 export interface ToyCard {
   num:string,
   name: string,
@@ -13,8 +13,15 @@ export interface IShape {
   id: number,
   name: string,
   svgName: string,
-  isOn:boolean
+  isOn:boolean,
 }
+export interface IFavorite {
+  id: number,
+  description: string,
+  name: boolean,
+  isOn:boolean,
+}
+
 export interface ISize {
   id: number,
   name: string,
