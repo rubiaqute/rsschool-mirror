@@ -12,11 +12,15 @@ import { ToyCard } from '../../app_models/interfaces';
 })
 export class ToysBoxComponent {
   toysOnScreen: ToyCard[];
+  toggle: boolean;
   constructor() {
-    this.toysOnScreen = toys;
+    this.toysOnScreen = toys; 
+    this.toggle = Boolean(this.returnToys().length>0);
   }
+  
   rewriteToys(toysNew: ToyCard[]) {
     this.toysOnScreen = toysNew;
+    this.toggle = Boolean(this.returnToys().length>0);
   }
   returnToys() {
     return this.toysOnScreen;

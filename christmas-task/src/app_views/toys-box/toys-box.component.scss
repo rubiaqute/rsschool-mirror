@@ -20,6 +20,14 @@
   color: $color-text;
   text-align: center;
 }
+.toys-container__message {
+  white-space: wrap;
+  @extend %font-neucha;
+  @include font(3.5rem, 3.5rem, 400, normal);
+  color: $color-text;
+  text-align: center;
+  margin-top: 20%;
+}
 .toys-container__items {
   padding:1%;
   display:flex;

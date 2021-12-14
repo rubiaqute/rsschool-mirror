@@ -6,6 +6,9 @@
 <main class="toys-container">
   <app-favourite class="favourites-container"> </app-favourite>
   <h2 class="toys-container__header" >Игрушки</h2>
-  <app-toy-cards class="toys-container__items"> </app-toy-cards>
+  <app-toy-cards class="toys-container__items" *ngIf ="toggle; else noToys"> </app-toy-cards>
   
 </main>
+<ng-template #noToys>
+  <p class="toys-container__message">Нет игрушек, отвечающих условиям поиска!</p>
+</ng-template>

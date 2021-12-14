@@ -89,7 +89,6 @@ export class FilterBarComponent {
       },
     ];
     const toys: ToyCard[] = this.filter.filterByRange(rangeObject);
-    if (toys.length===0) alert("Ничего не найдено")
     this.filterThis.emit(toys);
   }
 }

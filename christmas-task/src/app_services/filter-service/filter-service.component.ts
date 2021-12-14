@@ -23,7 +23,7 @@ export class FilterServiceComponent {
   filterAll(): ToyCard[] {
     let filterItems: ToyCard[] = [];
     for (const [key, value] of Object.entries(this.filterObject)) {
-      console.log(value);
+
       let filterItemsByParam: ToyCard[] = [];
       value.forEach((element) => {
         if (element.isOn === true) {
@@ -43,7 +43,6 @@ export class FilterServiceComponent {
           });
       }
     }
-    console.log(filterItems);
     return filterItems;
   }
   checkFilterObject(): boolean {
