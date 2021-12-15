@@ -1,9 +1,10 @@
 <div class="sort-container">
   <p class="sort-container__header">Сортировать:</p>
-  <select class="sort-container__select">
-    <option class="sort-container__option" value="0">По названию А-Я</option>
-    <option class="sort-container__option" value="1">По названию Я-А</option>
-    <option class="sort-container__option" value="2">Сначала старые</option>
-    <option class="sort-container__option" value="3">Сначала новые</option>
+  <select class="sort-container__select" #sortBar [(ngModel)]="sortingBar" (change)="sortBy(sortBar.value)">
+    <option class="sort-container__option" selected disabled></option>
+    <option class="sort-container__option" [value]="0">По названию А-Я</option>
+    <option class="sort-container__option" [value]="1">По названию Я-А</option>
+    <option class="sort-container__option" [value]="2">Сначала старые</option>
+    <option class="sort-container__option" [value]="3">Сначала новые</option>
   </select>
 </div>

@@ -10,6 +10,10 @@ export interface ToyCard {
   size: string,
   favorite: boolean,
 }
+export interface IToysAndSortingOrder {
+  toys:ToyCard[],
+  sortingOrder:string
+}
 export interface IRanges {
   range: Range,
   value: number,

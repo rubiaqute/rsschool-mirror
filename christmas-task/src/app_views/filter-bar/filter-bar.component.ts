@@ -11,11 +11,13 @@ import {
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { Filter, Range } from '../../app_models/enum';
 import { Options } from '@angular-slider/ngx-slider';
+import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
 
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
+  providers:[SortingServiceComponent],
 })
 export class FilterBarComponent {
   @Input() shapes: IShape[];
@@ -37,13 +39,16 @@ export class FilterBarComponent {
     ceil: 12,
     step: 1,
   };
-  constructor(private filter: FilterServiceComponent) {
+  sortingOrder:string='0';
+  constructor(private filter: FilterServiceComponent, private sorter: SortingServiceComponent) {
     this.shapes = shapes;
     this.colors = colors;
     this.sizes = sizes;
     this.favorites = favorites;
+    this.sortingOrder = this.sorter.returnSortOrder();
   }
   filterByShape(shape: IShape) {
+    console.log(this.sorter.returnSortOrder());
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.shapeFilter,
       shape

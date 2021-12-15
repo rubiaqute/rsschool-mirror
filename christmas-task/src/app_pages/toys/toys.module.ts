@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ToysRoutingModule } from './toys-routing.module';
 import { ToysComponent } from './toys.component';
@@ -10,6 +11,7 @@ import { FilterBarComponent } from '../../app_views/filter-bar/filter-bar.compon
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { ToyCardsComponent } from '../../app_views/toy-cards/toy-cards.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     FilterBarComponent,
     FilterServiceComponent,
     ToyCardsComponent,
+    SortingServiceComponent,
   ],
-  imports: [CommonModule, ToysRoutingModule, NgxSliderModule,],
+  imports: [CommonModule, ToysRoutingModule, NgxSliderModule, FormsModule],
 })
 export class ToysModule {}

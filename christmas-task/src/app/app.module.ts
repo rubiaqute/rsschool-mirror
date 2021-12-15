@@ -12,6 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

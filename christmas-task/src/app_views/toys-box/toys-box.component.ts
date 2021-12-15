@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { toys } from '../../app_mocks/toys';
-import { ToyCard } from '../../app_models/interfaces';
+import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,11 @@ import { ToyCard } from '../../app_models/interfaces';
   styleUrls: ['./toys-box.component.scss'],
 })
 export class ToysBoxComponent {
-  toysOnScreen: ToyCard[];
+  toysOnScreen: ToyCard[]= toys;
   toggle: boolean;
+  sortingOrder:string='';
   constructor() {
-    this.toysOnScreen = toys; 
+    this.toysOnScreen = this.returnToys(); 
     this.toggle = Boolean(this.returnToys().length>0);
   }
   
@@ -22,6 +23,12 @@ export class ToysBoxComponent {
     this.toysOnScreen = toysNew;
     this.toggle = Boolean(this.returnToys().length>0);
   }
+  rewriteToysAndSortingOrder(ToysAndSortingOrder:IToysAndSortingOrder){
+    this.toysOnScreen = ToysAndSortingOrder.toys;
+    this.sortingOrder = ToysAndSortingOrder.sortingOrder;
+    this.toggle = Boolean(this.returnToys().length>0);
+  }
+  
   returnToys() {
     return this.toysOnScreen;
   }

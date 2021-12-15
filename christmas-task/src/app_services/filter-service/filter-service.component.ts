@@ -3,6 +3,7 @@ import { toys } from '../../app_mocks/toys';
 import { FilterPam, ToyCard, IRanges } from '../../app_models/interfaces';
 import { filterObject } from '../../app_mocks/filter';
 import { Filter, Range } from '../../app_models/enum';
+import { filter } from 'rxjs-compat/operator/filter';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class FilterServiceComponent {
   }
 
   filterAll(): ToyCard[] {
-    let filterItems: ToyCard[] = [];
+    let filterItems: ToyCard[] = this.toysToFilter;
     for (const [key, value] of Object.entries(this.filterObject)) {
 
       let filterItemsByParam: ToyCard[] = [];
@@ -35,13 +36,18 @@ export class FilterServiceComponent {
           );
         }
       });
-      if (filterItemsByParam.length > 0) {
+      console.log(key)
+      console.log(filterItemsByParam)
+      console.log(filterItems)
+      if (filterItemsByParam.length > 0 && filterItems.length!=0) {
         filterItems = filterItems.concat(filterItemsByParam);
         if (filterItems.length != filterItemsByParam.length)
           filterItems = filterItems.filter((item, pos) => {
             return filterItems.indexOf(item) !== pos;
           });
       }
+      console.log(filterItems)
+      // if (filterItems.length===0) return filterItems;
     }
     return filterItems;
   }
