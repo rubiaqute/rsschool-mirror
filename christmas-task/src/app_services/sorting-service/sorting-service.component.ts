@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Injectable, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ToyCard } from '../../app_models/interfaces';
 import { ToysBoxComponent } from 'src/app_views/toys-box/toys-box.component';
-import { SortBarComponent } from 'src/app_views/sort-bar/sort-bar.component';
 
 
 
@@ -17,6 +16,7 @@ export class SortingServiceComponent implements OnChanges{
     this.toysToSort = toys.toysOnScreen;
     this.sortingOrder= this.returnSortOrder();
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     this.toysToSort = this.toys.toysOnScreen;
     this.sortingOrder = this.toys.sortingOrder;
