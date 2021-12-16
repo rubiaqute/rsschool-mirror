@@ -10,6 +10,12 @@ export interface ToyCard {
   size: string,
   favorite: boolean,
 }
+export interface IFilterObject{
+  shapeFilter: IShape[],
+  colorFilter: IColor[],
+  sizeFilter: ISize[],
+  favoriteFilter: IFavorite[],
+}
 export interface IToysAndSortingOrder {
   toys:ToyCard[],
   sortingOrder:string
@@ -19,27 +25,24 @@ export interface IRanges {
   value: number,
   highValue: number,
 }
-export interface IShape {
+export interface IFilterByCheckbox{
   id: number,
-  name: string,
-  svgName: string,
+  type:string,
   isOn:boolean,
 }
-export interface IFavorite {
-  id: number,
+export interface IShape extends IFilterByCheckbox {
+  svgName: string,
+  value: string,
+}
+export interface IFavorite extends IFilterByCheckbox {
   description: string,
-  name: boolean,
-  isOn:boolean,
+  value: boolean,
 }
 
-export interface ISize {
-  id: number,
-  name: string,
-  isOn:boolean
+export interface ISize extends IFilterByCheckbox{
+  value: string,
 }
-export interface IColor {
-  id: number,
-  name: string,
+export interface IColor extends IFilterByCheckbox{
   colorCode: string,
-  isOn: boolean
+  value:string
 }

@@ -11,7 +11,8 @@ import { FilterBarComponent } from '../../app_views/filter-bar/filter-bar.compon
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { ToyCardsComponent } from '../../app_views/toy-cards/toy-cards.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
+import { SortingServiceComponent } from '../../app_services/sorting-service/sorting-service.component';
+
 
 @NgModule({
   declarations: [

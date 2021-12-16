@@ -17,7 +17,7 @@ export class ToyCardsComponent {
   ) {}
   updateToys() {
     this.toys = this.toysOnScreen.returnToys();
-    return this.toys;
+    return this.toys; 
   }
   changeStylesforFavourites(toy: ToyCard): boolean {
     if (toy.favorite === true) return true;

@@ -1,9 +1,10 @@
 import { Component, Injectable, Input } from '@angular/core';
 import { toys } from '../../app_mocks/toys';
-import { FilterPam, ToyCard, IRanges } from '../../app_models/interfaces';
+import { FilterPam, ToyCard, IRanges, IFavorite, IFilterObject } from '../../app_models/interfaces';
 import { filterObject } from '../../app_mocks/filter';
 import { Filter, Range } from '../../app_models/enum';
 import { filter } from 'rxjs-compat/operator/filter';
+import { StorageServiceComponent } from '../storage-service/storage-service.component';
 
 @Injectable({
   providedIn: 'root',
@@ -15,30 +16,30 @@ import { filter } from 'rxjs-compat/operator/filter';
 })
 export class FilterServiceComponent {
   @Input() toysToFilter: ToyCard[];
-  filterObject;
-  constructor() {
+  filterObject: IFilterObject;
+  constructor(private storageService: StorageServiceComponent) {
     this.toysToFilter = toys;
-    this.filterObject = filterObject;
+    this.filterObject = this.getFilterObject();
   }
+getFilterObject(){
+  if (this.storageService.getObject('filterObject')) return this.storageService.getObject('filterObject')
+  else return filterObject;
 
+}
   filterAll(): ToyCard[] {
     let filterItems: ToyCard[] = this.toysToFilter;
     for (const [key, value] of Object.entries(this.filterObject)) {
-
       let filterItemsByParam: ToyCard[] = [];
-      value.forEach((element) => {
+      value.forEach((element:FilterPam) => {
         if (element.isOn === true) {
           filterItemsByParam = filterItemsByParam.concat(
             this.toysToFilter.filter((toy) => {
               const param = key.split('Filter')[0];
-              return toy[param as keyof ToyCard] === element.name;
+              return toy[param as keyof ToyCard] === element.value;
             })
           );
         }
       });
-      console.log(key)
-      console.log(filterItemsByParam)
-      console.log(filterItems)
       if (filterItemsByParam.length > 0 && filterItems.length!=0) {
         filterItems = filterItems.concat(filterItemsByParam);
         if (filterItems.length != filterItemsByParam.length)
@@ -46,15 +47,13 @@ export class FilterServiceComponent {
             return filterItems.indexOf(item) !== pos;
           });
       }
-      console.log(filterItems)
-      // if (filterItems.length===0) return filterItems;
     }
     return filterItems;
   }
   checkFilterObject(): boolean {
     let flag: boolean = false;
     for (const [key, value] of Object.entries(this.filterObject)) {
-      value.forEach((element) => {
+      value.forEach((element:FilterPam) => {
         if (element.isOn === true) flag = true;
       });
     }
@@ -65,6 +64,7 @@ export class FilterServiceComponent {
     if (this.filterObject[filter][param.id].isOn)
       this.filterObject[filter][param.id].isOn = false;
     else this.filterObject[filter][param.id].isOn = true;
+    this.storageService.setObject('filterObject', this.filterObject);
     if (this.checkFilterObject()) return this.filterAll();
     else return this.toysToFilter;
   }
