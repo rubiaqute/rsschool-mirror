@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FavouriteComponent } from 'src/app_services/favourite/favourite.component';
 import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
-import { toys } from '../../app_mocks/toys';
+import { toys, ToysUpdate } from '../../app_mocks/toys';
 import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
 
 @Injectable({
@@ -11,16 +11,17 @@ import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
   styleUrls: ['./toys-box.component.scss'],
-  providers:[FavouriteComponent]
+  providers:[FavouriteComponent, ToysUpdate]
 })
 export class ToysBoxComponent {
-  toysOnScreen: ToyCard[] = toys;
+  toysOnScreen: ToyCard[] = this.toysUpdate.returnToys();
   toggle: boolean;
   sortingOrder: string = '';
   constructor(
     private serviceStorage: StorageServiceComponent,
+    private toysUpdate:ToysUpdate
   ) {
-    this.toysOnScreen = this.returnToys();
+    this.toysOnScreen = this.toysUpdate.returnToys();
     this.toggle = Boolean(this.returnToys().length > 0);
   }
   rewriteToys(toysNew: ToyCard[]): void {

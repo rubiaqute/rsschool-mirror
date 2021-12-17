@@ -1,25 +1,26 @@
-import { Component, Injectable, Input } from '@angular/core';
-import { toys } from '../../app_mocks/toys';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { toys, ToysUpdate } from '../../app_mocks/toys';
 import { FilterPam, ToyCard, IRanges, IFavorite, IFilterObject } from '../../app_models/interfaces';
 import { filterObject } from '../../app_mocks/filter';
 import { Filter, Range } from '../../app_models/enum';
 import { filter } from 'rxjs-compat/operator/filter';
 import { StorageServiceComponent } from '../storage-service/storage-service.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+
 @Component({
   selector: 'app-filter-service',
   templateUrl: './filter-service.component.html',
   styleUrls: ['./filter-service.component.scss'],
 })
-export class FilterServiceComponent {
+export class FilterServiceComponent implements OnInit{
   @Input() toysToFilter: ToyCard[];
   filterObject: IFilterObject;
-  constructor(private storageService: StorageServiceComponent) {
-    this.toysToFilter = toys;
+  constructor(private storageService: StorageServiceComponent, private toysUpdate: ToysUpdate) {
+    this.toysToFilter = this.toysUpdate.returnToys();
     this.filterObject = this.getFilterObject();
+  }
+  ngOnInit(): void {
+    this.toysToFilter = this.toysUpdate.returnToys();
   }
 getFilterObject():IFilterObject{
   if (this.storageService.getObject('filterObject')) return this.storageService.getObject('filterObject')
@@ -28,6 +29,7 @@ getFilterObject():IFilterObject{
 }
   filterAll(): ToyCard[] {
     let filterItems: ToyCard[] = this.toysToFilter;
+    console.log(this.toysToFilter)
     for (const [key, value] of Object.entries(this.filterObject)) {
       let filterItemsByParam: ToyCard[] = [];
       value.forEach((element:FilterPam) => {
@@ -71,7 +73,7 @@ getFilterObject():IFilterObject{
   filterByRange(rangeObject:IRanges[]): ToyCard[]{
     let toysToFilterByRange: ToyCard[]=[]
     if (this.checkFilterObject())  toysToFilterByRange = this.filterAll();
-    else toysToFilterByRange = toys;
+    else toysToFilterByRange = this.toysUpdate.returnToys();
     rangeObject.forEach ((rangeBar:IRanges)=>{
       toysToFilterByRange = toysToFilterByRange.filter((el)=>{
         return Number(el[rangeBar.range as keyof ToyCard])>=rangeBar.value && Number(el[rangeBar.range as keyof ToyCard])<=rangeBar.highValue

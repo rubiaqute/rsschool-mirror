@@ -18,7 +18,7 @@ import { StorageServiceComponent } from 'src/app_services/storage-service/storag
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
-  providers: [SortingServiceComponent],
+  providers: [SortingServiceComponent, FilterServiceComponent]
 })
 export class FilterBarComponent implements OnInit {
   @Input() shapes: IShape[] = [];

@@ -1,11 +1,12 @@
 <aside class="side-bar">
   <!-- <app-search-bar></app-search-bar> -->
+  <app-favourite class="favourites-container"> </app-favourite>
   <app-filter-bar (filterThis)="rewriteToys($event)"></app-filter-bar>
   <app-sort-bar (sortThis)="rewriteToysAndSortingOrder($event)"></app-sort-bar>
   <app-sorting-service [toysToSort]="this.toysOnScreen" ></app-sorting-service>
 </aside>
 <main class="toys-container">
-  <app-favourite class="favourites-container"> </app-favourite>
+  
   <h2 class="toys-container__header" >Игрушки</h2>
   <app-toy-cards class="toys-container__items" *ngIf ="toggle; else noToys"> </app-toy-cards>
   
