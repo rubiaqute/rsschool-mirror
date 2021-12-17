@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FavouriteComponent } from '../../app_services/favourite/favourite.component';
 import { ToysBoxComponent } from '../toys-box/toys-box.component';
 
 import { ToyCard } from '../../app_models/interfaces';
-import { ToysUpdate } from 'src/app_mocks/toys';
+import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
+
 
 @Component({
   selector: 'app-toy-cards',
@@ -13,9 +13,8 @@ import { ToysUpdate } from 'src/app_mocks/toys';
 export class ToyCardsComponent implements OnInit{
   toys: ToyCard[]=[];
   constructor(
-    private favourites: FavouriteComponent,
     private toysOnScreen: ToysBoxComponent,
-    private toysUpdate:ToysUpdate,
+    private choosedService:ChoosedServiceComponent
   ) {
     this.toys = this.updateToys()
   }
@@ -26,15 +25,11 @@ ngOnInit(): void {
     this.toys = this.toysOnScreen.returnToys();
     return this.toys; 
   }
-  changeStylesforFavourites(toy: ToyCard): boolean {
-    if (toy.favorite === true) return true;
-    else return false;
+  changeStylesIfChosen(toy:ToyCard) {
+return this.choosedService.isChosen(toy);
   }
   addToFavourite(toy: ToyCard): void {
-    const check: boolean = this.favourites.addToFavourites(toy);
-    if (check) toy.favorite = true;
-    else toy.favorite = false;
-    this.toysUpdate.changeFavourite(toy);
+    this.choosedService.addToFavourites(toy);
   }
 
   isFavourite(favouriteValue: boolean): string {

@@ -2,7 +2,7 @@
     *ngFor="let toy of updateToys()"
     class="toys-container__item"
     (click)="addToFavourite(toy)"
-    [class.toys-container__item-colored]="changeStylesforFavourites(toy)"
+    [class.toys-container__item-colored]="changeStylesIfChosen(toy)"
   >
     <h4>{{ toy.name }}</h4>
     <div class="toys-container__image">

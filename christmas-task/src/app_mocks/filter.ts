@@ -21,8 +21,8 @@ export const sizes: ISize[] = [
   { id: 2, type: "size", value: 'малый', svgName:'ball_small', isOn: false },
 ];
 export const favorites: IFavorite[] = [
-  { id: 0, type: "favorite", description:'Избранное', value: true, svgName: 'favourite', isOn: false },
-  { id: 1, type: "favorite", description:'Неизбранное', value: false, svgName: 'unfavourite', isOn: false },
+  { id: 0, type: "favorite", description:'Любимые', value: true, svgName: 'favourite', isOn: false },
+  { id: 1, type: "favorite", description:'Нелюбимые', value: false, svgName: 'unfavourite', isOn: false },
 ];
 export const filterObject:IFilterObject = {
   shapeFilter: shapes,

@@ -1,14 +1,6 @@
 import { ToyCard } from '../app_models/interfaces';
 export class ToysUpdate {
   toysArray: ToyCard[] = [];
-  changeFavourite(toy:ToyCard){
-    this.toysArray[Number(toy.num)-1].favorite = toy.favorite;
-    console.log(this.toysArray[Number(toy.num)-1])
-  }
-  returnToys(){
-    return this.toysArray;
-    
-  }
   constructor() {
     this.toysArray = [
       {
@@ -59,7 +51,7 @@ export class ToysUpdate {
         shape: 'фигурка',
         color: 'красный',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '6',
@@ -79,7 +71,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'белый',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '8',
@@ -139,7 +131,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'синий',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '14',
@@ -149,7 +141,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'синий',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '15',
@@ -169,7 +161,7 @@ export class ToysUpdate {
         shape: 'шишка',
         color: 'синий',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '17',
@@ -209,7 +201,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'красный',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '21',
@@ -219,7 +211,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'красный',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '22',
@@ -299,7 +291,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'желтый',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '30',
@@ -309,7 +301,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'желтый',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '31',
@@ -359,7 +351,7 @@ export class ToysUpdate {
         shape: 'фигурка',
         color: 'желтый',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '36',
@@ -449,7 +441,7 @@ export class ToysUpdate {
         shape: 'фигурка',
         color: 'красный',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '45',
@@ -529,7 +521,7 @@ export class ToysUpdate {
         shape: 'шар',
         color: 'красный',
         size: 'большой',
-        favorite: false,
+        favorite: true,
       },
       {
         num: '53',
@@ -609,7 +601,7 @@ export class ToysUpdate {
         shape: 'фигурка',
         color: 'белый',
         size: 'средний',
-        favorite: false,
+        favorite: true,
       },
     ];
   }

@@ -38,7 +38,7 @@
   </div>
 </div>
 <div class="filter-container">
-  <p class="filter-container__header">Избранное</p>
+  <p class="filter-container__header">Любимое</p>
   <div class="filter-container__items">
     <div class="filter-container__item" *ngFor="let favorite of this.favorites" >
       <div class="filter-container__svg" [class.filter-container__svg_colored]="getFlag(favorite.type,favorite.id)" [ngStyle] = "returnBackgroundIcon(favorite.svgName)" ></div>

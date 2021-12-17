@@ -1,11 +1,10 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FavouriteComponent } from 'src/app_services/favourite/favourite.component';
-import { FilterServiceComponent } from 'src/app_services/filter-service/filter-service.component';
-import { SearchServiceComponent } from 'src/app_services/search-service/search-service.component';
-import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
-import { toys, ToysUpdate } from '../../app_mocks/toys';
+import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
+import { SearchServiceComponent } from '../../app_services/search-service/search-service.component';
+import { toys } from '../../app_mocks/toys';
 import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
 import { FilterBarComponent } from '../filter-bar/filter-bar.component';
+import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +13,17 @@ import { FilterBarComponent } from '../filter-bar/filter-bar.component';
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
   styleUrls: ['./toys-box.component.scss'],
-  providers:[FavouriteComponent, ToysUpdate, FilterBarComponent, FilterServiceComponent, SearchServiceComponent]
+  providers:[FilterBarComponent, FilterServiceComponent, SearchServiceComponent, ChoosedServiceComponent]
 })
 export class ToysBoxComponent {
-  toysOnScreen: ToyCard[] = this.toysUpdate.returnToys();
+  toysOnScreen: ToyCard[] = toys;
   toggle: boolean;
   sortingOrder: string = '';
   constructor(
-    private toysUpdate:ToysUpdate,
+    
 
   ) {
-    this.toysOnScreen = this.toysUpdate.returnToys();
+    this.toysOnScreen = toys;
     this.toggle = Boolean(this.returnToys().length > 0);
   }
   rewriteToys(toysNew: ToyCard[]): void {
