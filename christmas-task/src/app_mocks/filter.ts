@@ -16,13 +16,13 @@ export const colors: IColor[] = [
   { id: 4, type: "color", value: 'синий', colorCode: 'blue', isOn: false },
 ];
 export const sizes: ISize[] = [
-  { id: 0, type: "size", value: 'большой', isOn: false },
-  { id: 1, type: "size", value: 'средний', isOn: false },
-  { id: 2, type: "size", value: 'малый', isOn: false },
+  { id: 0, type: "size", value: 'большой', svgName:'ball_big', isOn: false },
+  { id: 1, type: "size", value: 'средний', svgName:'ball_medium', isOn: false },
+  { id: 2, type: "size", value: 'малый', svgName:'ball_small', isOn: false },
 ];
 export const favorites: IFavorite[] = [
-  { id: 0, type: "favorite", description:'Избранное', value: true, isOn: false },
-  { id: 1, type: "favorite", description:'Неизбранное', value: false, isOn: false },
+  { id: 0, type: "favorite", description:'Избранное', value: true, svgName: 'favourite', isOn: false },
+  { id: 1, type: "favorite", description:'Неизбранное', value: false, svgName: 'unfavourite', isOn: false },
 ];
 export const filterObject:IFilterObject = {
   shapeFilter: shapes,

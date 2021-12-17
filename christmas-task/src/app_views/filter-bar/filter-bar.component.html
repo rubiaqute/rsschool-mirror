@@ -2,7 +2,7 @@
   <p class="filter-container__header">Форма</p>
   <div class="filter-container__items">
     <div class="filter-container__item" *ngFor="let shape of shapes" >
-    <img class="shape-filter-container__svg"  src="./../../assets/svg/{{shape.svgName}}.svg" alt="{{shape.value}} icon">
+    <div class="filter-container__svg"  [ngStyle] = "returnBackgroundIcon(shape.svgName)" [class.filter-container__svg_colored]="getFlag(shape.type,shape.id)"></div>
     <p class="filter-container__description">{{shape.value}}</p>
     <input  type ="checkbox" class="filter-container__checkbox" id = "shape-checkbox" value = "yes" (change) = "filterByShape(shape)" [checked]="getFlag(shape.type,shape.id)">
     <label for ="shape-checkbox"></label>
@@ -24,6 +24,7 @@
   <p class="filter-container__header">Размер</p>
   <div class="filter-container__items">
     <div class="filter-container__item" *ngFor="let size of this.sizes" >
+        <div  class="filter-container__svg" [ngStyle] = "returnBackgroundIcon(size.svgName)" [class.filter-container__svg_colored]="getFlag(size.type,size.id)" ></div>
     <p class="filter-container__description">{{size.value}}</p>
     <input  type ="checkbox" class="filter-container__checkbox" id = "size-checkbox" value = "yes" (change) = "filterBySize(size)"[checked]="getFlag(size.type,size.id)">
     <label for ="size-checkbox"></label>
@@ -34,6 +35,7 @@
   <p class="filter-container__header">Избранное</p>
   <div class="filter-container__items">
     <div class="filter-container__item" *ngFor="let favorite of this.favorites" >
+      <div class="filter-container__svg" [class.filter-container__svg_colored]="getFlag(favorite.type,favorite.id)" [ngStyle] = "returnBackgroundIcon(favorite.svgName)" ></div>
     <p class="filter-container__description">{{favorite.description}}</p>
     <input  type ="checkbox" class="filter-container__checkbox" id = "favorite-checkbox" value = "yes" (change) = "filterByFavorite(favorite)"  [checked]="getFlag(favorite.type,favorite.id)">
     <label for ="favorite-checkbox"></label>

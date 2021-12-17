@@ -21,7 +21,7 @@ export class FilterServiceComponent {
     this.toysToFilter = toys;
     this.filterObject = this.getFilterObject();
   }
-getFilterObject(){
+getFilterObject():IFilterObject{
   if (this.storageService.getObject('filterObject')) return this.storageService.getObject('filterObject')
   else return filterObject;
 
@@ -68,7 +68,7 @@ getFilterObject(){
     if (this.checkFilterObject()) return this.filterAll();
     else return this.toysToFilter;
   }
-  filterByRange(rangeObject:IRanges[]){
+  filterByRange(rangeObject:IRanges[]): ToyCard[]{
     let toysToFilterByRange: ToyCard[]=[]
     if (this.checkFilterObject())  toysToFilterByRange = this.filterAll();
     else toysToFilterByRange = toys;

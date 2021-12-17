@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { shapes, colors, sizes, favorites } from '../../app_mocks/filter';
 import {
   IShape,
   ToyCard,
@@ -28,44 +27,48 @@ export class FilterBarComponent implements OnInit {
   @Input() favorites: IFavorite[] = [];
   @Output() filterThis = new EventEmitter<ToyCard[]>();
   valueYear: number = this.storageService.getObject('rangesObject')[0].value;
-  highValueYear: number = this.storageService.getObject('rangesObject')[0].highValue;
+  highValueYear: number =
+    this.storageService.getObject('rangesObject')[0].highValue;
   optionsYear: Options = {
     floor: 1940,
     ceil: 2020,
     step: 1,
   };
-  valueQuantity: number = this.storageService.getObject('rangesObject')[1].value;
-  highValueQuantity: number = this.storageService.getObject('rangesObject')[1].highValue;
+  valueQuantity: number =
+    this.storageService.getObject('rangesObject')[1].value;
+  highValueQuantity: number =
+    this.storageService.getObject('rangesObject')[1].highValue;
   optionsQuantity: Options = {
     floor: 1,
     ceil: 12,
     step: 1,
   };
-  sortingOrder: string = '0';
   constructor(
     private filter: FilterServiceComponent,
-    private sorter: SortingServiceComponent,
     private storageService: StorageServiceComponent
-  ) {
-    this.sortingOrder = this.sorter.returnSortOrder();
-  }
+  ) {  }
   ngOnInit(): void {
     this.getRangesdata();
     this.shapes = this.filter.filterObject.shapeFilter;
     this.colors = this.filter.filterObject.colorFilter;
     this.sizes = this.filter.filterObject.sizeFilter;
     this.favorites = this.filter.filterObject.favoriteFilter;
-    console.log(this.filter.filterObject);
     const toys: ToyCard[] = this.filter.filterAll();
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  getRangesdata(){
-    if (this.storageService.getObject('rangesObject')){
-    this.valueYear = this.storageService.getObject('rangesObject')[0].value;
-    this.highValueYear = this.storageService.getObject('rangesObject')[0].highValue;
-    this.valueQuantity = this.storageService.getObject('rangesObject')[1].value;
-    this.highValueQuantity = this.storageService.getObject('rangesObject')[1].highValue;
+  returnBackgroundIcon(svgName: string): {background:string} {
+    return {'background': `url(./../../assets/svg/${svgName}.svg) no-repeat center`};
+  }
+  getRangesdata(): void {
+    if (this.storageService.getObject('rangesObject')) {
+      this.valueYear = this.storageService.getObject('rangesObject')[0].value;
+      this.highValueYear =
+        this.storageService.getObject('rangesObject')[0].highValue;
+      this.valueQuantity =
+        this.storageService.getObject('rangesObject')[1].value;
+      this.highValueQuantity =
+        this.storageService.getObject('rangesObject')[1].highValue;
     } else {
       this.valueYear = 1940;
       this.highValueYear = 2020;
@@ -73,8 +76,7 @@ export class FilterBarComponent implements OnInit {
       this.highValueQuantity = 12;
     }
   }
-  filterByShape(shape: IShape) {
-    console.log(this.sorter.returnSortOrder());
+  filterByShape(shape: IShape):void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.shapeFilter,
       shape
@@ -82,7 +84,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterByColor(color: IColor) {
+  filterByColor(color: IColor):void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.colorFilter,
       color
@@ -90,7 +92,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterBySize(size: ISize) {
+  filterBySize(size: ISize):void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.sizeFilter,
       size
@@ -98,7 +100,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterByFavorite(favorite: IFavorite) {
+  filterByFavorite(favorite: IFavorite):void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.favoriteFilter,
       favorite
@@ -107,16 +109,11 @@ export class FilterBarComponent implements OnInit {
     this.filterByRanges();
   }
   getFlag(filterKey: string, filterKeyId: number): boolean {
-    console.log(
-      this.filter.filterObject[`${filterKey}Filter` as keyof IFilterObject][
-        filterKeyId
-      ].isOn
-    );
     return this.filter.filterObject[
       `${filterKey}Filter` as keyof IFilterObject
     ][filterKeyId].isOn;
   }
-  filterByRanges() {
+  filterByRanges():void {
     const rangeObject: IRanges[] = [
       {
         range: Range.year,

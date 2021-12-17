@@ -37,10 +37,12 @@ export interface IShape extends IFilterByCheckbox {
 export interface IFavorite extends IFilterByCheckbox {
   description: string,
   value: boolean,
+  svgName: string,
 }
 
 export interface ISize extends IFilterByCheckbox{
   value: string,
+  svgName: string,
 }
 export interface IColor extends IFilterByCheckbox{
   colorCode: string,

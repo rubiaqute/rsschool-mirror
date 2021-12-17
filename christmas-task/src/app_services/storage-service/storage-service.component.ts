@@ -18,7 +18,7 @@ export class StorageServiceComponent {
       console.log('Error saving data to localStorage')
     }
   }
-  getObject(key:string){
+  getObject(key:string) {
     try{
     return JSON.parse(localStorage.getItem(`${key}Rubiaqute`)!)
     } catch(e){

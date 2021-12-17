@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ToyCard } from '../../app_models/interfaces';
 import { ToysBoxComponent } from 'src/app_views/toys-box/toys-box.component';
+import { StorageServiceComponent } from '../storage-service/storage-service.component';
 
 
 
@@ -12,22 +13,17 @@ import { ToysBoxComponent } from 'src/app_views/toys-box/toys-box.component';
 export class SortingServiceComponent implements OnChanges{
   @Input() toysToSort:ToyCard[]=[];
   sortingOrder:string='';
-  constructor(private toys: ToysBoxComponent) {
+  constructor(private toys: ToysBoxComponent, private storageService:StorageServiceComponent) {
     this.toysToSort = toys.toysOnScreen;
-    this.sortingOrder= this.returnSortOrder();
+    this.sortingOrder= this.storageService.getObject('sortingOrder')
   }
   
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.toysToSort = this.toys.toysOnScreen;
-    this.sortingOrder = this.toys.sortingOrder;
+    this.sortingOrder = this.storageService.getObject('sortingOrder')
     if (this.sortingOrder) this.toysToSort = this.sort(this.sortingOrder)
   }
-  returnSortOrder(){
-    return this.sortingOrder;
-  }
-  rewriteSortingOrder(sortCase:string){
-    this.sortingOrder=sortCase;
-  }
+  
   sort(sortCase:string):ToyCard[] {
     this.sortingOrder=sortCase;
     this.toysToSort = this.toys.toysOnScreen;

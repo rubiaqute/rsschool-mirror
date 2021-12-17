@@ -2,9 +2,25 @@
 @import "./../../sass_global/placeholders";
 @import "./../../sass_global/constants";
 
-.shape-filter-container__svg {
-  width: 4rem;
-  height: 4rem;
+.filter-container__svg {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto;
+  z-index:1;
+  background-size: cover;
+  background-position: center;
+  &.filter-container__svg_colored {
+    filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
+141deg) brightness(89%) contrast(90%);
+  }
+  img {
+    z-index:0;
+    vertical-align: center;
+    text-align: center;
+    &.filter-container__svg_colored {
+      filter: sepia(150%);
+    }
+  }
 }
 .color-filter-container__box {
   display: inline-block;
