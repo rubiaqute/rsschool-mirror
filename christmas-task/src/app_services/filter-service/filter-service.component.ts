@@ -22,6 +22,12 @@ export class FilterServiceComponent implements OnInit{
   ngOnInit(): void {
     this.toysToFilter = this.toysUpdate.returnToys();
   }
+  search(input:string){
+    return this.toysToFilter.filter((el)=>{
+      if (el.name.toLowerCase().includes(input.toLowerCase())) return true;
+      else return false;
+    })
+  }
 getFilterObject():IFilterObject{
   if (this.storageService.getObject('filterObject')) return this.storageService.getObject('filterObject')
   else return filterObject;

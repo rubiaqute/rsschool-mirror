@@ -12,6 +12,7 @@ import { FilterServiceComponent } from '../../app_services/filter-service/filter
 import { ToyCardsComponent } from '../../app_views/toy-cards/toy-cards.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SortingServiceComponent } from '../../app_services/sorting-service/sorting-service.component';
+import { SearchServiceComponent } from '../../app_services/search-service/search-service.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SortingServiceComponent } from '../../app_services/sorting-service/sort
     FilterServiceComponent,
     ToyCardsComponent,
     SortingServiceComponent,
+    SearchServiceComponent,
   ],
   imports: [CommonModule, ToysRoutingModule, NgxSliderModule, FormsModule],
 })

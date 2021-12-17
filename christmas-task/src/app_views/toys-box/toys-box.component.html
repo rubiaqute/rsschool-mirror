@@ -1,6 +1,6 @@
 <aside class="side-bar">
-  <!-- <app-search-bar></app-search-bar> -->
   <app-favourite class="favourites-container"> </app-favourite>
+  
   <app-filter-bar (filterThis)="rewriteToys($event)"></app-filter-bar>
   <app-sort-bar (sortThis)="rewriteToysAndSortingOrder($event)"></app-sort-bar>
   <app-sorting-service [toysToSort]="this.toysOnScreen" ></app-sorting-service>

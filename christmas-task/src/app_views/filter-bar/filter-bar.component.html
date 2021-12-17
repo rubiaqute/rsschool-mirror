@@ -1,3 +1,9 @@
+<div class="search-bar">
+<div class="search-bar__container">
+  <input  class="search-bar__input" id="search" type="text" #searchInput [(ngModel)]="userInput" (input) ="searchBy(searchInput.value)" autocomplete="off" placeholder="Поиск"/>
+  <span class="search-bar__close"(click) = "deleteInput()">&times;</span>
+  </div>
+</div>
 <div class="filter-container">
   <p class="filter-container__header">Форма</p>
   <div class="filter-container__items">

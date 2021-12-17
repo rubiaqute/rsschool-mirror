@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import {
   IShape,
   ToyCard,
@@ -13,14 +13,15 @@ import { Filter, Range } from '../../app_models/enum';
 import { Options } from '@angular-slider/ngx-slider';
 import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
 import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
+import { SearchServiceComponent } from 'src/app_services/search-service/search-service.component';
 
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
-  providers: [SortingServiceComponent, FilterServiceComponent]
+  providers: [SortingServiceComponent, FilterServiceComponent, SearchServiceComponent]
 })
-export class FilterBarComponent implements OnInit {
+export class FilterBarComponent implements OnInit, OnChanges {
   @Input() shapes: IShape[] = [];
   @Input() colors: IColor[] = [];
   @Input() sizes: ISize[] = [];
@@ -43,9 +44,11 @@ export class FilterBarComponent implements OnInit {
     ceil: 12,
     step: 1,
   };
+  userInput:string='';
   constructor(
     private filter: FilterServiceComponent,
-    private storageService: StorageServiceComponent
+    private storageService: StorageServiceComponent,
+    private searchService:SearchServiceComponent
   ) {  }
   ngOnInit(): void {
     this.getRangesdata();
@@ -53,6 +56,12 @@ export class FilterBarComponent implements OnInit {
     this.colors = this.filter.filterObject.colorFilter;
     this.sizes = this.filter.filterObject.sizeFilter;
     this.favorites = this.filter.filterObject.favoriteFilter;
+    const toys: ToyCard[] = this.filter.filterAll();
+    this.filterThis.emit(toys);
+    this.filterByRanges();
+    document.getElementById('search')!.focus();
+  }
+  ngOnChanges(){
     const toys: ToyCard[] = this.filter.filterAll();
     this.filterThis.emit(toys);
     this.filterByRanges();
@@ -112,6 +121,18 @@ export class FilterBarComponent implements OnInit {
     return this.filter.filterObject[
       `${filterKey}Filter` as keyof IFilterObject
     ][filterKeyId].isOn;
+  }
+  deleteInput(){
+    this.userInput='';
+    this.searchBy(this.userInput)
+  }
+  searchBy(input:string):void {
+    const toys: ToyCard[] = this.filter.filterAll();
+    this.filterThis.emit(toys);
+    this.filterByRanges();
+    const toysNew: ToyCard[] =  this.searchService.search(input)
+    this.filterThis.emit(toysNew);
+    
   }
   filterByRanges():void {
     const rangeObject: IRanges[] = [
