@@ -1,7 +1,9 @@
 import { NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,12 +19,14 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavigationComponent,
     StorageServiceComponent,
+    
     // ToysBoxComponent,
     // FavouriteComponent,
     // SortBarComponent,
@@ -36,6 +40,7 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     NgxSliderModule,
     RouterModule.forRoot([
       { path: 'toys', component: ToysComponent },

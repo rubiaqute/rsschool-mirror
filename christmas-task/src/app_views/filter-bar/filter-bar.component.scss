@@ -32,6 +32,11 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
+  margin-bottom: 1rem;
+  border: 1px solid $color-header-border;
+  border-radius: 3rem;
+  box-shadow: 0.5rem 0 0.5rem rgba(255,255,255, 0.5);
+  padding:0.1rem;
 }
 .filter-container__item {
   text-align: center;
@@ -46,6 +51,7 @@
   @include font(1.4rem, 1.4rem, 400, uppercase);
   color: $color-text;
   margin-top: 2%;
+  margin-bottom: 1rem;
 }
 .filter-container__checkbox {
   &:hover {
@@ -119,6 +125,7 @@
   .button__toy {
     white-space: nowrap;
     min-width: 20%;
+    max-width:48%;
     color: $color-text;
     border: 1px solid $color-header-border;
     text-align: center;
@@ -133,4 +140,9 @@
       transform: scale(1.1);
     }
   }
+}
+.ngx-slider .ngx-slider-pointer {
+ 
+  width: 1rem;
+  height: 1rem;
 }

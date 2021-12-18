@@ -1,0 +1,61 @@
+@import "./../../sass_global/mixins";
+@import "./../../sass_global/placeholders";
+@import "./../../sass_global/constants";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-outline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.faked {
+  transform: translateX(-500%);
+  opacity:0%;
+}
+.modal {
+  position: relative;
+  overflow-y: hidden;
+  width: 70%;
+  max-height: 80%;
+  min-height: 50%;
+  border: 1px solid $color-header-border;
+  background: $background-cards;
+  align-items: center;
+  border-radius: 5%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 5%;
+  z-index:6;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  .modal__message {
+    text-align: center;
+    color: $color-text;
+    @extend %font-neucha;
+    @include font(3.4rem, 3.6rem, 300, normal);
+  }
+  
+  .button {
+    display:block;
+    width: 30%;
+    margin: 0 auto;
+    color: $color-text;
+    border: 1px solid $color-header-border;
+    text-align: center;
+    padding: 0.5rem;
+    @extend %font-roboto;
+    @include font(2.4rem, 2.6rem, 300, normal);
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    border-radius: 3rem;
+    background-color: $color-header-background;
+    &:hover {
+      opacity:0.8;
+    }
+  }
+}

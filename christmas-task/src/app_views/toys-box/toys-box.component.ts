@@ -5,6 +5,8 @@ import { toys } from '../../app_mocks/toys';
 import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
 import { FilterBarComponent } from '../filter-bar/filter-bar.component';
 import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
+import { ModalServiceComponent } from 'src/app_services/modal-service/modal-service.component';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choose
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
   styleUrls: ['./toys-box.component.scss'],
-  providers:[FilterBarComponent, FilterServiceComponent, SearchServiceComponent, ChoosedServiceComponent]
+  providers:[FilterBarComponent, FilterServiceComponent, SearchServiceComponent, ChoosedServiceComponent, ModalServiceComponent],
 })
 export class ToysBoxComponent {
   toysOnScreen: ToyCard[] = toys;

@@ -3,12 +3,25 @@ import { ToysBoxComponent } from '../toys-box/toys-box.component';
 
 import { ToyCard } from '../../app_models/interfaces';
 import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
-
+import {trigger, style, animate, transition} from '@angular/animations';
 
 @Component({
   selector: 'app-toy-cards',
   templateUrl: './toy-cards.component.html',
   styleUrls: ['./toy-cards.component.scss'],
+  animations: [
+    trigger('enterLeave', [
+      transition('void => *', [
+        style({opacity: 0.2, transform: 'translateY(-200%)'}),
+        animate('500ms ease-in')
+      ]),
+      transition('* => void', [
+        animate('500ms ease-in',
+        style({opacity: 0.2, transform: 'scale(0)'}),
+        )
+      ]),
+    ])
+  ]
 })
 export class ToyCardsComponent implements OnInit{
   toys: ToyCard[]=[];

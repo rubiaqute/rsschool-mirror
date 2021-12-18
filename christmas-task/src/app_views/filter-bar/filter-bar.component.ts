@@ -1,4 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+} from '@angular/core';
 import {
   IShape,
   ToyCard,
@@ -20,7 +26,12 @@ import { SortBarComponent } from '../sort-bar/sort-bar.component';
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
-  providers: [SortingServiceComponent, FilterServiceComponent, SearchServiceComponent, SortBarComponent]
+  providers: [
+    SortingServiceComponent,
+    FilterServiceComponent,
+    SearchServiceComponent,
+    SortBarComponent,
+  ],
 })
 export class FilterBarComponent implements OnInit {
   @Input() shapes: IShape[] = [];
@@ -29,30 +40,26 @@ export class FilterBarComponent implements OnInit {
   @Input() favorites: IFavorite[] = [];
   @Output() filterThis = new EventEmitter<ToyCard[]>();
   valueYear: number = 1940;
-  highValueYear: number =
-    2020;
+  highValueYear: number = 2020;
   optionsYear: Options = {
     floor: 1940,
     ceil: 2020,
     step: 1,
   };
-  valueQuantity: number =
-    1;
-  highValueQuantity: number =
-    12;
+  valueQuantity: number = 1;
+  highValueQuantity: number = 12;
   optionsQuantity: Options = {
     floor: 1,
     ceil: 12,
     step: 1,
   };
-  
-  userInput:string='';
+
+  userInput: string = '';
   constructor(
     private filter: FilterServiceComponent,
     private storageService: StorageServiceComponent,
-    private searchService:SearchServiceComponent,
-    private sorter:SortBarComponent,
-  ) {  }
+    private searchService: SearchServiceComponent
+  ) {}
   ngOnInit(): void {
     this.getRangesdata();
     this.shapes = this.filter.filterObject.shapeFilter;
@@ -64,13 +71,10 @@ export class FilterBarComponent implements OnInit {
     this.filterByRanges();
     document.getElementById('search')!.focus();
   }
-  // ngOnChanges(){
-  //   const toys: ToyCard[] = this.filter.filterAll();
-  //   this.filterThis.emit(toys);
-  //   this.filterByRanges();
-  // }
-  returnBackgroundIcon(svgName: string): {background:string} {
-    return {'background': `url(./../../assets/svg/${svgName}.svg) no-repeat center`};
+  returnBackgroundIcon(svgName: string): { background: string } {
+    return {
+      background: `url(./../../assets/svg/${svgName}.svg) no-repeat center`,
+    };
   }
   getRangesdata(): void {
     if (this.storageService.getObject('rangesObject')) {
@@ -88,7 +92,7 @@ export class FilterBarComponent implements OnInit {
       this.highValueQuantity = 12;
     }
   }
-  filterByShape(shape: IShape):void {
+  filterByShape(shape: IShape): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.shapeFilter,
       shape
@@ -96,7 +100,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterByColor(color: IColor):void {
+  filterByColor(color: IColor): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.colorFilter,
       color
@@ -104,7 +108,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterBySize(size: ISize):void {
+  filterBySize(size: ISize): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.sizeFilter,
       size
@@ -112,7 +116,7 @@ export class FilterBarComponent implements OnInit {
     this.filterThis.emit(toys);
     this.filterByRanges();
   }
-  filterByFavorite(favorite: IFavorite):void {
+  filterByFavorite(favorite: IFavorite): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.favoriteFilter,
       favorite
@@ -125,19 +129,18 @@ export class FilterBarComponent implements OnInit {
       `${filterKey}Filter` as keyof IFilterObject
     ][filterKeyId].isOn;
   }
-  deleteInput(){
-    this.userInput='';
-    this.searchBy(this.userInput)
+  deleteInput() {
+    this.userInput = '';
+    this.searchBy(this.userInput);
   }
-  searchBy(input:string):void {
+  searchBy(input: string): void {
     const toys: ToyCard[] = this.filter.filterAll();
     this.filterThis.emit(toys);
     this.filterByRanges();
-    const toysNew: ToyCard[] =  this.searchService.search(input)
+    const toysNew: ToyCard[] = this.searchService.search(input);
     this.filterThis.emit(toysNew);
-    
   }
-  filterByRanges():void {
+  filterByRanges(): void {
     const rangeObject: IRanges[] = [
       {
         range: Range.year,
@@ -154,23 +157,23 @@ export class FilterBarComponent implements OnInit {
     const toys: ToyCard[] = this.filter.filterByRange(rangeObject);
     this.filterThis.emit(toys);
   }
-  cleanFilters(){
+  cleanFilters() {
     this.storageService.removeObject('filterObject');
     this.storageService.removeObject('rangesObject');
     this.getRangesdata();
-    document.querySelectorAll<HTMLInputElement>('.filter-container__checkbox').forEach((el)=>{
-      if(el.checked) {
-        let event=new Event('change');
-        el.dispatchEvent(event)
-      }
-    })
-    
-    
+    document
+      .querySelectorAll<HTMLInputElement>('.filter-container__checkbox')
+      .forEach((el) => {
+        if (el.checked) {
+          let event = new Event('change');
+          el.dispatchEvent(event);
+        }
+      });
   }
-  clearLocalStorage(){
+  clearLocalStorage() {
     this.storageService.removeObject('favouritesToys');
     this.storageService.removeObject('sortingOrder');
     this.cleanFilters();
-    (<HTMLSelectElement>document.getElementById('sortBar')).value="-1";
-      }
+    (<HTMLSelectElement>document.getElementById('sortBar')).value = '-1';
+  }
 }
