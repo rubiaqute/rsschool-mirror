@@ -4,6 +4,10 @@
   <span class="search-bar__close"(click) = "deleteInput()">&times;</span>
   </div>
 </div>
+<div class="toy-page__buttons">
+  <button class="button button__toy" (click)="cleanFilters()">Очистить фильтры</button>
+  <button class="button button__toy"(click)="clearLocalStorage()" >Сбросить настройки</button>
+</div>
 <div class="filter-container">
   <p class="filter-container__header">Форма</p>
   <div class="filter-container__items">

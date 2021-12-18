@@ -14,41 +14,44 @@ import { Options } from '@angular-slider/ngx-slider';
 import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
 import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
 import { SearchServiceComponent } from 'src/app_services/search-service/search-service.component';
+import { SortBarComponent } from '../sort-bar/sort-bar.component';
 
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
-  providers: [SortingServiceComponent, FilterServiceComponent, SearchServiceComponent]
+  providers: [SortingServiceComponent, FilterServiceComponent, SearchServiceComponent, SortBarComponent]
 })
-export class FilterBarComponent implements OnInit, OnChanges {
+export class FilterBarComponent implements OnInit {
   @Input() shapes: IShape[] = [];
   @Input() colors: IColor[] = [];
   @Input() sizes: ISize[] = [];
   @Input() favorites: IFavorite[] = [];
   @Output() filterThis = new EventEmitter<ToyCard[]>();
-  valueYear: number = this.storageService.getObject('rangesObject')[0].value;
+  valueYear: number = 1940;
   highValueYear: number =
-    this.storageService.getObject('rangesObject')[0].highValue;
+    2020;
   optionsYear: Options = {
     floor: 1940,
     ceil: 2020,
     step: 1,
   };
   valueQuantity: number =
-    this.storageService.getObject('rangesObject')[1].value;
+    1;
   highValueQuantity: number =
-    this.storageService.getObject('rangesObject')[1].highValue;
+    12;
   optionsQuantity: Options = {
     floor: 1,
     ceil: 12,
     step: 1,
   };
+  
   userInput:string='';
   constructor(
     private filter: FilterServiceComponent,
     private storageService: StorageServiceComponent,
-    private searchService:SearchServiceComponent
+    private searchService:SearchServiceComponent,
+    private sorter:SortBarComponent,
   ) {  }
   ngOnInit(): void {
     this.getRangesdata();
@@ -61,11 +64,11 @@ export class FilterBarComponent implements OnInit, OnChanges {
     this.filterByRanges();
     document.getElementById('search')!.focus();
   }
-  ngOnChanges(){
-    const toys: ToyCard[] = this.filter.filterAll();
-    this.filterThis.emit(toys);
-    this.filterByRanges();
-  }
+  // ngOnChanges(){
+  //   const toys: ToyCard[] = this.filter.filterAll();
+  //   this.filterThis.emit(toys);
+  //   this.filterByRanges();
+  // }
   returnBackgroundIcon(svgName: string): {background:string} {
     return {'background': `url(./../../assets/svg/${svgName}.svg) no-repeat center`};
   }
@@ -118,7 +121,7 @@ export class FilterBarComponent implements OnInit, OnChanges {
     this.filterByRanges();
   }
   getFlag(filterKey: string, filterKeyId: number): boolean {
-    return this.filter.filterObject[
+    return this.filter.getFilterObject()[
       `${filterKey}Filter` as keyof IFilterObject
     ][filterKeyId].isOn;
   }
@@ -149,7 +152,25 @@ export class FilterBarComponent implements OnInit, OnChanges {
     ];
     this.storageService.setObject('rangesObject', rangeObject);
     const toys: ToyCard[] = this.filter.filterByRange(rangeObject);
-    console.log(this.storageService.getObject('filterObject'));
     this.filterThis.emit(toys);
   }
+  cleanFilters(){
+    this.storageService.removeObject('filterObject');
+    this.storageService.removeObject('rangesObject');
+    this.getRangesdata();
+    document.querySelectorAll<HTMLInputElement>('.filter-container__checkbox').forEach((el)=>{
+      if(el.checked) {
+        let event=new Event('change');
+        el.dispatchEvent(event)
+      }
+    })
+    
+    
+  }
+  clearLocalStorage(){
+    this.storageService.removeObject('favouritesToys');
+    this.storageService.removeObject('sortingOrder');
+    this.cleanFilters();
+    (<HTMLSelectElement>document.getElementById('sortBar')).value="-1";
+      }
 }

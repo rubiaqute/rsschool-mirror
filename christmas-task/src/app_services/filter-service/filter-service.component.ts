@@ -28,9 +28,10 @@ getFilterObject():IFilterObject{
 
 }
   filterAll(): ToyCard[] {
+    console.log(this.filterObject)
     let filterItems: ToyCard[] = this.toysToFilter;
     console.log(this.toysToFilter)
-    for (const [key, value] of Object.entries(this.filterObject)) {
+    for (const [key, value] of Object.entries(this.getFilterObject())) {
       let filterItemsByParam: ToyCard[] = [];
       value.forEach((element:FilterPam) => {
         if (element.isOn === true) {
@@ -63,12 +64,16 @@ getFilterObject():IFilterObject{
   }
 
   updateFilterObject(filter: Filter, param: FilterPam): ToyCard[] {
+    console.log("Запуск")
     if (this.filterObject[filter][param.id].isOn)
       this.filterObject[filter][param.id].isOn = false;
     else this.filterObject[filter][param.id].isOn = true;
     this.storageService.setObject('filterObject', this.filterObject);
     if (this.checkFilterObject()) return this.filterAll();
     else return this.toysToFilter;
+  }
+  removeFilterObject(){
+    this.filterObject=filterObject;
   }
   filterByRange(rangeObject:IRanges[]): ToyCard[]{
     let toysToFilterByRange: ToyCard[]=[]

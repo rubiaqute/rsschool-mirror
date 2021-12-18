@@ -27,5 +27,7 @@ export class StorageServiceComponent {
     }
   
   }
-
+removeObject(key:string){
+  localStorage.removeItem(`${key}Rubiaqute`)
+}
 }
