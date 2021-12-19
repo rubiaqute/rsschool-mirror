@@ -34,4 +34,10 @@ html {
   @include media-desktop {
     font-size:8px;
   }
+  @include media-fullscreen {
+    font-size:20px;
+  }
+  @include media-notescreen {
+    font-size:15px;
+  }
 }

@@ -10,3 +10,13 @@
     @content;
   }
 }
+@mixin media-fullscreen {
+  @media (max-width: $width-fullscreen) {
+    @content;
+  }
+}
+@mixin media-notescreen {
+  @media (max-width: $width-notescreen) {
+    @content;
+  }
+}
