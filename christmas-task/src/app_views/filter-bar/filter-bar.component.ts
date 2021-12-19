@@ -67,7 +67,7 @@ export class FilterBarComponent implements OnInit {
   }
   returnBackgroundIcon(svgName: string): { background: string } {
     return {
-      background: `url(./../../assets/svg/${svgName}.svg) no-repeat center`,
+      background: `url(assets/svg/${svgName}.svg) no-repeat center`,
     };
   }
   getRangesdata(): void {
