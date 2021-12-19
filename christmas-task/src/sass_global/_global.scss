@@ -31,10 +31,11 @@ img {
 html {
   font-size: 20px;
   @extend %font-roboto;
-  @include media-desktop {
-    font-size:8px;
-  }
   @include media-fullscreen {
     font-size:10px;
   }
+  @include media-desktop {
+    font-size:8px;
+  }
+  
 }
