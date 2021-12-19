@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { selfEstimation } from 'src/app_mocks/self-estimation';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.router.navigate(['../start']);
+    console.log(selfEstimation);
   }
 }
