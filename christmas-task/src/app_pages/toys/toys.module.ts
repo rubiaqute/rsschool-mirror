@@ -13,8 +13,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SortingServiceComponent } from '../../app_services/sorting-service/sorting-service.component';
 import { SearchServiceComponent } from '../../app_services/search-service/search-service.component';
 import { ChoosedServiceComponent } from '../../app_services/choosed-service/choosed-service.component';
-import { ModalServiceComponent } from 'src/app_services/modal-service/modal-service.component';
-
+import { ModalServiceComponent } from '../../app_services/modal-service/modal-service.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,7 @@ import { ModalServiceComponent } from 'src/app_services/modal-service/modal-serv
     SortingServiceComponent,
     SearchServiceComponent,
     ChoosedServiceComponent,
-    ModalServiceComponent
+    ModalServiceComponent,
   ],
   imports: [CommonModule, ToysRoutingModule, NgxSliderModule, FormsModule],
 })

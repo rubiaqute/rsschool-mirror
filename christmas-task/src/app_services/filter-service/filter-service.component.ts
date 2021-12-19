@@ -1,39 +1,41 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
-import { toys} from '../../app_mocks/toys';
-import { FilterPam, ToyCard, IRanges, IFavorite, IFilterObject } from '../../app_models/interfaces';
+import { Component, Input, OnInit } from '@angular/core';
+import { toys } from '../../app_mocks/toys';
+import {
+  FilterPam,
+  ToyCard,
+  IRanges,
+  IFilterObject,
+} from '../../app_models/interfaces';
 import { filterObject } from '../../app_mocks/filter';
-import { Filter, Range } from '../../app_models/enum';
+import { Filter } from '../../app_models/enum';
 import { StorageServiceComponent } from '../storage-service/storage-service.component';
-
 
 @Component({
   selector: 'app-filter-service',
   templateUrl: './filter-service.component.html',
   styleUrls: ['./filter-service.component.scss'],
 })
-export class FilterServiceComponent implements OnInit{
+export class FilterServiceComponent implements OnInit {
   @Input() toysToFilter: ToyCard[];
   filterObject: IFilterObject;
   constructor(private storageService: StorageServiceComponent) {
-    this.toysToFilter = toys
+    this.toysToFilter = toys;
     this.filterObject = this.getFilterObject();
   }
   ngOnInit(): void {
-    this.toysToFilter = toys
+    this.toysToFilter = toys;
   }
-  
-getFilterObject():IFilterObject{
-  if (this.storageService.getObject('filterObject')) return this.storageService.getObject('filterObject')
-  else return filterObject;
 
-}
+  getFilterObject(): IFilterObject {
+    if (this.storageService.getObject('filterObject'))
+      return this.storageService.getObject('filterObject');
+    else return filterObject;
+  }
   filterAll(): ToyCard[] {
-    console.log(this.filterObject)
     let filterItems: ToyCard[] = this.toysToFilter;
-    console.log(this.toysToFilter)
     for (const [key, value] of Object.entries(this.getFilterObject())) {
       let filterItemsByParam: ToyCard[] = [];
-      value.forEach((element:FilterPam) => {
+      value.forEach((element: FilterPam) => {
         if (element.isOn === true) {
           filterItemsByParam = filterItemsByParam.concat(
             this.toysToFilter.filter((toy) => {
@@ -43,7 +45,7 @@ getFilterObject():IFilterObject{
           );
         }
       });
-      if (filterItemsByParam.length > 0 && filterItems.length!=0) {
+      if (filterItemsByParam.length > 0 && filterItems.length != 0) {
         filterItems = filterItems.concat(filterItemsByParam);
         if (filterItems.length != filterItemsByParam.length)
           filterItems = filterItems.filter((item, pos) => {
@@ -56,7 +58,7 @@ getFilterObject():IFilterObject{
   checkFilterObject(): boolean {
     let flag: boolean = false;
     for (const [key, value] of Object.entries(this.filterObject)) {
-      value.forEach((element:FilterPam) => {
+      value.forEach((element: FilterPam) => {
         if (element.isOn === true) flag = true;
       });
     }
@@ -64,7 +66,6 @@ getFilterObject():IFilterObject{
   }
 
   updateFilterObject(filter: Filter, param: FilterPam): ToyCard[] {
-    console.log("Запуск")
     if (this.filterObject[filter][param.id].isOn)
       this.filterObject[filter][param.id].isOn = false;
     else this.filterObject[filter][param.id].isOn = true;
@@ -72,19 +73,21 @@ getFilterObject():IFilterObject{
     if (this.checkFilterObject()) return this.filterAll();
     else return this.toysToFilter;
   }
-  removeFilterObject(){
-    this.filterObject=filterObject;
+  removeFilterObject() {
+    this.filterObject = filterObject;
   }
-  filterByRange(rangeObject:IRanges[]): ToyCard[]{
-    let toysToFilterByRange: ToyCard[]=[]
-    if (this.checkFilterObject())  toysToFilterByRange = this.filterAll();
+  filterByRange(rangeObject: IRanges[]): ToyCard[] {
+    let toysToFilterByRange: ToyCard[] = [];
+    if (this.checkFilterObject()) toysToFilterByRange = this.filterAll();
     else toysToFilterByRange = toys;
-    rangeObject.forEach ((rangeBar:IRanges)=>{
-      toysToFilterByRange = toysToFilterByRange.filter((el)=>{
-        return Number(el[rangeBar.range as keyof ToyCard])>=rangeBar.value && Number(el[rangeBar.range as keyof ToyCard])<=rangeBar.highValue
-      })
-    })
-     return toysToFilterByRange;
-     }
-
+    rangeObject.forEach((rangeBar: IRanges) => {
+      toysToFilterByRange = toysToFilterByRange.filter((el) => {
+        return (
+          Number(el[rangeBar.range as keyof ToyCard]) >= rangeBar.value &&
+          Number(el[rangeBar.range as keyof ToyCard]) <= rangeBar.highValue
+        );
+      });
+    });
+    return toysToFilterByRange;
+  }
 }

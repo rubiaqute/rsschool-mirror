@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {
   IShape,
   ToyCard,
@@ -17,9 +11,9 @@ import {
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { Filter, Range } from '../../app_models/enum';
 import { Options } from '@angular-slider/ngx-slider';
-import { SortingServiceComponent } from 'src/app_services/sorting-service/sorting-service.component';
-import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
-import { SearchServiceComponent } from 'src/app_services/search-service/search-service.component';
+import { SortingServiceComponent } from '../../app_services/sorting-service/sorting-service.component';
+import { StorageServiceComponent } from '../../app_services/storage-service/storage-service.component';
+import { SearchServiceComponent } from '../../app_services/search-service/search-service.component';
 import { SortBarComponent } from '../sort-bar/sort-bar.component';
 
 @Component({

@@ -16,17 +16,16 @@
       cursor: pointer;
     }
   }
-  
 }
 .school-icon {
-width: 5rem;
-opacity: 70%;
-vertical-align: bottom;
-&:hover {
-  opacity: 100%;
-  cursor: pointer;
-}
-img{
-  width:3rem;
-}
+  width: 5rem;
+  opacity: 70%;
+  vertical-align: bottom;
+  &:hover {
+    opacity: 100%;
+    cursor: pointer;
+  }
+  img {
+    width: 3rem;
+  }
 }

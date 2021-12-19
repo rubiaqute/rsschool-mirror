@@ -1,17 +1,18 @@
 <aside class="side-bar">
   <app-modal-service></app-modal-service>
   <app-choosed-service class="favourites-container"> </app-choosed-service>
-  
+
   <app-filter-bar (filterThis)="rewriteToys($event)"></app-filter-bar>
   <app-sort-bar (sortThis)="rewriteToysAndSortingOrder($event)"></app-sort-bar>
-  <app-sorting-service [toysToSort]="this.toysOnScreen" ></app-sorting-service>
+  <app-sorting-service [toysToSort]="this.toysOnScreen"></app-sorting-service>
 </aside>
 <main class="toys-container">
-  
-  <h2 class="toys-container__header" >Игрушки</h2>
-  <app-toy-cards class="toys-container__items" *ngIf ="toggle; else noToys"> </app-toy-cards>
-  
+  <h2 class="toys-container__header">Игрушки</h2>
+  <app-toy-cards class="toys-container__items" *ngIf="toggle; else noToys">
+  </app-toy-cards>
 </main>
 <ng-template #noToys>
-  <p class="toys-container__message">Нет игрушек, отвечающих условиям поиска!</p>
+  <p class="toys-container__message">
+    Нет игрушек, отвечающих условиям поиска!
+  </p>
 </ng-template>

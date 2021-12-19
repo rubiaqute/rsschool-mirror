@@ -1,11 +1,11 @@
-
 <button id="faked1" class="faked" (click)="toggleSwitchers()">Change</button>
 <ng-container *ngIf="toggleModal">
-  <div  class="overlay">
+  <div class="overlay">
     <div class="modal" @popUp>
       <p class="modal__message">Вы не можете выбрать больше 20 игрушек!</p>
-      <button class="button button_modal"(click)="toggleSwitchers()">OK</button>
+      <button class="button button_modal" (click)="toggleSwitchers()">
+        OK
+      </button>
     </div>
   </div>
 </ng-container>
-

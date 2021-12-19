@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToysBoxComponent } from '../toys-box/toys-box.component';
 
 import { ToyCard } from '../../app_models/interfaces';
-import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
-import {trigger, style, animate, transition} from '@angular/animations';
+import { ChoosedServiceComponent } from '../../app_services/choosed-service/choosed-service.component';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-toy-cards',
@@ -12,34 +12,35 @@ import {trigger, style, animate, transition} from '@angular/animations';
   animations: [
     trigger('enterLeave', [
       transition('void => *', [
-        style({opacity: 0.2, transform: 'translateY(-200%)'}),
-        animate('500ms ease-in')
+        style({ opacity: 0.2, transform: 'translateY(-200%)' }),
+        animate('500ms ease-in'),
       ]),
       transition('* => void', [
-        animate('500ms ease-in',
-        style({opacity: 0.2, transform: 'scale(0)'}),
-        )
+        animate(
+          '500ms ease-in',
+          style({ opacity: 0.2, transform: 'scale(0)' })
+        ),
       ]),
-    ])
-  ]
+    ]),
+  ],
 })
-export class ToyCardsComponent implements OnInit{
-  toys: ToyCard[]=[];
+export class ToyCardsComponent implements OnInit {
+  toys: ToyCard[] = [];
   constructor(
     private toysOnScreen: ToysBoxComponent,
-    private choosedService:ChoosedServiceComponent
+    private choosedService: ChoosedServiceComponent
   ) {
-    this.toys = this.updateToys()
+    this.toys = this.updateToys();
   }
-ngOnInit(): void {
-  this.toys = this.updateToys()
-}
+  ngOnInit(): void {
+    this.toys = this.updateToys();
+  }
   updateToys() {
     this.toys = this.toysOnScreen.returnToys();
-    return this.toys; 
+    return this.toys;
   }
-  changeStylesIfChosen(toy:ToyCard) {
-return this.choosedService.isChosen(toy);
+  changeStylesIfChosen(toy: ToyCard) {
+    return this.choosedService.isChosen(toy);
   }
   addToFavourite(toy: ToyCard): void {
     this.choosedService.addToFavourites(toy);

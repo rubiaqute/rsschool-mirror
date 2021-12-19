@@ -1,62 +1,135 @@
 <div class="search-bar">
-<div class="search-bar__container">
-  <input  class="search-bar__input" id="search" type="text" #searchInput [(ngModel)]="userInput" (input) ="searchBy(searchInput.value)" autocomplete="off" placeholder="Поиск"/>
-  <span class="search-bar__close"(click) = "deleteInput()">&times;</span>
+  <div class="search-bar__container">
+    <input
+      class="search-bar__input"
+      id="search"
+      type="text"
+      #searchInput
+      [(ngModel)]="userInput"
+      (input)="searchBy(searchInput.value)"
+      autocomplete="off"
+      placeholder="Поиск"
+    />
+    <span class="search-bar__close" (click)="deleteInput()">&times;</span>
   </div>
 </div>
 <div class="toy-page__buttons">
-  <button class="button button__toy" (click)="cleanFilters()">Очистить фильтры</button>
-  <button class="button button__toy"(click)="clearLocalStorage()" >Сбросить настройки</button>
+  <button class="button button__toy" (click)="cleanFilters()">
+    Очистить фильтры
+  </button>
+  <button class="button button__toy" (click)="clearLocalStorage()">
+    Сбросить настройки
+  </button>
 </div>
 <div class="filter-container">
   <p class="filter-container__header">Форма</p>
   <div class="filter-container__items">
-    <div class="filter-container__item" *ngFor="let shape of shapes" >
-    <div class="filter-container__svg"  [ngStyle] = "returnBackgroundIcon(shape.svgName)" [class.filter-container__svg_colored]="getFlag(shape.type,shape.id)"></div>
-    <p class="filter-container__description">{{shape.value}}</p>
-    <input  type ="checkbox" class="filter-container__checkbox" id = "shape-checkbox" value = "yes" (change) = "filterByShape(shape)" [checked]="getFlag(shape.type,shape.id)">
-    <label for ="shape-checkbox"></label>
+    <div class="filter-container__item" *ngFor="let shape of shapes">
+      <div
+        class="filter-container__svg"
+        [ngStyle]="returnBackgroundIcon(shape.svgName)"
+        [class.filter-container__svg_colored]="getFlag(shape.type, shape.id)"
+      ></div>
+      <p class="filter-container__description">{{ shape.value }}</p>
+      <input
+        type="checkbox"
+        class="filter-container__checkbox"
+        id="shape-checkbox"
+        value="yes"
+        (change)="filterByShape(shape)"
+        [checked]="getFlag(shape.type, shape.id)"
+      />
+      <label for="shape-checkbox"></label>
     </div>
   </div>
 </div>
 <div class="filter-container">
   <p class="filter-container__header">Цвет</p>
   <div class="filter-container__items">
-    <div class="filter-container__item" *ngFor="let color of this.colors" >
-    <span [ngStyle] = "{'background-color':color.colorCode}" class="color-filter-container__box" ></span>
-    <p class="filter-container__description">{{color.value}}</p>
-    <input  type ="checkbox" class="filter-container__checkbox" id = "color-checkbox" value = "yes" (change) = "filterByColor(color)"[checked]="getFlag(color.type,color.id)">
-    <label for ="color-checkbox"></label>
+    <div class="filter-container__item" *ngFor="let color of this.colors">
+      <span
+        [ngStyle]="{ 'background-color': color.colorCode }"
+        class="color-filter-container__box"
+      ></span>
+      <p class="filter-container__description">{{ color.value }}</p>
+      <input
+        type="checkbox"
+        class="filter-container__checkbox"
+        id="color-checkbox"
+        value="yes"
+        (change)="filterByColor(color)"
+        [checked]="getFlag(color.type, color.id)"
+      />
+      <label for="color-checkbox"></label>
     </div>
   </div>
 </div>
 <div class="filter-container">
   <p class="filter-container__header">Размер</p>
   <div class="filter-container__items">
-    <div class="filter-container__item" *ngFor="let size of this.sizes" >
-        <div  class="filter-container__svg" [ngStyle] = "returnBackgroundIcon(size.svgName)" [class.filter-container__svg_colored]="getFlag(size.type,size.id)" ></div>
-    <p class="filter-container__description">{{size.value}}</p>
-    <input  type ="checkbox" class="filter-container__checkbox" id = "size-checkbox" value = "yes" (change) = "filterBySize(size)"[checked]="getFlag(size.type,size.id)">
-    <label for ="size-checkbox"></label>
+    <div class="filter-container__item" *ngFor="let size of this.sizes">
+      <div
+        class="filter-container__svg"
+        [ngStyle]="returnBackgroundIcon(size.svgName)"
+        [class.filter-container__svg_colored]="getFlag(size.type, size.id)"
+      ></div>
+      <p class="filter-container__description">{{ size.value }}</p>
+      <input
+        type="checkbox"
+        class="filter-container__checkbox"
+        id="size-checkbox"
+        value="yes"
+        (change)="filterBySize(size)"
+        [checked]="getFlag(size.type, size.id)"
+      />
+      <label for="size-checkbox"></label>
     </div>
   </div>
 </div>
 <div class="filter-container">
   <p class="filter-container__header">Любимое</p>
   <div class="filter-container__items">
-    <div class="filter-container__item" *ngFor="let favorite of this.favorites" >
-      <div class="filter-container__svg" [class.filter-container__svg_colored]="getFlag(favorite.type,favorite.id)" [ngStyle] = "returnBackgroundIcon(favorite.svgName)" ></div>
-    <p class="filter-container__description">{{favorite.description}}</p>
-    <input  type ="checkbox" class="filter-container__checkbox" id = "favorite-checkbox" value = "yes" (change) = "filterByFavorite(favorite)"  [checked]="getFlag(favorite.type,favorite.id)">
-    <label for ="favorite-checkbox"></label>
+    <div class="filter-container__item" *ngFor="let favorite of this.favorites">
+      <div
+        class="filter-container__svg"
+        [class.filter-container__svg_colored]="
+          getFlag(favorite.type, favorite.id)
+        "
+        [ngStyle]="returnBackgroundIcon(favorite.svgName)"
+      ></div>
+      <p class="filter-container__description">{{ favorite.description }}</p>
+      <input
+        type="checkbox"
+        class="filter-container__checkbox"
+        id="favorite-checkbox"
+        value="yes"
+        (change)="filterByFavorite(favorite)"
+        [checked]="getFlag(favorite.type, favorite.id)"
+      />
+      <label for="favorite-checkbox"></label>
     </div>
   </div>
 </div>
 <p class="filter-container__header">Год покупки</p>
 <div class="filter-slider">
-<ngx-slider [(value)]="valueYear" (click)="filterByRanges()" (valueChange)="filterByRanges()" (highValueChange)="filterByRanges()" [(highValue)]="highValueYear" [options]="optionsYear"></ngx-slider>
+  <ngx-slider
+    [(value)]="valueYear"
+    (click)="filterByRanges()"
+    (valueChange)="filterByRanges()"
+    (highValueChange)="filterByRanges()"
+    [(highValue)]="highValueYear"
+    [options]="optionsYear"
+  ></ngx-slider>
 </div>
 <p class="filter-container__header">Количество</p>
 <div class="filter-slider">
-<ngx-slider class="filter-slider" (click)="filterByRanges()" (valueChange)="filterByRanges()" (highValueChange)="filterByRanges()" [(value)]="valueQuantity" [(highValue)]="highValueQuantity" [options]="optionsQuantity"></ngx-slider>
+  <ngx-slider
+    class="filter-slider"
+    (click)="filterByRanges()"
+    (valueChange)="filterByRanges()"
+    (highValueChange)="filterByRanges()"
+    [(value)]="valueQuantity"
+    [(highValue)]="highValueQuantity"
+    [options]="optionsQuantity"
+  ></ngx-slider>
 </div>

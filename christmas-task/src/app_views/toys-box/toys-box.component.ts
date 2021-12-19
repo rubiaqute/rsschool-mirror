@@ -4,9 +4,8 @@ import { SearchServiceComponent } from '../../app_services/search-service/search
 import { toys } from '../../app_mocks/toys';
 import { ToyCard, IToysAndSortingOrder } from '../../app_models/interfaces';
 import { FilterBarComponent } from '../filter-bar/filter-bar.component';
-import { ChoosedServiceComponent } from 'src/app_services/choosed-service/choosed-service.component';
-import { ModalServiceComponent } from 'src/app_services/modal-service/modal-service.component';
-
+import { ChoosedServiceComponent } from '../../app_services/choosed-service/choosed-service.component';
+import { ModalServiceComponent } from '../../app_services/modal-service/modal-service.component';
 
 @Injectable({
   providedIn: 'root',
@@ -15,16 +14,19 @@ import { ModalServiceComponent } from 'src/app_services/modal-service/modal-serv
   selector: 'app-toys-box',
   templateUrl: './toys-box.component.html',
   styleUrls: ['./toys-box.component.scss'],
-  providers:[FilterBarComponent, FilterServiceComponent, SearchServiceComponent, ChoosedServiceComponent, ModalServiceComponent],
+  providers: [
+    FilterBarComponent,
+    FilterServiceComponent,
+    SearchServiceComponent,
+    ChoosedServiceComponent,
+    ModalServiceComponent,
+  ],
 })
 export class ToysBoxComponent {
   toysOnScreen: ToyCard[] = toys;
   toggle: boolean;
   sortingOrder: string = '';
-  constructor(
-    
-
-  ) {
+  constructor() {
     this.toysOnScreen = toys;
     this.toggle = Boolean(this.returnToys().length > 0);
   }
@@ -32,7 +34,7 @@ export class ToysBoxComponent {
     this.toysOnScreen = toysNew;
     this.toggle = Boolean(this.returnToys().length > 0);
   }
-  rewriteToysToInput(toysNew: ToyCard[]){
+  rewriteToysToInput(toysNew: ToyCard[]) {
     this.toysOnScreen = toysNew;
     // this.filter.ngOnChanges();
   }

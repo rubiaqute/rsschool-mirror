@@ -4,13 +4,13 @@
 
 .toys-container__item {
   padding: 1rem;
-  width:19%;
+  width: 19%;
   background: $background-cards;
   border-radius: 10px;
   @extend %transition-cards;
-  &:hover{
-    cursor:pointer;
-    opacity:0.8;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
   }
   &.toys-container__item-colored {
     background: $background-favcards;
@@ -23,14 +23,13 @@
   h4 {
     color: $color-text;
     @extend %font-neucha;
-    @include font(1.8rem, 2.0rem, 400, normal);
+    @include font(1.8rem, 2rem, 400, normal);
   }
 }
 .toys-container__image {
-  
   width: 37%;
-  margin:1rem auto;
-  img{
-    width:100%;
+  margin: 1rem auto;
+  img {
+    width: 100%;
   }
 }

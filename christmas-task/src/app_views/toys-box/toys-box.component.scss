@@ -3,15 +3,15 @@
 @import "./../../sass_global/constants";
 
 .side-bar {
-  height: 100vh;
+  height: 90vh;
   min-width: 30%;
   padding: 3% 0%;
   padding-right: 2%;
 }
-.toys-container{
-  padding-top:2%;
+.toys-container {
+  padding-top: 2%;
   position: relative;
-  width:100%;
+  width: 100%;
 }
 
 .toys-container__header {
@@ -29,17 +29,17 @@
   margin-top: 20%;
 }
 .toys-container__items {
-  padding:1%;
-  display:flex;
+  padding: 1%;
+  display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2%;   
+  margin-bottom: 2%;
 }
 
 .favourites-container {
   position: absolute;
-  width:4rem;
+  width: 4rem;
   height: 4rem;
   top: 0.5%;
-  right:2%;
+  right: 2%;
 }

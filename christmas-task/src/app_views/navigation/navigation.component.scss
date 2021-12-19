@@ -8,7 +8,7 @@
   z-index: 1;
   position: absolute;
   top: 0%;
-  width:100%;
+  width: 100%;
   background-color: $color-header-background;
   .app-navigation__item {
     margin: 1%;
@@ -25,21 +25,21 @@
       cursor: pointer;
     }
     &:hover {
-      filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
-141deg) brightness(89%) contrast(90%);
+      filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg)
+        brightness(89%) contrast(90%);
       @extend %transition-cards;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 }
 .app-navigation__item_home {
-background: url('../../assets/svg/home.svg') no-repeat;
-height:2.4rem;
-width:2.4rem;
-&:hover {
-  @extend %transition-cards;
-  cursor: pointer;
-  filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(
-141deg) brightness(89%) contrast(90%);
-}
+  background: url("../../assets/svg/home.svg") no-repeat;
+  height: 2.4rem;
+  width: 2.4rem;
+  &:hover {
+    @extend %transition-cards;
+    cursor: pointer;
+    filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg)
+      brightness(89%) contrast(90%);
+  }
 }

@@ -1,9 +1,8 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,28 +12,12 @@ import { NavigationComponent } from '../app_views/navigation/navigation.componen
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { StorageServiceComponent } from '../app_services/storage-service/storage-service.component';
 
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavigationComponent,
     StorageServiceComponent,
-    
-    // ToysBoxComponent,
-    // FavouriteComponent,
-    // SortBarComponent,
-    // FilterBarComponent,
-    // FilterServiceComponent,
-    // ToyCardsComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -42,14 +25,9 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
     FormsModule,
     BrowserAnimationsModule,
     NgxSliderModule,
-    RouterModule.forRoot([
-      { path: 'toys', component: ToysComponent },
-      // { path: '', component: ToysBoxComponent },
-      // { path: '', component: FavouriteComponent },
-      // { path: '', component: SortBarComponent },
-    ])
+    RouterModule.forRoot([{ path: 'toys', component: ToysComponent }]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
