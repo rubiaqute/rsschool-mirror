@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToysComponent } from '../app_pages/toys/toys.component';
@@ -30,6 +31,7 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
     FormsModule,
     BrowserAnimationsModule,
     NgxSliderModule,
+    
     RouterModule.forRoot([{ path: 'toys', component: ToysComponent },{ path: 'tree', component: TreeComponent }]),
   ],
   providers: [],

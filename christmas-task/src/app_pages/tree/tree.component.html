@@ -1,7 +1,7 @@
 <div class="tree-container">
   <app-settings-bar (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
   <div class="main-tree" [ngStyle]="backgroundImage">
-    <img src="{{imageTree}}" alt="" class="main-tree__tree">
+    <img src="{{imageTree}}" alt="" class="main-tree__tree" #container>
   </div>
-  <app-toys-to-hang class="tree-container__toys"></app-toys-to-hang>
+  <app-toys-to-hang [treeContainer]="containerTree" class="tree-container__toys"></app-toys-to-hang>
 </div>

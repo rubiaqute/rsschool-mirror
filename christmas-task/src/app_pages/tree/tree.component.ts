@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy  } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class TreeComponent implements OnInit {
   backgroundImage: { background: string } = { background: '1' };
   imageTree: string = '';
+  @ViewChild('container') containerTree!: ElementRef<HTMLElement>;
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.backgroundImage = this.returnBackground('1');
