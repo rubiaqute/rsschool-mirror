@@ -4,13 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToysComponent } from '../app_pages/toys/toys.component';
+import { TreeComponent } from 'src/app_pages/tree/tree.component';
 import { FooterComponent } from '../app_views/footer/footer.component';
 import { NavigationComponent } from '../app_views/navigation/navigation.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { StorageServiceComponent } from '../app_services/storage-service/storage-service.component';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,7 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
     FormsModule,
     BrowserAnimationsModule,
     NgxSliderModule,
-    RouterModule.forRoot([{ path: 'toys', component: ToysComponent }]),
+    RouterModule.forRoot([{ path: 'toys', component: ToysComponent },{ path: 'tree', component: TreeComponent }]),
   ],
   providers: [],
   bootstrap: [AppComponent],

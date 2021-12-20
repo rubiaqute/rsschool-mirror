@@ -1,0 +1,1 @@
+export const toysToHangLength:number=20;

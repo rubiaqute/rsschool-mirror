@@ -3,3 +3,17 @@
   font-size: 48px;
   text-align: center;
 }
+.tree-container {
+  display:flex;
+  width:100%;
+}
+.tree-container__settings{
+  width: 25%;
+}
+.tree-container__toys{
+  width: 25%;
+  padding:3rem 1rem;
+}
+.tree-container__tree{
+  width:50%
+}

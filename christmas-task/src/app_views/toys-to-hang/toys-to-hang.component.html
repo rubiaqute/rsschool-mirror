@@ -1,0 +1,9 @@
+<h3 class="tree-container__header">Игрушки</h3>
+<div class="toys-to-hang">
+<div class="tree-container__toy" *ngFor="let toy of toysToHang">
+  <div class="tree-container__toy-image">
+    <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" />
+  </div>
+  <p class="tree-container__toy-count">{{ getCount(toy.count) }}</p>
+</div>
+</div>
