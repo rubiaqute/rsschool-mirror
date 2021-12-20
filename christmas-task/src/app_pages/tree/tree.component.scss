@@ -6,14 +6,29 @@
 .tree-container {
   display:flex;
   width:100%;
+  padding-top:5rem;
 }
 .tree-container__settings{
   width: 25%;
+  padding:3rem 1rem;
 }
 .tree-container__toys{
   width: 25%;
   padding:3rem 1rem;
 }
-.tree-container__tree{
-  width:50%
+.main-tree{
+  width:50%;
+  height:85vh;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  padding:2% 5%;
+  justify-content: center;
+  align-items: flex-end;
+  .main-tree__tree{
+    margin:auto;
+    width:70%;
+    height:100%;
+  }
 }

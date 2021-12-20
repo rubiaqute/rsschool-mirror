@@ -1,9 +1,7 @@
-<p class="message-in-progress">In progress....</p>
 <div class="tree-container">
-  <div class="tree-container__settings">
-    <!-- <app-trees-to-choose></app-trees-to-choose>
-    <app-bg-to-choose></app-bg-to-choose> -->
+  <app-settings-bar (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
+  <div class="main-tree" [ngStyle]="backgroundImage">
+    <img src="{{imageTree}}" alt="" class="main-tree__tree">
   </div>
-  <div class="tree-container__tree"></div>
   <app-toys-to-hang class="tree-container__toys"></app-toys-to-hang>
 </div>

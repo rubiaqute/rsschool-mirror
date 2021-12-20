@@ -1,0 +1,40 @@
+@import "./../../sass_global/mixins";
+@import "./../../sass_global/placeholders";
+@import "./../../sass_global/constants";
+
+.settings-bar__header {
+  text-align: center;
+  color: $color-text;
+  @extend %font-neucha;
+  @include font(2.8rem, 2.8rem, 400, normal);
+}
+.trees-to-choose, .bg-to-choose{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+.trees-to-choose__tree, .bg-to-choose__bg {
+  width:30%;
+  background: $background-cards;
+  border-radius: 10px;
+  @extend %transition-cards;
+  padding:2%;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+.bg-to-choose__bg{
+  width:19%;
+  height:5rem;
+  padding:0;
+}
+.trees-to-choose__image {
+  width: 80%;
+  margin: 1rem auto;
+  img {
+    width: 100%;
+  }
+}

@@ -1,5 +1,8 @@
 import { Range } from './enum';
 export type FilterPam = IShape | IColor | ISize | IFavorite;
+export interface ICard{
+  num: string;
+}
 export interface ToyCard {
   num: string;
   name: string;

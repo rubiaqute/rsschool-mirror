@@ -1,0 +1,15 @@
+<div class="general-settings">
+  <h3 class="settings-bar__header">Выберите ёлку:</h3>
+  <div class="trees-to-choose">
+    <div class="trees-to-choose__tree" *ngFor="let tree of treesToChoose" (click)="changeTree(tree.num)">
+      <div class="trees-to-choose__image">
+        <img src="./../../assets/tree/{{ tree.num }}.png" alt="tree-image" />
+      </div>
+    </div>
+  </div>
+  <h3 class="settings-bar__header">Выберите фон:</h3>
+  <div class="bg-to-choose">
+    <div class="bg-to-choose__bg" *ngFor="let bg of bgToChoose" (click)="changeBg(bg.num)" [ngStyle]="returnBackground(bg.num)">
+    </div>
+  </div>
+</div>
