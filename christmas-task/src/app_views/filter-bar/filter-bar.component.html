@@ -114,9 +114,9 @@
 <div class="filter-slider">
   <ngx-slider
     [(value)]="valueYear"
-    (click)="filterByRanges()"
-    (valueChange)="filterByRanges()"
-    (highValueChange)="filterByRanges()"
+    (click)="filterIfSearch()"
+    (valueChange)="filterIfSearch()"
+    (highValueChange)="filterIfSearch()"
     [(highValue)]="highValueYear"
     [options]="optionsYear"
   ></ngx-slider>
@@ -125,9 +125,9 @@
 <div class="filter-slider">
   <ngx-slider
     class="filter-slider"
-    (click)="filterByRanges()"
-    (valueChange)="filterByRanges()"
-    (highValueChange)="filterByRanges()"
+    (click)="filterIfSearch()"
+    (valueChange)="filterIfSearch()"
+    (highValueChange)="filterIfSearch()"
     [(value)]="valueQuantity"
     [(highValue)]="highValueQuantity"
     [options]="optionsQuantity"

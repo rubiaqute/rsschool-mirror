@@ -2,7 +2,7 @@
 <div class="toys-to-hang" #toysContainer>
 <div class="tree-container__toy" *ngFor="let toy of toysToHang; let i = index">
   <div class="tree-container__toy-image">
-    <img src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" (draggable)="false" (mousedown)="drag($event, i)" />
+    <img src="assets/toys/{{ toy.num }}.png" alt="toy-image" (draggable)="false" (mousedown)="drag($event, i)" />
   </div>
   <p class="tree-container__toy-count">{{ getCount(toy.count) }}</p>
 </div>

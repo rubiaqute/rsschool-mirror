@@ -7,6 +7,7 @@ import {
   IFavorite,
   IRanges,
   IFilterObject,
+FilterPam,
 } from '../../app_models/interfaces';
 import { FilterServiceComponent } from '../../app_services/filter-service/filter-service.component';
 import { Filter, Range } from '../../app_models/enum';
@@ -34,17 +35,17 @@ export class FilterBarComponent implements OnInit {
   @Input() favorites: IFavorite[] = [];
   @Output() filterThis = new EventEmitter<ToyCard[]>();
   valueYear: number = 1940;
-  highValueYear: number = 2020;
+  highValueYear: number = 2021;
   optionsYear: Options = {
     floor: 1940,
-    ceil: 2020,
+    ceil: 2021,
     step: 1,
   };
   valueQuantity: number = 1;
-  highValueQuantity: number = 12;
+  highValueQuantity: number = 13;
   optionsQuantity: Options = {
     floor: 1,
-    ceil: 12,
+    ceil: 13,
     step: 1,
   };
 
@@ -67,7 +68,7 @@ export class FilterBarComponent implements OnInit {
   }
   returnBackgroundIcon(svgName: string): { background: string } {
     return {
-      background: `url(./../../assets/svg/${svgName}.svg) no-repeat center`,
+      background: `url(assets/svg/${svgName}.svg) no-repeat center`,
     };
   }
   getRangesdata(): void {
@@ -81,43 +82,57 @@ export class FilterBarComponent implements OnInit {
         this.storageService.getObject('rangesObject')[1].highValue;
     } else {
       this.valueYear = 1940;
-      this.highValueYear = 2020;
+      this.highValueYear = 2021;
       this.valueQuantity = 1;
-      this.highValueQuantity = 12;
+      this.highValueQuantity = 13;
     }
   }
+  
   filterByShape(shape: IShape): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.shapeFilter,
       shape
     );
-    this.filterThis.emit(toys);
-    this.filterByRanges();
+    if (this.userInput != '') this.searchBy(this.userInput);
+    else {
+      this.filterThis.emit(toys);
+      this.filterByRanges();
+    }
   }
   filterByColor(color: IColor): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.colorFilter,
       color
     );
-    this.filterThis.emit(toys);
-    this.filterByRanges();
+    if (this.userInput != '') this.searchBy(this.userInput);
+    else {
+      this.filterThis.emit(toys);
+      this.filterByRanges();
+    }
   }
   filterBySize(size: ISize): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.sizeFilter,
       size
     );
-    this.filterThis.emit(toys);
-    this.filterByRanges();
+    if (this.userInput != '') this.searchBy(this.userInput);
+    else {
+      this.filterThis.emit(toys);
+      this.filterByRanges();
+    }
   }
   filterByFavorite(favorite: IFavorite): void {
     const toys: ToyCard[] = this.filter.updateFilterObject(
       Filter.favoriteFilter,
       favorite
     );
-    this.filterThis.emit(toys);
-    this.filterByRanges();
+    if (this.userInput != '') this.searchBy(this.userInput);
+    else {
+      this.filterThis.emit(toys);
+      this.filterByRanges();
+    }
   }
+
   getFlag(filterKey: string, filterKeyId: number): boolean {
     return this.filter.getFilterObject()[
       `${filterKey}Filter` as keyof IFilterObject
@@ -134,6 +149,10 @@ export class FilterBarComponent implements OnInit {
     const toysNew: ToyCard[] = this.searchService.search(input);
     this.filterThis.emit(toysNew);
   }
+  filterIfSearch(){
+    if (this.userInput != '') this.searchBy(this.userInput);
+    else this.filterByRanges();
+  }
   filterByRanges(): void {
     const rangeObject: IRanges[] = [
       {
@@ -149,7 +168,9 @@ export class FilterBarComponent implements OnInit {
     ];
     this.storageService.setObject('rangesObject', rangeObject);
     const toys: ToyCard[] = this.filter.filterByRange(rangeObject);
+    
     this.filterThis.emit(toys);
+    
   }
   cleanFilters() {
     this.storageService.removeObject('filterObject');
@@ -163,6 +184,7 @@ export class FilterBarComponent implements OnInit {
           el.dispatchEvent(event);
         }
       });
+    this.userInput = '';
   }
   clearLocalStorage() {
     this.storageService.removeObject('favouritesToys');

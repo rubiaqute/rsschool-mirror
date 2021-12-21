@@ -8,6 +8,11 @@ const routes: Routes = [
       import('../app_pages/toys/toys.module').then((m) => m.ToysModule),
   },
   {
+    path: '',
+    loadChildren: () =>
+    import('./../app_pages/start/start.module').then((m) => m.StartModule),
+  },
+  {
     path: 'tree',
     loadChildren: () =>
       import('./../app_pages/tree/tree.module').then((m) => m.TreeModule),
