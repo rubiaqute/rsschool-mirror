@@ -6,6 +6,7 @@ import { TreeComponent } from './tree.component';
 import { ToysToHangComponent } from './../../app_views/toys-to-hang/toys-to-hang.component'
 import { DecorateServiceComponent } from './../../app_services/decorate-service/decorate-service.component'
 import { SettingsBarComponent } from './../../app_views/settings-bar/settings-bar.component'
+import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SettingsBarComponent } from './../../app_views/settings-bar/settings-ba
     ToysToHangComponent,
     DecorateServiceComponent,
     SettingsBarComponent,
+    PositionServiceComponent
   ],
   imports: [CommonModule, TreeRoutingModule],
 })

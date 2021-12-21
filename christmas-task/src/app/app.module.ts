@@ -18,12 +18,14 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavigationComponent,
     StorageServiceComponent,
+    
   ],
   imports: [
     BrowserModule,

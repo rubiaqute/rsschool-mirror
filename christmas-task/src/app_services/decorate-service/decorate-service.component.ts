@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { TreeModule } from 'src/app_pages/tree/tree.module';
 import { StorageServiceComponent } from '../storage-service/storage-service.component';
 import { toys } from 'src/app_mocks/toys';
 import { toysToHangLength } from 'src/app_mocks/tree-data';

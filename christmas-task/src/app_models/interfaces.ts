@@ -13,6 +13,11 @@ export interface ToyCard {
   size: string;
   favorite: boolean;
 }
+export interface ICoordinates{
+  point:string;
+  x:number;
+  y:number;
+}
 export interface IFilterObject {
   shapeFilter: IShape[];
   colorFilter: IColor[];

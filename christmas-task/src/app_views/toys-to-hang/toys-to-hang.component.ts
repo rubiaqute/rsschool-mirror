@@ -10,7 +10,7 @@ import { DecorateServiceComponent } from 'src/app_services/decorate-service/deco
 })
 export class ToysToHangComponent implements OnInit {
 
-  @Input() treeContainer!: ElementRef
+  // @Input() treeContainer!: ElementRef<HTMLImageElement>
   toysToHang: ToyCard[] = [];
   dragActive: boolean = false;
   pointerCursorX: number = 0;
