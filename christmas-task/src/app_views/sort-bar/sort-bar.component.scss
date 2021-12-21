@@ -8,7 +8,7 @@
   justify-content: space-between;
   .sort-container__header {
     @extend %font-neucha;
-    @include font(2rem, 2.2rem, 400, uppercase);
+    @include font(1.4rem, 1.4rem, 400, uppercase);
     color: $color-text;
   }
   .sort-container__select {

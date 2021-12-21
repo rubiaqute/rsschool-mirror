@@ -9,8 +9,8 @@
 }
 
 .filter-container__svg {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0 auto;
   z-index: 1;
   background-size: cover;
@@ -53,6 +53,7 @@
   @include font(1rem, 1.2rem, 300, normal);
 }
 .filter-container__header {
+  white-space:nowrap; 
   @extend %font-neucha;
   @include font(1.4rem, 1.4rem, 400, uppercase);
   color: $color-text;
