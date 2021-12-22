@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild, Input, ChangeDetectorRef, ChangeDetectionStrategy, AfterContentChecked } from '@angular/core';
+import { PositionServiceComponent } from 'src/app_services/position-service/position-service.component';
 import { ToyCard } from './../../app_models/interfaces';
 import { DecorateServiceComponent } from './../../app_services/decorate-service/decorate-service.component';
 
@@ -13,27 +14,21 @@ export class ToysToHangComponent implements OnInit {
   // @Input() treeContainer!: ElementRef<HTMLImageElement>
   toysToHang: ToyCard[] = [];
   dragActive: boolean = false;
-  pointerCursorX: number = 0;
-  pointerCursorY: number = 0;
   toyDrag: HTMLElement= document.getElementById('toysContainer')!
+  currentDroppable:HTMLElement|null=null;
+  handleDragStart(event:DragEvent,toy:ToyCard){
+    this.positionService.rewriteIsAvailableToDrop(false);
+    const clone=(<HTMLElement>event.target)!.cloneNode(true);
+    event.dataTransfer!.setData("dragToy", (<HTMLElement>event.target)!.id );
+  }
   
-  @HostListener('window:mouseup', ['$event'])
-  mouseUp(event:MouseEvent){
-    if(this.dragActive==true){
-      this.dragActive=false;
-    }
-  }
-  @HostListener('window:mousemove', ['$event'])
-  mouseMove(event:MouseEvent) {
-      if (this.dragActive==true){
-        this.toyDrag.style.left = event.pageX-this.toyDrag.offsetWidth / 2 + 'px';
-        this.toyDrag.style.top = event.pageY-this.toyDrag.offsetHeight / 2 + 'px';
-        this.toyDrag.hidden=true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
-        this.toyDrag.hidden=true;
-        if(!elemBelow) return
-      }
-  }
+  // @HostListener('window:mouseup', ['$event'])
+  // mouseUp(event:MouseEvent){
+  //   if(this.dragActive==true){
+  //     this.dragActive=false;
+  //   }
+  // }
+
 
  
 
@@ -64,7 +59,7 @@ export class ToysToHangComponent implements OnInit {
   //     } while (elem = elem.offsetParent as HTMLElement);
   //     return offsetLeft;
   // }
-  constructor(private decorateService: DecorateServiceComponent, private cdr:ChangeDetectorRef) {}
+  constructor(private decorateService: DecorateServiceComponent, private cdr:ChangeDetectorRef, private positionService: PositionServiceComponent) {}
 
   ngOnInit(): void {
     this.toysToHang = this.decorateService.getToysToHang();
@@ -74,27 +69,21 @@ export class ToysToHangComponent implements OnInit {
   getCount(count: string): string {
     return count.padStart(2, '0');
   }
-  drag(event: MouseEvent, index:number) {
+  drag(event: DragEvent, toyId:string) {
     event.preventDefault();
     this.toyDrag = event.target as HTMLElement;
+    event.dataTransfer!.setData('drag-toy', toyId)
     this.dragActive=true;
-    this.initialPrepare();
-    this.toyDrag.style.left = event.pageX-this.toyDrag.offsetWidth / 2 + 'px';
-      this.toyDrag.style.top = event.pageY-this.toyDrag.offsetHeight / 2 + 'px';
-    const toyBox = document.querySelectorAll('.tree-container__toy-image');
-    if (this.toyDrag.closest('.tree-container__toy-image')){
-    toyBox[index].removeChild(this.toyDrag)
-    document.querySelector('.tree-container')!.append(this.toyDrag)
-    }
+    // this.initialPrepare();
+    // this.toyDrag.style.left = event.pageX-this.toyDrag.offsetWidth / 2 + 'px';
+    // this.toyDrag.style.top = event.pageY-this.toyDrag.offsetHeight / 2 + 'px';
+    // const toyBox = document.querySelectorAll('.tree-container__toy-image');
+    // if (this.toyDrag.closest('.tree-container__toy-image')){
+    // toyBox[index].removeChild(this.toyDrag)
+    // document.querySelector('.tree-container')!.append(this.toyDrag)
+    // }
   }
-    initialPrepare(){
-      this.toyDrag.style.display='block'
-      this.toyDrag.style.width = this.toyDrag.offsetWidth + 'px';
-      this.toyDrag.style.height = this.toyDrag.offsetHeight + 'px';
-      this.toyDrag.style.position = 'absolute';
-      this.toyDrag.style.zIndex = '9000';
-      
-    }
+    
   
 
 

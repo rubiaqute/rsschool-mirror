@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, AfterViewInit  } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, AfterViewInit, HostListener  } from '@angular/core';
 import { Router } from '@angular/router';
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 import { TreeModule } from './tree.module';
@@ -12,22 +12,56 @@ import { TreeModule } from './tree.module';
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   backgroundImage: { background: string } = { background: '1' };
+  
   imageTree: string = '';
   @ViewChild('containerTree') containerTree!: ElementRef<HTMLImageElement>;
+  @ViewChild('containerForDrop') containerForDrop!: ElementRef<HTMLImageElement>;
   constructor(private router: Router, private positionService: PositionServiceComponent) {}
+  @HostListener('window:dragend', ['$event'])
+  dragEnd(event:MouseEvent){
+    event.preventDefault();
+    if(this.positionService.isAvailableToDrop==false){
+    //  destroyAndCloneElement()
+    } 
+  }
   ngOnInit(): void {
     this.backgroundImage = this.returnBackground('1');
     this.imageTree = this.returnTreeImage('1');
   }
   showSmth(event:MouseEvent){
     console.log('Мэп')
-console.log(event.pageX, event.pageY)
+let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
+        console.log(event.target)
   }
+  handleOver(event:DragEvent){
+    event.stopPropagation();
+    event.preventDefault(); 
+  }
+  handleOverDrop(event:DragEvent){
+    event.preventDefault(); 
+    this.positionService.rewriteIsAvailableToDrop(true);
+    const draggedId = event.dataTransfer!.getData("dragToy");
+    const draggedEl = document.getElementById(draggedId) as HTMLElement;
+    this.positionService.initialPrepare(draggedEl);
+    draggedEl.parentNode!.removeChild(draggedEl);
+    this.containerForDrop.nativeElement.appendChild(draggedEl);
+    draggedEl.style.left = event.pageX-draggedEl.offsetWidth / 2 + 'px';
+    draggedEl.style.top = event.pageY-draggedEl.offsetHeight / 2 + 'px';
+    
+
+  }
+//   dropSmth(event:DragEvent){
+// event.preventDefault();
+// const data = event.dataTransfer!.getData('drag-toy')
+// (<HTMLElement>event.target).appendChild(document.getElementById(data))
+//     console.log("Дроп")
+//   }
+dragOverSmth(event:Event){
+  event.stopPropagation();
+  event.preventDefault();
+  console.log("Дрэговер")
+}
   showSize(event:MouseEvent) {
-    // console.log((<HTMLElement>event.target)!.offsetWidth)
-    // console.log((<HTMLElement>event.target)!.offsetHeight)
-    // console.log((<HTMLElement>event.target)!.getBoundingClientRect().left)
-    // console.log((<HTMLElement>event.target)!.getBoundingClientRect().top)
     console.log('Дерево')
     console.log(event.pageX, event.pageY)
   }
