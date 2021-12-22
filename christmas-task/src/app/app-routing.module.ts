@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'toys',
     loadChildren: () =>
-      import('../app_pages/toys/toys.module').then((m) => m.ToysModule),
+      import('./../app_pages/toys/toys.module').then((m) => m.ToysModule),
   },
   {
     path: 'tree',
@@ -16,6 +16,11 @@ const routes: Routes = [
     path: 'start',
     loadChildren: () =>
       import('./../app_pages/start/start.module').then((m) => m.StartModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+    import('./../app_pages/start/start.module').then((m) => m.StartModule),
   },
 ];
 

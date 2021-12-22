@@ -10,7 +10,7 @@ import { selfEstimation } from 'src/app_mocks/self-estimation';
 export class AppComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
-    this.router.navigate(['../start']);
+    this.router.navigate(['']);
     console.log(selfEstimation);
   }
 }

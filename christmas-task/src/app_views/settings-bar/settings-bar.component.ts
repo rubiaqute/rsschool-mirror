@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ICard } from 'src/app_models/interfaces';
-import { treesImages, bgImages } from 'src/app_mocks/tree-data';
+import { ICard } from './../../app_models/interfaces';
+import { treesImages, bgImages } from './../../app_mocks/tree-data';
 
 @Component({
   selector: 'app-settings-bar',

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild, Input, ChangeDetectorRef, ChangeDetectionStrategy, AfterContentChecked } from '@angular/core';
-import { ToyCard } from 'src/app_models/interfaces';
-import { DecorateServiceComponent } from 'src/app_services/decorate-service/decorate-service.component';
+import { ToyCard } from './../../app_models/interfaces';
+import { DecorateServiceComponent } from './../../app_services/decorate-service/decorate-service.component';
 
 @Component({
 
@@ -28,6 +28,10 @@ export class ToysToHangComponent implements OnInit {
       if (this.dragActive==true){
         this.toyDrag.style.left = event.pageX-this.toyDrag.offsetWidth / 2 + 'px';
         this.toyDrag.style.top = event.pageY-this.toyDrag.offsetHeight / 2 + 'px';
+        this.toyDrag.hidden=true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
+        this.toyDrag.hidden=true;
+        if(!elemBelow) return
       }
   }
 

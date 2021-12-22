@@ -3,7 +3,7 @@
   <div class="main-tree" [ngStyle]="backgroundImage">
     <img src="{{imageTree}}" alt="" (click) = "showSize($event)"class="main-tree__tree"  usemap='#tree-map' #containerTree>
     <map name="tree-map">
-      <area title="pine-tree" (click) = "showSmth($event)"  [coords]="returnCoords()" shape="poly">
+      <area title="pine-tree" (mousedown) = "showSmth($event)"  [coords]="returnCoords()" shape="poly">
   </map>
   </div>
   <app-toys-to-hang  class="tree-container__toys"></app-toys-to-hang>
