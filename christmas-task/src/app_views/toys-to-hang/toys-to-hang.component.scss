@@ -22,8 +22,13 @@
 }
 .tree-container__toy-image {
   width: 80%;
-  margin: 1rem auto;
+  padding-top:100%;
+  content:'';
+  position:relative;
   img {
+    position:absolute;
+    top:0%;
+    left:5%;
     width: 100%;
   }
 }
