@@ -36,10 +36,6 @@ returnIsDragged(): boolean{
 }
 
 initialPrepare(elem:HTMLElement){
-  elem.style.display='block'
-  elem.style.width = elem.offsetWidth + 'px';
-  elem.style.height = elem.offsetHeight + 'px';
-  elem.style.position = 'absolute';
   elem.style.zIndex = '10';
 }
 initialPrepareForQuit(elem:HTMLElement){

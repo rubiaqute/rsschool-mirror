@@ -113,10 +113,13 @@
 
 .search-bar__close {
   position: absolute;
-  display: block;
-  top: 0;
+  display: inline-block;
+  vertical-align: top;
+  top: 20%;
   right: 1.5rem;
-  padding-top: 0.45rem;
+  @include media-fullscreen {
+    top: 0%;
+  }
 
   @extend %font-roboto;
   @include font(2rem, 2.2rem, 400, uppercase);
@@ -133,7 +136,7 @@
   .button__toy {
     min-width: 20%;
     width:48%;
-    white-space: nowrap;
+    white-space: normal;
     color: $color-text;
     border: 1px solid $color-header-border;
     text-align: center;
@@ -147,8 +150,8 @@
     &:hover {
       transform: scale(1.1);
     }
-    @include media-desktop {
-      white-space: normal;
+    @include media-fullscreen {
+      
       max-width:45%;
     }
   }

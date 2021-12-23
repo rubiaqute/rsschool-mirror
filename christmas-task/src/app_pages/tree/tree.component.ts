@@ -51,12 +51,22 @@ let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
     this.positionService.rewriteIsAvailableToDrop(true);
     const draggedId = event.dataTransfer!.getData("dragToy");
     const draggedEl = document.getElementById(draggedId) as HTMLElement;
-    this.positionService.initialPrepare(draggedEl);
+    const container = this.containerForDrop.nativeElement;
+    const height = draggedEl.offsetHeight
+    const width = draggedEl.offsetWidth
+    draggedEl.style.display='block'
+    draggedEl.style.position='absolute'
     draggedEl.parentNode!.removeChild(draggedEl);
-    this.containerForDrop.nativeElement.appendChild(draggedEl);
-    draggedEl.style.left = event.pageX-draggedEl.offsetWidth / 2 + 'px';
-    draggedEl.style.top = event.pageY-draggedEl.offsetHeight / 2 + 'px';
-
+    // Находим относительную ширину и высоту относительно контейнера с елкой
+    draggedEl.style.width = (width/(container.getBoundingClientRect().width))*100 + '%';
+    draggedEl.style.height = (height/(container.getBoundingClientRect().height))*100 + '%';
+    this.positionService.initialPrepare(draggedEl);
+    
+    container.appendChild(draggedEl);
+    // Находим положение относительно контейнера с елкой
+    draggedEl.style.left = ((event.pageX-draggedEl.offsetWidth / 2 -container.getBoundingClientRect().left)/container.getBoundingClientRect().width)*100 + '%';
+    draggedEl.style.top = (((event.pageY-draggedEl.offsetHeight / 2)-container.getBoundingClientRect().top)/container.getBoundingClientRect().height)*100 + '%';
+    
     
 
   }
