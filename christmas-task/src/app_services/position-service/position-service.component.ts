@@ -42,4 +42,17 @@ initialPrepare(elem:HTMLElement){
   elem.style.position = 'absolute';
   elem.style.zIndex = '10';
 }
+initialPrepareForQuit(elem:HTMLElement){
+  elem.style.display=''
+  elem.style.width = '100%';
+  elem.style.height = '';
+  elem.style.position = 'absolute';
+  elem.style.zIndex = '';
+
+}
+getParent(idToy:string):HTMLElement{
+  const imageContainers = document.querySelectorAll('.tree-container__toy-image');
+  const id=Number(idToy.split('-')[0].trim())
+    return <HTMLElement>imageContainers[id];
+}
 }

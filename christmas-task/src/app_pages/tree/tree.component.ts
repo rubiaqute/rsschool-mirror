@@ -21,7 +21,16 @@ export class TreeComponent implements OnInit, AfterViewInit {
   dragEnd(event:MouseEvent){
     event.preventDefault();
     if(this.positionService.isAvailableToDrop==false){
-    //  destroyAndCloneElement()
+      const draggedEl = document.getElementById((<HTMLElement>event.target)!.id) as HTMLElement;
+      if (draggedEl.parentNode==this.containerForDrop.nativeElement) {
+        draggedEl.parentNode!.removeChild(draggedEl);
+        this.positionService.initialPrepareForQuit(draggedEl)
+        const parent = this.positionService.getParent(draggedEl.id);
+        parent.appendChild(draggedEl);
+        draggedEl.style.left = '';
+        draggedEl.style.top = '';
+      }
+    
     } 
   }
   ngOnInit(): void {
@@ -47,6 +56,7 @@ let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
     this.containerForDrop.nativeElement.appendChild(draggedEl);
     draggedEl.style.left = event.pageX-draggedEl.offsetWidth / 2 + 'px';
     draggedEl.style.top = event.pageY-draggedEl.offsetHeight / 2 + 'px';
+
     
 
   }
