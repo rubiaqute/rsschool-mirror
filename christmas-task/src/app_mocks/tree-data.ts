@@ -1,4 +1,4 @@
-import { ICard, ICoordinates } from "src/app_models/interfaces";
+import { ICard, ICoordinates, ISettings } from "src/app_models/interfaces";
 
 export const toysToHangLength:number=20;
 export const treesImages:ICard[]=[
@@ -28,3 +28,7 @@ export const coordinatesBasic:ICoordinates[]=[
   {point: '4', x:257, y:15},
   {point: '5', x:5, y:560},
 ]
+export const settings:ISettings[] = [
+  { type: 'music', isOn: false },
+  { type: 'snow', isOn: false },
+];

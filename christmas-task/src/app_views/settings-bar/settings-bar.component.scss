@@ -38,3 +38,53 @@
     width: 100%;
   }
 }
+.switch__svg{
+width:2rem;
+height:2rem;
+
+}
+.switch__switcher{
+  display: block;
+  width: 5rem; /* ширина */
+  height: 2rem; /* высота */
+  border-radius: 19px; /* радиус скругления */
+  background-color: $color-switch;/* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative; 
+  transition-duration: 300ms; /* анимация */
+}
+.switch__switcher::after {
+  content: "";
+  height: 1.5rem; /* высота кнопки */
+  width: 1.5rem; /* ширина кнопки */
+  border-radius: 17px;
+  background-color: $color-outline; /* цвет кнопки */
+  top: 0.2rem; /* положение кнопки по вертикали относительно основы */
+  left: 0.2rem; /* положение кнопки по горизонтали относительно основы */
+  @extend %transition-cards; /* анимация */
+  position: absolute;
+  z-index: 1;
+}
+.switchers-row{
+  display:flex;
+  justify-content: space-between;
+}
+.switch{
+display:flex;
+column-gap:3rem;
+}
+.switch__svg_on{
+  filter:invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg)
+  brightness(89%) contrast(90%);
+}
+.switch-on {
+  background: $color-darktext;
+}
+.switch-on::after {
+  left: 3.3rem;
+  background: $color-text;
+}

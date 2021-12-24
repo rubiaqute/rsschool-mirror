@@ -13,6 +13,10 @@ export interface ToyCard {
   size: string;
   favorite: boolean;
 }
+export interface ISettings {
+  type: string;
+  isOn: boolean;
+}
 export interface ICoordinates{
   point:string;
   x:number;
