@@ -88,3 +88,15 @@ column-gap:3rem;
   left: 3.3rem;
   background: $color-text;
 }
+.fa-snowflake{
+  animation: fall 2s linear forwards;
+  width:5rem;
+  height:5rem;
+  position:absolute;
+  top:-20%;
+}
+@keyframes fall {
+  to { 
+    transform: translateY(100vh);
+  }
+}

@@ -15,8 +15,10 @@ export class TreeComponent implements OnInit, AfterViewInit {
   
   imageTree: string = '';
   @ViewChild('containerTree') containerTree!: ElementRef<HTMLImageElement>;
-  @ViewChild('containerForDrop') containerForDrop!: ElementRef<HTMLImageElement>;
-  constructor(private router: Router, private positionService: PositionServiceComponent) {}
+  @ViewChild('containerDrop') containerForDrop!: ElementRef<HTMLElement>;
+  constructor(private router: Router, private positionService: PositionServiceComponent) {
+    
+  }
   @HostListener('window:dragend', ['$event'])
   dragEnd(event:MouseEvent){
     event.preventDefault();
@@ -32,6 +34,19 @@ export class TreeComponent implements OnInit, AfterViewInit {
       }
     
     } 
+  }
+  toggleSnow(){
+    setInterval(this.createSnowflakes,300)
+      }
+  createSnowflakes(){
+    const snowFlake =new Image();
+    snowFlake.src='assets/svg/snowflake.svg';
+    
+    const tree:HTMLElement=document.getElementById('mainTree')!;
+    tree.append(snowFlake)
+    snowFlake.classList.add("fa-snowflake");
+    // snowFlake.style.left=Math.random()*tree.offsetWidth+ 'px';
+       
   }
   ngOnInit(): void {
     this.backgroundImage = this.returnBackground('1');
@@ -112,4 +127,5 @@ dragOverSmth(event:Event){
   rewriteTree(num: string):void {
     this.imageTree = this.returnTreeImage(num)
   }
+  
 }

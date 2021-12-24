@@ -1,6 +1,6 @@
 <div class="tree-container">
-  <app-settings-bar (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
-  <div class="main-tree" [ngStyle]="backgroundImage" #containerForDrop>
+  <app-settings-bar  (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
+  <div class="main-tree" [ngStyle]="backgroundImage" id="mainTree" #containerDrop>
     <map name="tree-map">
       <area id="treeArea" #containerForAppend title="pine-tree" droppable (dragover)="handleOver($event)" (drop)="handleOverDrop($event)" (click) = "showSmth($event)"  [coords]="returnCoords()" shape="poly">
   </map>
@@ -9,4 +9,3 @@
   </div>
   <app-toys-to-hang class="tree-container__toys"></app-toys-to-hang>
 </div>
-<!-- [treeContainer]="containerTree" -->

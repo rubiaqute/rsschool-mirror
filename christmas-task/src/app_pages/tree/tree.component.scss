@@ -33,5 +33,18 @@
     margin:auto;
     width:70%;
     object-fit: contain;
+    z-index: 2;
+  }
+}
+.fa-snowflake{
+  animation: fall 2s linear forwards;
+  width:5rem;
+  height:5rem;
+  position:absolute;
+  top:-20%;
+}
+@keyframes fall {
+  to { 
+    transform: translateY(100vh);
   }
 }
