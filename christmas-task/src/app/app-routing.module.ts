@@ -20,12 +20,12 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-    import('./../app_pages/start/start.module').then((m) => m.StartModule),
+      import('./../app_pages/start/start.module').then((m) => m.StartModule),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash:true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -38,6 +38,11 @@
 &.green { animation-name: green; }
 &.blue { animation-name: blue; }
 &.yellow { animation-name: yellow; }
+&.multicolor:nth-child(1n + 1) { animation-name: red; }
+&.multicolor:nth-child(2n + 2) { animation-name: green; }
+&.multicolor:nth-child(3n + 3) { animation-name: blue; }
+&.multicolor:nth-child(4n + 4) { animation-name: yellow; }
+
 }
 @keyframes green {
   0%,

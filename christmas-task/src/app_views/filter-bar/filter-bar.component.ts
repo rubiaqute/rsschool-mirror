@@ -146,7 +146,7 @@ export class FilterBarComponent implements OnInit {
     const toysNew: ToyCard[] = this.searchService.search(input);
     this.filterThis.emit(toysNew);
   }
-  filterByRangeIfSearch(){
+  filterByRangeIfSearch() {
     if (this.userInput != '') this.searchBy(this.userInput);
     else this.filterByRanges();
   }
@@ -179,7 +179,7 @@ export class FilterBarComponent implements OnInit {
           el.dispatchEvent(event);
         }
       });
-      this.userInput = '';
+    this.userInput = '';
   }
   clearLocalStorage() {
     this.storageService.removeObject('favouritesToys');

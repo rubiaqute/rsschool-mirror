@@ -4,15 +4,14 @@ import { toys } from 'src/app_mocks/toys';
 import { toysToHangLength } from 'src/app_mocks/tree-data';
 import { ToyCard } from 'src/app_models/interfaces';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-decorate-service',
   templateUrl: './decorate-service.component.html',
-  styleUrls: ['./decorate-service.component.scss']
+  styleUrls: ['./decorate-service.component.scss'],
 })
 export class DecorateServiceComponent {
-
-  constructor(private storage:StorageServiceComponent) { }
+  constructor(private storage: StorageServiceComponent) {}
   getToysToHang(): ToyCard[] {
     let toysForTree: ToyCard[] = [];
     if (
@@ -34,5 +33,4 @@ export class DecorateServiceComponent {
     } while (randomToysForTree.length < toysToHangLength);
     return randomToysForTree;
   }
-
 }

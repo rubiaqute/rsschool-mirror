@@ -17,7 +17,7 @@ module.exports = {
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        'prettier/@typescript-eslint',
+        // 'prettier/@typescript-eslint',
         'plugin:prettier/recommended',
       ],
       "rules": {

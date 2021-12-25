@@ -1,6 +1,6 @@
 import { Range } from './enum';
 export type FilterPam = IShape | IColor | ISize | IFavorite;
-export interface ICard{
+export interface ICard {
   num: string;
 }
 export interface ToyCard {
@@ -17,10 +17,10 @@ export interface ISettings {
   type: string;
   isOn: boolean;
 }
-export interface ICoordinates{
-  point:string;
-  x:number;
-  y:number;
+export interface ICoordinates {
+  point: string;
+  x: number;
+  y: number;
 }
 export interface IFilterObject {
   shapeFilter: IShape[];
