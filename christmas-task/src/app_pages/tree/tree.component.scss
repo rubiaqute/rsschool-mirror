@@ -32,8 +32,18 @@
   .main-tree__tree{
     margin:auto;
     width:70%;
-    object-fit: contain;
+   height:100%;
     z-index: 2;
+  }
+  .garland{
+    pointer-events: none;
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index: 90;
+
   }
 }
 .fa-snowflake{

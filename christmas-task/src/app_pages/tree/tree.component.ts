@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, Afte
 import { Router } from '@angular/router';
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 import { TreeModule } from './tree.module';
+import { GarlandComponent } from './../../app_views/garland/garland.component'
 
 
 @Component({
@@ -12,7 +13,7 @@ import { TreeModule } from './tree.module';
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   backgroundImage: { background: string } = { background: '1' };
-  
+  switchGarland:boolean=false;
   imageTree: string = '';
   @ViewChild('containerTree') containerTree!: ElementRef<HTMLImageElement>;
   @ViewChild('containerDrop') containerForDrop!: ElementRef<HTMLElement>;
@@ -35,19 +36,7 @@ export class TreeComponent implements OnInit, AfterViewInit {
     
     } 
   }
-  toggleSnow(){
-    setInterval(this.createSnowflakes,300)
-      }
-  createSnowflakes(){
-    const snowFlake =new Image();
-    snowFlake.src='assets/svg/snowflake.svg';
-    
-    const tree:HTMLElement=document.getElementById('mainTree')!;
-    tree.append(snowFlake)
-    snowFlake.classList.add("fa-snowflake");
-    // snowFlake.style.left=Math.random()*tree.offsetWidth+ 'px';
-       
-  }
+ 
   ngOnInit(): void {
     this.backgroundImage = this.returnBackground('1');
     this.imageTree = this.returnTreeImage('1');
@@ -81,25 +70,8 @@ let elemBelow = document.elementFromPoint(event.clientX, event.clientY)
     // Находим положение относительно контейнера с елкой
     draggedEl.style.left = ((event.pageX-draggedEl.offsetWidth / 2 -container.getBoundingClientRect().left)/container.getBoundingClientRect().width)*100 + '%';
     draggedEl.style.top = (((event.pageY-draggedEl.offsetHeight / 2)-container.getBoundingClientRect().top)/container.getBoundingClientRect().height)*100 + '%';
-    
-    
+  }
 
-  }
-//   dropSmth(event:DragEvent){
-// event.preventDefault();
-// const data = event.dataTransfer!.getData('drag-toy')
-// (<HTMLElement>event.target).appendChild(document.getElementById(data))
-//     console.log("Дроп")
-//   }
-dragOverSmth(event:Event){
-  event.stopPropagation();
-  event.preventDefault();
-  console.log("Дрэговер")
-}
-  showSize(event:MouseEvent) {
-    console.log('Дерево')
-    console.log(event.pageX, event.pageY)
-  }
   ngAfterViewInit() {
 
     console.log(this.containerTree) 
@@ -110,8 +82,6 @@ dragOverSmth(event:Event){
     newCoords= this.positionService.getNewCoords(this.containerTree.nativeElement)
     }
     return newCoords;
-    // return '423,509,609,509,654,429,516,80,371,429';
-    // return '94,684,420,682,498,563,257,16,5,553'
   }
   returnBackground(num: string): { background: string } {
     return {
@@ -120,6 +90,9 @@ dragOverSmth(event:Event){
   }
   returnTreeImage(num: string): string {
     return `assets/tree/${num}.png`;
+  }
+  changGarlandView(flag:boolean){
+    this.switchGarland=flag;
   }
   rewriteBg(num: string):void {
     this.backgroundImage = this.returnBackground(num);

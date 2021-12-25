@@ -1,0 +1,6 @@
+<div class="garlandContainer" >
+  <ul class="lightrope" *ngFor="let lightrope of garlandObject; let i=index" [ngStyle]="returnRopeDimensions(i)">
+    
+    <li class="bulb red" *ngFor="let bulb of returnBulbCount(i); let j=index" [ngStyle]="returnBulbPosition(i, j)"></li>
+  </ul>
+  </div>

@@ -7,7 +7,7 @@ import { ToysToHangComponent } from './../../app_views/toys-to-hang/toys-to-hang
 import { DecorateServiceComponent } from './../../app_services/decorate-service/decorate-service.component'
 import { SettingsBarComponent } from './../../app_views/settings-bar/settings-bar.component'
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
-
+import { GarlandComponent } from './../../app_views/garland/garland.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { PositionServiceComponent } from './../../app_services/position-service/
     DecorateServiceComponent,
     SettingsBarComponent,
     PositionServiceComponent,
+    GarlandComponent,
   ],
   imports: [CommonModule, TreeRoutingModule],
 })

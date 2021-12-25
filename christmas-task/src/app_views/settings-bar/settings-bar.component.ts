@@ -1,22 +1,26 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
 import { ICard, ISettings } from './../../app_models/interfaces';
 import { treesImages, bgImages, settings } from './../../app_mocks/tree-data';
+import { GarlandComponent } from '../garland/garland.component';
 
 @Component({
   selector: 'app-settings-bar',
   templateUrl: './settings-bar.component.html',
   styleUrls: ['./settings-bar.component.scss'],
+  providers: [GarlandComponent]
 })
 export class SettingsBarComponent {
   @Input() treeForDrop!:HTMLElement
   @Output() bgChoice = new EventEmitter<string>();
   @Output() treeChoice = new EventEmitter<string>();
+  @Output() garlandSwitch = new EventEmitter<boolean>();
   interval:ReturnType<typeof setInterval>=setInterval(this.createSnowflakes,100)
   treesToChoose: ICard[] = [];
   bgToChoose: ICard[] = [];
   settingsObject: ISettings[] = [];
-  constructor() {
-    console.log(this.treeForDrop)
+  toggleGarland:boolean=false;
+  constructor(private garland:GarlandComponent) {
+   
   }
   @ViewChild ('audioplayer', {static: false}) audioplayer!: ElementRef<HTMLAudioElement>
   returnSettingsIcon(svgName: string): { background: string } {
@@ -61,6 +65,12 @@ export class SettingsBarComponent {
        setTimeout(()=>{
          snowFlake.remove()
        },3000)
+  }
+  turnOnGarland(){
+if (this.toggleGarland) this.toggleGarland=false;
+else this.toggleGarland=true;
+this.garlandSwitch.emit(this.toggleGarland)
+
   }
   
   ngOnInit(): void {
