@@ -15,6 +15,7 @@ import {
   garlandColors,
 } from './../../app_mocks/tree-data';
 import { GarlandComponent } from '../garland/garland.component';
+import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
 
 @Component({
   selector: 'app-settings-bar',
@@ -42,27 +43,39 @@ export class SettingsBarComponent {
 
   @ViewChild('audioplayer', { static: false })
   audioplayer!: ElementRef<HTMLAudioElement>;
-
-  constructor() {}
+  constructor(private storageService: StorageServiceComponent) {}
   ngOnInit(): void {
     this.treesToChoose = treesImages;
     this.bgToChoose = bgImages;
-    this.settingsObject = settings;
+    this.settingsObject = this.updateSettingsObject();
     clearInterval(this.interval);
     this.garlandColors = garlandColors;
     this.garlandIsOn = false;
     this.garlandColorChoosed = this.garlandColors[0];
+    this.toggleSnow(this.settingsObject[1].isOn);
+    this.checkMusic();
   }
-
+  checkMusic() {
+    if (this.settingsObject[1].isOn)
+      document.addEventListener('click', () => this.toggleMusic(), {
+        once: true,
+      });
+  }
   returnSettingsIcon(svgName: string): { background: string } {
     return {
       background: `url(assets/svg/${svgName}.svg) no-repeat center`,
     };
   }
+  updateSettingsObject() {
+    if (this.storageService.getObject('christmasTreeSettings'))
+      return this.storageService.getObject('christmasTreeSettings');
+    else return settings;
+  }
   toggle(i: number) {
     if (this.settingsObject[i].isOn == true)
       this.settingsObject[i].isOn = false;
     else this.settingsObject[i].isOn = true;
+    this.storageService.setObject('christmasTreeSettings', this.settingsObject);
     if (i == 0) this.toggleMusic();
     if (i == 1) this.toggleSnow(this.settingsObject[i].isOn);
     console.log(this.settingsObject);
