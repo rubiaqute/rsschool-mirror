@@ -29,13 +29,13 @@ img {
   vertical-align: top;
 }
 html {
-  font-size: 20px;
+  font-size: 15px;
   @extend %font-roboto;
   @include media-fullscreen {
     font-size:10px;
   }
   @include media-desktop {
-    font-size:8px;
+    font-size:6px;
   }
   
 }

@@ -21,7 +21,7 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./tree.component.scss'],
   providers: [GarlandComponent],
 })
-export class TreeComponent implements OnInit, AfterViewInit {
+export class TreeComponent implements OnInit {
   toggleScreenShotMessage: boolean = false;
   garlandColorChoice: string = 'multicolor';
   backgroundImage: { background: string } = { background: '1' };
@@ -145,9 +145,6 @@ export class TreeComponent implements OnInit, AfterViewInit {
       '%';
   }
 
-  ngAfterViewInit() {
-    console.log(this.containerTree);
-  }
   returnCoords(): string {
     let newCoords: string = '';
     if (this.containerTree !== undefined) {
@@ -167,12 +164,14 @@ export class TreeComponent implements OnInit, AfterViewInit {
   }
   changGarlandView(flag: boolean) {
     this.switchGarland = flag;
-    console.log(this.switchGarland);
   }
   changeGarlandColor(color: string) {
     this.switchGarland = true;
     this.garlandColorChoice = color;
     // this.garland.rewriteClass(color);
+  }
+  rewriteColorGarland(color: string) {
+    this.garlandColorChoice = color;
   }
   rewriteBg(num: string): void {
     this.backgroundImage = this.returnBackground(num);

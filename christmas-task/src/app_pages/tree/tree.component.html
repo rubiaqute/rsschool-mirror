@@ -1,7 +1,7 @@
 
 <div class="tree-container">
 
-  <app-settings-bar (congratsWritten) = "getCongratInput($event)" (garLandColorChoice)= "changeGarlandColor($event)" (garlandSwitch)="changGarlandView($event)"  (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
+  <app-settings-bar (justChangeGarLandColor) = "rewriteColorGarland($event)" (congratsWritten) = "getCongratInput($event)" (garLandColorChoice)= "changeGarlandColor($event)" (garlandSwitch)="changGarlandView($event)"  (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
   <div class="main-tree" [ngStyle]="backgroundImage" id="mainTree" #containerDrop>
     <div class="congratulations-container">
       <p class="congratulations-container__message">{{congratsInput}}</p>

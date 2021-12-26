@@ -3,8 +3,8 @@
 @import "./../../sass_global/constants";
 
 .settings-bar__header {
-  margin-top:1rem;
-  margin-bottom:0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   text-align: center;
   color: $color-text;
   @extend %font-neucha;
@@ -143,16 +143,16 @@
   }
 }
 .garland-row {
-  margin-top:2rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
 }
-.button-container{
-  width:100%;
+.button-container {
+  width: 100%;
   text-align: center;
 }
-.button-screen{
-  margin-top:0.2rem;
+.button-screen {
+  margin-top: 0.2rem;
   white-space: nowrap;
   min-width: 60%;
   color: $color-text;
@@ -171,7 +171,7 @@
 }
 .congrats__container {
   position: relative;
-  margin:0 auto;
+  margin: 0 auto;
   border-radius: 3rem;
   background: $color-search-bar;
   border: 0.2rem solid $color-border;
@@ -179,7 +179,7 @@
   margin-bottom: 2rem;
 }
 .congrats-bar {
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
 }

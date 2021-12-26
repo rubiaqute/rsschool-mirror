@@ -17,6 +17,7 @@ import { ToyCard } from './../../app_models/interfaces';
 import { DecorateServiceComponent } from './../../app_services/decorate-service/decorate-service.component';
 import html2canvas from 'html2canvas';
 import { TreeComponent } from 'src/app_pages/tree/tree.component';
+import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
 
 @Component({
   selector: 'app-toys-to-hang',
@@ -62,7 +63,7 @@ export class ToysToHangComponent implements OnInit {
     private decorateService: DecorateServiceComponent,
     private cdr: ChangeDetectorRef,
     private positionService: PositionServiceComponent,
-    private mainPage: TreeComponent
+    private storageService: StorageServiceComponent
   ) {}
 
   drag(event: DragEvent, toyId: string) {
@@ -70,5 +71,13 @@ export class ToysToHangComponent implements OnInit {
     this.toyDrag = event.target as HTMLElement;
     event.dataTransfer!.setData('drag-toy', toyId);
     this.dragActive = true;
+  }
+  cleanSettings() {
+    this.storageService.removeObject('christmasTreeSettings');
+    this.storageService.removeObject('christmasTreeBgImage');
+    this.storageService.removeObject('christmasTreeBgImage');
+    this.storageService.removeObject('christmasTreeImageTree');
+    this.storageService.removeObject('garlandSwitch');
+    this.storageService.removeObject('garlandColor');
   }
 }

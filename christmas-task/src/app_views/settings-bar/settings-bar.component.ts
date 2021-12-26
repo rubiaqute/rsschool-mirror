@@ -31,6 +31,7 @@ export class SettingsBarComponent {
   @Output() treeChoice = new EventEmitter<string>();
   @Output() garlandSwitch = new EventEmitter<boolean>();
   @Output() garLandColorChoice = new EventEmitter<string>();
+  @Output() justChangeGarLandColor = new EventEmitter<string>();
   interval: ReturnType<typeof setInterval> = setInterval(
     this.createSnowflakes,
     100
@@ -57,8 +58,10 @@ export class SettingsBarComponent {
     this.settingsObject = this.updateSettingsObject();
     clearInterval(this.interval);
     this.garlandColors = garlandColors;
-    this.garlandIsOn = false;
-    this.garlandColorChoosed = this.garlandColors[0];
+    this.garlandIsOn = this.updateGarlandSwitch();
+    this.garlandColorChoosed = this.updateGarlandColor();
+    this.garlandSwitch.emit(this.garlandIsOn);
+    this.justChangeGarLandColor.emit(this.garlandColorChoosed);
     this.toggleSnow(this.settingsObject[1].isOn);
     this.checkMusic();
     this.congratsWritten.emit(this.congratsInput);
@@ -74,6 +77,16 @@ export class SettingsBarComponent {
     return {
       background: `url(assets/svg/${svgName}.svg) no-repeat center`,
     };
+  }
+  updateGarlandSwitch() {
+    if (this.storageService.getObject('garlandSwitch'))
+      return this.storageService.getObject('garlandSwitch');
+    else return false;
+  }
+  updateGarlandColor() {
+    if (this.storageService.getObject('garlandColor'))
+      return this.storageService.getObject('garlandColor');
+    else return this.garlandColors[0];
   }
   updateSettingsObject() {
     if (this.storageService.getObject('christmasTreeSettings'))
@@ -128,13 +141,17 @@ export class SettingsBarComponent {
   garlandToggle() {
     if (this.garlandIsOn) this.garlandIsOn = false;
     else this.garlandIsOn = true;
+    this.storageService.setObject('garlandSwitch', this.garlandIsOn);
     this.garlandSwitch.emit(this.garlandIsOn);
   }
   changeGarlandColor(color: string) {
     this.garlandColorChoosed = color;
     if (!this.garlandIsOn) this.garlandIsOn = true;
+    this.storageService.setObject('garlandSwitch', this.garlandIsOn);
+    this.storageService.setObject('garlandColor', this.garlandColorChoosed);
     this.garLandColorChoice.emit(this.garlandColorChoosed);
   }
+
   returnBackground(number: string) {
     return {
       background: `url(assets/bg/${number}.jpg) center/cover no-repeat`,
