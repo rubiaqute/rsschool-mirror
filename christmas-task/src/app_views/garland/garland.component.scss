@@ -44,6 +44,10 @@
 &.multicolor:nth-child(4n + 4) { animation-name: yellow; }
 
 }
+.faked-garland {
+  transform: translateX(-500%);
+  opacity: 0%;
+}
 @keyframes green {
   0%,
   100% {

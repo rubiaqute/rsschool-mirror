@@ -1,7 +1,7 @@
 <audio src="assets/audio/audio.mp3" #audioplayer loop></audio>
 <div class="general-settings">
   <div class="switchers-row">
-    <div class="switch" *ngFor="let settings of settingsObject; let i=index">
+    <div class="switch" *ngFor="let settings of settingsObject; let i = index">
       <div
         class="switch__svg"
         [ngStyle]="returnSettingsIcon(settings.type)"
@@ -35,5 +35,10 @@
       [ngStyle]="returnBackground(bg.num)"
     ></div>
   </div>
-  <button (click)="turnOnGarland()" >Гирлянда</button>
+  <div class="garland-row">
+    <button class="garland-button"  *ngFor="let color of garlandColors; let k =index" [ngClass] = "garlandColors[k]" (click) = "changeGarlandColor(garlandColors[k])"></button>
+    <div class="switch__switcher" [class.switch-on]="garlandIsOn" (click) = "garlandToggle()"></div>
+  </div>
 </div>
+<!-- 
+        (click)="toggle(i)" -->

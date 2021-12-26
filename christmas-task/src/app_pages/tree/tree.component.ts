@@ -17,8 +17,10 @@ import { GarlandComponent } from './../../app_views/garland/garland.component';
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
+  providers: [GarlandComponent],
 })
 export class TreeComponent implements OnInit, AfterViewInit {
+  garlandColorChoice: string = 'multicolor';
   backgroundImage: { background: string } = { background: '1' };
   switchGarland: boolean = false;
   imageTree: string = '';
@@ -26,7 +28,8 @@ export class TreeComponent implements OnInit, AfterViewInit {
   @ViewChild('containerDrop') containerForDrop!: ElementRef<HTMLElement>;
   constructor(
     private router: Router,
-    private positionService: PositionServiceComponent
+    private positionService: PositionServiceComponent,
+    private garland: GarlandComponent
   ) {}
   @HostListener('window:dragend', ['$event'])
   dragEnd(event: MouseEvent) {
@@ -117,6 +120,12 @@ export class TreeComponent implements OnInit, AfterViewInit {
   }
   changGarlandView(flag: boolean) {
     this.switchGarland = flag;
+    console.log(this.switchGarland);
+  }
+  changeGarlandColor(color: string) {
+    this.switchGarland = true;
+    this.garlandColorChoice = color;
+    // this.garland.rewriteClass(color);
   }
   rewriteBg(num: string): void {
     this.backgroundImage = this.returnBackground(num);

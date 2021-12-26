@@ -1,23 +1,44 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-
+import {
+  Component,
+  OnInit,
+  HostListener,
+  OnChanges,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  AfterViewChecked,
+  Input,
+} from '@angular/core';
+import { garlandColors } from 'src/app_mocks/tree-data';
 @Component({
   selector: 'app-garland',
   templateUrl: './garland.component.html',
   styleUrls: ['./garland.component.scss'],
 })
 export class GarlandComponent implements OnInit {
+  @Input() garlandColor!: string;
   @HostListener('window:resize')
   onResize() {
     this.garlandObject = this.createGarLandObject().garlandObject;
     this.bulbArray = this.createGarLandObject().bulbArray;
   }
+  firstRopeMarginTop: number = 15;
+  lightropesInnerCount: number = 0;
+  lightropesCount: number = 5;
+  bulbsInnerGap: number = 10;
+  garlandColors: string[] = [];
   garlandObject: number[][] = [];
   bulbArray: number[][] = [];
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.garlandObject = this.createGarLandObject().garlandObject;
     this.bulbArray = this.createGarLandObject().bulbArray;
+    this.garlandColors = garlandColors;
+  }
+
+  updateGarlandColor() {
+    if (this.garlandColor) return this.garlandColor;
+    else return 'multicolor';
   }
 
   returnLightropeCount() {
@@ -26,23 +47,40 @@ export class GarlandComponent implements OnInit {
   returnBulbCount(i: number): number[] {
     return this.bulbArray[this.bulbArray.length - i - 1];
   }
+  changeColor(color: string) {
+    this.garlandColor = color;
+  }
+  rewriteClass(color: string) {
+    this.garlandColor = color;
+    this.cdr.detectChanges();
+  }
   createGarLandObject() {
     const tree = document.getElementById('treeMain')!;
     const width: number = tree.offsetWidth;
     const height: number = tree.offsetHeight;
     console.log(width, height);
-    const lightropesCount = Math.floor(height / 50);
-    const bulbsMaximunCount = Math.floor(width / 5);
+    //Получаю промежуточную высоту между веревками
+    this.lightropesInnerCount = Math.floor(height / this.lightropesCount);
+    const bulbsMaximunCount = Math.floor(width / this.bulbsInnerGap);
     const garlandObject: number[][] = [];
     const bulbArray: number[][] = [];
     let heightLightrope = 0;
     let widthLightrope = 0;
-    for (let i = 0; i < lightropesCount - 1; i++) {
+    //Для каждой веревки нахожу ее высоту от края елки и ее ширину, записываю их в объект
+    for (let i = 0; i < this.lightropesCount; i++) {
       bulbArray[i] = [];
-      heightLightrope = height - i * 50 - 25;
+      //Высота каждой веревки рассчитывается вычитанием из высоты елки промежуточного расстояния помноженного на порядковый номер веревки
+      heightLightrope =
+        height - i * this.lightropesInnerCount - this.firstRopeMarginTop;
+      // Ширину веревки вычисляю с учетом, что угол вершины елки к ее высоте примерно 15 градусов, по формуле половина ширины это высота * на тангенс угла
       widthLightrope = Math.round(2 * heightLightrope * 0.28);
       garlandObject.push([heightLightrope, widthLightrope]);
-      for (let j = 0; j < Math.round(widthLightrope / 8); j++) {
+      //Записываю также в отдельный объект для каждой веревки количество лампочек.
+      for (
+        let j = 0;
+        j < Math.round(widthLightrope / this.bulbsInnerGap);
+        j++
+      ) {
         bulbArray[i].push(j);
       }
     }
@@ -78,7 +116,7 @@ export class GarlandComponent implements OnInit {
   returnRopeDimensions(i: number) {
     return {
       width: `${this.garlandObject[this.garlandObject.length - i - 1][1]}px`,
-      height: '50px',
+      height: `${this.lightropesInnerCount}px`,
       display: 'flex',
       'justify-content': 'space-between',
     };

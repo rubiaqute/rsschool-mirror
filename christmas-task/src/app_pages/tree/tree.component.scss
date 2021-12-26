@@ -36,6 +36,7 @@
     z-index: 2;
   }
   .garland{
+    display:block;
     pointer-events: none;
     position:absolute;
     top:0;
@@ -43,7 +44,7 @@
     left:0;
     bottom:0;
     z-index: 90;
-
+    
   }
 }
 .fa-snowflake{

@@ -8,7 +8,12 @@ import {
   Input,
 } from '@angular/core';
 import { ICard, ISettings } from './../../app_models/interfaces';
-import { treesImages, bgImages, settings } from './../../app_mocks/tree-data';
+import {
+  treesImages,
+  bgImages,
+  settings,
+  garlandColors,
+} from './../../app_mocks/tree-data';
 import { GarlandComponent } from '../garland/garland.component';
 
 @Component({
@@ -22,17 +27,33 @@ export class SettingsBarComponent {
   @Output() bgChoice = new EventEmitter<string>();
   @Output() treeChoice = new EventEmitter<string>();
   @Output() garlandSwitch = new EventEmitter<boolean>();
+  @Output() garLandColorChoice = new EventEmitter<string>();
   interval: ReturnType<typeof setInterval> = setInterval(
     this.createSnowflakes,
     100
   );
+  garlandColorChoosed: string = '';
+  garlandIsOn: boolean = false;
+  garlandColors: string[] = [];
   treesToChoose: ICard[] = [];
   bgToChoose: ICard[] = [];
   settingsObject: ISettings[] = [];
-  toggleGarland: boolean = false;
-  constructor(private garland: GarlandComponent) {}
+  // toggleGarland: boolean = false;
+
   @ViewChild('audioplayer', { static: false })
   audioplayer!: ElementRef<HTMLAudioElement>;
+
+  constructor() {}
+  ngOnInit(): void {
+    this.treesToChoose = treesImages;
+    this.bgToChoose = bgImages;
+    this.settingsObject = settings;
+    clearInterval(this.interval);
+    this.garlandColors = garlandColors;
+    this.garlandIsOn = false;
+    this.garlandColorChoosed = this.garlandColors[0];
+  }
+
   returnSettingsIcon(svgName: string): { background: string } {
     return {
       background: `url(assets/svg/${svgName}.svg) no-repeat center`,
@@ -75,17 +96,15 @@ export class SettingsBarComponent {
       snowFlake.remove();
     }, 3000);
   }
-  turnOnGarland() {
-    if (this.toggleGarland) this.toggleGarland = false;
-    else this.toggleGarland = true;
-    this.garlandSwitch.emit(this.toggleGarland);
+  garlandToggle() {
+    if (this.garlandIsOn) this.garlandIsOn = false;
+    else this.garlandIsOn = true;
+    this.garlandSwitch.emit(this.garlandIsOn);
   }
-
-  ngOnInit(): void {
-    this.treesToChoose = treesImages;
-    this.bgToChoose = bgImages;
-    this.settingsObject = settings;
-    clearInterval(this.interval);
+  changeGarlandColor(color: string) {
+    this.garlandColorChoosed = color;
+    if (!this.garlandIsOn) this.garlandIsOn = true;
+    this.garLandColorChoice.emit(this.garlandColorChoosed);
   }
   returnBackground(number: string) {
     return {

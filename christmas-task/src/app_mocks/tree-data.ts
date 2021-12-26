@@ -32,3 +32,10 @@ export const settings: ISettings[] = [
   { type: 'music', isOn: false },
   { type: 'snow', isOn: false },
 ];
+export const garlandColors: string[] = [
+  'multicolor',
+  'red',
+  'blue',
+  'yellow',
+  'green',
+];

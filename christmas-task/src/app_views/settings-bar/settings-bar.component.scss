@@ -8,28 +8,30 @@
   @extend %font-neucha;
   @include font(2.8rem, 2.8rem, 400, normal);
 }
-.trees-to-choose, .bg-to-choose{
-  width:100%;
-  display:flex;
+.trees-to-choose,
+.bg-to-choose {
+  width: 100%;
+  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 0.5rem;
 }
-.trees-to-choose__tree, .bg-to-choose__bg {
-  width:30%;
+.trees-to-choose__tree,
+.bg-to-choose__bg {
+  width: 30%;
   background: $background-cards;
   border-radius: 10px;
   @extend %transition-cards;
-  padding:2%;
+  padding: 2%;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
   }
 }
-.bg-to-choose__bg{
-  width:19%;
-  height:5rem;
-  padding:0;
+.bg-to-choose__bg {
+  width: 19%;
+  height: 5rem;
+  padding: 0;
 }
 .trees-to-choose__image {
   width: 80%;
@@ -38,23 +40,22 @@
     width: 100%;
   }
 }
-.switch__svg{
-width:2rem;
-height:2rem;
-
+.switch__svg {
+  width: 2rem;
+  height: 2rem;
 }
-.switch__switcher{
+.switch__switcher {
   display: block;
   width: 5rem; /* ширина */
   height: 2rem; /* высота */
   border-radius: 19px; /* радиус скругления */
-  background-color: $color-switch;/* цвет фона */
+  background-color: $color-switch; /* цвет фона */
   z-index: 0;
   margin: 0;
   padding: 0;
   border: none;
   cursor: pointer;
-  position: relative; 
+  position: relative;
   transition-duration: 300ms; /* анимация */
 }
 .switch__switcher::after {
@@ -69,17 +70,17 @@ height:2rem;
   position: absolute;
   z-index: 1;
 }
-.switchers-row{
-  display:flex;
+.switchers-row {
+  display: flex;
   justify-content: space-between;
 }
-.switch{
-display:flex;
-column-gap:3rem;
+.switch {
+  display: flex;
+  column-gap: 3rem;
 }
-.switch__svg_on{
-  filter:invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg)
-  brightness(89%) contrast(90%);
+.switch__svg_on {
+  filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg)
+    brightness(89%) contrast(90%);
 }
 .switch-on {
   background: $color-darktext;
@@ -88,15 +89,59 @@ column-gap:3rem;
   left: 3.3rem;
   background: $color-text;
 }
-.fa-snowflake{
+.fa-snowflake {
   animation: fall 2s linear forwards;
-  width:5rem;
-  height:5rem;
-  position:absolute;
-  top:-20%;
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  top: -20%;
 }
 @keyframes fall {
-  to { 
+  to {
     transform: translateY(100vh);
   }
+}
+.garland-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  &.multicolor {
+    background: linear-gradient(
+      124deg,
+      #ff2400,
+      #e81d1d,
+      #e8b71d,
+      #e3e81d,
+      #1de840,
+      #1ddde8,
+      #2b1de8
+    );
+    box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      #ccc 0 2px 12px;
+  }
+  &.red {
+    background-color: #f00;
+    box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgb(255 0 0 / 50%) 0 2px 12px;
+  }
+  &.green {
+    background-color: #abff00;
+    box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+      #89ff00 0 2px 12px;
+  }
+  &.blue {
+    background-color: #24e0ff;
+    box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #006 0 -1px 9px,
+      #3f8cff 0 2px 14px;
+  }
+  &.yellow {
+    background-color: #ff0;
+    box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      #ff0 0 2px 12px;
+  }
+}
+.garland-row {
+  margin-top:2rem;
+  display: flex;
+  justify-content: space-between;
 }
