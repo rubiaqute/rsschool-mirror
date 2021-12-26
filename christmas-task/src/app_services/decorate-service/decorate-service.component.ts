@@ -26,11 +26,14 @@ export class DecorateServiceComponent {
   }
   getRandomToys(): ToyCard[] {
     let randomToysForTree: ToyCard[] = [];
-    do {
-      const index = Math.floor(Math.random() * toys.length);
-      if (!randomToysForTree.includes(toys[index]))
-        randomToysForTree.push(toys[index]);
-    } while (randomToysForTree.length < toysToHangLength);
+    for (let i = 0; i < 20; i++) {
+      randomToysForTree.push(toys[i]);
+    }
+    // do {
+    //   const index = Math.floor(Math.random() * toys.length);
+    //   if (!randomToysForTree.includes(toys[index]))
+    //     randomToysForTree.push(toys[index]);
+    // } while (randomToysForTree.length < toysToHangLength);
     return randomToysForTree;
   }
 }

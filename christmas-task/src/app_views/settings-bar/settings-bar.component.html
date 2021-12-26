@@ -35,10 +35,28 @@
       [ngStyle]="returnBackground(bg.num)"
     ></div>
   </div>
+  <h3 class="settings-bar__header">Выберите гирлянду:</h3>
   <div class="garland-row">
     <button class="garland-button"  *ngFor="let color of garlandColors; let k =index" [ngClass] = "garlandColors[k]" (click) = "changeGarlandColor(garlandColors[k])"></button>
     <div class="switch__switcher" [class.switch-on]="garlandIsOn" (click) = "garlandToggle()"></div>
   </div>
+</div>
+<h3 class="settings-bar__header">Ваше поздравление:</h3>
+<div class="congrats-bar">
+  <div class="congrats__container">
+    <input
+      class="congrats__input"
+      type="text"
+      #congrats
+      [(ngModel)]="congratsInput"
+      (input)="inputCongrat(congrats.value)"
+      autocomplete="off"
+    />
+    <span class="congrats__close" (click)="deleteCongratsInput()">&times;</span>
+  </div>
+</div>
+<div class="button-container">
+  <button class="button-screen" (click)="makeScreen()">Получить открытку</button>
 </div>
 <!-- 
         (click)="toggle(i)" -->

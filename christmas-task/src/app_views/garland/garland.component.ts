@@ -23,7 +23,7 @@ export class GarlandComponent implements OnInit {
   }
   firstRopeMarginTop: number = 15;
   lightropesInnerCount: number = 0;
-  lightropesCount: number = 5;
+  lightropesCount: number = 7;
   bulbsInnerGap: number = 10;
   garlandColors: string[] = [];
   garlandObject: number[][] = [];

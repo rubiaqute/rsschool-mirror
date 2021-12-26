@@ -16,6 +16,7 @@ import {
 } from './../../app_mocks/tree-data';
 import { GarlandComponent } from '../garland/garland.component';
 import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
+import { TreeComponent } from 'src/app_pages/tree/tree.component';
 
 @Component({
   selector: 'app-settings-bar',
@@ -24,6 +25,7 @@ import { StorageServiceComponent } from 'src/app_services/storage-service/storag
   providers: [GarlandComponent],
 })
 export class SettingsBarComponent {
+  [x: string]: any;
   @Input() treeForDrop!: HTMLElement;
   @Output() bgChoice = new EventEmitter<string>();
   @Output() treeChoice = new EventEmitter<string>();
@@ -43,7 +45,12 @@ export class SettingsBarComponent {
 
   @ViewChild('audioplayer', { static: false })
   audioplayer!: ElementRef<HTMLAudioElement>;
-  constructor(private storageService: StorageServiceComponent) {}
+  @Output() congratsWritten = new EventEmitter<string>();
+  congratsInput: string = 'С Новым Годом!';
+  constructor(
+    private storageService: StorageServiceComponent,
+    private mainPage: TreeComponent
+  ) {}
   ngOnInit(): void {
     this.treesToChoose = treesImages;
     this.bgToChoose = bgImages;
@@ -54,9 +61,11 @@ export class SettingsBarComponent {
     this.garlandColorChoosed = this.garlandColors[0];
     this.toggleSnow(this.settingsObject[1].isOn);
     this.checkMusic();
+    this.congratsWritten.emit(this.congratsInput);
   }
+
   checkMusic() {
-    if (this.settingsObject[1].isOn)
+    if (this.settingsObject[0].isOn)
       document.addEventListener('click', () => this.toggleMusic(), {
         once: true,
       });
@@ -86,9 +95,16 @@ export class SettingsBarComponent {
     else this.audioplayer.nativeElement.pause();
   }
   toggleSnow(flag: boolean) {
-    console.log(flag);
-    if (flag) this.interval = setInterval(this.createSnowflakes, 100);
-    else clearInterval(this.interval);
+    console.log(this.interval);
+    if (flag)
+      this.interval = setInterval(() => {
+        this.createSnowflakes();
+        console.log(this.interval);
+      }, 100);
+    else {
+      console.log(this.interval);
+      clearInterval(this.interval);
+    }
   }
   createSnowflakes() {
     const snowFlake = new Image();
@@ -129,5 +145,16 @@ export class SettingsBarComponent {
   }
   changeTree(num: string) {
     this.treeChoice.emit(num);
+  }
+  deleteCongratsInput() {
+    this.congratsInput = '';
+    this.congratsWritten.emit(this.congratsInput);
+  }
+  inputCongrat(input: string) {
+    this.congratsInput = input;
+    this.congratsWritten.emit(this.congratsInput);
+  }
+  makeScreen() {
+    this.mainPage.makeScreen();
   }
 }

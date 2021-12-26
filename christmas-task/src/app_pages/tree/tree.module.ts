@@ -8,7 +8,7 @@ import { DecorateServiceComponent } from './../../app_services/decorate-service/
 import { SettingsBarComponent } from './../../app_views/settings-bar/settings-bar.component';
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 import { GarlandComponent } from './../../app_views/garland/garland.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     TreeComponent,
@@ -18,6 +18,6 @@ import { GarlandComponent } from './../../app_views/garland/garland.component';
     PositionServiceComponent,
     GarlandComponent,
   ],
-  imports: [CommonModule, TreeRoutingModule],
+  imports: [CommonModule, TreeRoutingModule, FormsModule],
 })
 export class TreeModule {}

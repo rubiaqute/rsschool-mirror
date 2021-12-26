@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 import { TreeModule } from './tree.module';
 import { GarlandComponent } from './../../app_views/garland/garland.component';
+import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
+import html2canvas from 'html2canvas';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,16 +22,22 @@ import { GarlandComponent } from './../../app_views/garland/garland.component';
   providers: [GarlandComponent],
 })
 export class TreeComponent implements OnInit, AfterViewInit {
+  toggleScreenShotMessage: boolean = false;
   garlandColorChoice: string = 'multicolor';
   backgroundImage: { background: string } = { background: '1' };
   switchGarland: boolean = false;
   imageTree: string = '';
+  toggleScreenShot: boolean = false;
+  congratsInput: string = '';
+  @ViewChild('screenShotContainer')
+  containerForScreeshot!: ElementRef<HTMLElement>;
   @ViewChild('containerTree') containerTree!: ElementRef<HTMLImageElement>;
   @ViewChild('containerDrop') containerForDrop!: ElementRef<HTMLElement>;
   constructor(
     private router: Router,
     private positionService: PositionServiceComponent,
-    private garland: GarlandComponent
+    private garland: GarlandComponent,
+    private storage: StorageServiceComponent
   ) {}
   @HostListener('window:dragend', ['$event'])
   dragEnd(event: MouseEvent) {
@@ -48,10 +56,49 @@ export class TreeComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  makeScreen() {
+    this.toggleScreenShot = true;
+    this.toggleScreenShotMessage = true;
+    html2canvas(this.containerForDrop.nativeElement).then((canvas) => {
+      canvas.style.width = '50%';
+      canvas.id = 'canvasTree';
+      this.containerForScreeshot.nativeElement.appendChild(canvas);
+      document.getElementById('messageScreenShot')?.remove();
+    });
+  }
+  closeScreenshot() {
+    this.toggleScreenShot = false;
+  }
+  dowloadScreenShot() {
+    let canvasImage = (<HTMLCanvasElement>(
+      document.getElementById('canvasTree')
+    ))!.toDataURL('image/jpg');
 
+    // this can be used to download any image from webpage to local disk
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function () {
+      let a = document.createElement('a');
+      a.href = window.URL.createObjectURL(xhr.response);
+      a.download = 'merry_christmas.jpg';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    };
+    xhr.open('GET', canvasImage); // This is to download the canvas Image
+    xhr.send();
+  }
+  getCongratInput(input: string) {
+    this.congratsInput = input;
+  }
   ngOnInit(): void {
-    this.backgroundImage = this.returnBackground('1');
-    this.imageTree = this.returnTreeImage('1');
+    if (this.storage.getObject('christmasTreeBgImage'))
+      this.backgroundImage = this.storage.getObject('christmasTreeBgImage');
+    else this.backgroundImage = this.returnBackground('1');
+    if (this.storage.getObject('christmasTreeImageTree'))
+      this.imageTree = this.storage.getObject('christmasTreeImageTree');
+    else this.imageTree = this.returnTreeImage('1');
   }
   showSmth(event: MouseEvent) {
     console.log('Мэп');
@@ -129,8 +176,10 @@ export class TreeComponent implements OnInit, AfterViewInit {
   }
   rewriteBg(num: string): void {
     this.backgroundImage = this.returnBackground(num);
+    this.storage.setObject('christmasTreeBgImage', this.backgroundImage);
   }
   rewriteTree(num: string): void {
     this.imageTree = this.returnTreeImage(num);
+    this.storage.setObject('christmasTreeImageTree', this.imageTree);
   }
 }

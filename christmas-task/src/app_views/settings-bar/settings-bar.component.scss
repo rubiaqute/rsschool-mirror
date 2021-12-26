@@ -3,10 +3,12 @@
 @import "./../../sass_global/constants";
 
 .settings-bar__header {
+  margin-top:1rem;
+  margin-bottom:0.5rem;
   text-align: center;
   color: $color-text;
   @extend %font-neucha;
-  @include font(2.8rem, 2.8rem, 400, normal);
+  @include font(2.2rem, 2.2rem, 400, normal);
 }
 .trees-to-choose,
 .bg-to-choose {
@@ -18,7 +20,7 @@
 }
 .trees-to-choose__tree,
 .bg-to-choose__bg {
-  width: 30%;
+  width: 15%;
   background: $background-cards;
   border-radius: 10px;
   @extend %transition-cards;
@@ -144,4 +146,70 @@
   margin-top:2rem;
   display: flex;
   justify-content: space-between;
+}
+.button-container{
+  width:100%;
+  text-align: center;
+}
+.button-screen{
+  margin-top:0.2rem;
+  white-space: nowrap;
+  min-width: 60%;
+  color: $color-text;
+  border: 1px solid $color-header-border;
+  text-align: center;
+  padding: 0.3rem;
+  @extend %font-roboto;
+  @include font(1.8rem, 1.8rem, 300, normal);
+  margin-right: 2%;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 3rem;
+  background-color: $color-header-background;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.congrats__container {
+  position: relative;
+  margin:0 auto;
+  border-radius: 3rem;
+  background: $color-search-bar;
+  border: 0.2rem solid $color-border;
+  width: 80%;
+  margin-bottom: 2rem;
+}
+.congrats-bar {
+  width:100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.congrats__input {
+  background: transparent;
+  border: none;
+  width: 80%;
+  color: $color-text;
+  padding: 0.5rem 1rem;
+  &:focus {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+}
+
+.congrats__close {
+  position: absolute;
+  display: inline-block;
+  vertical-align: top;
+  top: 0%;
+  right: 1.5rem;
+
+  @extend %font-roboto;
+  @include font(2rem, 2.2rem, 400, uppercase);
+  color: $color-text;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
 }

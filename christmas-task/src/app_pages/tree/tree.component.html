@@ -1,11 +1,35 @@
+
 <div class="tree-container">
-  <app-settings-bar (garLandColorChoice)= "changeGarlandColor($event)" (garlandSwitch)="changGarlandView($event)"  (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
+
+  <app-settings-bar (congratsWritten) = "getCongratInput($event)" (garLandColorChoice)= "changeGarlandColor($event)" (garlandSwitch)="changGarlandView($event)"  (bgChoice)="rewriteBg($event)" (treeChoice)="rewriteTree($event)" class="tree-container__settings"></app-settings-bar>
   <div class="main-tree" [ngStyle]="backgroundImage" id="mainTree" #containerDrop>
+    <div class="congratulations-container">
+      <p class="congratulations-container__message">{{congratsInput}}</p>
+    </div>
     <map name="tree-map">
       <area id="treeArea" #containerForAppend title="pine-tree" droppable (dragover)="handleOver($event)" (drop)="handleOverDrop($event)" (click) = "showSmth($event)"  [coords]="returnCoords()" shape="poly">
   </map>
     <img src="{{imageTree}}" alt="tree-image"  class="main-tree__tree"  usemap='#tree-map' #containerTree id="treeMain">
     <app-garland [garlandColor] ="garlandColorChoice" class="garland" #containerGarland *ngIf="switchGarland"></app-garland>
   </div>
-  <app-toys-to-hang class="tree-container__toys"></app-toys-to-hang>
+  <app-toys-to-hang  class="tree-container__toys">
+    
+  </app-toys-to-hang>
+  
 </div>
+<ng-container *ngIf="toggleScreenShot">
+  <div class="overlay">
+    <div class="modal" #screenShotContainer>
+      <p *ngIf="toggleScreenShotMessage" id="messageScreenShot" class="message-screenshot">Обработка... Подождите</p>
+      <div class="buttons-row">
+      
+      <button class="button-screenshot" (click)="dowloadScreenShot()">
+        Скачать
+      </button>
+      <button class="button-screenshot" (click)="closeScreenshot()">
+        Закрыть
+      </button>
+    </div>
+    </div>
+  </div>
+</ng-container>
