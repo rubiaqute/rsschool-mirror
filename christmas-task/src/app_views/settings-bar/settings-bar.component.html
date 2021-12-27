@@ -22,7 +22,7 @@
       (click)="changeTree(tree.num)"
     >
       <div class="trees-to-choose__image">
-        <img src="./../../assets/tree/{{ tree.num }}.png" alt="tree-image" />
+        <img src="assets/tree/{{ tree.num }}.png" alt="tree-image" />
       </div>
     </div>
   </div>
@@ -37,8 +37,17 @@
   </div>
   <h3 class="settings-bar__header">Выберите гирлянду:</h3>
   <div class="garland-row">
-    <button class="garland-button"  *ngFor="let color of garlandColors; let k =index" [ngClass] = "garlandColors[k]" (click) = "changeGarlandColor(garlandColors[k])"></button>
-    <div class="switch__switcher" [class.switch-on]="garlandIsOn" (click) = "garlandToggle()"></div>
+    <button
+      class="garland-button"
+      *ngFor="let color of garlandColors; let k = index"
+      [ngClass]="garlandColors[k]"
+      (click)="changeGarlandColor(garlandColors[k])"
+    ></button>
+    <div
+      class="switch__switcher"
+      [class.switch-on]="garlandIsOn"
+      (click)="garlandToggle()"
+    ></div>
   </div>
 </div>
 <h3 class="settings-bar__header">Ваше поздравление:</h3>
@@ -56,7 +65,9 @@
   </div>
 </div>
 <div class="button-container">
-  <button class="button-screen" (click)="makeScreen()">Получить открытку</button>
+  <button class="button-screen" (click)="makeScreen()">
+    Получить открытку
+  </button>
 </div>
 
 <!-- 

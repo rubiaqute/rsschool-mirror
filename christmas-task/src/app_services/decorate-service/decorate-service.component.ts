@@ -1,7 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { StorageServiceComponent } from '../storage-service/storage-service.component';
 import { toys } from 'src/app_mocks/toys';
-import { toysToHangLength } from 'src/app_mocks/tree-data';
 import { ToyCard } from 'src/app_models/interfaces';
 
 @Injectable({ providedIn: 'root' })
@@ -29,11 +28,6 @@ export class DecorateServiceComponent {
     for (let i = 0; i < 20; i++) {
       randomToysForTree.push(toys[i]);
     }
-    // do {
-    //   const index = Math.floor(Math.random() * toys.length);
-    //   if (!randomToysForTree.includes(toys[index]))
-    //     randomToysForTree.push(toys[index]);
-    // } while (randomToysForTree.length < toysToHangLength);
     return randomToysForTree;
   }
 }

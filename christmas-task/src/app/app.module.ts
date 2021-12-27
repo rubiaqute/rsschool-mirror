@@ -12,6 +12,7 @@ import { FooterComponent } from '../app_views/footer/footer.component';
 import { NavigationComponent } from '../app_views/navigation/navigation.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { StorageServiceComponent } from '../app_services/storage-service/storage-service.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { StorageServiceComponent } from '../app_services/storage-service/storage
       { path: 'tree', component: TreeComponent },
     ]),
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

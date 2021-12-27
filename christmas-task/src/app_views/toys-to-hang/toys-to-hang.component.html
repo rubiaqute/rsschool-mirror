@@ -1,13 +1,24 @@
 <h3 class="tree-container__header">Игрушки</h3>
 <div class="toys-to-hang" #toysContainer>
-<div class="tree-container__toy" *ngFor="let toy of toysToHang; let id=index">
-  <div class="tree-container__toy-image" id="toybox{{id}}">
-    <img *ngFor="let toyExample of toysArray[id]; let i = index" src="./../../assets/toys/{{ toy.num }}.png" alt="toy-image" id="{{id}} - {{i}}" draggable="true" (dragstart)="handleDragStart($event)"  />
+  <div
+    class="tree-container__toy"
+    *ngFor="let toy of toysToHang; let id = index"
+  >
+    <div class="tree-container__toy-image" id="toybox{{ id }}">
+      <img
+        *ngFor="let toyExample of toysArray[id]; let i = index"
+        src="assets/toys/{{ toy.num }}.png"
+        alt="toy-image"
+        id="{{ id }} - {{ i }}"
+        draggable="true"
+        (dragstart)="handleDragStart($event)"
+      />
+    </div>
+    <p class="tree-container__toy-count">{{ getCount(id) }}</p>
   </div>
-  <p class="tree-container__toy-count">{{ getCount(id) }}</p>
-</div>
 </div>
 <div class="button-container">
-  <button class="button-screen" (click)="cleanSettings()">Сбросить настройки</button>
+  <button class="button-screen" (click)="cleanSettings()">
+    Сбросить настройки
+  </button>
 </div>
-

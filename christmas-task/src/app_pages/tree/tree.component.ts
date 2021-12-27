@@ -4,10 +4,8 @@ import {
   ElementRef,
   ViewChild,
   ChangeDetectionStrategy,
-  AfterViewInit,
   HostListener,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { PositionServiceComponent } from './../../app_services/position-service/position-service.component';
 import { TreeModule } from './tree.module';
 import { GarlandComponent } from './../../app_views/garland/garland.component';
@@ -22,25 +20,35 @@ import html2canvas from 'html2canvas';
   providers: [GarlandComponent],
 })
 export class TreeComponent implements OnInit {
-  toggleScreenShotMessage: boolean = false;
-  garlandColorChoice: string = 'multicolor';
-  backgroundImage: { background: string } = { background: '1' };
-  switchGarland: boolean = false;
-  imageTree: string = '';
-  toggleScreenShot: boolean = false;
-  congratsInput: string = '';
+  //Get from DOM: tree, main container for toys drop, container for screenshot
   @ViewChild('screenShotContainer')
   containerForScreeshot!: ElementRef<HTMLElement>;
   @ViewChild('containerTree') containerTree!: ElementRef<HTMLImageElement>;
   @ViewChild('containerDrop') containerForDrop!: ElementRef<HTMLElement>;
+
+  toggleScreenShot: boolean = false; //show screenshot container
+  toggleScreenShotMessage: boolean = false; //show message before scrennshot complete
+  garlandColorChoice: string = 'multicolor'; //color for garland
+  backgroundImage: { background: string } = { background: '1' }; //url for background
+  switchGarland: boolean = false; //for garland toggle
+  imageTree: string = ''; //url for tree img
+  congratsInput: string = ''; //user input
+
   constructor(
-    private router: Router,
     private positionService: PositionServiceComponent,
-    private garland: GarlandComponent,
     private storage: StorageServiceComponent
   ) {}
+  ngOnInit(): void {
+    if (this.storage.getObject('christmasTreeBgImage'))
+      this.backgroundImage = this.storage.getObject('christmasTreeBgImage');
+    else this.backgroundImage = this.returnBackground('1');
+    if (this.storage.getObject('christmasTreeImageTree'))
+      this.imageTree = this.storage.getObject('christmasTreeImageTree');
+    else this.imageTree = this.returnTreeImage('1');
+  }
+  //Listen dragend for returning toys in slots, if they are not dropped on tree
   @HostListener('window:dragend', ['$event'])
-  dragEnd(event: MouseEvent) {
+  dragEnd(event: MouseEvent): void {
     event.preventDefault();
     if (this.positionService.isAvailableToDrop == false) {
       const draggedEl = document.getElementById(
@@ -56,7 +64,7 @@ export class TreeComponent implements OnInit {
       }
     }
   }
-  makeScreen() {
+  makeScreen(): void {
     this.toggleScreenShot = true;
     this.toggleScreenShotMessage = true;
     html2canvas(this.containerForDrop.nativeElement).then((canvas) => {
@@ -66,15 +74,13 @@ export class TreeComponent implements OnInit {
       document.getElementById('messageScreenShot')?.remove();
     });
   }
-  closeScreenshot() {
+  closeScreenshot(): void {
     this.toggleScreenShot = false;
   }
-  dowloadScreenShot() {
+  dowloadScreenShot(): void {
     let canvasImage = (<HTMLCanvasElement>(
       document.getElementById('canvasTree')
     ))!.toDataURL('image/jpg');
-
-    // this can be used to download any image from webpage to local disk
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function () {
@@ -89,27 +95,14 @@ export class TreeComponent implements OnInit {
     xhr.open('GET', canvasImage); // This is to download the canvas Image
     xhr.send();
   }
-  getCongratInput(input: string) {
+  getCongratInput(input: string): void {
     this.congratsInput = input;
   }
-  ngOnInit(): void {
-    if (this.storage.getObject('christmasTreeBgImage'))
-      this.backgroundImage = this.storage.getObject('christmasTreeBgImage');
-    else this.backgroundImage = this.returnBackground('1');
-    if (this.storage.getObject('christmasTreeImageTree'))
-      this.imageTree = this.storage.getObject('christmasTreeImageTree');
-    else this.imageTree = this.returnTreeImage('1');
-  }
-  showSmth(event: MouseEvent) {
-    console.log('Мэп');
-    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-    console.log(event.target);
-  }
-  handleOver(event: DragEvent) {
+  handleOver(event: DragEvent): void {
     event.stopPropagation();
     event.preventDefault();
   }
-  handleOverDrop(event: DragEvent) {
+  handleOverDrop(event: DragEvent): void {
     event.preventDefault();
     this.positionService.rewriteIsAvailableToDrop(true);
     const draggedId = event.dataTransfer!.getData('dragToy');
@@ -126,7 +119,6 @@ export class TreeComponent implements OnInit {
     draggedEl.style.height =
       (height / container.getBoundingClientRect().height) * 100 + '%';
     this.positionService.initialPrepare(draggedEl);
-
     container.appendChild(draggedEl);
     // Находим положение относительно контейнера с елкой
     draggedEl.style.left =
@@ -144,7 +136,7 @@ export class TreeComponent implements OnInit {
         100 +
       '%';
   }
-
+  //for adjusting area coords depending on tree dimensions
   returnCoords(): string {
     let newCoords: string = '';
     if (this.containerTree !== undefined) {
@@ -162,15 +154,14 @@ export class TreeComponent implements OnInit {
   returnTreeImage(num: string): string {
     return `assets/tree/${num}.png`;
   }
-  changGarlandView(flag: boolean) {
+  changGarlandView(flag: boolean): void {
     this.switchGarland = flag;
   }
-  changeGarlandColor(color: string) {
+  changeGarlandColor(color: string): void {
     this.switchGarland = true;
     this.garlandColorChoice = color;
-    // this.garland.rewriteClass(color);
   }
-  rewriteColorGarland(color: string) {
+  rewriteColorGarland(color: string): void {
     this.garlandColorChoice = color;
   }
   rewriteBg(num: string): void {

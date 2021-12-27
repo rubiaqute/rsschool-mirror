@@ -1,48 +1,62 @@
 .garlandContainer {
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  margin:auto;
-  padding-top: calc(2% + 5rem) ;
-  display:flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  padding-top: calc(2% + 5rem);
+  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
 }
 
-.bulb{
+.bulb {
   margin: 0;
   padding: 0;
   list-style: none;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background-color:red; 
+  background-color: red;
   animation-iteration-count: infinite;
   animation-duration: 2s;
   &:nth-child(2n + 1) {
-  animation-duration: 1.8s;
-}
+    animation-duration: 1.8s;
+  }
 
-&:nth-child(4n + 2) {
-  animation-duration: 1.1s;
-}
+  &:nth-child(4n + 2) {
+    animation-duration: 1.1s;
+  }
 
-&:nth-child(3n + 1) {
-  animation-duration: 1.4s;
-}
-&.red { animation-name: red; }
-&.green { animation-name: green; }
-&.blue { animation-name: blue; }
-&.yellow { animation-name: yellow; }
-&.multicolor:nth-child(1n + 1) { animation-name: red; }
-&.multicolor:nth-child(2n + 2) { animation-name: green; }
-&.multicolor:nth-child(3n + 3) { animation-name: blue; }
-&.multicolor:nth-child(4n + 4) { animation-name: yellow; }
-
+  &:nth-child(3n + 1) {
+    animation-duration: 1.4s;
+  }
+  &.red {
+    animation-name: red;
+  }
+  &.green {
+    animation-name: green;
+  }
+  &.blue {
+    animation-name: blue;
+  }
+  &.yellow {
+    animation-name: yellow;
+  }
+  &.multicolor:nth-child(1n + 1) {
+    animation-name: red;
+  }
+  &.multicolor:nth-child(2n + 2) {
+    animation-name: green;
+  }
+  &.multicolor:nth-child(3n + 3) {
+    animation-name: blue;
+  }
+  &.multicolor:nth-child(4n + 4) {
+    animation-name: yellow;
+  }
 }
 .faked-garland {
   transform: translateX(-500%);

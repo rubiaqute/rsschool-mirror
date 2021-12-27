@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   HostListener,
-  OnChanges,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   AfterViewChecked,
   Input,
@@ -16,18 +14,19 @@ import { garlandColors } from 'src/app_mocks/tree-data';
 })
 export class GarlandComponent implements OnInit {
   @Input() garlandColor!: string;
+  //for adjust garland if tree size change
   @HostListener('window:resize')
   onResize() {
     this.garlandObject = this.createGarLandObject().garlandObject;
     this.bulbArray = this.createGarLandObject().bulbArray;
   }
-  firstRopeMarginTop: number = 15;
-  lightropesInnerCount: number = 0;
-  lightropesCount: number = 7;
-  bulbsInnerGap: number = 10;
+  firstRopeMarginTop: number = 15; //margin from top for first lightrope
+  lightropesInnerCount: number = 0; //height between lightropes
+  lightropesCount: number = 7; //number of lightropes
+  bulbsInnerGap: number = 10; //inner width between 2 bulbs
   garlandColors: string[] = [];
-  garlandObject: number[][] = [];
-  bulbArray: number[][] = [];
+  garlandObject: number[][] = []; //height and width for every rope
+  bulbArray: number[][] = []; //bulbs for every lightrope
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -90,24 +89,13 @@ export class GarlandComponent implements OnInit {
       bulbArray: bulbArray,
     };
   }
-  // returnBulbPosition(i:number, j:number){
-  // const c= Math.sqrt(50**2+this.garlandObject[this.garlandObject.length-i-1][1]**2);
-  // const degree = Math.asin(this.garlandObject[this.garlandObject.length-i-1][1]/c)/0.0175;
-  // let degreeBulb=0;
-  // if(j>this.bulbArray[this.bulbArray.length-i-1].length){
-  //   degreeBulb=degree/this.bulbArray[this.bulbArray.length-i-1].length/2*j
-  // } else degreeBulb=-degree/this.bulbArray[this.bulbArray.length-i-1].length/2*j;
-  // console.log(degreeBulb)
-  //  return {
-  //    'transform':`rotate(${degreeBulb}deg)`
-  //  }
-  // }
+
   returnBulbPosition(i: number, j: number) {
     const widthOfRope =
       this.garlandObject[this.garlandObject.length - i - 1][1];
     const bulbCount = this.bulbArray[this.bulbArray.length - i - 1].length;
     const coordX = (widthOfRope / bulbCount) * (j + 1) - widthOfRope / 2;
-
+    //Position of bulb according to parabola y=0.005x^2
     const shift = -Math.abs(Math.round(0.005 * coordX ** 2));
     return {
       transform: `translateY(${shift}px)`,

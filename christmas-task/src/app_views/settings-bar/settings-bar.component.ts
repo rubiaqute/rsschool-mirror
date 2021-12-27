@@ -16,7 +16,7 @@ import {
 } from './../../app_mocks/tree-data';
 import { GarlandComponent } from '../garland/garland.component';
 import { StorageServiceComponent } from 'src/app_services/storage-service/storage-service.component';
-import { TreeComponent } from 'src/app_pages/tree/tree.component';
+import { TreeComponent } from './../../app_pages/tree/tree.component';
 
 @Component({
   selector: 'app-settings-bar',
@@ -25,29 +25,29 @@ import { TreeComponent } from 'src/app_pages/tree/tree.component';
   providers: [GarlandComponent],
 })
 export class SettingsBarComponent {
-  [x: string]: any;
   @Input() treeForDrop!: HTMLElement;
+  //transmit choosed settings:bg, tree, garland color, garland switch, input
   @Output() bgChoice = new EventEmitter<string>();
   @Output() treeChoice = new EventEmitter<string>();
   @Output() garlandSwitch = new EventEmitter<boolean>();
   @Output() garLandColorChoice = new EventEmitter<string>();
   @Output() justChangeGarLandColor = new EventEmitter<string>();
+  @Output() congratsWritten = new EventEmitter<string>();
+  congratsInput: string = 'С Новым Годом!';
   interval: ReturnType<typeof setInterval> = setInterval(
     this.createSnowflakes,
     100
-  );
+  ); //interval for snowflakes to clean if snow toggle is saved as ON
   garlandColorChoosed: string = '';
   garlandIsOn: boolean = false;
   garlandColors: string[] = [];
   treesToChoose: ICard[] = [];
   bgToChoose: ICard[] = [];
-  settingsObject: ISettings[] = [];
-  // toggleGarland: boolean = false;
+  settingsObject: ISettings[] = []; //include music and snowflake
 
   @ViewChild('audioplayer', { static: false })
   audioplayer!: ElementRef<HTMLAudioElement>;
-  @Output() congratsWritten = new EventEmitter<string>();
-  congratsInput: string = 'С Новым Годом!';
+
   constructor(
     private storageService: StorageServiceComponent,
     private mainPage: TreeComponent
@@ -61,9 +61,9 @@ export class SettingsBarComponent {
     this.garlandIsOn = this.updateGarlandSwitch();
     this.garlandColorChoosed = this.updateGarlandColor();
     this.garlandSwitch.emit(this.garlandIsOn);
-    this.justChangeGarLandColor.emit(this.garlandColorChoosed);
+    this.justChangeGarLandColor.emit(this.garlandColorChoosed); //this transmition only if color is saved
     this.toggleSnow(this.settingsObject[1].isOn);
-    this.checkMusic();
+    this.checkMusic(); //turn on the music if such toggled is saved as ON after first click
     this.congratsWritten.emit(this.congratsInput);
   }
 
@@ -93,6 +93,7 @@ export class SettingsBarComponent {
       return this.storageService.getObject('christmasTreeSettings');
     else return settings;
   }
+  //for toggling music and snow
   toggle(i: number) {
     if (this.settingsObject[i].isOn == true)
       this.settingsObject[i].isOn = false;
@@ -108,14 +109,11 @@ export class SettingsBarComponent {
     else this.audioplayer.nativeElement.pause();
   }
   toggleSnow(flag: boolean) {
-    console.log(this.interval);
     if (flag)
       this.interval = setInterval(() => {
         this.createSnowflakes();
-        console.log(this.interval);
       }, 100);
     else {
-      console.log(this.interval);
       clearInterval(this.interval);
     }
   }
@@ -132,7 +130,6 @@ export class SettingsBarComponent {
     const dimension = Math.random() * 3 + 1 + 'rem';
     snowFlake.style.width = dimension;
     snowFlake.style.height = dimension;
-    // snowFlake.classList.add("fa-snowflake");
     snowFlake.style.left = Math.random() * tree.offsetWidth + 'px';
     setTimeout(() => {
       snowFlake.remove();
