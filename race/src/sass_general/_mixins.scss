@@ -1,0 +1,8 @@
+///Mixins:
+@mixin font($size, $line-height, $weight:300, $text-transform:uppercase, $style: normal) {
+  font-size: $size;
+  line-height: $line-height;
+  font-weight: $weight;
+  font-style: $style;
+  text-transform: $text-transform;
+}

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCarsOnScreen(this.pageNumber);
-    this.getTotalAmountOfCars();
+
   }
   getTotalAmountOfCars() {
     this.server.getAmountOfCars().subscribe((responce) => {
@@ -32,16 +32,11 @@ export class AppComponent implements OnInit {
       fill: `${color}`,
     };
   }
-  makeCar() {
-    const car = this.carService.addCar('#ccc');
-    this.server
-      .addCar(car)
-      .subscribe((responce) => this.getCarsOnScreen(this.pageNumber));
-  }
   getCarsOnScreen(page: number) {
     this.server.fetchCarsOnScreen(page).subscribe((response) => {
       this.carsArray = response;
     });
+    this.getTotalAmountOfCars();
   }
 
   deleteCar(id: number | undefined) {
