@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CarFactoryService } from 'src/services/car-factory.service';
 import { ServerService } from 'src/services/server.service';
 
@@ -10,15 +10,21 @@ import { ServerService } from 'src/services/server.service';
 export class CarCustomizationComponent {
 
 @Output() onAddingCars = new EventEmitter<void>();
+@Input() canChange!:boolean;
   constructor(private server:ServerService, private carService:CarFactoryService) { }
+  colorChoice="#fff";
+  nameChoice='';
   makeCar(){
-    const car = this.carService.addCar('#676890');
+    const car = this.carService.addCar(this.colorChoice, this.nameChoice);
     this.server
       .addCar(car)
       .subscribe((responce) => {
         this.onAddingCars.emit();
-        console.log('Передача')
       });
+      this.nameChoice='';
+  }
+  print(){
+    console.log(this.colorChoice);
   }
 
 }

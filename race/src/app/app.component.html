@@ -3,14 +3,28 @@
     <button class="button button_main">Garage</button>
     <button class="button button_main">Winners</button>
   </div>
-  <app-car-customization (onAddingCars)="getCarsOnScreen(pageNumber)"></app-car-customization>
+  <app-car-customization
+    (onAddingCars)="getCarsOnScreen(pageNumber)"
+    [canChange]='selectionMode'
+  ></app-car-customization>
 
   <p class="info info__big">Total amount of cars: {{ totalAmountOfCars }}</p>
   <p class="info info__small">Page: {{ pageNumber }}</p>
   <div class="cars" *ngFor="let car of carsArray">
-    <p class="cars__car-name">{{ car.name }}</p>
-    <p class="cars__car-name">{{ car.id }}</p>
-    <div class="cars__car-image">
+    <div class="cars__data">
+      <button
+        class="button button_adds button_colored"
+        (click)="changeCar(car.id)"
+      >
+        &#9998;
+      </button>
+      <button class="button button_adds" (click)="deleteCar(car.id)">
+        &#10008;
+      </button>
+      <p class="info info__small">{{ car.name }}</p>
+    </div>
+    <!-- <p class="cars__car-name">{{ car.id }}</p> -->
+    <div class="cars__car-image" [class.selected]="isSelected(car.id)">
       <svg
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,12 +35,21 @@
         />
       </svg>
     </div>
-    <button (click)="deleteCar(car.id)">Delete Car</button>
   </div>
   <div class="navigation-buttons">
-  <button class="button button_main" (click)="nextPage()">Next Page</button>
-  <button class="button button_main" (click)="previousPage()">
-    Previous Page
-  </button>
+    <button
+      class="button button_main"
+      (click)="previousPage()"
+      [disabled]="pageNumber < 2"
+    >
+      Previous Page
+    </button>
+    <button
+      class="button button_main"
+      (click)="nextPage()"
+      [disabled]="pageNumber > pageAmount - 1"
+    >
+      Next Page
+    </button>
   </div>
 </div>

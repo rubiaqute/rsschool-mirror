@@ -9,6 +9,7 @@ import { Car } from './car-factory.service';
 })
 export class ServerService {
   server: string = 'http://127.0.0.1:3000';
+  MAX_AMOUNT_OF_CARS_PER_PAGE = 7;
 
   constructor(private http: HttpClient) {}
   getAmountOfCars(): Observable<number> {
@@ -24,6 +25,7 @@ export class ServerService {
   fetchCarsOnScreen(page: number): Observable<Car[]> {
     let params = new HttpParams();
     params = params.append('_page', page);
+    params = params.append('_limit', this.MAX_AMOUNT_OF_CARS_PER_PAGE);
     return this.http
       .get<Car[]>(`${this.server}/garage`, {
         params,

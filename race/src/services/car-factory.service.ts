@@ -12,8 +12,8 @@ export interface Car {
 export class CarFactoryService {
 
   constructor() { }
-  addCar(color:string): Car{
-    const car:Car ={name: "Lada", color: color}
+  addCar(color:string, name:string): Car{
+    const car:Car ={name: name, color: color}
     return car;
   }
 }

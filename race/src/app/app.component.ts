@@ -16,15 +16,25 @@ export class AppComponent implements OnInit {
   carsArray: Car[] = [];
   carsOnScreen: Car[] = [];
   pageNumber = 1;
+  pageAmount = 1;
   totalAmountOfCars = 0;
+  selectionMode = false;
+  selectedId: number | undefined;
 
   ngOnInit(): void {
     this.getCarsOnScreen(this.pageNumber);
-
   }
   getTotalAmountOfCars() {
-    this.server.getAmountOfCars().subscribe((responce) => {
-      this.totalAmountOfCars = responce;
+    this.server.getAmountOfCars().subscribe((response) => {
+      this.totalAmountOfCars = response;
+    });
+  }
+  updatePageNumber() {
+    this.server.getAmountOfCars().subscribe((response) => {
+      const newPageNumber = Math.ceil(
+        response / this.server.MAX_AMOUNT_OF_CARS_PER_PAGE
+      );
+      this.pageAmount = newPageNumber;
     });
   }
   returnCarColor(color: string): { fill: string } {
@@ -37,8 +47,15 @@ export class AppComponent implements OnInit {
       this.carsArray = response;
     });
     this.getTotalAmountOfCars();
+    this.updatePageNumber();
   }
-
+  changeCar(id: number | undefined) {
+    this.selectionMode = true;
+    this.selectedId = id;
+  }
+  isSelected(id: number | undefined) {
+    return (this.selectedId === id && this.selectedId);
+  }
   deleteCar(id: number | undefined) {
     if (id) {
       this.server.deleteCar(id).subscribe((response) => {
