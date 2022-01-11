@@ -5,30 +5,59 @@ import { ServerService } from 'src/services/server.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
-  constructor(private carService:CarFactoryService,
-    private server:ServerService){}
+export class AppComponent implements OnInit {
+  constructor(
+    private carService: CarFactoryService,
+    private server: ServerService
+  ) {}
 
-  carsArray:Car[] = [];
+  carsArray: Car[] = [];
+  carsOnScreen: Car[] = [];
+  pageNumber = 1;
+  totalAmountOfCars = 0;
 
   ngOnInit(): void {
-    this.getCars()
+    this.getCarsOnScreen(this.pageNumber);
+    this.getTotalAmountOfCars();
   }
-
-  returnCarColor(color: string): {fill: string } {
+  getTotalAmountOfCars() {
+    this.server.getAmountOfCars().subscribe((responce) => {
+      this.totalAmountOfCars = responce;
+    });
+  }
+  returnCarColor(color: string): { fill: string } {
     return {
       fill: `${color}`,
     };
   }
-  makeCar(){
+  makeCar() {
     const car = this.carService.addCar('#ccc');
-    this.server.addCar(car).subscribe((responce)=> this.carsArray.push(responce))
+    this.server
+      .addCar(car)
+      .subscribe((responce) => this.getCarsOnScreen(this.pageNumber));
   }
-  getCars(){
-    this.server.fetchCars().subscribe((response)=> {
-      this.carsArray = this.carsArray.concat(response);
-    })
+  getCarsOnScreen(page: number) {
+    this.server.fetchCarsOnScreen(page).subscribe((response) => {
+      this.carsArray = response;
+    });
+  }
+
+  deleteCar(id: number | undefined) {
+    if (id) {
+      this.server.deleteCar(id).subscribe((response) => {
+        this.getCarsOnScreen(this.pageNumber);
+      });
+    }
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.getCarsOnScreen(this.pageNumber);
+  }
+  previousPage() {
+    this.pageNumber--;
+    this.getCarsOnScreen(this.pageNumber);
   }
 }
