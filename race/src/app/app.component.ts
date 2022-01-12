@@ -14,12 +14,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   carsArray: Car[] = [];
-  carsOnScreen: Car[] = [];
-  pageNumber = 1;
-  pageAmount = 1;
+  pageNumber: number = 1;
+  pageAmount: number = 1;
   totalAmountOfCars = 0;
-  selectionMode = false;
   selectedId: number | undefined;
+  CARS_TO_RENDER = 10;
+  // CARS_TO_RENDER = 100;
 
   ngOnInit(): void {
     this.getCarsOnScreen(this.pageNumber);
@@ -50,16 +50,28 @@ export class AppComponent implements OnInit {
     this.updatePageNumber();
   }
   changeCar(id: number | undefined) {
-    this.selectionMode = true;
     this.selectedId = id;
   }
   isSelected(id: number | undefined) {
-    return (this.selectedId === id && this.selectedId);
+    return this.selectedId === id && this.selectedId;
   }
   deleteCar(id: number | undefined) {
     if (id) {
       this.server.deleteCar(id).subscribe((response) => {
         this.getCarsOnScreen(this.pageNumber);
+      });
+    }
+    if (this.selectedId == id) this.selectedId = undefined;
+  }
+  updateCar(updatedData: Car) {
+    if (this.selectedId) {
+      let carForUpdate: Car = updatedData;
+      this.server.getCar(this.selectedId).subscribe((response) => {
+        carForUpdate = this.carService.updateCar(updatedData, response);
+        this.server.updateCar(carForUpdate, this.selectedId!).subscribe(() => {
+          this.getCarsOnScreen(this.pageNumber);
+        });
+        this.selectedId = undefined;
       });
     }
   }
@@ -71,5 +83,15 @@ export class AppComponent implements OnInit {
   previousPage() {
     this.pageNumber--;
     this.getCarsOnScreen(this.pageNumber);
+  }
+  makeCar(newObject: Car) {
+    const car = this.carService.addCar(newObject.color, newObject.name);
+    this.server.addCar(car).subscribe((response) => {
+      this.getCarsOnScreen(this.pageNumber);
+    });
+  }
+  async renderCars() {
+    const newCars = this.carService.renderCars(this.CARS_TO_RENDER);
+    newCars.forEach((car)=> this.makeCar(car));
   }
 }
