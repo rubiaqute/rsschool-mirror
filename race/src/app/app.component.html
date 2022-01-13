@@ -1,8 +1,11 @@
 <div class="container">
+<app-winners *ngIf="winnersPage"></app-winners>
+
   <div class="navigation-buttons">
-    <button class="button button_main"[disabled]="raceMode">Garage</button>
-    <button class="button button_main" [disabled]="raceMode">Winners</button>
+    <button class="button button_main"[disabled]="raceMode" (click)="winnersPage=false" >Garage</button>
+    <button class="button button_main" [disabled]="raceMode" (click)="winnersPage=true">Winners</button>
   </div>
+  <div *ngIf="!winnersPage">
   <app-car-customization
     (onAddingCars)="makeCar($event)"
     (onUpdatingCar)="updateCar($event)"
@@ -84,6 +87,7 @@
       Next Page
     </button>
   </div>
+</div>
 </div>
 <ng-container *ngIf = "showResultMessage">
   <div class="overlay">

@@ -1,23 +1,16 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import {
-  Car,
-  CarFactoryService,
-} from 'src/services/car-factory.service';
+import { Component, OnInit } from '@angular/core';
+import { Car, CarFactoryService } from 'src/services/car-factory.service';
 import { ServerService } from 'src/services/server.service';
 import { EngineStatus } from 'src/car-data';
-
 
 interface IntervalAnimation {
   starttime: number | null;
   id: number;
-  drivingMode:boolean;
+  drivingMode: boolean;
 }
 interface Results {
-  id:number,
-  time: number,
+  id: number;
+  time: number;
 }
 
 @Component({
@@ -30,7 +23,8 @@ export class AppComponent implements OnInit {
     private carService: CarFactoryService,
     private server: ServerService
   ) {}
-  raceMode:boolean = false;
+  winnersPage = false;
+  raceMode: boolean = false;
   carsArray: Car[] = [];
   pageNumber: number = 1;
   pageAmount: number = 1;
@@ -38,11 +32,11 @@ export class AppComponent implements OnInit {
   selectedId: number | undefined;
   CARS_TO_RENDER = 10;
   myReqArray: IntervalAnimation[] = [];
-  showResultMessage:boolean = false;
-  winner ={
-    name:'',
-    time:0
-  }
+  showResultMessage: boolean = false;
+  winner = {
+    name: '',
+    time: 0,
+  };
 
   // CARS_TO_RENDER = 100;
 
@@ -120,45 +114,46 @@ export class AppComponent implements OnInit {
     newCars.forEach((car) => this.makeCar(car));
   }
 
-
   move(id: number | undefined) {
-
-    const promise:Promise<Results> = new Promise((resolve)=>{
+    const promise: Promise<Results> = new Promise((resolve) => {
       if (id) {
-    const result:Results={id:id, time:0};
-    let interval: IntervalAnimation;
-    this.myReqArray[id] = { starttime: null, id: 0, drivingMode:true };
-     this.server
-        .switchEngine(id, EngineStatus.started)
-        .subscribe((response) => {
-          const time = Math.round(response.distance / response.velocity);
-          interval = this.animation(id, time)!;
-          this.server.switchEngineToDrive(id, EngineStatus.drive).subscribe(
-            (response) =>{
-              result.id = id;
-              result.time = time
-              resolve(result);
-            },
-            () => {
-              window.cancelAnimationFrame(interval.id)
-              if (this.raceMode){
-              const driveModesArray:boolean[]=[];
-              this.myReqArray[id].drivingMode = false;
-              this.carsArray.forEach((car)=>{
-               driveModesArray.push(this.myReqArray[car.id!].drivingMode);
-              });
-              if (driveModesArray.every((el)=>el ==false)) {
-                result.id=-1;
-                result.time = 0;
-                resolve(result)
+        const result: Results = { id: id, time: 0 };
+        let interval: IntervalAnimation;
+        this.myReqArray[id] = { starttime: null, id: 0, drivingMode: true };
+        this.server
+          .switchEngine(id, EngineStatus.started)
+          .subscribe((response) => {
+            const time = Math.round(response.distance / response.velocity);
+            interval = this.animation(id, time)!;
+            this.server.switchEngineToDrive(id, EngineStatus.drive).subscribe(
+              (response) => {
+                result.id = id;
+                result.time = time;
+                resolve(result);
+              },
+              () => {
+                window.cancelAnimationFrame(interval.id);
+                if (this.raceMode) {
+                  this.myReqArray[id].drivingMode = false;
+                  if (this.checkIfAllAreBroken()) {
+                    result.id = -1;
+                    result.time = 0;
+                    resolve(result);
+                  }
+                }
               }
-            }
-            },
-          );
-        });
-      };
-    })
+            );
+          });
+      }
+    });
     return promise;
+  }
+  checkIfAllAreBroken() {
+    const driveModesArray: boolean[] = [];
+    this.carsArray.forEach((car) => {
+      driveModesArray.push(this.myReqArray[car.id!].drivingMode);
+    });
+    return driveModesArray.every((el) => el == false);
   }
   animation(id: number, animationTime: number) {
     if (id) {
@@ -166,7 +161,11 @@ export class AppComponent implements OnInit {
       const flag = document.getElementById(`flag-${id}`);
       const distance =
         flag!.getBoundingClientRect().left - car!.getBoundingClientRect().left;
-      const myReq: IntervalAnimation = { starttime: null, id: 0, drivingMode:true };
+      const myReq: IntervalAnimation = {
+        starttime: null,
+        id: 0,
+        drivingMode: true,
+      };
       this.myReqArray[id] = myReq;
       function step(timestamp: number) {
         if (!myReq.starttime) myReq.starttime = timestamp;
@@ -183,49 +182,45 @@ export class AppComponent implements OnInit {
     }
     return;
   }
-  isMoving(id:number|undefined){
-    if (id){
-    if (this.myReqArray[id]) return this.myReqArray[id].drivingMode;
-    else return false;
-    }
-    else return false;
-
+  isMoving(id: number | undefined) {
+    if (id) {
+      if (this.myReqArray[id]) return this.myReqArray[id].drivingMode;
+      else return false;
+    } else return false;
   }
-  async startRace(){
-    this.raceMode=true;
-    const promises = this.carsArray.map((car)=> this.move(car.id))
+  async startRace() {
+    this.raceMode = true;
+    const promises = this.carsArray.map((car) => this.move(car.id));
     const winner = await Promise.race(promises);
-    if (!winner) console.log("Nope")
+    if (!winner) console.log('Nope');
     console.log(winner);
     this.showWinner(winner);
-
   }
 
-  showWinner(winner:Results){
-    if (winner.time){
-    this.winner.name = this.carsArray.find((car)=> car.id==winner.id)!.name;
-    this.winner.time = +(winner.time/1000).toFixed(2)
-    }
-    else this.winner.name = '';
-    this.showResultMessage=true;
-
+  showWinner(winner: Results) {
+    if (winner.time) {
+      this.winner.name = this.carsArray.find(
+        (car) => car.id == winner.id
+      )!.name;
+      this.winner.time = +(winner.time / 1000).toFixed(2);
+    } else this.winner.name = '';
+    this.showResultMessage = true;
   }
-  closeResultMessage(){
+  closeResultMessage() {
     this.showResultMessage = false;
     this.raceMode = false;
     this.allCarsBacktoStart();
   }
-  allCarsBacktoStart(){
+  allCarsBacktoStart() {
     this.showResultMessage = false;
-    this.carsArray.forEach((car)=>{
+    this.carsArray.forEach((car) => {
       if (this.myReqArray[car.id!]) {
         window.cancelAnimationFrame(this.myReqArray[car.id!].id);
-        this.myReqArray[car.id!].drivingMode=false;
+        this.myReqArray[car.id!].drivingMode = false;
       }
       const carImage = document.getElementById(`car-${car.id}`);
       carImage!.style.transform = 'translateX(0)';
-    }
-    )
+    });
   }
   stop(id: number | undefined) {
     if (id) {
@@ -234,10 +229,9 @@ export class AppComponent implements OnInit {
         .switchEngineToDrive(id, EngineStatus.stopped)
         .subscribe((response) => {
           window.cancelAnimationFrame(this.myReqArray[id].id);
-          this.myReqArray[id].drivingMode=false;
+          this.myReqArray[id].drivingMode = false;
           car!.style.transform = 'translateX(0)';
         });
     }
   }
-
 }
