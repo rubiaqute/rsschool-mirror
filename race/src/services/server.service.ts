@@ -2,7 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs';
-import { Car, CarFactoryService } from './car-factory.service';
+import { Car, CarFactoryService, Engine, Success } from './car-factory.service';
+import { EngineStatus } from 'src/car-data';
 
 @Injectable({
   providedIn: 'root',
@@ -48,12 +49,7 @@ export class ServerService {
       })
     );
   }
-  addCars(cars: Car[]){
-    cars.forEach((car)=> {
-     return this.addCar(car)
-    })
 
-  }
   getCar(id:number):Observable<Car> {
     return this.http.get<Car>(`${this.server}/garage/${id}`).pipe(
       catchError((error) => {
@@ -65,13 +61,6 @@ export class ServerService {
   }
 
   updateCar(car:Car, id: number):Observable<Car> {
-    // let car = data;
-    // const stream$= this.getCar(id)
-    // this.getCar(id).subscribe((response) => {
-    //   car = this.carService.updateCar(data, response);
-    //   console.log (car);
-    // })
-    // // const car = this.carService.updateCar(data, carInBase);
     console.log(`Car we got: ${car.color}, ${car.name}`)
     return this.http.put<Car>(`${this.server}/garage/${id}`, car).pipe(
       catchError((error) => {
@@ -82,6 +71,22 @@ export class ServerService {
   }
   deleteCar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.server}/garage/${id}`).pipe(
+      catchError((error) => {
+        error.message = 'The car was not found!';
+        return throwError(error.message);
+      })
+    );
+  }
+  switchEngine(id:number, status:EngineStatus):Observable<Engine>{
+    let params = new HttpParams();
+    params = params.append('id', id);
+    params = params.append('status', status);
+    return this.http.patch<Engine>(`${this.server}/engine`, {'status':status}, {params,}).pipe(
+      // map((response)=> {
+      //   console.log(response.distance)
+      //   console.log(response.velocity)
+      //   return Math.round(response.distance/response.velocity);
+      // }),
       catchError((error) => {
         error.message = 'The car was not found!';
         return throwError(error.message);

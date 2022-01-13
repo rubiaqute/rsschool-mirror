@@ -99,3 +99,8 @@ export const carBrands =['Audi',
 'Mazzanti',
 'Daewoo']
 export const colorChars='0123456789ABCDEF';
+export enum EngineStatus {
+  started = 'started',
+  stopped ='stopped',
+  drive = 'drive'
+}

@@ -6,6 +6,13 @@ export interface Car {
   color:string,
   id?:number
 }
+export interface Engine {
+  velocity:number,
+  distance:number,
+}
+export interface Success {
+  success:boolean,
+}
 @Injectable({
   providedIn: 'root'
 })
