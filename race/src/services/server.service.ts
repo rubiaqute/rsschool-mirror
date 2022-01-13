@@ -82,15 +82,16 @@ export class ServerService {
     params = params.append('id', id);
     params = params.append('status', status);
     return this.http.patch<Engine>(`${this.server}/engine`, {'status':status}, {params,}).pipe(
-      // map((response)=> {
-      //   console.log(response.distance)
-      //   console.log(response.velocity)
-      //   return Math.round(response.distance/response.velocity);
-      // }),
       catchError((error) => {
-        error.message = 'The car was not found!';
+        error.message = 'Oops';
         return throwError(error.message);
       })
     );
+  }
+  switchEngineToDrive(id:number, status:EngineStatus):Observable<Success>{
+    let params = new HttpParams();
+    params = params.append('id', id);
+    params = params.append('status', status);
+    return this.http.patch<Success>(`${this.server}/engine`, {'status':status}, {params,})
   }
 }

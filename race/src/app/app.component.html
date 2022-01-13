@@ -1,18 +1,21 @@
 <div class="container">
   <div class="navigation-buttons">
-    <button class="button button_main">Garage</button>
-    <button class="button button_main">Winners</button>
+    <button class="button button_main"[disabled]="raceMode">Garage</button>
+    <button class="button button_main" [disabled]="raceMode">Winners</button>
   </div>
   <app-car-customization
     (onAddingCars)="makeCar($event)"
     (onUpdatingCar)="updateCar($event)"
     [carForUpdate]="selectedId"
   ></app-car-customization>
-  <button class="button button_main" (click)="renderCars()">
+  <button class="button button_main" (click)="renderCars()" [disabled]="raceMode">
     Get {{ CARS_TO_RENDER }} cars
   </button>
-  <button class="button button_main" (click)="startRace()">
-    Get {{ CARS_TO_RENDER }} cars
+  <button class="button button_main" (click)="allCarsBacktoStart()" [disabled]="raceMode">
+    Reset
+  </button>
+  <button class="button button_main" (click)="startRace()"[disabled]="raceMode">
+    Race
   </button>
 
   <p class="info info__big">Total amount of cars: {{ totalAmountOfCars }}</p>
@@ -22,20 +25,20 @@
       <button
         class="button button_adds button_colored"
         (click)="changeCar(car.id)"
-        [disabled]="isMoving(car.id)"
+        [disabled]="isMoving(car.id)||raceMode"
       >
         Select
       </button>
-      <button class="button button_adds" (click)="deleteCar(car.id)" [disabled]="isMoving(car.id)">
+      <button class="button button_adds" (click)="deleteCar(car.id)" [disabled]="isMoving(car.id)||raceMode">
         &#10008;
       </button>
       <p class="info info__small">{{ car.name }}</p>
     </div>
     <!-- <p class="cars__car-name">{{ car.id }}</p> -->
-    <button class="button button_adds button_colored" (click)="move(car.id)" [disabled]="isMoving(car.id)">
+    <button class="button button_adds button_colored" (click)="move(car.id)" [disabled]="isMoving(car.id)||raceMode">
       Move
     </button>
-    <button class="button button_adds" (click)="stop(car.id)" [disabled]="!isMoving(car.id)">Stop</button>
+    <button class="button button_adds" (click)="stop(car.id)" [disabled]="!isMoving(car.id)|| raceMode">Stop</button>
     <div
       class="cars__car-image"
       [class.selected]="isSelected(car.id)"
@@ -69,16 +72,33 @@
     <button
       class="button button_main"
       (click)="previousPage()"
-      [disabled]="pageNumber < 2"
+      [disabled]="(pageNumber < 2)||raceMode"
     >
       Previous Page
     </button>
     <button
       class="button button_main"
       (click)="nextPage()"
-      [disabled]="pageNumber > pageAmount - 1"
+      [disabled]="(pageNumber > pageAmount - 1)||raceMode"
     >
       Next Page
     </button>
   </div>
 </div>
+<ng-container *ngIf = "showResultMessage">
+  <div class="overlay">
+<div class="modal">
+      <p class="winner-message" *ngIf="winner.name">
+        And wins... <span class="winner-message__name">{{winner.name}}</span> with the result {{winner.time}}s
+      </p>
+      <p class="winner-message" *ngIf="!winner.name">
+        Sorry, no winner in this race... All participants are broken.
+      </p>
+        <button class="button button_main button_main_message" (click)="closeResultMessage()">
+         Close
+        </button>
+      </div>
+  </div>
+</ng-container>
+
+
