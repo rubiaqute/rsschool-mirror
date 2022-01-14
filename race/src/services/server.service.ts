@@ -2,8 +2,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs';
-import { Car, CarFactoryService, Engine, Success } from './car-factory.service';
+import { CarFactoryService } from './car-factory.service';
 import { EngineStatus } from 'src/car-data';
+import { Winner, SortItem, SortOrder, Car, Engine, Success } from 'src/models';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,8 @@ import { EngineStatus } from 'src/car-data';
 export class ServerService {
   server: string = 'http://127.0.0.1:3000';
   MAX_AMOUNT_OF_CARS_PER_PAGE = 7;
+  MAX_AMOUNT_OF_WINNERS_PER_PAGE = 10;
+
 
 
   constructor(private http: HttpClient, private carService:CarFactoryService) {}
@@ -23,6 +27,22 @@ export class ServerService {
         return throwError(error.message);
       })
     );
+  }
+  getAmountOfWinners(): Observable<number> {
+    return this.http.get<Winner[]>(`${this.server}/winners`, {}).pipe(
+      map((response) => response.length),
+    );
+  }
+  fetchWinnersOnScreen(page: number, sortItem:SortItem, sortOrder: SortOrder): Observable<Winner[]> {
+    let params = new HttpParams();
+    params = params.append('_page', page);
+    params = params.append('_limit', this.MAX_AMOUNT_OF_WINNERS_PER_PAGE);
+    params = params.append('_sort', sortItem);
+    params = params.append('_order', sortOrder);
+    return this.http
+      .get<Winner[]>(`${this.server}/winners`, {
+        params,
+      })
   }
   fetchCarsOnScreen(page: number): Observable<Car[]> {
     let params = new HttpParams();

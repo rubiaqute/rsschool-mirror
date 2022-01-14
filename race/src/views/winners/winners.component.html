@@ -1,5 +1,24 @@
-<p>Winners</p>
+<h2>Winners: {{totalAmountOfWinners}}</h2>
+<p class="info info__big">Page: {{pageNumber}}</p>
 <table>
-  <tr><th>Number</th><th>Car</th><th>Wins</th><th>Best time (sec)</th></tr>
-  <tr></tr>
+  <tr>
+    <th>Number</th>
+    <th>Car</th>
+    <th>Name</th>
+    <th>Wins</th>
+    <th>Best time (sec)</th>
+  </tr>
+  <tr *ngFor="let winner of winnersArray; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td><app-car class="car-small" [color]="winner.color"></app-car></td>
+    <td>{{ winner.name }}</td>
+    <td>{{ winner.wins }}</td>
+    <td>{{ winner.time }}</td>
+  </tr>
 </table>
+<div class="navigation-buttons">
+  <button class="button button_main"(click)="previousPage()"
+  [disabled]="pageNumber < 2">Previous Page</button>
+  <button class="button button_main" (click)="nextPage()"
+  [disabled]="pageNumber > pageAmount - 1">Next Page</button>
+</div>

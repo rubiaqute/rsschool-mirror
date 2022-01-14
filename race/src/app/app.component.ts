@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Car, CarFactoryService } from 'src/services/car-factory.service';
+import { CarFactoryService } from 'src/services/car-factory.service';
 import { ServerService } from 'src/services/server.service';
 import { EngineStatus } from 'src/car-data';
+import { Car, IntervalAnimation, Results } from 'src/models';
 
-interface IntervalAnimation {
-  starttime: number | null;
-  id: number;
-  drivingMode: boolean;
-}
-interface Results {
-  id: number;
-  time: number;
-}
+
 
 @Component({
   selector: 'app-root',

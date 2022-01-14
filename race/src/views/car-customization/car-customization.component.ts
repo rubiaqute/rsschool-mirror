@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Car, CarFactoryService } from 'src/services/car-factory.service';
+import { Car } from 'src/models';
+import { CarFactoryService } from 'src/services/car-factory.service';
 import { ServerService } from 'src/services/server.service';
 
 @Component({

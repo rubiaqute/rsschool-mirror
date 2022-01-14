@@ -1,18 +1,8 @@
 import { Injectable } from '@angular/core';
 import { carBrands, carModels, colorChars } from 'src/car-data';
+import { Car } from 'src/models';
 
-export interface Car {
-  name:string,
-  color:string,
-  id?:number
-}
-export interface Engine {
-  velocity:number,
-  distance:number,
-}
-export interface Success {
-  success:boolean,
-}
+
 @Injectable({
   providedIn: 'root'
 })

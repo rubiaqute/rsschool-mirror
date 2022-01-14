@@ -1,108 +1,128 @@
 <div class="container">
-<app-winners *ngIf="winnersPage"></app-winners>
-
   <div class="navigation-buttons">
-    <button class="button button_main"[disabled]="raceMode" (click)="winnersPage=false" >Garage</button>
-    <button class="button button_main" [disabled]="raceMode" (click)="winnersPage=true">Winners</button>
+    <button
+      class="button button_main"
+      [disabled]="raceMode"
+      (click)="winnersPage = false"
+    >
+      Garage
+    </button>
+    <button
+      class="button button_main"
+      [disabled]="raceMode"
+      (click)="winnersPage = true"
+    >
+      Winners
+    </button>
   </div>
+  <app-winners *ngIf="winnersPage"></app-winners>
   <div *ngIf="!winnersPage">
-  <app-car-customization
-    (onAddingCars)="makeCar($event)"
-    (onUpdatingCar)="updateCar($event)"
-    [carForUpdate]="selectedId"
-  ></app-car-customization>
-  <button class="button button_main" (click)="renderCars()" [disabled]="raceMode">
-    Get {{ CARS_TO_RENDER }} cars
-  </button>
-  <button class="button button_main" (click)="allCarsBacktoStart()" [disabled]="raceMode">
-    Reset
-  </button>
-  <button class="button button_main" (click)="startRace()"[disabled]="raceMode">
-    Race
-  </button>
+    <app-car-customization
+      (onAddingCars)="makeCar($event)"
+      (onUpdatingCar)="updateCar($event)"
+      [carForUpdate]="selectedId"
+    ></app-car-customization>
+    <button
+      class="button button_main"
+      (click)="renderCars()"
+      [disabled]="raceMode"
+    >
+      Get {{ CARS_TO_RENDER }} cars
+    </button>
+    <button
+      class="button button_main"
+      (click)="allCarsBacktoStart()"
+      [disabled]="raceMode"
+    >
+      Reset
+    </button>
+    <button
+      class="button button_main"
+      (click)="startRace()"
+      [disabled]="raceMode"
+    >
+      Race
+    </button>
 
-  <p class="info info__big">Total amount of cars: {{ totalAmountOfCars }}</p>
-  <p class="info info__small">Page: {{ pageNumber }}</p>
-  <div class="cars" *ngFor="let car of carsArray">
-    <div class="cars__data">
+    <p class="info info__big">Total amount of cars: {{ totalAmountOfCars }}</p>
+    <p class="info info__small">Page: {{ pageNumber }}</p>
+    <div class="cars" *ngFor="let car of carsArray">
+      <div class="cars__data">
+        <button
+          class="button button_adds button_colored"
+          (click)="changeCar(car.id)"
+          [disabled]="isMoving(car.id) || raceMode"
+        >
+          Select
+        </button>
+        <button
+          class="button button_adds"
+          (click)="deleteCar(car.id)"
+          [disabled]="isMoving(car.id) || raceMode"
+        >
+          &#10008;
+        </button>
+        <p class="info info__small">{{ car.name }}</p>
+      </div>
+      <!-- <p class="cars__car-name">{{ car.id }}</p> -->
       <button
         class="button button_adds button_colored"
-        (click)="changeCar(car.id)"
-        [disabled]="isMoving(car.id)||raceMode"
+        (click)="move(car.id)"
+        [disabled]="isMoving(car.id) || raceMode"
       >
-        Select
+        Move
       </button>
-      <button class="button button_adds" (click)="deleteCar(car.id)" [disabled]="isMoving(car.id)||raceMode">
-        &#10008;
+      <button
+        class="button button_adds"
+        (click)="stop(car.id)"
+        [disabled]="!isMoving(car.id) || raceMode"
+      >
+        Stop
       </button>
-      <p class="info info__small">{{ car.name }}</p>
-    </div>
-    <!-- <p class="cars__car-name">{{ car.id }}</p> -->
-    <button class="button button_adds button_colored" (click)="move(car.id)" [disabled]="isMoving(car.id)||raceMode">
-      Move
-    </button>
-    <button class="button button_adds" (click)="stop(car.id)" [disabled]="!isMoving(car.id)|| raceMode">Stop</button>
-    <div
-      class="cars__car-image"
-      [class.selected]="isSelected(car.id)"
-      id="car-{{ car.id }}"
-    >
-      <svg
-        viewBox="0 0 512 512"
-        xmlns="http://www.w3.org/2000/svg"
-        [ngStyle]="returnCarColor(car.color)"
-      >
-        <path
-          d="M355.975 292.25a24.82 24.82 0 1 0 24.82-24.81 24.84 24.84 0 0 0-24.82 24.81zm-253-24.81a24.81 24.81 0 1 1-24.82 24.81 24.84 24.84 0 0 1 24.81-24.81zm-76.67-71.52h67.25l-13.61 49.28 92-50.28h57.36l1.26 34.68 32 14.76 11.74-14.44h15.62l3.16 16c137.56-13 192.61 29.17 192.61 29.17s-7.52 5-25.93 8.39c-3.88 3.31-3.66 14.44-3.66 14.44h24.2v16h-52v-27.48c-1.84.07-4.45.41-7.06.47a40.81 40.81 0 1 0-77.25 23h-204.24a40.81 40.81 0 1 0-77.61-17.67c0 1.24.06 2.46.17 3.67h-36z"
-        />
-      </svg>
-    </div>
-    <div class="flag" id="flag-{{ car.id }}">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 60 60"
-      >
-        <polygon style="fill: #cc4b4c" points="52,23.5 10,40 10,22 10,4 " />
-        <path
-          style="fill: #424a60"
-          d="M9,0C8.448,0,8,0.447,8,1v3v55c0,0.553,0.448,1,1,1s1-0.447,1-1V4V1C10,0.447,9.552,0,9,0z"
-        />
-      </svg>
-    </div>
-  </div>
 
-  <div class="navigation-buttons">
-    <button
-      class="button button_main"
-      (click)="previousPage()"
-      [disabled]="(pageNumber < 2)||raceMode"
-    >
-      Previous Page
-    </button>
-    <button
-      class="button button_main"
-      (click)="nextPage()"
-      [disabled]="(pageNumber > pageAmount - 1)||raceMode"
-    >
-      Next Page
-    </button>
+      <app-car
+        class="cars__car-image"
+        [class.selected]="isSelected(car.id)"
+        id="car-{{ car.id }}"
+        [color]="car.color"
+      ></app-car>
+      <app-flag class="flag" id="flag-{{ car.id }}"></app-flag>
+    </div>
+    <div class="navigation-buttons">
+      <button
+        class="button button_main"
+        (click)="previousPage()"
+        [disabled]="pageNumber < 2 || raceMode"
+      >
+        Previous Page
+      </button>
+      <button
+        class="button button_main"
+        (click)="nextPage()"
+        [disabled]="pageNumber > pageAmount - 1 || raceMode"
+      >
+        Next Page
+      </button>
+    </div>
   </div>
 </div>
-</div>
-<ng-container *ngIf = "showResultMessage">
+<ng-container *ngIf="showResultMessage">
   <div class="overlay">
-<div class="modal">
+    <div class="modal">
       <p class="winner-message" *ngIf="winner.name">
-        And wins... <span class="winner-message__name">{{winner.name}}</span> with the result {{winner.time}}s
+        And wins...
+        <span class="winner-message__name">{{ winner.name }}</span> with the
+        result {{ winner.time }}s
       </p>
       <p class="winner-message" *ngIf="!winner.name">
         Sorry, no winner in this race... All participants are broken.
       </p>
-        <button class="button button_main button_main_message" (click)="closeResultMessage()">
-         Close
-        </button>
-      </div>
+      <button
+        class="button button_main button_main_message"
+        (click)="closeResultMessage()"
+      >
+        Close
+      </button>
+    </div>
   </div>
 </ng-container>
-
-
