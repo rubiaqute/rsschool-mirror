@@ -4,12 +4,12 @@ import { ServerService } from 'src/services/server.service';
 import { EngineStatus } from 'src/car-data';
 import {
   Car,
+  CustomizationInputs,
   IntervalAnimation,
   Results,
   SortingData,
   SortItem,
   SortOrder,
-  Winner,
   WinnerPageState,
 } from 'src/models';
 import { WinnersComponent } from 'src/views/winners/winners.component';
@@ -32,14 +32,20 @@ export class AppComponent implements OnInit {
   pageAmount: number = 1;
   totalAmountOfCars = 0;
   selectedId: number | undefined;
-  CARS_TO_RENDER = 10;
+  CARS_TO_RENDER = 100;
   myReqArray: IntervalAnimation[] = [];
   showResultMessage: boolean = false;
-  abortionFlag=false;
+  abortionFlag: boolean = false;
   winnerPageState: WinnerPageState = {
     pageNumber: 1,
     sortingBy: SortItem.byId,
     sortingOrder: SortOrder.AtoZ,
+  };
+  customizationInputs: CustomizationInputs = {
+    colorChoice: '#fff',
+    nameChoice: '',
+    updateColorChoice: '',
+    updateNameChoice: '',
   };
   winner = {
     id: 0,
@@ -143,37 +149,44 @@ export class AppComponent implements OnInit {
         // if (this.raceMode) this.abortionFlag = true;
         const result: Results = { id: id, time: 0 };
         let interval: IntervalAnimation;
-        this.myReqArray[id] = { starttime: null, id: 0, drivingMode: true};
+        this.myReqArray[id] = { starttime: null, id: 0, drivingMode: true };
         this.server
           .switchEngine(id, EngineStatus.started)
           .subscribe((response) => {
-            if (!this.abortionFlag){
-            const time = Math.round(response.distance / response.velocity);
-            interval = this.animation(id, time)!;
-            this.server.switchEngineToDrive(id, EngineStatus.drive).subscribe(
-              (response) => {
-                result.id = id;
+            if (!this.abortionFlag) {
+              const time = Math.round(response.distance / response.velocity);
+              interval = this.animation(id, time)!;
+              this.server.switchEngineToDrive(id, EngineStatus.drive).subscribe(
+                (response) => {
+                  result.id = id;
 
-                result.time = time;
-                resolve(result);
-              },
-              (error) => {
-                if (error.status == 404) console.log(`This error means that you start race too quickly after reset, but it's ok. Everything is under control`)
-                else if (error.status == 429) console.log(`This error means that you start race too quickly after reset, but it's ok. Everything is under control`)
-                else  console.log(
-                  `This error means that this car was broken. It can't drive anymore...`
-                );
-                window.cancelAnimationFrame(interval.id);
-                if (this.raceMode) {
-                  this.myReqArray[id].drivingMode = false;
-                  if (this.checkIfAllAreBroken()) {
-                    result.id = -1;
-                    result.time = 0;
-                    resolve(result);
+                  result.time = time;
+                  resolve(result);
+                },
+                (error) => {
+                  if (error.status == 404)
+                    console.log(
+                      `This error means that you start race too quickly after reset, but it's ok. Everything is under control`
+                    );
+                  else if (error.status == 429)
+                    console.log(
+                      `This error means that you start race too quickly after reset, but it's ok. Everything is under control`
+                    );
+                  else
+                    console.log(
+                      `This error means that this car was broken. It can't drive anymore...`
+                    );
+                  window.cancelAnimationFrame(interval.id);
+                  if (this.raceMode) {
+                    this.myReqArray[id].drivingMode = false;
+                    if (this.checkIfAllAreBroken()) {
+                      result.id = -1;
+                      result.time = 0;
+                      resolve(result);
+                    }
                   }
                 }
-              }
-            );
+              );
             }
           });
       }
@@ -234,18 +247,17 @@ export class AppComponent implements OnInit {
     this.selectedId = undefined;
     this.raceMode = true;
     const promises = this.carsArray.map((car) => this.move(car.id));
-      const winner = await Promise.race(promises);
-    if (this.raceMode&&!this.abortionFlag) {
-      if (winner.id>0) this.winnerBase.addWinner(winner);
+    const winner = await Promise.race(promises);
+    if (this.raceMode && !this.abortionFlag) {
+      if (winner.id > 0) this.winnerBase.addWinner(winner);
 
       this.showWinner(winner);
     }
-    this.abortionFlag=false;
-
+    this.abortionFlag = false;
   }
 
   showWinner(winner: Results) {
-    this.abortionFlag=false;
+    this.abortionFlag = false;
     if (winner.time) {
       this.winner.name = this.carsArray.find(
         (car) => car.id == winner.id
@@ -259,8 +271,8 @@ export class AppComponent implements OnInit {
     this.raceMode = false;
     this.allCarsBacktoStart();
   }
-  resetRace(){
-    if (this.raceMode) this.abortionFlag=true;
+  resetRace() {
+    if (this.raceMode) this.abortionFlag = true;
     this.allCarsBacktoStart();
   }
   allCarsBacktoStart() {
@@ -268,7 +280,6 @@ export class AppComponent implements OnInit {
     this.showResultMessage = false;
     this.carsArray.forEach((car) => {
       if (this.myReqArray[car.id!]) {
-
         window.cancelAnimationFrame(this.myReqArray[car.id!].id);
         this.myReqArray[car.id!].drivingMode = false;
       }
@@ -294,5 +305,11 @@ export class AppComponent implements OnInit {
   changeWinnersSort(sortData: SortingData) {
     this.winnerPageState.sortingBy = sortData[0];
     this.winnerPageState.sortingOrder = sortData[1];
+  }
+  updateCustomizationInputs(newObject: CustomizationInputs) {
+    for (let key in newObject) {
+      this.customizationInputs[key as keyof CustomizationInputs] =
+        newObject[key as keyof CustomizationInputs];
+    }
   }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="navigation-buttons">
+  <nav class="navigation-buttons">
     <button
       class="button button_main"
       [disabled]="raceMode"
@@ -14,14 +14,16 @@
     >
       Winners
     </button>
-  </div>
+  </nav>
   <app-winners *ngIf="winnersPage" [state] = "winnerPageState" (onPageChange)= "changeWinnersPage($event)" (onSortChange)="changeWinnersSort($event)"></app-winners>
   <div *ngIf="!winnersPage">
     <app-car-customization
       (onAddingCars)="makeCar($event)"
       (onUpdatingCar)="updateCar($event)"
+      (onCustomizationInput)="updateCustomizationInputs($event)"
       [carForUpdate]="selectedId"
       [isAvailable] = 'raceMode'
+      [customizationObject] = 'customizationInputs'
 
     ></app-car-customization>
     <p class="info info__small" *ngIf="abortionFlag">Waiting for race abortion...</p>
@@ -67,7 +69,7 @@
         </button>
         <p class="info info__small">{{ car.name }}</p>
       </div>
-      <!-- <p class="cars__car-name">{{ car.id }}</p> -->
+
       <button
         class="button button_adds button_colored"
         (click)="move(car.id)"

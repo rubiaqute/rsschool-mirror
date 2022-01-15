@@ -49,4 +49,10 @@ export const sorting:SortingData[] =[
   [SortItem.byTime, SortOrder.ZtoA],
 ]
 export type SortingData =[SortItem, SortOrder]
+export interface CustomizationInputs  {
+  colorChoice: string,
+  nameChoice:string,
+  updateColorChoice: string,
+  updateNameChoice: string,
+}
 

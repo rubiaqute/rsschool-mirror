@@ -1,10 +1,10 @@
 <div class="input-row">
-  <input class="input-name" type="text"  [(ngModel)]="nameChoice" [disabled]="(carForUpdate!==undefined)|| (isAvailable==true)"/>
-  <input class="input-color" type="color" [(ngModel)]="colorChoice" [disabled]="(carForUpdate!==undefined) || (isAvailable==true)" />
+  <input class="input-name" type="text" (input)="transmitData()"  [(ngModel)]="nameChoice" [disabled]="(carForUpdate!==undefined)|| (isAvailable==true)"/>
+  <input class="input-color" type="color" (input)="transmitData()" [(ngModel)]="colorChoice" [disabled]="(carForUpdate!==undefined) || (isAvailable==true)" />
   <button class="button button_add" (click)="makeCar()" [disabled]="(!nameChoice || carForUpdate || isAvailable)" >Create Car</button>
 </div>
 <div class="input-row">
-  <input class="input-name" type="text" [(ngModel)]="updateNameChoice" [disabled]="!carForUpdate"/>
-  <input class="input-color" type="color" [(ngModel)]="updateColorChoice" [disabled]="!carForUpdate" />
+  <input class="input-name" type="text" (input)="transmitData()" [(ngModel)]="updateNameChoice" [disabled]="!carForUpdate"/>
+  <input class="input-color" type="color" (input)="transmitData()" [(ngModel)]="updateColorChoice" [disabled]="!carForUpdate" />
   <button class="button button_add" [disabled]="!carForUpdate" (click)="updateCar()">Update Car</button>
 </div>
