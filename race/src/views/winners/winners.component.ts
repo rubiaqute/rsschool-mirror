@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import {
   Results,
-  SortItem,
-  SortOrder,
   Winner,
   WinnerPageState,
   sorting,

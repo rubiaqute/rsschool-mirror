@@ -26,7 +26,7 @@ export interface Results {
 export interface Car {
   name:string,
   color:string,
-  id?:number
+  id?:number,
 }
 export interface Engine {
   velocity:number,

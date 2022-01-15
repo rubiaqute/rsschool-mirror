@@ -24,6 +24,7 @@
       [isAvailable] = 'raceMode'
 
     ></app-car-customization>
+    <p class="info info__small" *ngIf="abortionFlag">Waiting for race abortion...</p>
     <button
       class="button button_main"
       (click)="renderCars()"
@@ -33,14 +34,15 @@
     </button>
     <button
       class="button button_main"
-      (click)="allCarsBacktoStart()"
+      (click)="resetRace()"
+
     >
       Reset
     </button>
     <button
       class="button button_main"
       (click)="startRace()"
-      [disabled]="raceMode"
+      [disabled]="raceMode||abortionFlag"
     >
       Race
     </button>
@@ -69,7 +71,7 @@
       <button
         class="button button_adds button_colored"
         (click)="move(car.id)"
-        [disabled]="isMoving(car.id) || raceMode"
+        [disabled]="isMoving(car.id) || raceMode || abortionFlag"
       >
         Move
       </button>

@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   CARS_TO_RENDER = 10;
   myReqArray: IntervalAnimation[] = [];
   showResultMessage: boolean = false;
+  abortionFlag=false;
   winnerPageState: WinnerPageState = {
     pageNumber: 1,
     sortingBy: SortItem.byId,
@@ -138,22 +139,28 @@ export class AppComponent implements OnInit {
   move(id: number | undefined) {
     const promise: Promise<Results> = new Promise((resolve) => {
       if (id) {
+        // this.abortionFlag = false;
+        // if (this.raceMode) this.abortionFlag = true;
         const result: Results = { id: id, time: 0 };
         let interval: IntervalAnimation;
-        this.myReqArray[id] = { starttime: null, id: 0, drivingMode: true };
+        this.myReqArray[id] = { starttime: null, id: 0, drivingMode: true};
         this.server
           .switchEngine(id, EngineStatus.started)
           .subscribe((response) => {
+            if (!this.abortionFlag){
             const time = Math.round(response.distance / response.velocity);
             interval = this.animation(id, time)!;
             this.server.switchEngineToDrive(id, EngineStatus.drive).subscribe(
               (response) => {
                 result.id = id;
+
                 result.time = time;
                 resolve(result);
               },
-              () => {
-                console.log(
+              (error) => {
+                if (error.status == 404) console.log(`This error means that you start race too quickly after reset, but it's ok. Everything is under control`)
+                else if (error.status == 429) console.log(`This error means that you start race too quickly after reset, but it's ok. Everything is under control`)
+                else  console.log(
                   `This error means that this car was broken. It can't drive anymore...`
                 );
                 window.cancelAnimationFrame(interval.id);
@@ -167,12 +174,20 @@ export class AppComponent implements OnInit {
                 }
               }
             );
+            }
           });
       }
     });
     return promise;
   }
   checkIfAllAreBroken() {
+    const driveModesArray: boolean[] = [];
+    this.carsArray.forEach((car) => {
+      driveModesArray.push(this.myReqArray[car.id!].drivingMode);
+    });
+    return driveModesArray.every((el) => el == false);
+  }
+  checkIfAllAreDriven() {
     const driveModesArray: boolean[] = [];
     this.carsArray.forEach((car) => {
       driveModesArray.push(this.myReqArray[car.id!].drivingMode);
@@ -190,7 +205,9 @@ export class AppComponent implements OnInit {
         id: 0,
         drivingMode: true,
       };
+
       this.myReqArray[id] = myReq;
+
       function step(timestamp: number) {
         if (!myReq.starttime) myReq.starttime = timestamp;
         const time = timestamp - myReq.starttime;
@@ -217,14 +234,18 @@ export class AppComponent implements OnInit {
     this.selectedId = undefined;
     this.raceMode = true;
     const promises = this.carsArray.map((car) => this.move(car.id));
-    const winner = await Promise.race(promises);
-    if (this.raceMode) {
-      this.winnerBase.addWinner(winner);
+      const winner = await Promise.race(promises);
+    if (this.raceMode&&!this.abortionFlag) {
+      if (winner.id>0) this.winnerBase.addWinner(winner);
+
       this.showWinner(winner);
     }
+    this.abortionFlag=false;
+
   }
 
   showWinner(winner: Results) {
+    this.abortionFlag=false;
     if (winner.time) {
       this.winner.name = this.carsArray.find(
         (car) => car.id == winner.id
@@ -238,11 +259,16 @@ export class AppComponent implements OnInit {
     this.raceMode = false;
     this.allCarsBacktoStart();
   }
+  resetRace(){
+    if (this.raceMode) this.abortionFlag=true;
+    this.allCarsBacktoStart();
+  }
   allCarsBacktoStart() {
     this.raceMode = false;
     this.showResultMessage = false;
     this.carsArray.forEach((car) => {
       if (this.myReqArray[car.id!]) {
+
         window.cancelAnimationFrame(this.myReqArray[car.id!].id);
         this.myReqArray[car.id!].drivingMode = false;
       }

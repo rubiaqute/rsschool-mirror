@@ -6,7 +6,7 @@
     <th>Id <span class="arrows" (click)="changeView(sorting[0])">&uarr; </span><span class="arrows" (click)="changeView(sorting[1])">&darr;</span></th>
     <th>Car</th>
     <th>Name</th>
-    <th>Wins <span class="arrows" (click)="changeView(sorting[2])">&uarr; </span><span class="arrows" (click)="changeView(sorting[3])">&darr;</span></th>
+    <th>Wins <span class="arrows" [class.arrows_colored]="" (click)="changeView(sorting[2])">&uarr; </span><span class="arrows" (click)="changeView(sorting[3])">&darr;</span></th>
     <th>Best time (sec) <span class="arrows" (click)="changeView(sorting[4])">&uarr; </span><span class="arrows" (click)="changeView(sorting[5])">&darr;</span></th>
   </tr>
   <tr *ngFor="let winner of winnersArray; let i = index">
