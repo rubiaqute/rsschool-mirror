@@ -26,8 +26,7 @@ export class CarFactoryService {
       const randomCarModel = carModels[Math.floor(Math.random()*carModels.length)];
       const randomColor = new Array(6).fill('F').map((char)=>{
         return colorChars[Math.round(Math.random()*(colorChars.length-1))]
-      }).join('')
-      console.log(randomColor)
+      }).join('');
       const newCar = {
         name: `${randomCarBrand} ${randomCarModel}`,
         color: `#${randomColor}`

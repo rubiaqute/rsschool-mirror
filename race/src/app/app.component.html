@@ -10,17 +10,19 @@
     <button
       class="button button_main"
       [disabled]="raceMode"
-      (click)="winnersPage = true"
+      (click)="winnersPage = true; this.allCarsBacktoStart();"
     >
       Winners
     </button>
   </div>
-  <app-winners *ngIf="winnersPage"></app-winners>
+  <app-winners *ngIf="winnersPage" [state] = "winnerPageState" (onPageChange)= "changeWinnersPage($event)" (onSortChange)="changeWinnersSort($event)"></app-winners>
   <div *ngIf="!winnersPage">
     <app-car-customization
       (onAddingCars)="makeCar($event)"
       (onUpdatingCar)="updateCar($event)"
       [carForUpdate]="selectedId"
+      [isAvailable] = 'raceMode'
+
     ></app-car-customization>
     <button
       class="button button_main"
@@ -32,7 +34,6 @@
     <button
       class="button button_main"
       (click)="allCarsBacktoStart()"
-      [disabled]="raceMode"
     >
       Reset
     </button>

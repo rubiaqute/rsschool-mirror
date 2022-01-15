@@ -1,7 +1,7 @@
 <div class="input-row">
-  <input class="input-name" type="text"  [(ngModel)]="nameChoice" [disabled]="(carForUpdate!==undefined)"/>
-  <input class="input-color" type="color" [(ngModel)]="colorChoice" [disabled]="(carForUpdate!==undefined)" />
-  <button class="button button_add" (click)="makeCar()" [disabled]="(!nameChoice || carForUpdate)" >Create Car</button>
+  <input class="input-name" type="text"  [(ngModel)]="nameChoice" [disabled]="(carForUpdate!==undefined)|| (isAvailable==true)"/>
+  <input class="input-color" type="color" [(ngModel)]="colorChoice" [disabled]="(carForUpdate!==undefined) || (isAvailable==true)" />
+  <button class="button button_add" (click)="makeCar()" [disabled]="(!nameChoice || carForUpdate || isAvailable)" >Create Car</button>
 </div>
 <div class="input-row">
   <input class="input-name" type="text" [(ngModel)]="updateNameChoice" [disabled]="!carForUpdate"/>

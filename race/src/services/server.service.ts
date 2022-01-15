@@ -33,6 +33,14 @@ export class ServerService {
       map((response) => response.length),
     );
   }
+  getWinner(id:number):  Observable<Winner>{
+    return this.http.get<Winner>(`${this.server}/winners/${id}`);
+
+  }
+  updateWinner(winner:Winner, id: number):Observable<Winner> {
+    return this.http.put<Winner>(`${this.server}/winners/${id}`, winner);
+  }
+
   fetchWinnersOnScreen(page: number, sortItem:SortItem, sortOrder: SortOrder): Observable<Winner[]> {
     let params = new HttpParams();
     params = params.append('_page', page);
@@ -69,6 +77,9 @@ export class ServerService {
       })
     );
   }
+  addWinner(winner: Winner): Observable<Winner> {
+    return this.http.post<Winner>(`${this.server}/winners`, winner);
+  }
 
   getCar(id:number):Observable<Car> {
     return this.http.get<Car>(`${this.server}/garage/${id}`).pipe(
@@ -81,7 +92,6 @@ export class ServerService {
   }
 
   updateCar(car:Car, id: number):Observable<Car> {
-    console.log(`Car we got: ${car.color}, ${car.name}`)
     return this.http.put<Car>(`${this.server}/garage/${id}`, car).pipe(
       catchError((error) => {
         error.message = "There's no such car!";
@@ -96,6 +106,9 @@ export class ServerService {
         return throwError(error.message);
       })
     );
+  }
+  deleteWinner(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.server}/winners/${id}`);
   }
   switchEngine(id:number, status:EngineStatus):Observable<Engine>{
     let params = new HttpParams();

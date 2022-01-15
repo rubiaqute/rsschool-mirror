@@ -2,9 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CarFactoryService } from 'src/services/car-factory.service';
 import { ServerService } from 'src/services/server.service';
 import { EngineStatus } from 'src/car-data';
-import { Car, IntervalAnimation, Results } from 'src/models';
-
-
+import {
+  Car,
+  IntervalAnimation,
+  Results,
+  SortingData,
+  SortItem,
+  SortOrder,
+  Winner,
+  WinnerPageState,
+} from 'src/models';
+import { WinnersComponent } from 'src/views/winners/winners.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +22,8 @@ import { Car, IntervalAnimation, Results } from 'src/models';
 export class AppComponent implements OnInit {
   constructor(
     private carService: CarFactoryService,
-    private server: ServerService
+    private server: ServerService,
+    private winnerBase: WinnersComponent
   ) {}
   winnersPage = false;
   raceMode: boolean = false;
@@ -26,7 +35,13 @@ export class AppComponent implements OnInit {
   CARS_TO_RENDER = 10;
   myReqArray: IntervalAnimation[] = [];
   showResultMessage: boolean = false;
+  winnerPageState: WinnerPageState = {
+    pageNumber: 1,
+    sortingBy: SortItem.byId,
+    sortingOrder: SortOrder.AtoZ,
+  };
   winner = {
+    id: 0,
     name: '',
     time: 0,
   };
@@ -69,14 +84,23 @@ export class AppComponent implements OnInit {
   }
   deleteCar(id: number | undefined) {
     if (id) {
+      this.allCarsBacktoStart();
       this.server.deleteCar(id).subscribe((response) => {
         this.getCarsOnScreen(this.pageNumber);
+        this.server.deleteWinner(id).subscribe(
+          () => {},
+          () =>
+            console.log(
+              "This error means that deleted car is absent in winners list. It's OK. Everything is under control."
+            )
+        );
       });
     }
     if (this.selectedId == id) this.selectedId = undefined;
   }
   updateCar(updatedData: Car) {
     if (this.selectedId) {
+      this.allCarsBacktoStart();
       let carForUpdate: Car = updatedData;
       this.server.getCar(this.selectedId).subscribe((response) => {
         carForUpdate = this.carService.updateCar(updatedData, response);
@@ -89,20 +113,24 @@ export class AppComponent implements OnInit {
   }
 
   nextPage() {
+    this.allCarsBacktoStart();
     this.pageNumber++;
     this.getCarsOnScreen(this.pageNumber);
   }
   previousPage() {
+    this.allCarsBacktoStart();
     this.pageNumber--;
     this.getCarsOnScreen(this.pageNumber);
   }
   makeCar(newObject: Car) {
+    this.allCarsBacktoStart();
     const car = this.carService.addCar(newObject.color, newObject.name);
     this.server.addCar(car).subscribe((response) => {
       this.getCarsOnScreen(this.pageNumber);
     });
   }
   async renderCars() {
+    this.allCarsBacktoStart();
     const newCars = this.carService.renderCars(this.CARS_TO_RENDER);
     newCars.forEach((car) => this.makeCar(car));
   }
@@ -125,6 +153,9 @@ export class AppComponent implements OnInit {
                 resolve(result);
               },
               () => {
+                console.log(
+                  `This error means that this car was broken. It can't drive anymore...`
+                );
                 window.cancelAnimationFrame(interval.id);
                 if (this.raceMode) {
                   this.myReqArray[id].drivingMode = false;
@@ -182,12 +213,15 @@ export class AppComponent implements OnInit {
     } else return false;
   }
   async startRace() {
+    this.allCarsBacktoStart();
+    this.selectedId = undefined;
     this.raceMode = true;
     const promises = this.carsArray.map((car) => this.move(car.id));
     const winner = await Promise.race(promises);
-    if (!winner) console.log('Nope');
-    console.log(winner);
-    this.showWinner(winner);
+    if (this.raceMode) {
+      this.winnerBase.addWinner(winner);
+      this.showWinner(winner);
+    }
   }
 
   showWinner(winner: Results) {
@@ -205,6 +239,7 @@ export class AppComponent implements OnInit {
     this.allCarsBacktoStart();
   }
   allCarsBacktoStart() {
+    this.raceMode = false;
     this.showResultMessage = false;
     this.carsArray.forEach((car) => {
       if (this.myReqArray[car.id!]) {
@@ -212,7 +247,7 @@ export class AppComponent implements OnInit {
         this.myReqArray[car.id!].drivingMode = false;
       }
       const carImage = document.getElementById(`car-${car.id}`);
-      carImage!.style.transform = 'translateX(0)';
+      if (carImage) carImage.style.transform = 'translateX(0)';
     });
   }
   stop(id: number | undefined) {
@@ -226,5 +261,12 @@ export class AppComponent implements OnInit {
           car!.style.transform = 'translateX(0)';
         });
     }
+  }
+  changeWinnersPage(page: number) {
+    this.winnerPageState.pageNumber = page;
+  }
+  changeWinnersSort(sortData: SortingData) {
+    this.winnerPageState.sortingBy = sortData[0];
+    this.winnerPageState.sortingOrder = sortData[1];
   }
 }

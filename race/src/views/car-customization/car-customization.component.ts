@@ -12,6 +12,7 @@ export class CarCustomizationComponent {
   @Output() onAddingCars = new EventEmitter<Car>();
   @Output() onUpdatingCar = new EventEmitter<Car>();
   @Input() carForUpdate!: number | undefined;
+  @Input() isAvailable:boolean | undefined;
   constructor(
     private server: ServerService,
     private carService: CarFactoryService
@@ -20,6 +21,7 @@ export class CarCustomizationComponent {
   nameChoice = '';
   updateColorChoice = '';
   updateNameChoice = '';
+
   makeCar() {
     this.onAddingCars.emit({ color: this.colorChoice, name: this.nameChoice });
     this.nameChoice = '';

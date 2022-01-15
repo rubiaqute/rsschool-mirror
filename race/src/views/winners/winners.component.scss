@@ -39,3 +39,11 @@ td, th{
   @extend %font-roboto;
   @include font(2rem, 2rem, 700, normal);
 }
+.arrows{
+  cursor: pointer;
+  @include font(3rem, 3rem, 700, normal);
+&:hover{
+  color: $color-main-button;
+  @extend %transition;
+}
+}
