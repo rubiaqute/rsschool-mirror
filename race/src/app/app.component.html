@@ -37,6 +37,7 @@
     <button
       class="button button_main"
       (click)="resetRace()"
+      [disabled]="abortionFlag||pending"
 
     >
       Reset

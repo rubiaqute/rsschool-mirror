@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   myReqArray: IntervalAnimation[] = [];
   showResultMessage: boolean = false;
   abortionFlag: boolean = false;
+  pending=false;
   winnerPageState: WinnerPageState = {
     pageNumber: 1,
     sortingBy: SortItem.byId,
@@ -71,11 +72,7 @@ export class AppComponent implements OnInit {
       this.pageAmount = newPageNumber;
     });
   }
-  returnCarColor(color: string): { fill: string } {
-    return {
-      fill: `${color}`,
-    };
-  }
+
   getCarsOnScreen(page: number) {
     this.server.fetchCarsOnScreen(page).subscribe((response) => {
       this.carsArray = response;
@@ -200,13 +197,7 @@ export class AppComponent implements OnInit {
     });
     return driveModesArray.every((el) => el == false);
   }
-  checkIfAllAreDriven() {
-    const driveModesArray: boolean[] = [];
-    this.carsArray.forEach((car) => {
-      driveModesArray.push(this.myReqArray[car.id!].drivingMode);
-    });
-    return driveModesArray.every((el) => el == false);
-  }
+
   animation(id: number, animationTime: number) {
     if (id) {
       const car = document.getElementById(`car-${id}`);
@@ -246,6 +237,8 @@ export class AppComponent implements OnInit {
     this.allCarsBacktoStart();
     this.selectedId = undefined;
     this.raceMode = true;
+    this.pending=true;
+    setTimeout(()=> this.pending=false, 500)
     const promises = this.carsArray.map((car) => this.move(car.id));
     const winner = await Promise.race(promises);
     if (this.raceMode && !this.abortionFlag) {
