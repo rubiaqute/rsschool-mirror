@@ -9,6 +9,7 @@ import WinnersComponent from '../views/winners/winners.component';
 import CarComponent from '../views/car/car.component';
 import FlagComponent from '../views/flag/flag.component';
 import MaterialModule from './material/material.module';
+import RaceRoadsComponent from '../views/race-roads/race-roads.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import MaterialModule from './material/material.module';
     WinnersComponent,
     CarComponent,
     FlagComponent,
+    RaceRoadsComponent,
   ],
   imports: [
     BrowserModule,

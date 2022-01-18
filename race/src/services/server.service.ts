@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import {
   Observable, map,
 } from 'rxjs';
-import { EngineStatus } from 'src/car-data';
+import { EngineStatus } from 'src/models/car-data';
 import {
   Winner, SortItem, SortOrder, Car, Engine, Success,
-} from 'src/models';
+} from 'src/models/models';
 import CarFactoryService from './car-factory.service';
 
 @Injectable({

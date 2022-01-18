@@ -13,7 +13,7 @@ import {
   WinnerPageState,
   sorting,
   SortingData,
-} from 'src/models';
+} from 'src/models/models';
 import ServerService from 'src/services/server.service';
 
 @Injectable({

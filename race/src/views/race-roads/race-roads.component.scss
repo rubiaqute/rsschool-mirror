@@ -1,0 +1,131 @@
+@import "./../../sass_general/constants";
+@import "./../../sass_general/placeholders";
+@import "./../../sass_general/mixins";
+
+.container {
+  margin: auto;
+  padding: 1.5rem 5%;
+  position: relative;
+}
+
+.cars__data {
+  margin-top: 1rem;
+display: flex;
+column-gap: 1rem;
+}
+.cars__car-image {
+  width: 6rem;
+  height: 4rem;
+  display: block;
+  &.selected{
+    border: 0.2rem solid $color-text;
+  }
+
+}
+.cars__car-name {
+  font-size: 2rem;
+}
+.cars {
+  border-bottom: 0.2rem dashed $color-text;
+  position: relative;
+}
+.navigation-buttons {
+  display: flex;
+  column-gap: 3rem;
+  &.navigation-buttons_margined{
+    margin-top:1rem;
+  }
+}
+.button{
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  &:hover{
+  @extend %button-animation;
+  @extend %transition
+  }
+}
+.button_main {
+  background: $background-button-main;
+  @extend %font-roboto;
+  @include font(2rem, 2rem, 700, normal);
+}
+.button_adds {
+  display: inline-block;
+  height: 2rem;
+  background: $background-button-adds;
+  @extend %font-roboto;
+  @include font(1.4rem, 1.4rem, 700, normal);
+  &.button_colored {
+    background: $background-button-main;
+  }
+}
+.flag{
+width:4rem;
+height:4rem;
+position: absolute;
+right: 5rem; bottom:0rem;
+display: block;
+}
+mat-icon{
+  height:1rem;
+  width:1rem;
+}
+.info {
+  color: $color-text;
+  @extend %font-roboto;
+  &.info__big {
+    @include font(2rem, 2rem, 500, normal);
+  }
+  &.info__small {
+    @include font(1.6rem, 1.6rem, 500, normal);
+  }
+}
+
+.race_buttons {
+  align-self: center;
+}
+.winner-message {
+  @include font(3.8rem, 3.8rem, 500, normal);
+  .winner-message__name{
+    @include font(4.8rem, 4.8rem, 500, normal);
+    color:$background-button-adds;
+  }
+
+  color:$color-text;
+}
+.modal {
+  position: relative;
+  overflow-y: hidden;
+  width: 70%;
+  max-height: 80%;
+  min-height: 50%;
+  border: 1px solid $color-text;
+  background: $background-button-main;
+  align-items: center;
+  border-radius: 5%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 5%;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  .button_main_message{
+min-width:30%;
+padding: 2rem;
+background: $background-button-adds;
+  }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-outline;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
