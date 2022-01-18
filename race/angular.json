@@ -31,10 +31,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/sass_general/theme.scss",
-              "src/sass_general/_constants.scss",
-              "src/sass_general/_mixins.scss",
-              "src/sass_general/_placeholders.scss",
               "src/styles.scss"
 
             ],
