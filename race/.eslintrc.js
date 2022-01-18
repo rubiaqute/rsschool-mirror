@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb-angular'],
+
   "root": true,
   "ignorePatterns": [
     "projects/**/*"
@@ -13,11 +13,13 @@ module.exports = {
         "project": [
           "tsconfig.json"
         ],
+        'tsconfigRootDir': __dirname,
         "createDefaultProgram": true
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
+        'airbnb-base',
         'airbnb-typescript/base'
       ],
       "rules": {

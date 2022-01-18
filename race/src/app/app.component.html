@@ -10,56 +10,100 @@
     <button
       class="button button_main"
       [disabled]="raceMode"
-      (click)="winnersPage = true; this.allCarsBacktoStart();"
+      (click)="winnersPage = true; this.allCarsBacktoStart()"
     >
       Winners
     </button>
   </nav>
-  <app-winners *ngIf="winnersPage" [state] = "winnerPageState" (onPageChange)= "changeWinnersPage($event)" (onSortChange)="changeWinnersSort($event)"></app-winners>
+  <app-winners
+    *ngIf="winnersPage"
+    [state]="winnerPageState"
+    (byPageChange)="changeWinnersPage($event)"
+    (bySortChange)="changeWinnersSort($event)"
+  ></app-winners>
   <div *ngIf="!winnersPage">
-    <app-car-customization
-      (onAddingCars)="makeCar($event)"
-      (onUpdatingCar)="updateCar($event)"
-      (onCustomizationInput)="updateCustomizationInputs($event)"
-      [carForUpdate]="selectedId"
-      [isAvailable] = 'raceMode'
-      [customizationObject] = 'customizationInputs'
+    <div class="navigation-buttons">
+      <app-car-customization
+        class="customization-block"
+        (byAddingCars)="makeCar($event)"
+        (byUpdatingCar)="updateCar($event)"
+        (byCustomizationInput)="updateCustomizationInputs($event)"
+        [carForUpdate]="selectedId"
+        [isAvailable]="raceMode"
+        [customizationObject]="customizationInputs"
+      ></app-car-customization>
 
-    ></app-car-customization>
-    <p class="info info__small" *ngIf="abortionFlag">Waiting for race abortion...</p>
-    <button
-      class="button button_main"
-      (click)="renderCars()"
-      [disabled]="raceMode"
-    >
-      Get {{ CARS_TO_RENDER }} cars
-    </button>
-    <button
-      class="button button_main"
-      (click)="resetRace()"
-      [disabled]="abortionFlag||pending"
-
-    >
-      Reset
-    </button>
-    <button
-      class="button button_main"
-      (click)="startRace()"
-      [disabled]="raceMode||abortionFlag"
-    >
-      Race
-    </button>
-
+      <div class="race_buttons">
+        <p class="info info__small" *ngIf="abortionFlag">
+          Waiting for race abortion...
+        </p>
+        <div class="navigation-buttons">
+          <button
+            class="button button_main"
+            (click)="renderCars()"
+            [disabled]="raceMode"
+          >
+            Get {{ CARS_TO_RENDER }}
+            <mat-icon
+              aria-hidden="false"
+              style="font-size: 2.4rem; width: 3rem; height: 3rem"
+              >directions_car_filled</mat-icon
+            >
+          </button>
+          <button
+            class="button button_main"
+            (click)="resetRace()"
+            [disabled]="abortionFlag || pending"
+          >
+            <mat-icon
+              aria-hidden="false"
+              style="font-size: 3.4rem; width: 4rem; height: 4rem"
+              >block</mat-icon
+            >
+          </button>
+          <button
+            class="button button_main"
+            (click)="startRace()"
+            [disabled]="raceMode || abortionFlag"
+          >
+            <mat-icon
+              aria-hidden="false"
+              style="font-size: 3.4rem; width: 4rem; height: 4rem"
+              >flag</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+    </div>
     <p class="info info__big">Total amount of cars: {{ totalAmountOfCars }}</p>
     <p class="info info__small">Page: {{ pageNumber }}</p>
     <div class="cars" *ngFor="let car of carsArray">
       <div class="cars__data">
         <button
           class="button button_adds button_colored"
+          (click)="move(car.id)"
+          [disabled]="isMoving(car.id) || raceMode || abortionFlag"
+        >
+          A
+        </button>
+        <button
+          class="button button_adds"
+          (click)="stop(car.id)"
+          [disabled]="!isMoving(car.id) || raceMode"
+        >
+          B
+        </button>
+        <button
+          class="button button_adds button_colored"
           (click)="changeCar(car.id)"
           [disabled]="isMoving(car.id) || raceMode"
         >
-          Select
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            style="font-size: 1.4rem"
+            >build</mat-icon
+          >
         </button>
         <button
           class="button button_adds"
@@ -71,21 +115,6 @@
         <p class="info info__small">{{ car.name }}</p>
       </div>
 
-      <button
-        class="button button_adds button_colored"
-        (click)="move(car.id)"
-        [disabled]="isMoving(car.id) || raceMode || abortionFlag"
-      >
-        Move
-      </button>
-      <button
-        class="button button_adds"
-        (click)="stop(car.id)"
-        [disabled]="!isMoving(car.id) || raceMode"
-      >
-        Stop
-      </button>
-
       <app-car
         class="cars__car-image"
         [class.selected]="isSelected(car.id)"
@@ -94,20 +123,20 @@
       ></app-car>
       <app-flag class="flag" id="flag-{{ car.id }}"></app-flag>
     </div>
-    <div class="navigation-buttons">
+    <div class="navigation-buttons navigation-buttons_margined">
       <button
         class="button button_main"
         (click)="previousPage()"
         [disabled]="pageNumber < 2 || raceMode"
       >
-        Previous Page
+        &larr;
       </button>
       <button
         class="button button_main"
         (click)="nextPage()"
         [disabled]="pageNumber > pageAmount - 1 || raceMode"
       >
-        Next Page
+        &rarr;
       </button>
     </div>
   </div>

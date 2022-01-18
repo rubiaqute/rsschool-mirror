@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Neucha&family=Roboto:wght@300;500;700&display=swap');
-@import './sass_general/constants';
+@import "./sass_general/constants";
+@import "./sass_general/mixins";
+@import "./sass_general/placeholders";
 
 
 * {
@@ -30,6 +32,16 @@ img {
   vertical-align: top;
 }
 html {
-  font-size: 10px;
+  font-size: 7px;
   background-color: $color-background;
+  @include media-desktop {
+    font-size:5px;
+  }
+  @include media-tablet {
+    font-size:4px;
+  }
+
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

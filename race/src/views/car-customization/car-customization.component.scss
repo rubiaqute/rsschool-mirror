@@ -1,26 +1,28 @@
-@import './../../sass_general/constants';
-@import './../../sass_general/placeholders';
-@import './../../sass_general/mixins';
-
+@import "./../../sass_general/constants";
+@import "./../../sass_general/placeholders";
+@import "./../../sass_general/mixins";
 
 .input-row {
-  margin: 2rem 0rem;
+  margin: 1rem 0rem;
   display: flex;
   column-gap: 1rem;
   vertical-align: center;
 }
-.button_add{
+.button_add {
   display: inline-block;
-  width: 15%;
-background: $background-button-adds;
-@extend %font-roboto;
-@include font(2rem, 2rem, 700, normal);
-height: 2.4rem;
-padding:0.2rem;
+  width: 30%;
+  background: $background-button-adds;
+  @extend %font-roboto;
+  @include font(2rem, 2rem, 700, normal);
+  height: 2.4rem;
+  padding: 0.2rem;
 }
-.input-name{
+.input-name {
   @include font(2rem, 2rem, 700, normal);
 }
-.input-color{
-height:2.4rem;
+.input-color {
+  height: 2.4rem;
+  &:hover {
+    cursor: pointer;
+  }
 }

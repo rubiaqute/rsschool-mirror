@@ -6,3 +6,13 @@
   font-style: $style;
   text-transform: $text-transform;
 }
+@mixin media-desktop {
+  @media (max-width: $width-desktop) {
+    @content;
+  }
+}
+@mixin media-tablet {
+  @media (max-width: $width-tablet) {
+    @content;
+  }
+}

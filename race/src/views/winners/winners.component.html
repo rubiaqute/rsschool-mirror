@@ -1,17 +1,32 @@
-<h2>Winners: {{totalAmountOfWinners}}</h2>
-<p class="info info__big">Page: {{state.pageNumber}}</p>
+<h2>Winners: {{ totalAmountOfWinners }}</h2>
+<p class="info info__big">Page: {{ state.pageNumber }}</p>
 <table>
   <tr>
     <th>Number</th>
-    <th>Id <span class="arrows" (click)="changeView(sorting[0])">&uarr; </span><span class="arrows" (click)="changeView(sorting[1])">&darr;</span></th>
+    <th>
+      Id <span class="arrows" (click)="changeView(sorting[0])">&uarr; </span
+      ><span class="arrows" (click)="changeView(sorting[1])">&darr;</span>
+    </th>
     <th>Car</th>
     <th>Name</th>
-    <th>Wins <span class="arrows" [class.arrows_colored]="" (click)="changeView(sorting[2])">&uarr; </span><span class="arrows" (click)="changeView(sorting[3])">&darr;</span></th>
-    <th>Best time (sec) <span class="arrows" (click)="changeView(sorting[4])">&uarr; </span><span class="arrows" (click)="changeView(sorting[5])">&darr;</span></th>
+    <th>
+      Wins
+      <span
+        class="arrows"
+        [class.arrows_colored]=""
+        (click)="changeView(sorting[2])"
+        >&uarr; </span
+      ><span class="arrows" (click)="changeView(sorting[3])">&darr;</span>
+    </th>
+    <th>
+      Best time (sec)
+      <span class="arrows" (click)="changeView(sorting[4])">&uarr; </span
+      ><span class="arrows" (click)="changeView(sorting[5])">&darr;</span>
+    </th>
   </tr>
   <tr *ngFor="let winner of winnersArray; let i = index">
-    <td>{{ (state.pageNumber -1)*10 + i + 1 }}</td>
-    <td>{{winner.id}}</td>
+    <td>{{ (state.pageNumber - 1) * 10 + i + 1 }}</td>
+    <td>{{ winner.id }}</td>
     <td><app-car class="car-small" [color]="winner.color"></app-car></td>
     <td>{{ winner.name }}</td>
     <td>{{ winner.wins }}</td>
@@ -19,8 +34,18 @@
   </tr>
 </table>
 <div class="navigation-buttons">
-  <button class="button button_main"(click)="previousPage()"
-  [disabled]="state.pageNumber < 2">Previous Page</button>
-  <button class="button button_main" (click)="nextPage()"
-  [disabled]="state.pageNumber > pageAmount - 1">Next Page</button>
+  <button
+    class="button button_main"
+    (click)="previousPage()"
+    [disabled]="state.pageNumber < 2"
+  >
+    &larr;
+  </button>
+  <button
+    class="button button_main"
+    (click)="nextPage()"
+    [disabled]="state.pageNumber > pageAmount - 1"
+  >
+    &rarr;
+  </button>
 </div>

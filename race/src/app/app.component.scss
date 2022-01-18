@@ -4,7 +4,7 @@
 
 .container {
   margin: auto;
-  padding: 2% 5%;
+  padding: 1.5rem 5%;
   position: relative;
 }
 
@@ -14,8 +14,8 @@ display: flex;
 column-gap: 1rem;
 }
 .cars__car-image {
-  width: 8rem;
-  height: 6rem;
+  width: 6rem;
+  height: 4rem;
   display: block;
   &.selected{
     border: 0.2rem solid $color-text;
@@ -32,10 +32,17 @@ column-gap: 1rem;
 .navigation-buttons {
   display: flex;
   column-gap: 3rem;
+  &.navigation-buttons_margined{
+    margin-top:1rem;
+  }
 }
 .button{
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.5rem;
+  &:hover{
+  @extend %button-animation;
+  @extend %transition
+  }
 }
 .button_main {
   background: $background-button-main;
@@ -43,29 +50,39 @@ column-gap: 1rem;
   @include font(2rem, 2rem, 700, normal);
 }
 .button_adds {
+  display: inline-block;
+  height: 2rem;
   background: $background-button-adds;
   @extend %font-roboto;
-  @include font(1.6rem, 1.6rem, 700, normal);
+  @include font(1.4rem, 1.4rem, 700, normal);
   &.button_colored {
     background: $background-button-main;
   }
 }
 .flag{
-width:5rem;
-height:5rem;
+width:4rem;
+height:4rem;
 position: absolute;
 right: 5rem; bottom:0rem;
 display: block;
+}
+mat-icon{
+  height:1rem;
+  width:1rem;
 }
 .info {
   color: $color-text;
   @extend %font-roboto;
   &.info__big {
-    @include font(2.4rem, 2.4rem, 500, normal);
+    @include font(2rem, 2rem, 500, normal);
   }
   &.info__small {
     @include font(1.6rem, 1.6rem, 500, normal);
   }
+}
+
+.race_buttons {
+  align-self: center;
 }
 .winner-message {
   @include font(3.8rem, 3.8rem, 500, normal);

@@ -1,16 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
   styleUrls: ['./car.component.scss'],
 })
-export class CarComponent implements OnInit {
-  constructor() {}
+export default class CarComponent {
+  @Input() color:string | undefined;
 
-  @Input() color:string|undefined;
-  ngOnInit(): void {}
-  returnCarColor(color: string|undefined): { fill: string } {
+  colorCar:string = '';
+
+  returnCarColor(color: string | undefined): { fill: string } {
+    this.colorCar = color!;
     return {
       fill: `${color}`,
     };

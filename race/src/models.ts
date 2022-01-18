@@ -6,13 +6,13 @@ export interface Winner {
   name?:string
 }
 export enum SortItem {
-  byId='id',
+  byId = 'id',
   byWins = 'wins',
-  byTime = 'time'
+  byTime = 'time',
 }
 export enum SortOrder {
   AtoZ = 'ASC',
-  ZtoA = 'DESC'
+  ZtoA = 'DESC',
 }
 export interface IntervalAnimation {
   starttime: number | null;
@@ -40,19 +40,18 @@ export interface WinnerPageState {
   sortingBy: SortItem;
   sortingOrder: SortOrder;
 }
-export const sorting:SortingData[] =[
+export const sorting:SortingData[] = [
   [SortItem.byId, SortOrder.AtoZ],
   [SortItem.byId, SortOrder.ZtoA],
   [SortItem.byWins, SortOrder.AtoZ],
   [SortItem.byWins, SortOrder.ZtoA],
   [SortItem.byTime, SortOrder.AtoZ],
   [SortItem.byTime, SortOrder.ZtoA],
-]
-export type SortingData =[SortItem, SortOrder]
-export interface CustomizationInputs  {
+];
+export type SortingData = [SortItem, SortOrder];
+export interface CustomizationInputs {
   colorChoice: string,
   nameChoice:string,
   updateColorChoice: string,
   updateNameChoice: string,
 }
-

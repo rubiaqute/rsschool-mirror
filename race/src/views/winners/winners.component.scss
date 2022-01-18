@@ -2,35 +2,36 @@
 @import "./../../sass_general/placeholders";
 @import "./../../sass_general/mixins";
 
-h2{
-  @include font(3rem, 3rem, 700);
-@extend %font-roboto;
-color:$color-text;
+h2 {
+  @include font(2.4rem, 2.4rem, 700);
+  @extend %font-roboto;
+  color: $color-text;
 }
 .info {
   color: $color-text;
   @extend %font-roboto;
   &.info__big {
-    @include font(2.4rem, 2.4rem, 500, normal);
+    @include font(2rem, 2rem, 500, normal);
   }
 }
 table {
-@include font(2rem, 2rem, 500, normal);
-@extend %font-roboto;
-color:$color-text;
-min-width:50%;
-margin: 2rem auto;
-text-align: center;
+  @include font(1.6rem, 1.6rem, 500, normal);
+  @extend %font-roboto;
+  color: $color-text;
+  min-width: 50%;
+  margin: 2rem auto;
+  text-align: center;
 }
 th {
   background: $background-button-main;
 }
-td, th{
+td,
+th {
   padding: 0.5rem;
   text-align: center;
   border: 2px solid $color-text;
 }
-.button{
+.button {
   border-radius: 1rem;
   padding: 0.5rem;
 }
@@ -39,11 +40,15 @@ td, th{
   @extend %font-roboto;
   @include font(2rem, 2rem, 700, normal);
 }
-.arrows{
+.arrows {
   cursor: pointer;
   @include font(3rem, 3rem, 700, normal);
-&:hover{
-  color: $color-main-button;
-  @extend %transition;
+  &:hover {
+    color: $color-main-button;
+    @extend %transition;
+  }
 }
+.navigation-buttons{
+  display: flex;
+  column-gap: 3rem;
 }
