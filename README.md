@@ -20,8 +20,24 @@ Dashboard with weather, quotes, COVID-19, time, audio player. Background images,
 #### Screenshot:
 ![image](https://user-images.githubusercontent.com/79940827/157330083-9f53a33f-a454-4aae-aac4-cda128fd1c1c.png)
 
+## 3. Async-race.
+#### Important:
+For this project tt is necessary to run the server: 
+1) Clone the repository https://github.com/mikhama/async-race-api.git
+2) Go to downloaded folder: `$ cd async-race-api`.
+3) Install dependencies: `$ npm install`.
+4) Start server: `$ npm start`.
+#### Deploy: 
+https://rubiaqute.github.io/rsschool-mirror/async-race/
+#### Technologies used: 
+Angular (+HTTPClient), HTML, Sass. Data is obtained from server using HTTPClent methods.
+#### Description: 
+Emulator of car race. You can create, update, delete cars and start races. The winners are saved.
+#### Screenshot:
+![image](https://user-images.githubusercontent.com/79940827/157332604-1e56043f-2e02-47a6-9a57-94452fc8cebe.png)
 
-## 2. Christmas.
+
+## 4. Christmas.
 #### Deploy: 
 https://rubiaqute.github.io/rsschool-mirror/christmas2/#/
 #### Technologies used: 
