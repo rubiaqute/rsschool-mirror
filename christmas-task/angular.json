@@ -118,6 +118,7 @@
   },
   "defaultProject": "christmas-task",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

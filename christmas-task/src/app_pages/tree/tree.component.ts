@@ -67,12 +67,14 @@ export class TreeComponent implements OnInit {
   makeScreen(): void {
     this.toggleScreenShot = true;
     this.toggleScreenShotMessage = true;
-    html2canvas(this.containerForDrop.nativeElement).then((canvas) => {
-      canvas.style.width = '50%';
-      canvas.id = 'canvasTree';
-      this.containerForScreeshot.nativeElement.appendChild(canvas);
-      document.getElementById('messageScreenShot')?.remove();
-    });
+    html2canvas(this.containerForDrop.nativeElement).then(
+      (canvas: HTMLCanvasElement) => {
+        canvas.style.width = '50%';
+        canvas.id = 'canvasTree';
+        this.containerForScreeshot.nativeElement.appendChild(canvas);
+        document.getElementById('messageScreenShot')?.remove();
+      }
+    );
   }
   closeScreenshot(): void {
     this.toggleScreenShot = false;
