@@ -1,6 +1,6 @@
 This repository contains projects made by me during course "Frontend Developer 2021Q3" of RS School:
 
-## 1. Art-Quiz.
+## 1. Art-Quiz
 #### Deploy: 
 https://rubiaqute.github.io/rsschool-mirror/art-quiz/art-quiz/
 #### Technologies used: 
@@ -10,7 +10,17 @@ Art-quiz game with 2 modes (artists and paintings) with 12 categories in each mo
 #### Screenshot:
 ![image](https://user-images.githubusercontent.com/79940827/157326762-ebf26c6f-c111-40fe-b302-c34723455e0c.png)
 
-## 2. Momentum.
+## 2. Museum Louvre
+#### Deploy: 
+https://rubiaqute.github.io/rsschool-mirror/museum-dom/
+#### Technologies used: 
+Javascript, HTML, CSS
+#### Description: 
+Landing-page with interactive elements and animation (image slider, video slider, custom video player, booking form with validation, gallery animation, interactive map)
+#### Screenshot:
+![image](https://user-images.githubusercontent.com/79940827/157326762-ebf26c6f-c111-40fe-b302-c34723455e0c.png)
+
+## 3. Momentum
 #### Deploy: 
 https://rubiaqute-momentum.netlify.app/
 #### Technologies used: 
@@ -20,7 +30,7 @@ Dashboard with weather, quotes, COVID-19, time, audio player. Background images,
 #### Screenshot:
 ![image](https://user-images.githubusercontent.com/79940827/157330083-9f53a33f-a454-4aae-aac4-cda128fd1c1c.png)
 
-## 3. Async-race.
+## 4. Async-race
 #### Important:
 For this project tt is necessary to run the server: 
 1) Clone the repository https://github.com/mikhama/async-race-api.git
@@ -37,7 +47,7 @@ Emulator of car race. You can create, update, delete cars and start races. The w
 ![image](https://user-images.githubusercontent.com/79940827/157332604-1e56043f-2e02-47a6-9a57-94452fc8cebe.png)
 
 
-## 4. Christmas.
+## 5. Christmas
 #### Deploy: 
 https://rubiaqute.github.io/rsschool-mirror/christmas2/#/
 #### Technologies used: 
