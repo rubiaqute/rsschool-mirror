@@ -2036,7 +2036,7 @@ display: none;
     row-gap: 24px;
     
     
-    max-height:2400px;
+    max-height:2500px;
     height:100%;
     height: calc(100% * ((580 / 2996) * 5 + 24 * 4));
     display:flex;
