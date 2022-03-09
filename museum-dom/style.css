@@ -886,6 +886,7 @@ animation-name: right;
     flex-wrap: wrap;
     gap: 72px 60px ;
     margin-top:  106px;
+    justify-content: center;
 }
 .cards-element{
     display: block;
@@ -2031,11 +2032,11 @@ display: none;
     /* column-count: 3; */
     /* grid-template-columns: repeat(3,1fr);  */
     column-gap: calc(100% * (36 / 1440));
-    
+    align-items: center;
     row-gap: 24px;
     
     
-    max-height:2996px;
+    max-height:2400px;
     height:100%;
     height: calc(100% * ((580 / 2996) * 5 + 24 * 4));
     display:flex;
@@ -2537,23 +2538,31 @@ background-color: var(--font-gold);
 #side-checkbox{
     display: none;
 }
-.side-panel{
-    overflow-y: scroll;
+.overlay{
     position: fixed;
     z-index: 999999;
-    top:0px;
-    visibility: hidden;
-    right:-300%; 
-    height:845px;
-    width:1440px;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 0;
+    width: 100%;
+    height: 100%;
+    right:-300%;
+    padding: 2% 5%;
+    overflow-y: auto;
+}
+.side-panel{
+    position: relative;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    padding:2% 5%;
+    width:90%;
+    margin: auto;
     transition: all 1s;
     background-color: #ffffff;
 }
 
-#side-checkbox:checked + .side-panel{
+#side-checkbox:checked + .overlay{
     
 visibility: visible;
-    right:calc(50% - 720px);
+    right:0;
 }
 .side-button-close{
     position: absolute;
@@ -2581,7 +2590,7 @@ visibility: visible;
     
 }
 .first-side-column{
-    max-width:400px;
+    max-width:530px;
     width:100%;
 }
 .side-title h2{
@@ -2903,7 +2912,7 @@ position: relative;
 }
 .credit-card-face{
     margin-top:10px;
-    max-width: 360px;
+    max-width: 76.6%;
     min-height:211px;
     width:100%;
     background-color: #A4A4A3;
@@ -2920,7 +2929,7 @@ position: relative;
     
 }
 .card-number-input{
-    max-width: 215px;
+    max-width: 60%;
     width:100%;
     background-color: #ffffff;
     min-height: 35px;
@@ -2929,7 +2938,7 @@ position: relative;
     margin-bottom: 10px;
 }
 .expiration{
-    max-width: 100px;
+    max-width: 27.8%;
     width:100%;
     background-color: #ffffff;
     min-height: 35px;
@@ -2940,7 +2949,7 @@ position: relative;
     margin-right:15px;
 }
 .cardholder-input{
-    max-width: 320px;
+    max-width: 88.8%;
     width:100%;
     background-color: #ffffff;
     min-height: 35px;
@@ -2950,17 +2959,15 @@ position: relative;
 .visa{
     position:absolute;
     top: 34px; 
-    right:20px;
-    bottom: 161px;
-    left:285px;
+    left:79%;
+    width: 15.2%
 
 }
 .mastercard{
     position:absolute;
     top: 65px; 
-    right:20px;
-    bottom: 114px;
-    left:287px;
+    left:79%;
+    width: 15.2%
     
 }
 .credit-card{
@@ -2975,14 +2982,14 @@ position: relative;
     top: 30px;
     right:0px;
     bottom:0px;
-    left:110px;
+    left:26.2%;
     background-color:#939393;
-    max-width:360px;
+    max-width:76.6%;
     width:100%;
     height:211px;
 }
 .black-magnet{
-    max-width:360px;
+    
     width:100%;
     height:45px;
     background-color:#161615;
@@ -2996,7 +3003,7 @@ font-size: 12px;
 line-height: 14px;
 color: #161615;
 margin-top: 15px;
-margin-left: 274px;
+margin-left: 76%;
 }
 .cvc-discription{
     font-family: "Roboto";
@@ -3004,21 +3011,21 @@ font-weight: 300;
 font-size: 10px;
 line-height: 12px;
 color: #161615;
-max-width:55px;
+max-width:20%;
 width:100%;
 height:50px;
 margin-top:6px;
-margin-left:275px;
+margin-left:70%;
 }
 .credit-card-reverse input{
-    max-width:75px;
+    max-width:20%;
     width:100%;
     height:35px;
     margin-top:5px;
-    margin-left:265px;
+    margin-left:73%;
 }
 .book-button{
-    max-width:220px;
+    max-width:46.8%;
     width:100%;
     height:45px;
     background-color:var(--dark-red);
@@ -3028,7 +3035,7 @@ font-weight: 300;
 font-size: 22px;
 line-height: 26px;
 margin-top:56px;
-margin-left: 250px;
+margin-left: 53%;
 }
 .book-button:hover{
     cursor: pointer;
@@ -3037,12 +3044,8 @@ margin-left: 250px;
 }
 @media (max-width:1024px){
     .side-panel{
-        
         overflow: auto;
         height: 100%;
-       
-        width:1025px;
-       
     }
     #side-checkbox:checked + .side-panel{
     
@@ -3064,13 +3067,23 @@ margin-left: 250px;
             
             
         }
+        .container-side{
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        .second-side-column{
+            max-width: 470px;
+        }
+        .first-side-column{
+            max-width: 470px;
+        }
 }
 @media (max-width:768px){
     .side-panel{
         overflow:visible;
         overflow: scroll;
         height:100%;
-        width:590px;
         overflow-y: auto;
        
     }
@@ -3133,7 +3146,7 @@ margin-left: 250px;
         overflow:visible;
         overflow: scroll;
         height:100%;
-        width:420px;
+        
         overflow-y: auto;
        
     }
@@ -3207,7 +3220,7 @@ margin-left: 250px;
             position: relative;
             margin-top: 0px;
             left: 0px;
-            max-width: 360px;
+            max-width: 76.5%;
             width: 100%;
             height: 211px;
             top: 25px;
