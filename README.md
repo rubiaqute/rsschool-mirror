@@ -18,7 +18,7 @@ Javascript, HTML, CSS
 #### Description: 
 Landing-page with interactive elements and animation (image slider, video slider, custom video player, booking form with validation, gallery animation, interactive map)
 #### Screenshot:
-![image](https://user-images.githubusercontent.com/79940827/157326762-ebf26c6f-c111-40fe-b302-c34723455e0c.png)
+![image](https://user-images.githubusercontent.com/79940827/157425360-9ae09d76-1947-492a-87b9-a051f5c39c70.png)
 
 ## 3. Momentum
 #### Deploy: 
